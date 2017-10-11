@@ -7,6 +7,7 @@ public class Main {
     }
 }
 
+<<<<<<< HEAD
 interface IAssemblyLine{
     IProduct assembleProduct(IProduct iProduct);
 }
@@ -97,3 +98,5 @@ class Tank implements IProduct{
         System.out.println("Tower is installed");
     }
 }
+=======
+>>>>>>> Lesson_2
