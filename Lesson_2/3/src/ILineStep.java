@@ -1,0 +1,3 @@
+interface ILineStep {
+    IProductPart buildProductPart();
+}
