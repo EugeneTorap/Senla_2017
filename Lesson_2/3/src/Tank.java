@@ -1,11 +1,18 @@
 class Tank implements IProduct{
-    public void installFirstPart(IProductPart body) {
+    private IProductPart Body;
+    private IProductPart Engine;
+    private IProductPart Tower;
+
+    public void installFirstPart(IProductPart Body) {
+        this.Body = Body;
         System.out.println("Body is installed");
     }
-    public void installSecondPart(IProductPart bow) {
+    public void installSecondPart(IProductPart Engine) {
+        this.Engine = Engine;
         System.out.println("Engine is installed");
     }
-    public void installThirdPart(IProductPart lens) {
+    public void installThirdPart(IProductPart Tower) {
+        this.Tower = Tower;
         System.out.println("Tower is installed");
     }
 }
