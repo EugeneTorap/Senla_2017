@@ -1,21 +1,23 @@
-import java.util.Scanner;
-
 public class ArraySort {
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        System.out.print("Input a line: ");
-        String line = in.next().toLowerCase();
+        String[] array = new String[]{"Dog", "Cat", "carpet", "zoo", "city", "Case", "cinema", "Zoo", "apple"};
+        for (String i: array) {
+            System.out.print(i + ", ");
+        }
 
-        char[] charArray = line.toCharArray();
-        for (int i = 0; i < line.length(); i++) {
-            for (int j = 0; j < line.length(); j++) {
-                if(charArray[i] < charArray[j]){
-                    char temp = charArray[i];
-                    charArray[i] = charArray[j];
-                    charArray[j] = temp;
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array.length; j++) {
+                if(array[j].toLowerCase().compareTo(array[i].toLowerCase())>0){
+                    String temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
                 }
             }
         }
-        System.out.println(charArray);
+
+        System.out.println("\nArray is sorted:");
+        for (String i: array) {
+            System.out.print(i + ", ");
+        }
     }
 }
