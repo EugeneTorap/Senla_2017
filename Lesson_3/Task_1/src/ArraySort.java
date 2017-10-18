@@ -5,6 +5,15 @@ public class ArraySort {
             System.out.print(i + ", ");
         }
 
+        sort(array);
+
+        System.out.println("\nArray is sorted:");
+        for (String i: array) {
+            System.out.print(i + ", ");
+        }
+    }
+
+    private static String[] sort(String[] array){
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array.length; j++) {
                 if(array[j].toLowerCase().compareTo(array[i].toLowerCase())>0){
@@ -14,10 +23,6 @@ public class ArraySort {
                 }
             }
         }
-
-        System.out.println("\nArray is sorted:");
-        for (String i: array) {
-            System.out.print(i + ", ");
-        }
+        return array;
     }
 }

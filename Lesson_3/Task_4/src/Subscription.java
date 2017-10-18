@@ -1,4 +1,5 @@
 public interface Subscription {
-    void subscribeBook(Book newBook);
-    void unSubscribeBook(int Id);
+
+    void subscribeBook(Reader reader, Book newBook);
+    void unSubscribeBook(Reader reader, int Id);
 }
