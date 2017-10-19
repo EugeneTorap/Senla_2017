@@ -2,10 +2,26 @@ public class ManagerOfLibrary implements Subscription {
 
     public void addBook(Library library, Book newBook){
         Book[] books = library.getBooks();
+        library.setBooks(addBook(books, newBook));
+    }
+
+    private Book[] addBook(Book[] books, Book newBook){
         Book[] newBooks = new Book[books.length + 1];
         System.arraycopy(books, 0, newBooks, 0, books.length);
         newBooks[books.length] = newBook;
-        library.setBooks(newBooks);
+        return newBooks;
+    }
+
+    private Book[] deleteBook(Book[] books, int Id){
+        Book[] newBooks = new Book[books.length - 1];
+        int count = 0;
+        for (Book book : books) {
+            if (Id != book.getId()) {
+                newBooks[count] = book;
+                count++;
+            }
+        }
+        return newBooks;
     }
 
     public void addReader(Library library, Reader newReader){
@@ -17,35 +33,39 @@ public class ManagerOfLibrary implements Subscription {
     }
 
     @Override
-    public void subscribeBook(Reader reader, Book newBook) {
-        Book[] books = reader.getBooks();
-        Book[] newBooks = new Book[books.length + 1];
-        System.arraycopy(books, 0, newBooks, 0, books.length);
-        newBooks[books.length] = newBook;
-        reader.setBooks(newBooks);
+    public void subscribeBook(Library library, Reader reader, int Id) {
+        Book[] books = library.getBooks();
+        Book IdBook = bookSearch(books, Id);
+
+        if (IdBook != null) {
+            IdBook.setBusy(false);
+            reader.setBooks(addBook(reader.getBooks(), IdBook));
+            library.setBooks(deleteBook(books, Id));
+            return;
+        }
+        System.out.println("There's no such book");
     }
 
     @Override
-    public void unSubscribeBook(Reader reader, int Id) {
+    public void unSubscribeBook(Library library, Reader reader, int Id) {
         Book[] books = reader.getBooks();
-        Book[] newBooks = new Book[books.length - 1];
-        int count = 0;
+        Book IdBook = bookSearch(books, Id);
 
-        Boolean isThereBook = true;
+        if (IdBook != null) {
+            IdBook.setBusy(true);
+            addBook(library, IdBook);
+            reader.setBooks(deleteBook(books, Id));
+            return;
+        }
+        System.out.println("There's no such book");
+    }
+
+    public static Book bookSearch(Book[] books, int Id){
         for (Book book : books) {
             if (Id == book.getId()) {
-                isThereBook = false;
-                continue;
+                return book;
             }
-            if (count == books.length - 1){ break;}
-
-            newBooks[count] = book;
-            count++;
         }
-        if (isThereBook){
-            System.out.println("There's no such book");
-        }else{
-            reader.setBooks(newBooks);
-        }
+        return null;
     }
 }

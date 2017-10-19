@@ -1,13 +1,11 @@
 public class Library {
 
-    private int amountOfBook;
-    private int amountOfReader;
     private Book[] books;
     private Reader[] readers;
 
-    public Library(Book[] books, Reader[] readers) {
-        this.books = books;
-        this.readers = readers;
+    public Library(int amountOfBook, int amountOfReader) {
+        this.books = new Book[amountOfBook];
+        this.readers = new Reader[amountOfReader];
     }
 
     public Book[] getBooks() {

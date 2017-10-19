@@ -1,6 +1,7 @@
 public class Book {
 
     private String title;
+    private Boolean isBusy;
     private int Id;
 
     public Book(String title, int Id) {
@@ -14,5 +15,13 @@ public class Book {
 
     public int getId() {
         return Id;
+    }
+
+    public void setBusy(Boolean isBusy) {
+        this.isBusy = isBusy;
+    }
+
+    public Boolean getBusy() {
+        return isBusy;
     }
 }

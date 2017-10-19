@@ -1,24 +1,19 @@
 public class Menu {
 
     public static void showAllReader(Library library){
-        Reader[] readers = library.getReaders();
-        System.out.println("List of all readers: \n");
-        for (Reader i: readers) {
+        System.out.println("\nList of all readers: \n");
+        for (Reader i: library.getReaders()) {
             System.out.println(i.getName());
         }
     }
 
     public static void showAllBooks(Library library){
-        Book[] libraryBooks = library.getBooks();
-        Reader[] readers = library.getReaders();
-        Book[] readersBooks;
         System.out.println("\nList of all books: \n");
-        for (Book i: libraryBooks) {
+        for (Book i: library.getBooks()) {
             System.out.println("Id: " + i.getId() + ", Book: " + i.getTitle() + ", " + "in library");
         }
-        for (Reader j: readers) {
-            readersBooks = j.getBooks();
-            for (Book i: readersBooks) {
+        for (Reader j: library.getReaders()) {
+            for (Book i: j.getBooks()) {
                 System.out.println("Id: " + i.getId() + ", Book: " + i.getTitle() + ", " + "in Reader");
             }
         }
@@ -26,28 +21,19 @@ public class Menu {
     }
 
     public static void showAllBooksOfReader(Reader reader){
-        Book[] books = reader.getBooks();
-        for (Book i: books) {
+        System.out.println("\nList of all books of Reader: \n");
+        for (Book i: reader.getBooks()) {
             System.out.println("Id: " + i.getId() + ", Book: " + i.getTitle());
         }
     }
 
-    public static void showReaders(Library library, int Id){
-        Reader[] readers = library.getReaders();
-        Boolean isThereReader = false;
-        for (Reader i : readers) {
-            Book[] books = i.getBooks();
-            for (Book j: books) {
-                if (j.getId() == Id){
-                    isThereReader = true;
-                    System.out.println(i.getName());
-                }
+    public static void showReader(Library library, int Id){
+        for (Reader i : library.getReaders()) {
+            if (ManagerOfLibrary.bookSearch(i.getBooks(), Id) != null) {
+                System.out.println("\n" + i.getName() + " has that book \n");
+                return;
             }
         }
-        if(!isThereReader){
-            System.out.println("There's no reader with such book");
-        }
+        System.out.println("There's no reader with such book");
     }
-
-
 }
