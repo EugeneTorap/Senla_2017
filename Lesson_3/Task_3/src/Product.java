@@ -1,8 +1,8 @@
-public abstract class Goods {
+public abstract class Product {
     private String name;
     private int weight;
 
-    protected Goods(String name, int weight) {
+    protected Product(String name, int weight) {
         this.name = name;
         this.weight = weight;
     }

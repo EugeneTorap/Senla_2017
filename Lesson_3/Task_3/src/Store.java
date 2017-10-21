@@ -1,39 +1,32 @@
 public class Store {
-    private int amountOfFruits;
-    private Goods[] goods;
-    private Boolean isStoreFull;
+
+    private Product[] products;
 
     public Store(int amountOfFruits) {
-        this.amountOfFruits = amountOfFruits;
-        this.goods = new Goods[0];
-        isStoreFull = false;
+        this.products = new Product[amountOfFruits];
     }
 
-    public void addGoods(Goods newGoods){
-        if (goods.length != amountOfFruits) {
-            Goods[] newReaders = new Goods[goods.length + 1];
-            System.arraycopy(goods, 0, newReaders, 0, goods.length);
-            newReaders[goods.length] = newGoods;
-            goods = newReaders;
-            if (goods.length == amountOfFruits){
-                isStoreFull = true;
-                System.out.println("The store is full");
-            }
+    public int getPosition(Product[] products){
+        for (int i = 0; i < products.length; i++) {
+            if (products[i] == null)
+                return i;
         }
+        return -1;
     }
 
-    public Goods[] getGoods() {
-        return goods;
-    }
-
-    public void setGoods(Goods[] goods) {
-        this.goods = goods;
+    public void addProduct(Product newProduct){
+        if (getPosition(products) != -1) {
+            int position = getPosition(products);
+            products[position] = newProduct;
+            return;
+        }
+        System.out.println("The store is full");
     }
 
     public int getWeightOfGoods(){
-        if (isStoreFull){
+        if (getPosition(products) == -1){
             int sum = 0;
-            for (Goods good : goods) {
+            for (Product good : products) {
                 sum += good.getWeight();
             }
             return sum;

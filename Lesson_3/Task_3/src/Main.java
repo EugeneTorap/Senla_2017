@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class Main {
     public static void main(String[] args) {
         Apple apple = new Apple("Apple", 100);
@@ -8,13 +6,13 @@ public class Main {
 
         Store store = new Store(15);
         for (int i = 0; i < 5; i++) {
-            store.addGoods(apple);
+            store.addProduct(apple);
         }
         for (int i = 0; i < 3; i++) {
-            store.addGoods(melon);
+            store.addProduct(melon);
         }
-        for (int i = 0; i < 7; i++) {
-            store.addGoods(pear);
+        for (int i = 0; i < 8; i++) {
+            store.addProduct(pear);
         }
 
         int weight = store.getWeightOfGoods();

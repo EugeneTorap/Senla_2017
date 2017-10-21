@@ -14,19 +14,18 @@ public class Main {
 
         Reader[] readers = {Jony, Vasia, Bob};
         Book[] forLibrary = {new Book("English", 7), new Book("Russia", 8)};
-        Library library = new Library(2, 3);
-        library.setBooks(forLibrary);
-        library.setReaders(readers);
 
-        ManagerOfLibrary manager = new ManagerOfLibrary();
-        //manager.addBook(library, new Book("Love", 9));
-        //manager.addReader(library, new Reader("Jackson", 1));
-        //manager.subscribeBook(library, Bob, 7);
-        //manager.unSubscribeBook(library, Bob, 5);
+        ManagerOfLibrary manager = new ManagerOfLibrary(2, 3);
+        manager.setBooks(forLibrary);
+        manager.setReaders(readers);
+        //manager.addBook(new Book("Love", 9));
+        //manager.addReader(new Reader("Jackson", 1));
+        //manager.subscribeBook(Bob, 7);
+        //manager.unSubscribeBook(Bob, 5);
 
-        //Menu.showAllBooks(library);
-        //Menu.showAllBooksOfReader(Bob);
-        //Menu.showAllReader(library);
-        //Menu.showReader(library, 5);
+        //manager.showAllBooks();
+        //manager.showAllBooksOfReader(Bob);
+        //manager.showAllReader();
+        //manager.showReader(5);
     }
 }
