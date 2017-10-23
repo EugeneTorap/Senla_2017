@@ -1,12 +1,12 @@
 public class Book {
 
     private String title;
-    private Boolean isBusy;
-    private int Id;
+    private String status;
+    private int id;
 
-    public Book(String title, int Id) {
+    public Book(String title, int id) {
         this.title = title;
-        this.Id = Id;
+        this.id = id;
     }
 
     public String getTitle() {
@@ -14,14 +14,14 @@ public class Book {
     }
 
     public int getId() {
-        return Id;
+        return id;
     }
 
-    public void setBusy(Boolean isBusy) {
-        this.isBusy = isBusy;
+    public String getStatus() {
+        return status;
     }
 
-    public Boolean getBusy() {
-        return isBusy;
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

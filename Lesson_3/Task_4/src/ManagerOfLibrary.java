@@ -1,49 +1,43 @@
 public class ManagerOfLibrary implements Subscription {
 
-    private Book[] libraryBooks;
+    final String finalLibrary = "inLibrary";
+    final String finalReader = "reader's";
+
+    private Book[] books;
     private Reader[] readers;
 
     public ManagerOfLibrary(int amountOfBook, int amountOfReader) {
-        this.libraryBooks = new Book[amountOfBook];
+        this.books = new Book[amountOfBook];
         this.readers = new Reader[amountOfReader];
     }
 
-    public void setBooks(Book[] libraryBooks) {
-        this.libraryBooks = libraryBooks;
-    }
-
-    public void setReaders(Reader[] readers) {
-        this.readers = readers;
-    }
-
-    public void addBook(Book newBook){
-        libraryBooks = addBook(libraryBooks, newBook);
-    }
-
-    private Book[] addBook(Book[] books, Book newBook){
-        Book[] newBooks = new Book[books.length + 1];
-        System.arraycopy(books, 0, newBooks, 0, books.length);
-        newBooks[books.length] = newBook;
-        return newBooks;
-    }
-
-    private Book[] deleteBook(Book[] books, int id){
-        Book[] newBooks = new Book[books.length - 1];
-        int count = 0;
-        for (Book book : books) {
-            if (id != book.getId()) {
-                newBooks[count] = book;
-                count++;
-            }
+    public void addBookInLibrary(Book newBook){
+        if (Checker.getPosition(books) != -1) {
+            newBook.setStatus(finalLibrary);
+            int position = Checker.getPosition(books);
+            books[position] = newBook;
+            return;
         }
-        return newBooks;
+        System.out.println("Library is full");
+    }
+
+    public void addBookToReader(Book newBook, Reader reader){
+        if (Checker.getPosition(reader.getBooks()) != -1) {
+            newBook.setStatus(finalReader);
+            int position = Checker.getPosition(reader.getBooks());
+            reader.getBooks()[position] = newBook;
+            return;
+        }
+        System.out.println("Reader's books is full");
     }
 
     public void addReader(Reader newReader){
-        Reader[] newReaders = new Reader[readers.length + 1];
-        System.arraycopy(readers, 0, newReaders, 0, readers.length);
-        newReaders[readers.length] = newReader;
-        readers = newReaders;
+        if (Checker.getPosition(readers) != -1) {
+            int position = Checker.getPosition(readers);
+            readers[position] = newReader;
+            return;
+        }
+        System.out.println("Reader's books is full");
     }
 
     public void showAllReader(){
@@ -55,12 +49,12 @@ public class ManagerOfLibrary implements Subscription {
 
     public void showAllBooks(){
         System.out.println("\nList of all books: \n");
-        for (Book i: libraryBooks) {
-            System.out.println("Id: " + i.getId() + ", Book: " + i.getTitle() + ", " + "in library");
-        }
-        for (Reader j: readers) {
-            for (Book i: j.getBooks()) {
-                System.out.println("Id: " + i.getId() + ", Book: " + i.getTitle() + ", " + "in Reader");
+        for (Book i: books) {
+            System.out.print("Id: " + i.getId() + ", Book: " + i.getTitle() + ", ");
+            if (i.getStatus().equals(finalLibrary)) {
+                System.out.println("in library");
+            } else {
+                System.out.println("reader's");
             }
         }
     }
@@ -84,13 +78,13 @@ public class ManagerOfLibrary implements Subscription {
 
     @Override
     public void subscribeBook(Reader reader, int id) {
-        Book idBook = bookSearch(libraryBooks, id);
+        Book idBook = bookSearch(books, id);
 
         if (idBook != null) {
-            idBook.setBusy(false);
-            reader.setBooks(addBook(reader.getBooks(), idBook));
-            libraryBooks = deleteBook(libraryBooks, id);
-            return;
+            if (idBook.getStatus().equals(finalLibrary)) {
+                addBookToReader(idBook, reader);
+                return;
+            }
         }
         System.out.println("There's no such book");
     }
@@ -101,9 +95,11 @@ public class ManagerOfLibrary implements Subscription {
         Book idBook = bookSearch(books, id);
 
         if (idBook != null) {
-            idBook.setBusy(true);
-            addBook(idBook);
-            reader.setBooks(deleteBook(books, id));
+            for (int i = 0; i < books.length; i++) {
+                if (books[i].equals(idBook)) {
+                    reader.getBooks()[i] = null;
+                }
+            }
             return;
         }
         System.out.println("There's no such book");
