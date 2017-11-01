@@ -1,6 +1,6 @@
 package beans;
 
-import util.sorter.requestsorter.*;
+import util.coparator.requestsorter.*;
 import entity.Request;
 import repositories.RequestRepository;
 

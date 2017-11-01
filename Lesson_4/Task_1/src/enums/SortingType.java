@@ -1,5 +1,5 @@
 package enums;
 
 public enum SortingType {
-    ALPHABET, DATE, PRICE, ISSTORE, STATUS, AMOUNT
+    ALPHABET, DATE, PRICE, IS_STORE, STATUS, AMOUNT
 }

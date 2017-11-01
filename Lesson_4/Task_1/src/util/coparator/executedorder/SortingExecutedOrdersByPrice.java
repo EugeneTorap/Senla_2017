@@ -1,4 +1,4 @@
-package util.sorter.executedordersorter;
+package util.coparator.executedorder;
 
 import entity.Order;
 
@@ -10,9 +10,13 @@ public class SortingExecutedOrdersByPrice implements Comparator {
         Order ord1 = (Order)o1;
         Order ord2 = (Order)o2;
 
-        if (ord1.getPrice() > ord2.getPrice()){
+        if (ord1 != null && ord2 != null){
+            return Integer.compare(ord1.getPrice(), ord2.getPrice());
+        }
+
+        if (ord1 == null && ord2 != null){
             return 1;
-        } else if (ord1.getPrice() > ord2.getPrice()){
+        } else if (ord1 != null){
             return -1;
         } else {
             return 0;

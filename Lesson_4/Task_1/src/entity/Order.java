@@ -10,8 +10,7 @@ public class Order extends Entity{
     private Date dateExecuted;
     private Book[] books = new Book[5];
 
-    public Order(int id, Reader reader, Status status) {
-        super(id);
+    public Order(Reader reader, Status status) {
         this.reader = reader;
         this.status = status;
     }
@@ -35,7 +34,9 @@ public class Order extends Entity{
     public int getPrice() {
         int price = 0;
         for (Book book: books) {
-            price += book.getPrice();
+            if (book != null) {
+                price += book.getPrice();
+            }
         }
         return price;
     }

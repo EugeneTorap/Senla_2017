@@ -1,11 +1,12 @@
 package repositories;
 
+import util.ArrayWorker;
 import util.Checker;
 import entity.Order;
 import enums.Status;
 
 public class OrderRepository {
-    private Order[] orders = new Order[10];
+    private Order[] orders = new Order[50];
 
 
     public Order[] getOrders() {
@@ -13,7 +14,7 @@ public class OrderRepository {
     }
 
     public Order[] getExecutedOrders(){
-        Order[] executedOrders = new Order[10];
+        Order[] executedOrders = new Order[50];
 
         for (Order order : orders) {
             if (Checker.getPosition(executedOrders) != -1 && order != null && order.isExecuted()) {
@@ -25,23 +26,14 @@ public class OrderRepository {
     }
 
     public void addOrder(Order order){
-        if (Checker.getPosition(orders) != -1) {
-            int position = Checker.getPosition(orders);
-            orders [position] = order;
-            return;
+        if (Checker.getPosition(orders) == -1) {
+            orders = ArrayWorker.extendArray(orders);
         }
-        System.out.println("Order repository is full");
+        int position = Checker.getPosition(orders);
+        orders [position] = order;
     }
 
     public void canceledOrder(Order order){
         order.setStatus(Status.CANCELED);
-    }
-
-    public void delOrder(Order order){
-        int index = Checker.search(orders, order.getId());
-
-        if (index != -1){
-            orders[index] = null;
-        }
     }
 }

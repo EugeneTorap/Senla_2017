@@ -3,8 +3,8 @@ package beans;
 import entity.Book;
 import repositories.OrderRepository;
 import entity.Order;
-import util.sorter.ordersorter.*;
-import util.sorter.executedordersorter.*;
+import util.coparator.ordersorter.*;
+import util.coparator.executedorder.*;
 
 import java.util.Arrays;
 
@@ -25,7 +25,9 @@ private OrderRepository orderRepository;
         for (Order order: orderRepository.getExecutedOrders()) {
             if (order != null){
                 for (Book book : order.getBooks()) {
-                    sum += book.getPrice();
+                    if (book != null) {
+                        sum += book.getPrice();
+                    }
                 }
             }
         }

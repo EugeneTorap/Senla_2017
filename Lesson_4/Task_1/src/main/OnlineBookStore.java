@@ -1,8 +1,12 @@
-package beans;
+package main;
 
+import beans.BookManager;
+import beans.OrderManager;
+import beans.RequestManager;
 import entity.Book;
 import entity.Order;
 import entity.Request;
+import util.ArrayWorker;
 import util.Checker;
 import util.Printer;
 import enums.SortingType;
@@ -32,7 +36,7 @@ public class OnlineBookStore {
             case PRICE:
                 Printer.printArray(bookManager.sortBooksByPrice());
                 break;
-            case ISSTORE:
+            case IS_STORE:
                 Printer.printArray(bookManager.sortBooksByStore());
                 break;
         }
@@ -83,11 +87,11 @@ public class OnlineBookStore {
     }
 
     public void showOrderInfo(int id) {
-        Printer.print(Checker.search(orderManager.getOrderRepository().getOrders(), id));
+        Printer.print(ArrayWorker.search(orderManager.getOrderRepository().getOrders(), id));
     }
 
     public void showBookInfo(int id) {
-        Book book = Checker.search(bookManager.getBookRepository().getBooks(), id);
+        Book book = ArrayWorker.search(bookManager.getBookRepository().getBooks(), id);
         Printer.print(book);
     }
 

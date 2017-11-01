@@ -6,9 +6,10 @@ public class Request extends Entity {
     private Reader reader;
     private int amount;
 
-    public Request(int id, Reader reader) {
-        super(id);
+    public Request(Book book, Reader reader, int amount) {
+        this.book = book;
         this.reader = reader;
+        this.amount = amount;
     }
 
     public Book getBook() {
@@ -17,6 +18,10 @@ public class Request extends Entity {
 
     public void setBook(Book book) {
         this.book = book;
+    }
+
+    public Reader getReader() {
+        return reader;
     }
 
     public int getAmount() {

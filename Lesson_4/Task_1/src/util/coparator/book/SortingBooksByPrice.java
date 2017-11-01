@@ -1,4 +1,4 @@
-package util.sorter.booksorter;
+package util.coparator.book;
 
 import entity.Book;
 
@@ -10,9 +10,13 @@ public class SortingBooksByPrice implements Comparator {
         Book b1 = (Book)o1;
         Book b2 = (Book)o2;
 
-        if (b1.getPrice() > b2.getPrice()){
+        if (b1 != null && b2 != null){
+            return Integer.compare(b1.getPrice(), b2.getPrice());
+        }
+
+        if (b1 == null && b2 != null){
             return 1;
-        } else if (b1.getPrice() > b2.getPrice()){
+        } else if (b1 != null){
             return -1;
         } else {
             return 0;

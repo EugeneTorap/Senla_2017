@@ -10,7 +10,10 @@ public class Printer {
     }
 
     public static void print(Book book) {
-        System.out.println(book.getTitle() + ", " + book.getPrice());
+        if (book != null) {
+            System.out.println(book.getTitle() + ", price: " + book.getPrice() +
+                    ", id: " + book.getId() + ", date: " + book.getDatePublished());
+        }
     }
 
     public static void print(int number) {
@@ -18,9 +21,11 @@ public class Printer {
     }
 
     public static void printArray(Book[] books){
+        System.out.println();
         for (Book book : books) {
             if (book != null) {
-                System.out.println(book.getTitle() + ", " + book.getPrice());
+                System.out.println(book.getTitle() + ", price: " + book.getPrice() +
+                        ", id: " + book.getId() + ", date: " + book.getDatePublished());
             }
         }
     }
@@ -28,7 +33,7 @@ public class Printer {
     public static void printArray(Order[] orders){
         for (Order order : orders) {
             if (order != null) {
-                System.out.println(order.getPrice());
+                System.out.println(order.getId());
             }
         }
     }
@@ -36,7 +41,8 @@ public class Printer {
     public static void printArray(Request[] requests){
         for (Request request : requests) {
             if (request != null) {
-                System.out.println(request);
+                System.out.println(request.getReader().getName() + ", book: " + request.getBook().getTitle() +
+                ", amount: " + request.getAmount());
             }
         }
     }

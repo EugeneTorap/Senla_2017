@@ -1,26 +1,27 @@
 package repositories;
 
+import util.ArrayWorker;
 import util.Checker;
 import entity.Book;
 
 public class BookRepository {
-    private Book[] books = new Book[5];
+    private Book[] books = new Book[50];
 
     public Book[] getBooks() {
         return books;
     }
 
     public void addBook(Book newBook){
-        if (Checker.getPosition(books) != -1) {
-            int position = Checker.getPosition(books);
-            books[position] = newBook;
-            return;
+        if (Checker.getPosition(books) == -1) {
+            books = ArrayWorker.extendArray(books);
         }
-        System.out.println("Book repository is full");
+        newBook.setTheBookInStore(false);
+        int position = Checker.getPosition(books);
+        books[position] = newBook;
     }
 
     public void addBookOnStore(int id){
-        Book idBook = Checker.search(books, id);
+        Book idBook = ArrayWorker.search(books, id);
 
         if (idBook != null){
             idBook.setTheBookInStore(true);
@@ -31,7 +32,7 @@ public class BookRepository {
     }
 
     public void delBookFromStore(int id){
-        Book idBook = Checker.search(books, id);
+        Book idBook = ArrayWorker.search(books, id);
 
         if (idBook != null){
             idBook.setTheBookInStore(false);
