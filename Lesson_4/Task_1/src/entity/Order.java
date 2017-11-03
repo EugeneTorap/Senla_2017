@@ -2,6 +2,7 @@ package entity;
 
 import enums.Status;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class Order extends Entity{
@@ -47,5 +48,9 @@ public class Order extends Entity{
 
     public Reader getReader() {
         return reader;
+    }
+
+    public String toString() {
+        return reader.getName() + " " + status;
     }
 }

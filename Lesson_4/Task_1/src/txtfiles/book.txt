@@ -1,0 +1,5 @@
+Night 10 5 true 31
+War 20 6 true 19
+Rome 30 2 false 15
+Space 40 9 false 22
+Knight 50 7 false 11

@@ -1,23 +1,20 @@
 package main;
 
-import beans.BookManager;
-import beans.OrderManager;
-import beans.RequestManager;
-import entity.Book;
-import entity.Order;
-import entity.Reader;
-import entity.Request;
-import enums.SortingType;
-import enums.Status;
-import repositories.BookRepository;
-import repositories.OrderRepository;
-import repositories.RequestRepository;
+import beans.*;
+import entity.*;
+import enums.*;
+import repositories.*;
+import util.FileWorker;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class Main {
     public static void main(String[] args) {
+
+        FileWorker fileWorker = new FileWorker("D:\\Senla_2017\\Lesson_4\\Task_1\\src\\txtfiles\\book.txt",
+                "D:\\Senla_2017\\Lesson_4\\Task_1\\src\\txtfiles\\request.txt",
+                "D:\\Senla_2017\\Lesson_4\\Task_1\\src\\txtfiles\\order.txt");
 
         Reader r1 = new Reader("Eugene");
         Reader r2 = new Reader("Alla");
@@ -72,6 +69,10 @@ public class Main {
         store.addRequest(req1);
         store.addRequest(req2);
         store.addRequest(req3);
+
+        fileWorker.saveToFile(bookRepository.getBooks());
+        fileWorker.saveToFile(orderRepository.getOrders());
+        fileWorker.saveToFile(requestRepository.getRequests());
 
         store.showBookInfo(b1.getId());
         //store.showAllPrice();

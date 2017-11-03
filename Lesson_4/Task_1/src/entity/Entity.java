@@ -10,6 +10,10 @@ public abstract class Entity {
         this.id = IdGenerator.generateId();
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }
