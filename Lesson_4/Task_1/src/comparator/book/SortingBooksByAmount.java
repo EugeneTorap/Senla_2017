@@ -1,17 +1,17 @@
-package util.coparator.requestsorter;
+package comparator.book;
 
-import entity.Request;
+import entity.Book;
 
 import java.util.Comparator;
 
-public class SortingRequestByAlphabet implements Comparator {
+public class SortingBooksByAmount implements Comparator {
     @Override
     public int compare(Object o1, Object o2) {
-        Request r1 = (Request)o1;
-        Request r2 = (Request)o2;
+        Book r1 = (Book)o1;
+        Book r2 = (Book)o2;
 
         if (r1 != null && r2 != null){
-            return r1.getBook().getTitle().compareTo(r2.getBook().getTitle());
+            return Integer.compare(r1.getRequestAmount(), r2.getRequestAmount());
         }
 
         if (r1 == null && r2 != null){

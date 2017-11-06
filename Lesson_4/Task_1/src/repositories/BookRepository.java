@@ -6,9 +6,36 @@ import entity.Book;
 
 public class BookRepository {
     private Book[] books = new Book[50];
+    private Book[] notSoldBooks;
 
     public Book[] getBooks() {
         return books;
+    }
+
+    public void setBooks(Book[] books) {
+        this.books = books;
+    }
+
+    public Book[] getBooksNotSoldMoreSixMonth(){
+        return notSoldBooks;
+    }
+
+    public void updateBooksNotSoldMoreSixMonth(){
+        int count = 0;
+        for (Book book : books) {
+            if (book != null && book.getIsMoreSixMonth()) {
+                count++;
+            }
+        }
+        Book[] notSoldBooks = new Book[count];
+
+        for (Book book : books) {
+            if (Checker.getPosition(notSoldBooks) != -1 && book != null && book.getIsMoreSixMonth()) {
+                int position = Checker.getPosition(notSoldBooks);
+                notSoldBooks[position] = book;
+            }
+        }
+        this.notSoldBooks = notSoldBooks;
     }
 
     public void addBook(Book newBook){

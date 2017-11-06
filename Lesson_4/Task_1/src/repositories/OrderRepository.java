@@ -7,14 +7,28 @@ import enums.Status;
 
 public class OrderRepository {
     private Order[] orders = new Order[50];
-
+    private Order[] executedOrders;
 
     public Order[] getOrders() {
         return orders;
     }
 
+    public void setOrders(Order[] orders) {
+        this.orders = orders;
+    }
+
     public Order[] getExecutedOrders(){
-        Order[] executedOrders = new Order[50];
+        return executedOrders;
+    }
+
+    public void updateExecutedOrders(){
+        int count = 0;
+        for (Order order : orders) {
+            if (order != null && order.isExecuted()) {
+                count++;
+            }
+        }
+        Order[] executedOrders = new Order[count];
 
         for (Order order : orders) {
             if (Checker.getPosition(executedOrders) != -1 && order != null && order.isExecuted()) {
@@ -22,7 +36,7 @@ public class OrderRepository {
                 executedOrders[position] = order;
             }
         }
-        return executedOrders;
+        this.executedOrders = executedOrders;
     }
 
     public void addOrder(Order order){

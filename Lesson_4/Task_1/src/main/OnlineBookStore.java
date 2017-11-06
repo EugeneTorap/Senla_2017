@@ -5,18 +5,22 @@ import beans.OrderManager;
 import beans.RequestManager;
 import entity.Book;
 import entity.Order;
+import entity.Reader;
 import entity.Request;
 import util.ArrayWorker;
 import util.Checker;
+import util.FileWorker;
 import util.Printer;
 import enums.SortingType;
+
+import java.text.ParseException;
 
 public class OnlineBookStore {
 
     private BookManager bookManager;
     private OrderManager orderManager;
     private RequestManager requestManager;
-    private SortingType sortingType;
+    FileWorker fileWorker = new FileWorker("book.txt", "reader.txt", "order.txt");
 
     public OnlineBookStore(BookManager bookManager, OrderManager orderManager, RequestManager requestManager) {
         this.bookManager = bookManager;
@@ -38,6 +42,17 @@ public class OnlineBookStore {
                 break;
             case IS_STORE:
                 Printer.printArray(bookManager.sortBooksByStore());
+                break;
+        }
+    }
+
+    public void showUnsoldBooksSortedBy(SortingType type) {
+        switch (type) {
+            case DATE:
+                Printer.printArray(bookManager.sortUnsoldBooksByDate());
+                break;
+            case PRICE:
+                Printer.printArray(bookManager.sortUnsoldBooksByPrice());
                 break;
         }
     }
@@ -68,13 +83,29 @@ public class OnlineBookStore {
     }
 
     public void showRequestsSortedBy(SortingType type) {
+        requestManager.setRequestAmount();
         switch (type) {
             case AMOUNT:
-                Printer.printArray(requestManager.sortRequestsByAmount());
+                showBookRequests(bookManager.sortBooksByAmount());
                 break;
             case ALPHABET:
-                Printer.printArray(requestManager.sortRequestsByAlphabet());
+                showBookRequests(bookManager.sortBooksByAlphabet());
                 break;
+        }
+    }
+
+    private void showBookRequests(Book[] books){
+        System.out.println();
+        for (Book book : books) {
+            if (book != null) {
+                System.out.println(book.getTitle() + " " + book.getRequestAmount());
+                if (requestManager.requestForBook(book) != null){
+                    for (Request request : requestManager.requestForBook(book)) {
+                        System.out.println(request.getId() + " " + request.getReader().getName());
+                    }
+                }
+                System.out.println("-----------------------");
+            }
         }
     }
 
@@ -91,8 +122,11 @@ public class OnlineBookStore {
     }
 
     public void showBookInfo(int id) {
-        Book book = ArrayWorker.search(bookManager.getBookRepository().getBooks(), id);
-        Printer.print(book);
+        Printer.print(ArrayWorker.search(bookManager.getBookRepository().getBooks(), id));
+    }
+
+    public void addReader(Reader newReader){
+        requestManager.getRequestRepository().addReader(newReader);
     }
 
     public void addBook(Book newBook){
@@ -117,5 +151,17 @@ public class OnlineBookStore {
 
     public void addRequest(Request request){
         requestManager.getRequestRepository().addRequest(request);
+    }
+
+    public void saveAllData(){
+        fileWorker.saveToFile(bookManager.getBookRepository().getBooks());
+        fileWorker.saveToFile(orderManager.getOrderRepository().getOrders());
+        fileWorker.saveToFile(requestManager.getRequestRepository().getReaders());
+    }
+
+    public void loadAllData() throws ParseException {
+        bookManager.getBookRepository().setBooks(fileWorker.loadBooks());
+        orderManager.getOrderRepository().setOrders(fileWorker.loadOrders());
+        requestManager.getRequestRepository().setReaders(fileWorker.loadReader());
     }
 }

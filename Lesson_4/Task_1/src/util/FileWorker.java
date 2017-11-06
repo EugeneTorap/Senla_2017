@@ -3,33 +3,36 @@ package util;
 import com.danco.training.TextFileWorker;
 import entity.Book;
 import entity.Order;
-import entity.Request;
+import entity.Reader;
 import enums.Status;
 
-import java.util.GregorianCalendar;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class FileWorker {
     private static TextFileWorker textFileWorker;
     private String bookPath;
     private String orderPath;
-    private String requestPath;
-    private int counter = 0;
+    private String readerPath;
+    private DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
-    public FileWorker(String bookPath, String requestPath, String orderPath) {
+    public FileWorker(String bookPath, String readerPath, String orderPath) {
         this.bookPath = bookPath;
-        this.requestPath = requestPath;
+        this.readerPath = readerPath;
         this.orderPath = orderPath;
     }
 
     public void saveToFile(Book[] books) {
+        int count = 0;
         textFileWorker = new TextFileWorker(this.bookPath);
 
         for (Book book : books) {
             if (book != null) {
-                counter++;
+                count++;
             }
         }
-        String[] strings = new String[counter];
+        String[] strings = new String[count];
         for (int i = 0; i < books.length; i++) {
             if (books[i] != null) {
                 strings[i] = books[i].toString();
@@ -39,13 +42,14 @@ public class FileWorker {
     }
 
     public void saveToFile(Order[] orders) {
+        int count = 0;
         textFileWorker = new TextFileWorker(this.orderPath);
         for (Order order : orders) {
             if (order != null) {
-                counter++;
+                count++;
             }
         }
-        String[] strings = new String[counter];
+        String[] strings = new String[count];
         for (int i = 0; i < orders.length; i++) {
             if (orders[i] != null) {
                 strings[i] = orders[i].toString();
@@ -55,23 +59,24 @@ public class FileWorker {
         textFileWorker.writeToFile(strings);
     }
 
-    public void saveToFile(Request[] requests) {
-        textFileWorker = new TextFileWorker(this.requestPath);
-        for (Request request : requests) {
-            if (request != null) {
-                counter++;
+    public void saveToFile(Reader[] readers) {
+        int count = 0;
+        textFileWorker = new TextFileWorker(this.readerPath);
+        for (Reader reader : readers) {
+            if (reader != null) {
+                count++;
             }
         }
-        String[] strings = new String[counter];
-        for (int i = 0; i < requests.length; i++) {
-            if (requests[i] != null) {
-                strings[i] = requests[i].toString();
+        String[] strings = new String[count];
+        for (int i = 0; i < readers.length; i++) {
+            if (readers[i] != null) {
+                strings[i] = readers[i].getName();
             }
         }
         textFileWorker.writeToFile(strings);
     }
 
-    public Book[] loadTheBooks() {
+    public Book[] loadBooks() throws ParseException {
         textFileWorker = new TextFileWorker(this.bookPath);
         String[] strings = textFileWorker.readFromFile();
         if (strings != null) {
@@ -82,43 +87,46 @@ public class FileWorker {
                 books[i].setId(Integer.parseInt(bookString[1]));
                 books[i].setPrice(Integer.parseInt(bookString[2]));
                 books[i].setTheBookInStore(Boolean.parseBoolean(bookString[3]));
-                GregorianCalendar pubDate = new GregorianCalendar(Integer.parseInt(bookString[4]),
-                        Integer.parseInt(bookString[5]), Integer.parseInt(bookString[6]));
-                books[i].setDatePublished(pubDate);
+                books[i].setDatePublished(df.parse(bookString[4]));
+                books[i].setDateReceipted(df.parse(bookString[5]));
             }
             return books;
         }
         return null;
     }
 
-    public Order[] loadTheOrders() {
+    public Order[] loadOrders() throws ParseException {
         textFileWorker = new TextFileWorker(this.orderPath);
         String[] strings = textFileWorker.readFromFile();
         if (strings != null) {
             Order[] orders = new Order[strings.length];
             for (int i = 0; i < strings.length; i++) {
                 String[] orderString = strings[i].split(" ");
-                orders[i].getReader().setName(orderString[0]);
+                orders[i].setReader(new Reader(orderString[0]));
                 orders[i].setId(Integer.parseInt(orderString[1]));
                 orders[i].setStatus(Status.valueOf(orderString[2]));
+                orders[i].setDateExecuted(df.parse(orderString[4]));
+
+                Book[] books = new Book[Integer.parseInt(orderString[5])];
+                for (int j = 0; j < Integer.parseInt(orderString[5]); j++) {
+                    books[i] = ArrayWorker.search(books, Integer.parseInt(orderString[6 + j]));
+                }
+                orders[i].setBooks(books);
             }
             return orders;
         }
         return null;
     }
 
-    public Request[] loadTheRequests() {
-        textFileWorker = new TextFileWorker(this.requestPath);
+    public Reader[] loadReader() {
+        textFileWorker = new TextFileWorker(this.readerPath);
         String[] strings = textFileWorker.readFromFile();
         if (strings != null) {
-            Request[] requests = new Request[strings.length];
+            Reader[] readers = new Reader[strings.length];
             for (int i = 0; i < strings.length; i++) {
-                String[] requestString = strings[i].split(" ");
-                requests[i].getReader().setName(requestString[0]);
-                requests[i].getBook().setTitle(requestString[1]);
-                requests[i].setAmount(Integer.parseInt(requestString[2]));
+                readers[i].setName(strings[i]);
             }
-            return requests;
+            return readers;
         }
         return null;
     }

@@ -2,6 +2,7 @@ package util;
 
 import entity.Book;
 import entity.Order;
+import entity.Reader;
 import entity.Request;
 
 public class ArrayWorker {
@@ -27,6 +28,12 @@ public class ArrayWorker {
         Book[] newBooks = new Book[books.length * 2];
         System.arraycopy(books, 0, newBooks, 0, books.length);
         return newBooks;
+    }
+
+    public static Reader[] extendArray(Reader[] readers) {
+        Reader[] newReaders = new Reader[readers.length * 2];
+        System.arraycopy(readers, 0, newReaders, 0, readers.length);
+        return newReaders;
     }
 
     public static Order[] extendArray(Order[] orders) {

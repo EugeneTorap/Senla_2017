@@ -1,17 +1,13 @@
 package entity;
 
-import java.util.Calendar;
-
 public class Request extends Entity {
 
     private Book book;
     private Reader reader;
-    private int amount;
 
-    public Request(Book book, Reader reader, int amount) {
+    public Request(Book book, Reader reader) {
         this.book = book;
         this.reader = reader;
-        this.amount = amount;
     }
 
     public Book getBook() {
@@ -26,15 +22,7 @@ public class Request extends Entity {
         return reader;
     }
 
-    public int getAmount() {
-        return amount;
-    }
-
     public String toString() {
-        return reader.getName() + " " + book.getTitle() + " " + amount;
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
+        return getId() + " " + reader.getName() + " " + book.getTitle();
     }
 }

@@ -2,7 +2,8 @@ package beans;
 
 import entity.Book;
 import repositories.BookRepository;
-import util.coparator.book.*;
+import comparator.book.*;
+import comparator.book.SortingBooksByDateRec;
 
 import java.util.Arrays;
 
@@ -24,7 +25,7 @@ public class BookManager {
     }
 
     public Book[] sortBooksByDate(){
-        Arrays.sort(bookRepository.getBooks(), new SortingBooksByDate());
+        Arrays.sort(bookRepository.getBooks(), new SortingBooksByDatePub());
         return bookRepository.getBooks();
     }
 
@@ -36,5 +37,22 @@ public class BookManager {
     public Book[] sortBooksByStore(){
         Arrays.sort(bookRepository.getBooks(), new SortingBooksByStore());
         return bookRepository.getBooks();
+    }
+
+    public Book[] sortBooksByAmount(){
+        Arrays.sort(bookRepository.getBooks(), new SortingBooksByAmount());
+        return bookRepository.getBooks();
+    }
+
+    public Book[] sortUnsoldBooksByDate(){
+        bookRepository.updateBooksNotSoldMoreSixMonth();
+        Arrays.sort(bookRepository.getBooksNotSoldMoreSixMonth(), new SortingBooksByDateRec());
+        return bookRepository.getBooksNotSoldMoreSixMonth();
+    }
+
+    public Book[] sortUnsoldBooksByPrice(){
+        bookRepository.updateBooksNotSoldMoreSixMonth();
+        Arrays.sort(bookRepository.getBooksNotSoldMoreSixMonth(), new SortingBooksByPrice());
+        return bookRepository.getBooksNotSoldMoreSixMonth();
     }
 }

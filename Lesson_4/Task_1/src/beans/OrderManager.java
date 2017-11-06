@@ -1,10 +1,8 @@
 package beans;
 
-import entity.Book;
 import repositories.OrderRepository;
 import entity.Order;
-import util.coparator.ordersorter.*;
-import util.coparator.executedorder.*;
+import comparator.order.*;
 
 import java.util.Arrays;
 
@@ -23,25 +21,13 @@ private OrderRepository orderRepository;
     public int getAllPrice(){
         int sum = 0;
         for (Order order: orderRepository.getExecutedOrders()) {
-            if (order != null){
-                for (Book book : order.getBooks()) {
-                    if (book != null) {
-                        sum += book.getPrice();
-                    }
-                }
-            }
+            sum += order.getPrice();
         }
         return sum;
     }
     
     public int getAmountExecutedOrders(){
-        int amount = 0;
-        for (Order order: orderRepository.getExecutedOrders()) {
-            if (order != null){
-                amount++;
-            }
-        }
-        return amount;
+        return orderRepository.getExecutedOrders().length;
     }
 
     public Order[] sortOrdersByDate(){
@@ -60,12 +46,14 @@ private OrderRepository orderRepository;
     }
 
     public Order[] sortExecutedOrdersByDate(){
-        Arrays.sort(orderRepository.getExecutedOrders(), new SortingExecutedOrdersByDate());
+        orderRepository.updateExecutedOrders();
+        Arrays.sort(orderRepository.getExecutedOrders(), new SortingOrdersByDate());
         return orderRepository.getExecutedOrders();
     }
 
     public Order[] sortExecutedOrdersByPrice(){
-        Arrays.sort(orderRepository.getExecutedOrders(), new SortingExecutedOrdersByPrice());
+        orderRepository.updateExecutedOrders();
+        Arrays.sort(orderRepository.getExecutedOrders(), new SortingOrdersByPrice());
         return orderRepository.getExecutedOrders();
     }
 }

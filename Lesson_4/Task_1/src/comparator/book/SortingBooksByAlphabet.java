@@ -1,17 +1,16 @@
-package util.coparator.book;
-
-import entity.Book;
+package comparator.book;
 
 import java.util.Comparator;
+import entity.Book;
 
-public class SortingBooksByDate implements Comparator {
+public class SortingBooksByAlphabet implements Comparator {
     @Override
     public int compare(Object o1, Object o2) {
         Book b1 = (Book)o1;
         Book b2 = (Book)o2;
 
         if (b1 != null && b2 != null){
-            return b1.getDatePublished().compareTo(b2.getDatePublished());
+            return b1.getTitle().compareTo(b2.getTitle());
         }
 
         if (b1 == null && b2 != null){

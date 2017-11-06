@@ -1,4 +1,4 @@
-package util.coparator.book;
+package comparator.book;
 
 import entity.Book;
 

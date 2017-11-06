@@ -1,16 +1,29 @@
 package repositories;
 
+import entity.Reader;
 import util.ArrayWorker;
 import util.Checker;
-import entity.Book;
 import entity.Request;
 
 public class RequestRepository {
     private Request[] requests = new Request[50];
+    private Reader[] readers = new Reader[50];
 
 
     public Request[] getRequests() {
         return requests;
+    }
+
+    public void setRequests(Request[] requests) {
+        this.requests = requests;
+    }
+
+    public Reader[] getReaders() {
+        return readers;
+    }
+
+    public void setReaders(Reader[] readers) {
+        this.readers = readers;
     }
 
     public void addRequest(Request request){
@@ -21,15 +34,11 @@ public class RequestRepository {
         requests [position] = request;
     }
 
-    public Request[] requestForBook(Book book){
-        Request[] bookRequests = new Request[10];
-
-        for (Request request : requests) {
-            if (Checker.getPosition(bookRequests) != -1 && request != null && request.getBook().equals(book)) {
-                int position = Checker.getPosition(bookRequests);
-                bookRequests[position] = request;
-            }
+    public void addReader(Reader reader){
+        if (Checker.getPosition(readers) == -1) {
+            readers = ArrayWorker.extendArray(readers);
         }
-        return bookRequests;
+        int position = Checker.getPosition(readers);
+        readers [position] = reader;
     }
 }
