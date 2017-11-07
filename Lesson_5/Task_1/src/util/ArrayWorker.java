@@ -33,6 +33,14 @@ public class ArrayWorker {
         return -1;
     }
 
+    public static Request search(Request[] requests, int id){
+        for (Request request : requests) {
+            if (request != null && request.getId() == id)
+                return request;
+        }
+        return null;
+    }
+
     public static Book[] extendArray(Book[] books) {
         Book[] newBooks = new Book[books.length * 2];
         System.arraycopy(books, 0, newBooks, 0, books.length);

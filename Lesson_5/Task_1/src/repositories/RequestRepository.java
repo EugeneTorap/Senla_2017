@@ -26,12 +26,12 @@ public class RequestRepository {
         this.readers = readers;
     }
 
-    public void addRequest(Request request){
+    public void addRequest(int id){
         if (Checker.getPosition(requests) == -1) {
             requests = ArrayWorker.extendArray(requests);
         }
         int position = Checker.getPosition(requests);
-        requests [position] = request;
+        requests [position] = ArrayWorker.search(requests, id);
     }
 
     public void addReader(Reader reader){

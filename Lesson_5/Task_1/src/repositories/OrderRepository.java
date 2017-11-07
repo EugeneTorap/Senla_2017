@@ -39,15 +39,15 @@ public class OrderRepository {
         this.executedOrders = executedOrders;
     }
 
-    public void addOrder(Order order){
+    public void addOrder(int id){
         if (Checker.getPosition(orders) == -1) {
             orders = ArrayWorker.extendArray(orders);
         }
         int position = Checker.getPosition(orders);
-        orders [position] = order;
+        orders [position] = orders[ArrayWorker.search(orders, id)];
     }
 
-    public void canceledOrder(Order order){
-        order.setStatus(Status.CANCELED);
+    public void canceledOrder(int id){
+        orders[ArrayWorker.search(orders, id)].setStatus(Status.CANCELED);
     }
 }

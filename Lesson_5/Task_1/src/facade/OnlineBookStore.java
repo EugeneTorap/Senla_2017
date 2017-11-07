@@ -134,24 +134,24 @@ public class OnlineBookStore {
         bookManager.getBookRepository().addBook(newBook);
     }
 
-    public void addBookOnStore(Book book) {
-        bookManager.getBookRepository().addBookOnStore(book.getId());
+    public void addBookOnStore(int id) {
+        bookManager.getBookRepository().addBookOnStore(id);
     }
 
-    public void delBookFromStore(Book book) {
-        bookManager.getBookRepository().delBookFromStore(book.getId());
+    public void delBookFromStore(int id) {
+        bookManager.getBookRepository().delBookFromStore(id);
     }
 
-    public void addOrder(Order order) {
-        orderManager.getOrderRepository().addOrder(order);
+    public void addOrder(int id) {
+        orderManager.getOrderRepository().addOrder(id);
     }
 
-    public void cancelOrder(Order order) {
-        orderManager.getOrderRepository().canceledOrder(order);
+    public void cancelOrder(int id) {
+        orderManager.getOrderRepository().canceledOrder(id);
     }
 
-    public void addRequest(Request request){
-        requestManager.getRequestRepository().addRequest(request);
+    public void addRequest(int id){
+        requestManager.getRequestRepository().addRequest(id);
     }
 
     public void saveAllData(){

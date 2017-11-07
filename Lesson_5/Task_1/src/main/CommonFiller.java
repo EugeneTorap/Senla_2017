@@ -88,18 +88,18 @@ public class CommonFiller {
         store.addBook(b4);
         store.addBook(b5);
 
-        store.addBookOnStore(b1);
-        store.addBookOnStore(b2);
+        store.addBookOnStore(b1.getId());
+        store.addBookOnStore(b2.getId());
 
-        store.addOrder(o1);
-        store.addOrder(o2);
-        store.addOrder(o3);
+        store.addOrder(o1.getId());
+        store.addOrder(o2.getId());
+        store.addOrder(o3.getId());
 
-        store.addRequest(req1);
-        store.addRequest(req2);
-        store.addRequest(req3);
-        store.addRequest(req4);
-        store.addRequest(req5);
+        store.addRequest(req1.getId());
+        store.addRequest(req2.getId());
+        store.addRequest(req3.getId());
+        store.addRequest(req4.getId());
+        store.addRequest(req5.getId());
 
         return store;
     }
