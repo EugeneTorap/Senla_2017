@@ -1,4 +1,4 @@
-package main;
+package facade;
 
 import beans.BookManager;
 import beans.OrderManager;
@@ -20,7 +20,8 @@ public class OnlineBookStore {
     private BookManager bookManager;
     private OrderManager orderManager;
     private RequestManager requestManager;
-    FileWorker fileWorker = new FileWorker("book.txt", "reader.txt", "order.txt");
+    private FileWorker fileWorker = new FileWorker("book.txt", "reader.txt",
+            "order.txt", "request.txt");
 
     public OnlineBookStore(BookManager bookManager, OrderManager orderManager, RequestManager requestManager) {
         this.bookManager = bookManager;
@@ -157,11 +158,14 @@ public class OnlineBookStore {
         fileWorker.saveToFile(bookManager.getBookRepository().getBooks());
         fileWorker.saveToFile(orderManager.getOrderRepository().getOrders());
         fileWorker.saveToFile(requestManager.getRequestRepository().getReaders());
+        fileWorker.saveToFile(requestManager.getRequestRepository().getRequests());
     }
 
     public void loadAllData() throws ParseException {
         bookManager.getBookRepository().setBooks(fileWorker.loadBooks());
-        orderManager.getOrderRepository().setOrders(fileWorker.loadOrders());
         requestManager.getRequestRepository().setReaders(fileWorker.loadReader());
+        orderManager.getOrderRepository().setOrders(fileWorker.loadOrders(bookManager.getBookRepository().getBooks()));
+        requestManager.getRequestRepository().setRequests(fileWorker.loadRequests(bookManager.getBookRepository().getBooks(),
+                requestManager.getRequestRepository().getReaders()));
     }
 }

@@ -1,6 +1,6 @@
 package entity;
 
-public class Reader {
+public class Reader extends Entity {
     private String name;
 
 
@@ -14,5 +14,9 @@ public class Reader {
 
     public String getName() {
         return name;
+    }
+
+    public String toString() {
+        return getId() + " " + name;
     }
 }

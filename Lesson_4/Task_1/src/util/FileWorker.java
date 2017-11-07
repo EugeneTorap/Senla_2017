@@ -4,6 +4,7 @@ import com.danco.training.TextFileWorker;
 import entity.Book;
 import entity.Order;
 import entity.Reader;
+import entity.Request;
 import enums.Status;
 
 import java.text.DateFormat;
@@ -15,12 +16,14 @@ public class FileWorker {
     private String bookPath;
     private String orderPath;
     private String readerPath;
+    private String requestPath;
     private DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
-    public FileWorker(String bookPath, String readerPath, String orderPath) {
+    public FileWorker(String bookPath, String readerPath, String orderPath, String requestPath) {
         this.bookPath = bookPath;
         this.readerPath = readerPath;
         this.orderPath = orderPath;
+        this.requestPath = requestPath;
     }
 
     public void saveToFile(Book[] books) {
@@ -70,7 +73,24 @@ public class FileWorker {
         String[] strings = new String[count];
         for (int i = 0; i < readers.length; i++) {
             if (readers[i] != null) {
-                strings[i] = readers[i].getName();
+                strings[i] = readers[i].toString();
+            }
+        }
+        textFileWorker.writeToFile(strings);
+    }
+
+    public void saveToFile(Request[] requests) {
+        int count = 0;
+        textFileWorker = new TextFileWorker(this.requestPath);
+        for (Request request : requests) {
+            if (request != null) {
+                count++;
+            }
+        }
+        String[] strings = new String[count];
+        for (int i = 0; i < requests.length; i++) {
+            if (requests[i] != null) {
+                strings[i] = requests[i].toString();
             }
         }
         textFileWorker.writeToFile(strings);
@@ -82,38 +102,12 @@ public class FileWorker {
         if (strings != null) {
             Book[] books = new Book[strings.length];
             for (int i = 0; i < strings.length; i++) {
-                String[] bookString = strings[i].split(" ");
-                books[i].setTitle(bookString[0]);
-                books[i].setId(Integer.parseInt(bookString[1]));
-                books[i].setPrice(Integer.parseInt(bookString[2]));
-                books[i].setTheBookInStore(Boolean.parseBoolean(bookString[3]));
-                books[i].setDatePublished(df.parse(bookString[4]));
-                books[i].setDateReceipted(df.parse(bookString[5]));
+                String[] str = strings[i].split(" ");
+                books[i] = new Book(str[0], Integer.parseInt(str[2]), df.parse(str[4]), df.parse(str[5]));
+                books[i].setId(Integer.parseInt(str[1]));
+                books[i].setTheBookInStore(Boolean.parseBoolean(str[3]));
             }
             return books;
-        }
-        return null;
-    }
-
-    public Order[] loadOrders() throws ParseException {
-        textFileWorker = new TextFileWorker(this.orderPath);
-        String[] strings = textFileWorker.readFromFile();
-        if (strings != null) {
-            Order[] orders = new Order[strings.length];
-            for (int i = 0; i < strings.length; i++) {
-                String[] orderString = strings[i].split(" ");
-                orders[i].setReader(new Reader(orderString[0]));
-                orders[i].setId(Integer.parseInt(orderString[1]));
-                orders[i].setStatus(Status.valueOf(orderString[2]));
-                orders[i].setDateExecuted(df.parse(orderString[4]));
-
-                Book[] books = new Book[Integer.parseInt(orderString[5])];
-                for (int j = 0; j < Integer.parseInt(orderString[5]); j++) {
-                    books[i] = ArrayWorker.search(books, Integer.parseInt(orderString[6 + j]));
-                }
-                orders[i].setBooks(books);
-            }
-            return orders;
         }
         return null;
     }
@@ -124,9 +118,49 @@ public class FileWorker {
         if (strings != null) {
             Reader[] readers = new Reader[strings.length];
             for (int i = 0; i < strings.length; i++) {
-                readers[i].setName(strings[i]);
+                String[] str = strings[i].split(" ");
+                readers[i] = new Reader(str[1]);
+                readers[i].setId(Integer.parseInt(str[0]));
             }
             return readers;
+        }
+        return null;
+    }
+
+    public Order[] loadOrders(Book[] loadedBooks) throws ParseException {
+        textFileWorker = new TextFileWorker(this.orderPath);
+        String[] strings = textFileWorker.readFromFile();
+        if (strings != null) {
+            Order[] orders = new Order[strings.length];
+            for (int i = 0; i < strings.length; i++) {
+                String[] str = strings[i].split(" ");
+
+                Book[] books = new Book[Integer.parseInt(str[5])];
+                for (int j = 0; j < Integer.parseInt(str[5]); j++) {
+                    books[j] = ArrayWorker.search(loadedBooks, Integer.parseInt(str[6 + j]));
+                }
+                orders[i] = new Order(new Reader(str[0]), df.parse(str[4]), books);
+                orders[i].setId(Integer.parseInt(str[1]));
+                orders[i].setStatus(Status.valueOf(str[2]));
+            }
+            return orders;
+        }
+        return null;
+    }
+
+    public Request[] loadRequests(Book[] loadedBooks, Reader[] loadedReader) {
+        textFileWorker = new TextFileWorker(this.requestPath);
+        String[] strings = textFileWorker.readFromFile();
+        if (strings != null) {
+            Request[] requests = new Request[strings.length];
+            for (int i = 0; i < strings.length; i++) {
+                String[] str = strings[i].split(" ");
+                Book book = (ArrayWorker.search(loadedBooks, Integer.parseInt(str[2])));
+                Reader reader = (ArrayWorker.search(loadedReader, Integer.parseInt(str[1])));
+                requests[i] = new Request(book, reader);
+                requests[i].setId(Integer.parseInt(str[0]));
+            }
+            return requests;
         }
         return null;
     }

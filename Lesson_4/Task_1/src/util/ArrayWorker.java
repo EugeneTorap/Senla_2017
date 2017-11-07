@@ -16,6 +16,15 @@ public class ArrayWorker {
         return null;
     }
 
+    public static Reader search(Reader[] readers, int id){
+        for (Reader reader : readers) {
+            if (id == reader.getId()) {
+                return reader;
+            }
+        }
+        return null;
+    }
+
     public static int search(Order[] orders, int id){
         for (int i = 0; i < orders.length; i++) {
             if (orders[i] != null && orders[i].getId() == id)
