@@ -42,16 +42,8 @@ public class Book extends Entity {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public int getPrice() {
         return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
     }
 
     public Date getDatePublished() {
@@ -60,14 +52,6 @@ public class Book extends Entity {
 
     public Date getDateReceipted() {
         return dateReceipted;
-    }
-
-    public void setDateReceipted(Date dateReceipted) {
-        this.dateReceipted = dateReceipted;
-    }
-
-    public void setDatePublished(Date datePublished) {
-        this.datePublished = datePublished;
     }
 
     public int getRequestAmount() {

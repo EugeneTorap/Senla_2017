@@ -10,6 +10,8 @@ import enums.Status;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FileWorker {
     private static TextFileWorker textFileWorker;
@@ -26,139 +28,109 @@ public class FileWorker {
         this.requestPath = requestPath;
     }
 
-    public void saveToFile(Book[] books) {
-        int count = 0;
+    public void saveBooks(List<Book> books) {
         textFileWorker = new TextFileWorker(this.bookPath);
+        List<String> strings = new ArrayList<>();
 
         for (Book book : books) {
-            if (book != null) {
-                count++;
-            }
+            strings.add(book.toString());
         }
-        String[] strings = new String[count];
-        for (int i = 0; i < books.length; i++) {
-            if (books[i] != null) {
-                strings[i] = books[i].toString();
-            }
-        }
-        textFileWorker.writeToFile(strings);
+        textFileWorker.writeToFile(strings.toArray(new String[0]));
     }
 
-    public void saveToFile(Order[] orders) {
-        int count = 0;
+    public void saveOrders(List<Order> orders) {
         textFileWorker = new TextFileWorker(this.orderPath);
+        List<String> strings = new ArrayList<>();
+
         for (Order order : orders) {
-            if (order != null) {
-                count++;
-            }
+            strings.add(order.toString());
         }
-        String[] strings = new String[count];
-        for (int i = 0; i < orders.length; i++) {
-            if (orders[i] != null) {
-                strings[i] = orders[i].toString();
-            }
-
-        }
-        textFileWorker.writeToFile(strings);
+        textFileWorker.writeToFile(strings.toArray(new String[0]));
     }
 
-    public void saveToFile(Reader[] readers) {
-        int count = 0;
+    public void saveReaders(List<Reader> readers) {
         textFileWorker = new TextFileWorker(this.readerPath);
+        List<String> strings = new ArrayList<>();
+
         for (Reader reader : readers) {
-            if (reader != null) {
-                count++;
-            }
+            strings.add(reader.toString());
         }
-        String[] strings = new String[count];
-        for (int i = 0; i < readers.length; i++) {
-            if (readers[i] != null) {
-                strings[i] = readers[i].toString();
-            }
-        }
-        textFileWorker.writeToFile(strings);
+        textFileWorker.writeToFile(strings.toArray(new String[0]));
     }
 
-    public void saveToFile(Request[] requests) {
-        int count = 0;
+    public void saveRequests(List<Request> requests) {
         textFileWorker = new TextFileWorker(this.requestPath);
+        List<String> strings = new ArrayList<>();
+
         for (Request request : requests) {
-            if (request != null) {
-                count++;
-            }
+            strings.add(request.toString());
         }
-        String[] strings = new String[count];
-        for (int i = 0; i < requests.length; i++) {
-            if (requests[i] != null) {
-                strings[i] = requests[i].toString();
-            }
-        }
-        textFileWorker.writeToFile(strings);
+        textFileWorker.writeToFile(strings.toArray(new String[0]));
     }
 
-    public Book[] loadBooks() throws ParseException {
+    public List<Book> loadBooks() throws ParseException {
         textFileWorker = new TextFileWorker(this.bookPath);
         String[] strings = textFileWorker.readFromFile();
         if (strings != null) {
-            Book[] books = new Book[strings.length];
+            List<Book> books = new ArrayList<>();
             for (int i = 0; i < strings.length; i++) {
                 String[] str = strings[i].split(" ");
-                books[i] = new Book(str[0], Integer.parseInt(str[2]), df.parse(str[4]), df.parse(str[5]));
-                books[i].setId(Integer.parseInt(str[1]));
-                books[i].setTheBookInStore(Boolean.parseBoolean(str[3]));
+                books.add(i, new Book(str[0], Integer.parseInt(str[2]), df.parse(str[4]), df.parse(str[5])));
+                books.get(i).setId(Integer.parseInt(str[1]));
+                books.get(i).setTheBookInStore(Boolean.parseBoolean(str[3]));
             }
             return books;
         }
         return null;
     }
 
-    public Reader[] loadReader() {
+    public List<Reader> loadReader() {
         textFileWorker = new TextFileWorker(this.readerPath);
         String[] strings = textFileWorker.readFromFile();
         if (strings != null) {
-            Reader[] readers = new Reader[strings.length];
+            List<Reader> readers = new ArrayList<>();
             for (int i = 0; i < strings.length; i++) {
                 String[] str = strings[i].split(" ");
-                readers[i] = new Reader(str[1]);
-                readers[i].setId(Integer.parseInt(str[0]));
+                readers.add(i, new Reader(str[1]));
+                readers.get(i).setId(Integer.parseInt(str[0]));
             }
             return readers;
         }
         return null;
     }
 
-    public Order[] loadOrders(Book[] loadedBooks) throws ParseException {
+    public List<Order> loadOrders(List<Book> loadedBooks) throws ParseException {
         textFileWorker = new TextFileWorker(this.orderPath);
         String[] strings = textFileWorker.readFromFile();
         if (strings != null) {
-            Order[] orders = new Order[strings.length];
+            List<Order> orders = new ArrayList<>();
             for (int i = 0; i < strings.length; i++) {
                 String[] str = strings[i].split(" ");
 
-                Book[] books = new Book[Integer.parseInt(str[5])];
+                List<Book> books = new ArrayList<>();
                 for (int j = 0; j < Integer.parseInt(str[5]); j++) {
-                    books[j] = ArrayWorker.search(loadedBooks, Integer.parseInt(str[6 + j]));
+                    books.add(ArrayWorker.searchBook(loadedBooks, Integer.parseInt(str[6 + j])));
                 }
-                orders[i] = new Order(new Reader(str[0]), df.parse(str[4]), books);
-                orders[i].setId(Integer.parseInt(str[1]));
-                orders[i].setStatus(Status.valueOf(str[2]));
+                orders.add(i, new Order(new Reader(str[0]), df.parse(str[4]), books));
+                orders.get(i).setId(Integer.parseInt(str[1]));
+                orders.get(i).setStatus(Status.valueOf(str[2]));
             }
             return orders;
         }
         return null;
     }
 
-    public Request[] loadRequests(Book[] loadedBooks, Reader[] loadedReader) {
+    public List<Request> loadRequests(List<Book> loadedBooks, List<Reader> loadedReader) {
         textFileWorker = new TextFileWorker(this.requestPath);
         String[] strings = textFileWorker.readFromFile();
         if (strings != null) {
-            Request[] requests = new Request[strings.length];
+            List<Request> requests = new ArrayList<>();
             for (int i = 0; i < strings.length; i++) {
                 String[] str = strings[i].split(" ");
-                Book book = (ArrayWorker.search(loadedBooks, Integer.parseInt(str[2])));
-                Reader reader = (ArrayWorker.search(loadedReader, Integer.parseInt(str[1])));
-                requests[i] = new Request(book, reader);
-                requests[i].setId(Integer.parseInt(str[0]));
+                Book book = (ArrayWorker.searchBook(loadedBooks, Integer.parseInt(str[2])));
+                Reader reader = (ArrayWorker.searchReader(loadedReader, Integer.parseInt(str[1])));
+                requests.add(i, new Request(book, reader));
+                requests.get(i).setId(Integer.parseInt(str[0]));
             }
             return requests;
         }

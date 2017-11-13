@@ -9,8 +9,8 @@ public class Main {
     public static void main(String[] args) throws ParseException {
         Scanner in = new Scanner(System.in);
 
-        //OnlineBookStore store = new CommonFiller().fillData();
-        OnlineBookStore store = new FileFiller().fillData();
+        OnlineBookStore store = new CommonFiller().fillData();
+        //OnlineBookStore store = new FileFiller().fillData();
 
         Boolean exist = false;
         while (!exist) {
@@ -126,13 +126,13 @@ public class Main {
                     store.delBookFromStore(in.nextInt()); break;
                 case "12":
                     System.out.println("Input order ID: ");
-                    store.addOrder(in.nextInt()); break;
+                    //store.addOrder(in.nextInt()); break;
                 case "13":
                     System.out.println("Input order ID: ");
                     store.cancelOrder(in.nextInt()); break;
                 case "14":
                     System.out.println("Input request ID: ");
-                    store.addRequest(in.nextInt()); break;
+                    //store.addRequest(in.nextInt()); break;
                 case "0":
                     exist = true;
 

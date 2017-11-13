@@ -1,21 +1,18 @@
 package main;
 
-import beans.BookManager;
-import beans.OrderManager;
-import beans.RequestManager;
-import entity.Book;
 import entity.Order;
+import entity.Book;
 import entity.Reader;
 import entity.Request;
 import facade.OnlineBookStore;
-import repositories.BookRepository;
-import repositories.OrderRepository;
-import repositories.RequestRepository;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 public class CommonFiller {
     private DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
@@ -52,9 +49,13 @@ public class CommonFiller {
     private Book[] books2 = {b2, b4};
     private Book[] books3 = {b1, b3, b4, b5};
 
-    private Order o1 = new Order(r1, dateEx1, books1);
-    private Order o2 = new Order(r2, dateEx2, books2);
-    private Order o3 = new Order(r2, dateEx3, books3);
+    private List<Book> booksList1 = new ArrayList<>(Arrays.asList(books1));
+    private List<Book> booksList2 = new ArrayList<>(Arrays.asList(books2));
+    private List<Book> booksList3 = new ArrayList<>(Arrays.asList(books3));
+
+    private Order o1 = new Order(r1, dateEx1, booksList1);
+    private Order o2 = new Order(r2, dateEx2, booksList2);
+    private Order o3 = new Order(r2, dateEx3, booksList3);
 
 
     private Request req1 = new Request(b1, r3);
@@ -63,20 +64,12 @@ public class CommonFiller {
     private Request req4 = new Request(b2, r3);
     private Request req5 = new Request(b1, r3);
 
-    private BookRepository bookRepository = new BookRepository();
-    private BookManager bookManager = new BookManager(bookRepository);
-
-    private OrderRepository orderRepository = new OrderRepository();
-    private OrderManager orderManager = new OrderManager(orderRepository);
-
-    private RequestRepository requestRepository = new RequestRepository();
-    private RequestManager requestManager = new RequestManager(requestRepository, bookRepository);
-
     public CommonFiller() throws ParseException {
     }
 
     public OnlineBookStore fillData() throws ParseException {
-        OnlineBookStore store = new OnlineBookStore(bookManager, orderManager, requestManager);
+        OnlineBookStore store = new OnlineBookStore();
+
         store.addReader(r1);
         store.addReader(r2);
         store.addReader(r3);
@@ -91,15 +84,15 @@ public class CommonFiller {
         store.addBookOnStore(b1.getId());
         store.addBookOnStore(b2.getId());
 
-        store.addOrder(o1.getId());
-        store.addOrder(o2.getId());
-        store.addOrder(o3.getId());
+        store.addOrder(o1);
+        store.addOrder(o2);
+        store.addOrder(o3);
 
-        store.addRequest(req1.getId());
-        store.addRequest(req2.getId());
-        store.addRequest(req3.getId());
-        store.addRequest(req4.getId());
-        store.addRequest(req5.getId());
+        store.addRequest(req1);
+        store.addRequest(req2);
+        store.addRequest(req3);
+        store.addRequest(req4);
+        store.addRequest(req5);
 
         return store;
     }

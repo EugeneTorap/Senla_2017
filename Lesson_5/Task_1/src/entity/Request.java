@@ -22,10 +22,6 @@ public class Request extends Entity {
         return reader;
     }
 
-    public void setReader(Reader reader) {
-        this.reader = reader;
-    }
-
     public String toString() {
         return getId() + " " + reader.getId() + " " + book.getId() + " " + reader.getName() + " " + book.getTitle();
     }

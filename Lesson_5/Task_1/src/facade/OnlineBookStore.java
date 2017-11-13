@@ -1,112 +1,102 @@
 package facade;
 
-import beans.BookManager;
-import beans.OrderManager;
-import beans.RequestManager;
-import entity.Book;
-import entity.Order;
-import entity.Reader;
-import entity.Request;
-import util.ArrayWorker;
-import util.Checker;
-import util.FileWorker;
+import comparator.book.*;
+import comparator.order.*;
+import manager.*;
+import entity.*;
 import util.Printer;
 import enums.SortingType;
 
 import java.text.ParseException;
+import java.util.List;
 
 public class OnlineBookStore {
-
-    private BookManager bookManager;
-    private OrderManager orderManager;
-    private RequestManager requestManager;
-    private FileWorker fileWorker = new FileWorker("book.txt", "reader.txt",
-            "order.txt", "request.txt");
-
-    public OnlineBookStore(BookManager bookManager, OrderManager orderManager, RequestManager requestManager) {
-        this.bookManager = bookManager;
-        this.orderManager = orderManager;
-        this.requestManager = requestManager;
-    }
+    private BookManager bookManager = new BookManager();
+    private ReaderManager readerManager = new ReaderManager();
+    private OrderManager orderManager = new OrderManager(bookManager);
+    private RequestManager requestManager = new RequestManager(readerManager, bookManager);
 
 
     public void showBooksSortedBy(SortingType type) {
         switch (type) {
             case ALPHABET:
-                Printer.printArray(bookManager.sortBooksByAlphabet());
+                bookManager.sortBooks(new SortingBooksByAlphabet());
                 break;
             case DATE:
-                Printer.printArray(bookManager.sortBooksByDate());
+                bookManager.sortBooks(new SortingBooksByDatePub());
                 break;
             case PRICE:
-                Printer.printArray(bookManager.sortBooksByPrice());
+                bookManager.sortBooks(new SortingBooksByPrice());
                 break;
             case IS_STORE:
-                Printer.printArray(bookManager.sortBooksByStore());
+                bookManager.sortBooks(new SortingBooksByStore());
                 break;
         }
+        bookManager.showBooks();
     }
 
     public void showUnsoldBooksSortedBy(SortingType type) {
         switch (type) {
             case DATE:
-                Printer.printArray(bookManager.sortUnsoldBooksByDate());
+                bookManager.sortUnsoldBooks(new SortingBooksByDateRec());
                 break;
             case PRICE:
-                Printer.printArray(bookManager.sortUnsoldBooksByPrice());
+                bookManager.sortUnsoldBooks(new SortingBooksByPrice());
                 break;
         }
+        bookManager.showUnsoldBooks();
     }
 
     public void showOrdersSortedBy(SortingType type) {
         switch (type) {
             case DATE:
-                Printer.printArray(orderManager.sortOrdersByDate());
+                orderManager.sortOrders(new SortingOrdersByDate());
                 break;
             case PRICE:
-                Printer.printArray(orderManager.sortOrdersByPrice());
+                orderManager.sortOrders(new SortingOrdersByPrice());
                 break;
             case STATUS:
-                Printer.printArray(orderManager.sortOrdersByStatus());
+                orderManager.sortOrders(new SortingOrdersByStatus());
                 break;
         }
+        orderManager.showOrders();
     }
 
     public void showExecutedOrdersSortedBy(SortingType type) {
         switch (type) {
             case PRICE:
-                Printer.printArray(orderManager.sortExecutedOrdersByPrice());
+                orderManager.sortExecutedOrders(new SortingOrdersByPrice());
                 break;
             case DATE:
-                Printer.printArray(orderManager.sortExecutedOrdersByDate());
+                orderManager.sortExecutedOrders(new SortingOrdersByDate());
                 break;
         }
+        orderManager.showExecutedOrders();
     }
 
     public void showRequestsSortedBy(SortingType type) {
         requestManager.setRequestAmount();
         switch (type) {
             case AMOUNT:
-                showBookRequests(bookManager.sortBooksByAmount());
+                bookManager.sortBooks(new SortingBooksByAmount());
                 break;
             case ALPHABET:
-                showBookRequests(bookManager.sortBooksByAlphabet());
+                bookManager.sortBooks(new SortingBooksByAlphabet());
                 break;
         }
+        showBookRequests(bookManager.getBooks());
     }
 
-    private void showBookRequests(Book[] books){
+    private void showBookRequests(List<Book> books){
         System.out.println();
         for (Book book : books) {
-            if (book != null) {
-                System.out.println(book.getTitle() + " " + book.getRequestAmount());
-                if (requestManager.requestForBook(book) != null){
-                    for (Request request : requestManager.requestForBook(book)) {
-                        System.out.println(request.getId() + " " + request.getReader().getName());
-                    }
+            System.out.println(book.getTitle() + " " + book.getRequestAmount());
+            if (requestManager.requestForBook(book) != null){
+                for (Request request : requestManager.requestForBook(book)) {
+                    System.out.println(request.getId() + " " + request.getReader().getName());
                 }
-                System.out.println("-----------------------");
             }
+            System.out.println("-----------------------");
         }
     }
 
@@ -119,53 +109,52 @@ public class OnlineBookStore {
     }
 
     public void showOrderInfo(int id) {
-        Printer.print(ArrayWorker.search(orderManager.getOrderRepository().getOrders(), id));
+        orderManager.showOrderInfo(id);
     }
 
     public void showBookInfo(int id) {
-        Printer.print(ArrayWorker.search(bookManager.getBookRepository().getBooks(), id));
+        bookManager.showBookInfo(id);
     }
 
-    public void addReader(Reader newReader){
-        requestManager.getRequestRepository().addReader(newReader);
+    public void addReader(Reader reader){
+        readerManager.addReader(reader);
     }
 
     public void addBook(Book newBook){
-        bookManager.getBookRepository().addBook(newBook);
+        bookManager.addBook(newBook);
     }
 
     public void addBookOnStore(int id) {
-        bookManager.getBookRepository().addBookOnStore(id);
+        bookManager.addBookOnStore(id);
     }
 
     public void delBookFromStore(int id) {
-        bookManager.getBookRepository().delBookFromStore(id);
+        bookManager.delBookFromStore(id);
     }
 
-    public void addOrder(int id) {
-        orderManager.getOrderRepository().addOrder(id);
+    public void addOrder(Order order) {
+        orderManager.addOrder(order);
     }
 
     public void cancelOrder(int id) {
-        orderManager.getOrderRepository().canceledOrder(id);
+        orderManager.cancelOrder(id);
     }
 
-    public void addRequest(int id){
-        requestManager.getRequestRepository().addRequest(id);
+    public void addRequest(Request request){
+        requestManager.addRequest(request);
     }
 
     public void saveAllData(){
-        fileWorker.saveToFile(bookManager.getBookRepository().getBooks());
-        fileWorker.saveToFile(orderManager.getOrderRepository().getOrders());
-        fileWorker.saveToFile(requestManager.getRequestRepository().getReaders());
-        fileWorker.saveToFile(requestManager.getRequestRepository().getRequests());
+        bookManager.saveToFile();
+        orderManager.saveToFile();
+        requestManager.saveToFile();
+        readerManager.saveToFile();
     }
 
     public void loadAllData() throws ParseException {
-        bookManager.getBookRepository().setBooks(fileWorker.loadBooks());
-        requestManager.getRequestRepository().setReaders(fileWorker.loadReader());
-        orderManager.getOrderRepository().setOrders(fileWorker.loadOrders(bookManager.getBookRepository().getBooks()));
-        requestManager.getRequestRepository().setRequests(fileWorker.loadRequests(bookManager.getBookRepository().getBooks(),
-                requestManager.getRequestRepository().getReaders()));
+        bookManager.loadFromFile();
+        orderManager.loadFromFile();
+        requestManager.loadFromFile();
+        readerManager.loadFromFile();
     }
 }
