@@ -6,9 +6,7 @@ import com.senla.util.ArrayWorker;
 import com.senla.util.FileWorker;
 import com.senla.util.Printer;
 
-import java.text.ParseException;
 import java.util.Comparator;
-import java.util.List;
 
 public class BookManager {
     private BookRepository bookRepository = new BookRepository();
@@ -16,15 +14,11 @@ public class BookManager {
 
 
     public void saveToFile(){
-        fileWorker.save(bookRepository.getBooks(), "book.txt");
+        fileWorker.save(bookRepository.getBooks(), "data/book.txt");
     }
 
     public void loadFromFile() {
-        try {
-            bookRepository.setBooks(fileWorker.loadBooks("book.txt"));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        bookRepository.setBooks(fileWorker.loadBooks("data/book.txt"));
     }
 
     public void showBookInfo(int id) {
@@ -55,8 +49,8 @@ public class BookManager {
         return bookRepository;
     }
 
-    public List<Book> getBooks(){
-        return bookRepository.getBooks();
+    public Book searchBook(int id){
+        return ArrayWorker.searchBook(bookRepository.getBooks(), id);
     }
 
     public void sortBooks(Comparator comparator){

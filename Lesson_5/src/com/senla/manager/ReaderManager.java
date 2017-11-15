@@ -2,6 +2,7 @@ package com.senla.manager;
 
 import com.senla.entity.Reader;
 import com.senla.repositories.ReaderRepository;
+import com.senla.util.ArrayWorker;
 import com.senla.util.FileWorker;
 
 public class ReaderManager {
@@ -10,15 +11,19 @@ public class ReaderManager {
 
 
     public void saveToFile(){
-        fileWorker.save(readerRepository.getReaders(), "reader.txt");
+        fileWorker.save(readerRepository.getReaders(), "data/reader.txt");
     }
 
     public void loadFromFile(){
-        readerRepository.setReaders(fileWorker.loadReader("reader.txt"));
+        readerRepository.setReaders(fileWorker.loadReader("data/reader.txt"));
     }
 
     public void addReader(Reader newReader){
         readerRepository.addReader(newReader);
+    }
+
+    public Reader searchReader(int id){
+        return ArrayWorker.searchReader(readerRepository.getReaders(), id);
     }
 
     public ReaderRepository getReaderRepository() {

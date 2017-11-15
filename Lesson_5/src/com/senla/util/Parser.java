@@ -11,10 +11,15 @@ import java.util.List;
 
 public class Parser {
 
-    public static Book parseBook(String string) throws ParseException {
+    public static Book parseBook(String string) {
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         String[] str = string.split(" ");
-        Book book = new Book(str[0], Integer.parseInt(str[2]),df.parse(str[4]), df.parse(str[5]));
+        Book book = null;
+        try {
+            book = new Book(str[0], Integer.parseInt(str[2]),df.parse(str[4]), df.parse(str[5]));
+        } catch (ParseException e) {
+            System.out.println("Date not parsed, util/Parser/parseBook");
+        }
         book.setId(Integer.parseInt(str[1]));
         book.setTheBookInStore(Boolean.parseBoolean(str[3]));
         return book;
@@ -27,14 +32,19 @@ public class Parser {
         return reader;
     }
 
-    public static Order parseOrder(String string, List<Book> loadedBooks) throws ParseException {
+    public static Order parseOrder(String string, List<Book> loadedBooks) {
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         String[] str = string.split(" ");
         List<Book> books = new ArrayList<>();
         for (int j = 0; j < Integer.parseInt(str[5]); j++) {
             books.add(ArrayWorker.searchBook(loadedBooks, Integer.parseInt(str[6 + j])));
         }
-        Order order = new Order(new Reader(str[0]), df.parse(str[4]), books);
+        Order order = null;
+        try {
+            order = new Order(new Reader(str[0]), df.parse(str[4]), books);
+        } catch (ParseException e) {
+            System.out.println("Date not parsed, util/Parser/parseOrder");
+        }
         order.setId(Integer.parseInt(str[1]));
         order.setStatus(Status.valueOf(str[2]));
         return order;

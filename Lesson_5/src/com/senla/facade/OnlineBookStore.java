@@ -8,7 +8,6 @@ import com.senla.util.Printer;
 import com.senla.enums.SortingType;
 
 import java.text.ParseException;
-import java.util.List;
 
 public class OnlineBookStore {
     private BookManager bookManager = new BookManager();
@@ -16,6 +15,15 @@ public class OnlineBookStore {
     private OrderManager orderManager = new OrderManager(bookManager);
     private RequestManager requestManager = new RequestManager(readerManager, bookManager);
 
+
+    private static OnlineBookStore bookStore;
+
+    public static OnlineBookStore getInstance() {
+        if (bookStore == null) {
+            bookStore = new OnlineBookStore();
+        }
+        return bookStore;
+    }
 
     public void showBooksSortedBy(SortingType type) {
         switch (type) {
@@ -84,20 +92,7 @@ public class OnlineBookStore {
                 bookManager.sortBooks(new SortingBooksByAlphabet());
                 break;
         }
-        showBookRequests(bookManager.getBooks());
-    }
-
-    private void showBookRequests(List<Book> books){
-        System.out.println();
-        for (Book book : books) {
-            System.out.println(book.getTitle() + " " + book.getRequestAmount());
-            if (requestManager.requestForBook(book) != null){
-                for (Request request : requestManager.requestForBook(book)) {
-                    System.out.println(request.getId() + " " + request.getReader().getName());
-                }
-            }
-            System.out.println("-----------------------");
-        }
+        requestManager.showBookRequests();
     }
 
     public void showAllPrice(){
@@ -142,6 +137,14 @@ public class OnlineBookStore {
 
     public void addRequest(Request request){
         requestManager.addRequest(request);
+    }
+
+    public Book searchBook(int id){
+        return bookManager.searchBook(id);
+    }
+
+    public Reader searchReader(int id){
+        return readerManager.searchReader(id);
     }
 
     public void saveAllData(){

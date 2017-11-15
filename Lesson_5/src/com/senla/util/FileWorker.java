@@ -18,8 +18,13 @@ public class FileWorker {
         new TextFileWorker(path).writeToFile(strings.toArray(new String[0]));
     }
 
-    public List<Book> loadBooks(String path) throws ParseException {
-        textFileWorker = new TextFileWorker(path);
+    public List<Book> loadBooks(String path) {
+        try {
+            textFileWorker = new TextFileWorker(path);
+        } catch (IllegalArgumentException e){
+            System.out.println("File not found, manager/BookManager/loadBooks");
+        }
+
         String[] strings = textFileWorker.readFromFile();
         if (strings != null) {
             List<Book> books = new ArrayList<>();
@@ -31,7 +36,7 @@ public class FileWorker {
         return null;
     }
 
-    public List<Reader> loadReader(String path)  {
+    public List<Reader> loadReader(String path) {
         textFileWorker = new TextFileWorker(path);
         String[] strings = textFileWorker.readFromFile();
         if (strings != null) {
@@ -44,7 +49,7 @@ public class FileWorker {
         return null;
     }
 
-    public List<Order> loadOrders(String path, List<Book> loadedBooks) throws ParseException {
+    public List<Order> loadOrders(String path, List<Book> loadedBooks) {
         textFileWorker = new TextFileWorker(path);
         String[] strings = textFileWorker.readFromFile();
         if (strings != null) {

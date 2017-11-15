@@ -7,7 +7,6 @@ import com.senla.util.ArrayWorker;
 import com.senla.util.FileWorker;
 import com.senla.util.Printer;
 
-import java.text.ParseException;
 import java.util.Comparator;
 
 public class OrderManager {
@@ -20,15 +19,11 @@ public class OrderManager {
     }
 
     public void saveToFile(){
-        fileWorker.save(orderRepository.getOrders(), "order.txt");
+        fileWorker.save(orderRepository.getOrders(), "data/order.txt");
     }
 
     public void loadFromFile() {
-        try {
-            orderRepository.setOrders(fileWorker.loadOrders("order.txt", bookRepository.getBooks()));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        orderRepository.setOrders(fileWorker.loadOrders("data/order.txt", bookRepository.getBooks()));
     }
 
     public void addOrder(Order order) {

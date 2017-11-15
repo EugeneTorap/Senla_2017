@@ -21,11 +21,11 @@ public class RequestManager {
     }
 
     public void saveToFile(){
-        fileWorker.save(requestRepository.getRequests(), "request.txt");
+        fileWorker.save(requestRepository.getRequests(), "data/request.txt");
     }
 
     public void loadFromFile(){
-        requestRepository.setRequests(fileWorker.loadRequests("request.txt", bookRepository.getBooks(), readerRepository.getReaders()));
+        requestRepository.setRequests(fileWorker.loadRequests("data/request.txt", bookRepository.getBooks(), readerRepository.getReaders()));
     }
 
     public void addRequest(Request request){
@@ -42,7 +42,20 @@ public class RequestManager {
         return count;
     }
 
-    public List<Request> requestForBook(Book book){
+    public void showBookRequests(){
+        System.out.println();
+        for (Book book : bookRepository.getBooks()) {
+            System.out.println(book.getTitle() + " " + book.getRequestAmount());
+            if (requestForBook(book) != null){
+                for (Request request : requestForBook(book)) {
+                    System.out.println(request.getId() + " " + request.getReader().getName());
+                }
+            }
+            System.out.println("-----------------------");
+        }
+    }
+
+    private List<Request> requestForBook(Book book){
         if (requestCount(book) != 0){
             List<Request> bookRequests = new ArrayList<>();
 
