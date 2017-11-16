@@ -1,4 +1,4 @@
-package com.senla.repositories;
+package com.senla.controller.repositories;
 
 import com.senla.entity.Request;
 

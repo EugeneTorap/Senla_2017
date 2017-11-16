@@ -2,7 +2,7 @@ package com.senla.facade;
 
 import com.senla.comparator.book.*;
 import com.senla.comparator.order.*;
-import com.senla.manager.*;
+import com.senla.controller.manager.*;
 import com.senla.entity.*;
 import com.senla.util.Printer;
 import com.senla.enums.SortingType;

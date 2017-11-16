@@ -1,7 +1,7 @@
-package com.senla.manager;
+package com.senla.controller.manager;
 
 import com.senla.entity.Book;
-import com.senla.repositories.BookRepository;
+import com.senla.controller.repositories.BookRepository;
 import com.senla.util.ArrayWorker;
 import com.senla.util.FileWorker;
 import com.senla.util.Printer;

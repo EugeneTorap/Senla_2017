@@ -1,7 +1,7 @@
-package com.senla.manager;
+package com.senla.controller.manager;
 
 import com.senla.entity.Reader;
-import com.senla.repositories.ReaderRepository;
+import com.senla.controller.repositories.ReaderRepository;
 import com.senla.util.ArrayWorker;
 import com.senla.util.FileWorker;
 

@@ -18,7 +18,7 @@ public class Input {
             try {
                 input = Integer.valueOf(in.nextLine());
             }catch (NumberFormatException e){
-                System.out.println("Invalid input");
+                System.out.println("Invalid input, util/Input/nextInt");
                 continue;
             }
             break;
