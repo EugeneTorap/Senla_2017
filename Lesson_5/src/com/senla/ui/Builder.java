@@ -34,7 +34,7 @@ public class Builder {
 
         items.add(new MenuItem("Add order", new AdditionOrder()));
         items.add(new MenuItem("Cancel order", new CancellationOrder()));
-        items.add(new MenuItem("Show order info", new BookInfo()));
+        items.add(new MenuItem("Show order info", new OrderInfo()));
         items.add(new MenuItem("Show all price", new AllPrice()));
         items.add(new MenuItem("Show amount of executed order", new ExecutedOrderAmount()));
         items.add(new MenuItem("Show orders sorted by date", new SortingOrdersByDate()));

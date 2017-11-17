@@ -23,7 +23,7 @@ public class ReaderManager {
     }
 
     public Reader searchReader(int id){
-        return ArrayWorker.searchReader(readerRepository.getReaders(), id);
+        return ArrayWorker.search(readerRepository.getReaders(), id);
     }
 
     public ReaderRepository getReaderRepository() {

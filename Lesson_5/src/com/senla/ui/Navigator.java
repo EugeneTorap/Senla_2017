@@ -24,7 +24,7 @@ public class Navigator {
                     currentMenu = menuItem.getNextMenu();
                 }
             }
-
+        return;
         }
         System.out.println("There's no such item");
     }

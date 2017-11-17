@@ -1,6 +1,7 @@
 package com.senla.controller.repositories;
 
 import com.senla.entity.Book;
+import com.senla.util.ArrayWorker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,11 +42,10 @@ public class BookRepository {
     }
 
     private void changeBook(int id, Boolean isStore){
-        for (Book book : books) {
-            if (book.getId() == id) {
-                book.setTheBookInStore(isStore);
-                return;
-            }
+        int index = ArrayWorker.searchIndex(books, id);
+        if (index != -1){
+            books.get(index).setTheBookInStore(isStore);
+            return;
         }
         System.out.println("There's no such book");
     }

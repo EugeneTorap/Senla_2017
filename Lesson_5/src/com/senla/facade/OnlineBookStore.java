@@ -21,6 +21,11 @@ public class OnlineBookStore {
     public static OnlineBookStore getInstance() {
         if (bookStore == null) {
             bookStore = new OnlineBookStore();
+            try {
+                bookStore.loadAllData();
+            } catch (ParseException e) {
+                System.out.println("ParseException");
+            }
         }
         return bookStore;
     }

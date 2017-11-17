@@ -34,6 +34,11 @@ public class OrderRepository {
     }
 
     public void cancelOrder(int id){
-        orders.get(ArrayWorker.searchOrder(orders, id)).setStatus(Status.CANCELED);
+        int index = ArrayWorker.searchIndex(orders, id);
+        if (index != -1){
+            orders.get(index).setStatus(Status.CANCELED);
+            return;
+        }
+        System.out.println("There's no such order");
     }
 }

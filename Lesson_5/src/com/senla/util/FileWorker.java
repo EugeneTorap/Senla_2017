@@ -2,7 +2,6 @@ package com.senla.util;
 
 import com.danco.training.TextFileWorker;
 import com.senla.entity.*;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,10 +18,15 @@ public class FileWorker {
     }
 
     public List<Book> loadBooks(String path) {
-        try {
-            textFileWorker = new TextFileWorker(path);
-        } catch (IllegalArgumentException e){
-            System.out.println("File not found, manager/BookManager/loadBooks");
+        while (true){
+            try {
+                textFileWorker = new TextFileWorker(path);
+            }catch (IllegalArgumentException e){
+                System.out.println("File not found, manager/BookManager/loadBooks");
+                path = Input.nextLine("Input path: ");
+                continue;
+            }
+            break;
         }
 
         String[] strings = textFileWorker.readFromFile();
@@ -37,7 +41,17 @@ public class FileWorker {
     }
 
     public List<Reader> loadReader(String path) {
-        textFileWorker = new TextFileWorker(path);
+        while (true){
+            try {
+                textFileWorker = new TextFileWorker(path);
+            }catch (IllegalArgumentException e){
+                System.out.println("File not found, manager/BookManager/loadReader");
+                path = Input.nextLine("Input path: ");
+                continue;
+            }
+            break;
+        }
+
         String[] strings = textFileWorker.readFromFile();
         if (strings != null) {
             List<Reader> readers = new ArrayList<>();
@@ -50,7 +64,17 @@ public class FileWorker {
     }
 
     public List<Order> loadOrders(String path, List<Book> loadedBooks) {
-        textFileWorker = new TextFileWorker(path);
+        while (true){
+            try {
+                textFileWorker = new TextFileWorker(path);
+            }catch (IllegalArgumentException e){
+                System.out.println("File not found, manager/BookManager/loadOrders");
+                path = Input.nextLine("Input path: ");
+                continue;
+            }
+            break;
+        }
+
         String[] strings = textFileWorker.readFromFile();
         if (strings != null) {
             List<Order> orders = new ArrayList<>();
@@ -63,7 +87,17 @@ public class FileWorker {
     }
 
     public List<Request> loadRequests(String path, List<Book> loadedBooks, List<Reader> loadedReader) {
-        textFileWorker = new TextFileWorker(path);
+        while (true){
+            try {
+                textFileWorker = new TextFileWorker(path);
+            }catch (IllegalArgumentException e){
+                System.out.println("File not found, manager/BookManager/loadRequests");
+                path = Input.nextLine("Input path: ");
+                continue;
+            }
+            break;
+        }
+
         String[] strings = textFileWorker.readFromFile();
         if (strings != null) {
             List<Request> requests = new ArrayList<>();

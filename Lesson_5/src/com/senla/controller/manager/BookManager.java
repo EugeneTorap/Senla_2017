@@ -18,11 +18,16 @@ public class BookManager {
     }
 
     public void loadFromFile() {
-        bookRepository.setBooks(fileWorker.loadBooks("data/book.txt"));
+        bookRepository.setBooks(fileWorker.loadBooks("book.txt"));
     }
 
     public void showBookInfo(int id) {
-        Printer.print(ArrayWorker.searchBook(bookRepository.getBooks(), id));
+        Book book = searchBook(id);
+        if (book != null){
+            Printer.print(book);
+            return;
+        }
+        System.out.println("There's no such book");
     }
 
     public void showBooks(){
@@ -50,7 +55,7 @@ public class BookManager {
     }
 
     public Book searchBook(int id){
-        return ArrayWorker.searchBook(bookRepository.getBooks(), id);
+        return ArrayWorker.search(bookRepository.getBooks(), id);
     }
 
     public void sortBooks(Comparator comparator){

@@ -35,7 +35,12 @@ public class OrderManager {
     }
 
     public void showOrderInfo(int id) {
-        Printer.print(ArrayWorker.searchOrder(orderRepository.getOrders(), id));
+        Order order = ArrayWorker.search(orderRepository.getOrders(), id);
+        if (order != null){
+            Printer.print(order);
+            return;
+        }
+        System.out.println("There's no such order");
     }
 
     public int getAllPrice(){

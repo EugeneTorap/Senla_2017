@@ -37,7 +37,7 @@ public class Parser {
         String[] str = string.split(" ");
         List<Book> books = new ArrayList<>();
         for (int j = 0; j < Integer.parseInt(str[5]); j++) {
-            books.add(ArrayWorker.searchBook(loadedBooks, Integer.parseInt(str[6 + j])));
+            books.add(ArrayWorker.search(loadedBooks, Integer.parseInt(str[6 + j])));
         }
         Order order = null;
         try {
@@ -52,8 +52,8 @@ public class Parser {
 
     public static Request parseRequest(String string, List<Book> loadedBooks, List<Reader> loadedReader) {
         String[] str = string.split(" ");
-        Book book = (ArrayWorker.searchBook(loadedBooks, Integer.parseInt(str[2])));
-        Reader reader = (ArrayWorker.searchReader(loadedReader, Integer.parseInt(str[1])));
+        Book book = (ArrayWorker.search(loadedBooks, Integer.parseInt(str[2])));
+        Reader reader = (ArrayWorker.search(loadedReader, Integer.parseInt(str[1])));
         Request request = new Request(book, reader);
         request.setId(Integer.parseInt(str[0]));
         return request;
