@@ -18,7 +18,7 @@ public class BookManager {
     }
 
     public void loadFromFile() {
-        bookRepository.setBooks(fileWorker.loadBooks("book.txt"));
+        bookRepository.setBooks(fileWorker.loadBooks("data/book.txt"));
     }
 
     public void showBookInfo(int id) {

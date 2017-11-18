@@ -2,6 +2,7 @@ package com.senla.util;
 
 import com.senla.entity.*;
 import com.senla.enums.Status;
+import org.apache.log4j.Logger;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Parser {
+    private final static Logger LOGGER = Logger.getLogger(Input.class);
 
     public static Book parseBook(String string) {
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
@@ -18,7 +20,7 @@ public class Parser {
         try {
             book = new Book(str[0], Integer.parseInt(str[2]),df.parse(str[4]), df.parse(str[5]));
         } catch (ParseException e) {
-            System.out.println("Date not parsed, util/Parser/parseBook");
+            LOGGER.error("ParseDate");
         }
         book.setId(Integer.parseInt(str[1]));
         book.setTheBookInStore(Boolean.parseBoolean(str[3]));
@@ -43,7 +45,7 @@ public class Parser {
         try {
             order = new Order(new Reader(str[0]), df.parse(str[4]), books);
         } catch (ParseException e) {
-            System.out.println("Date not parsed, util/Parser/parseOrder");
+            LOGGER.error("ParseDate");
         }
         order.setId(Integer.parseInt(str[1]));
         order.setStatus(Status.valueOf(str[2]));

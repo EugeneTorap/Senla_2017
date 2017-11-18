@@ -10,6 +10,10 @@ public class Navigator {
 
     public void printMenu() {
         for(int i = 0; i<currentMenu.getMenuItems().size(); i++) {
+            if (currentMenu.getMenuItems().get(i).getTitle().equals("exit")){
+                System.out.println(0 + " -- " + currentMenu.getMenuItems().get(i));
+                continue;
+            }
             System.out.println((i + 1) + " -- " + currentMenu.getMenuItems().get(i));
         }
     }

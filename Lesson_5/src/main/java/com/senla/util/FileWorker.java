@@ -2,11 +2,14 @@ package com.senla.util;
 
 import com.danco.training.TextFileWorker;
 import com.senla.entity.*;
+import org.apache.log4j.Logger;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class FileWorker {
     private static TextFileWorker textFileWorker;
+    private final static Logger LOGGER = Logger.getLogger(Input.class);
 
     public void save(List<? extends Entity> entities, String path) {
         List<String> strings = new ArrayList<>();
@@ -22,7 +25,7 @@ public class FileWorker {
             try {
                 textFileWorker = new TextFileWorker(path);
             }catch (IllegalArgumentException e){
-                System.out.println("File not found, manager/BookManager/loadBooks");
+                LOGGER.error("File not found");
                 path = Input.nextLine("Input path: ");
                 continue;
             }
@@ -45,7 +48,7 @@ public class FileWorker {
             try {
                 textFileWorker = new TextFileWorker(path);
             }catch (IllegalArgumentException e){
-                System.out.println("File not found, manager/BookManager/loadReader");
+                LOGGER.error("File not found");
                 path = Input.nextLine("Input path: ");
                 continue;
             }
@@ -68,7 +71,7 @@ public class FileWorker {
             try {
                 textFileWorker = new TextFileWorker(path);
             }catch (IllegalArgumentException e){
-                System.out.println("File not found, manager/BookManager/loadOrders");
+                LOGGER.error("File not found");
                 path = Input.nextLine("Input path: ");
                 continue;
             }
@@ -91,7 +94,7 @@ public class FileWorker {
             try {
                 textFileWorker = new TextFileWorker(path);
             }catch (IllegalArgumentException e){
-                System.out.println("File not found, manager/BookManager/loadRequests");
+                LOGGER.error("File not found");
                 path = Input.nextLine("Input path: ");
                 continue;
             }
