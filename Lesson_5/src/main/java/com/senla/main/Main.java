@@ -8,11 +8,11 @@ import java.text.ParseException;
 public class Main {
     public static void main(String[] args) throws ParseException {
         //OnlineBookStore store = new CommonFiller().fillData();
-        OnlineBookStore store = new FileFiller().fillData();
+        //OnlineBookStore store = new FileFiller().fillData();
 
         MenuController menuController = new MenuController();
         menuController.run();
 
-        store.saveAllData();
+        OnlineBookStore.getInstance().saveAllData();
     }
 }

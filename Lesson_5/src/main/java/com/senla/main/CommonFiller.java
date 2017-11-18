@@ -68,7 +68,7 @@ public class CommonFiller {
     }
 
     public OnlineBookStore fillData() throws ParseException {
-        OnlineBookStore store = new OnlineBookStore();
+        OnlineBookStore store = OnlineBookStore.getInstance();
 
         store.addReader(r1);
         store.addReader(r2);

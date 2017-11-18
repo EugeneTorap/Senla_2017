@@ -6,6 +6,7 @@ import com.senla.controller.manager.*;
 import com.senla.entity.*;
 import com.senla.util.Printer;
 import com.senla.enums.SortingType;
+import org.apache.log4j.Logger;
 
 import java.text.ParseException;
 
@@ -14,17 +15,24 @@ public class OnlineBookStore {
     private ReaderManager readerManager = new ReaderManager();
     private OrderManager orderManager = new OrderManager(bookManager);
     private RequestManager requestManager = new RequestManager(readerManager, bookManager);
+    private final static Logger LOGGER = Logger.getLogger(OnlineBookStore.class);
+
+    private static volatile OnlineBookStore bookStore = null;
 
 
-    private static OnlineBookStore bookStore;
+    private OnlineBookStore(){
+        try {
+            bookStore.loadAllData();
+        } catch (ParseException e) {
+            LOGGER.error("ParseException");
+        }
+    }
 
     public static OnlineBookStore getInstance() {
         if (bookStore == null) {
-            bookStore = new OnlineBookStore();
-            try {
-                bookStore.loadAllData();
-            } catch (ParseException e) {
-                System.out.println("ParseException");
+            synchronized (OnlineBookStore.class){
+                if (bookStore == null)
+                    bookStore = new OnlineBookStore();
             }
         }
         return bookStore;

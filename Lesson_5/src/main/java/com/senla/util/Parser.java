@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Parser {
-    private final static Logger LOGGER = Logger.getLogger(Input.class);
+    private final static Logger LOGGER = Logger.getLogger(Parser.class);
 
     public static Book parseBook(String string) {
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");

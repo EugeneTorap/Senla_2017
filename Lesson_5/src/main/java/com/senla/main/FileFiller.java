@@ -4,7 +4,7 @@ import com.senla.facade.OnlineBookStore;
 import java.text.ParseException;
 
 public class FileFiller {
-    private OnlineBookStore store = new OnlineBookStore();
+    private OnlineBookStore store = OnlineBookStore.getInstance();
 
     public OnlineBookStore fillData() throws ParseException {
         store.loadAllData();
