@@ -4,6 +4,7 @@ import com.senla.entity.Book;
 import com.senla.controller.repositories.BookRepository;
 import com.senla.util.ArrayWorker;
 import com.senla.util.FileWorker;
+import com.senla.util.MyProperty;
 import com.senla.util.Printer;
 
 import java.util.Comparator;
@@ -15,11 +16,11 @@ public class BookManager {
 
 
     public void saveToFile(){
-        fileWorker.save(bookRepository.getBooks(), "data/book.bin");
+        fileWorker.save(bookRepository.getBooks(), MyProperty.getMyProperty("bookpath"));
     }
 
     public void loadFromFile() {
-        bookRepository.setBooks((List<Book>)fileWorker.load("data/book.bin"));
+        bookRepository.setBooks((List<Book>)fileWorker.load(MyProperty.getMyProperty("bookpath")));
     }
 
     public void showBookInfo(int id) {

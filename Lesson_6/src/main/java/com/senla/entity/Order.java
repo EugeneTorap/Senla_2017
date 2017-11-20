@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class Order extends Entity {
+public class Order extends Entity implements Cloneable {
     private static final long serialVersionUID = 1242876949608763678L;
     private Reader reader;
     private Status status;
@@ -60,5 +60,15 @@ public class Order extends Entity {
         }
         string += stringBuilder;
         return string;
+    }
+
+    @Override
+    public Order clone() {
+        try {
+            return (Order) super.clone();
+        } catch (CloneNotSupportedException e) {
+            System.out.println("CloneNotSupportedException");
+        }
+        return null;
     }
 }

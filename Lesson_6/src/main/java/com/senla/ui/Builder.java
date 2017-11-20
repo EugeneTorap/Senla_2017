@@ -33,6 +33,7 @@ public class Builder {
         List<MenuItem> items = new ArrayList<>();
 
         items.add(new MenuItem("Add order", new AdditionOrder()));
+        items.add(new MenuItem("Clone order", new CloningOrder()));
         items.add(new MenuItem("Cancel order", new CancellationOrder()));
         items.add(new MenuItem("Show order info", new OrderInfo()));
         items.add(new MenuItem("Show all price", new AllPrice()));

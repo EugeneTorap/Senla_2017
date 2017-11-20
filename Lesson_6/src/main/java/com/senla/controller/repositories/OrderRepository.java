@@ -33,6 +33,13 @@ public class OrderRepository {
         orders.add(order);
     }
 
+    public void cloneOrder(int id) {
+        Order order1 = ArrayWorker.search(orders, id);
+        assert order1 != null;
+        Order order2 = order1.clone();
+        orders.add(order2);
+    }
+
     public void cancelOrder(int id){
         int index = ArrayWorker.searchIndex(orders, id);
         if (index != -1){

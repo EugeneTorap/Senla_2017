@@ -13,8 +13,8 @@ import java.text.ParseException;
 public class OnlineBookStore {
     private BookManager bookManager = new BookManager();
     private ReaderManager readerManager = new ReaderManager();
-    private OrderManager orderManager = new OrderManager(bookManager);
-    private RequestManager requestManager = new RequestManager(readerManager, bookManager);
+    private OrderManager orderManager = new OrderManager();
+    private RequestManager requestManager = new RequestManager(bookManager);
     private final static Logger LOGGER = Logger.getLogger(OnlineBookStore.class);
 
     private static volatile OnlineBookStore bookStore = null;
@@ -144,6 +144,10 @@ public class OnlineBookStore {
 
     public void addOrder(Order order) {
         orderManager.addOrder(order);
+    }
+
+    public void cloneOrder(int id){
+        orderManager.cloneOrder(id);
     }
 
     public void cancelOrder(int id) {

@@ -1,10 +1,10 @@
 package com.senla.controller.manager;
 
-import com.senla.controller.repositories.BookRepository;
 import com.senla.controller.repositories.OrderRepository;
 import com.senla.entity.Order;
 import com.senla.util.ArrayWorker;
 import com.senla.util.FileWorker;
+import com.senla.util.MyProperty;
 import com.senla.util.Printer;
 
 import java.util.Comparator;
@@ -12,23 +12,23 @@ import java.util.List;
 
 public class OrderManager {
     private OrderRepository orderRepository = new OrderRepository();
-    private BookRepository bookRepository;
     private FileWorker fileWorker = new FileWorker();
 
-    public OrderManager(BookManager bookManager) {
-        this.bookRepository = bookManager.getBookRepository();
-    }
 
     public void saveToFile(){
-        fileWorker.save(orderRepository.getOrders(), "data/order.bin");
+        fileWorker.save(orderRepository.getOrders(), MyProperty.getMyProperty("orderpath"));
     }
 
     public void loadFromFile() {
-        orderRepository.setOrders((List<Order>)fileWorker.load("data/order.bin"));
+        orderRepository.setOrders((List<Order>)fileWorker.load(MyProperty.getMyProperty("orderpath")));
     }
 
     public void addOrder(Order order) {
         orderRepository.addOrder(order);
+    }
+
+    public void cloneOrder(int id){
+        orderRepository.cloneOrder(id);
     }
 
     public void cancelOrder(int id) {

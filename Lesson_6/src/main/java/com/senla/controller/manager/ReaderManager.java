@@ -4,6 +4,7 @@ import com.senla.entity.Reader;
 import com.senla.controller.repositories.ReaderRepository;
 import com.senla.util.ArrayWorker;
 import com.senla.util.FileWorker;
+import com.senla.util.MyProperty;
 
 import java.util.List;
 
@@ -13,11 +14,11 @@ public class ReaderManager {
 
 
     public void saveToFile(){
-        fileWorker.save(readerRepository.getReaders(), "data/reader.bin");
+        fileWorker.save(readerRepository.getReaders(), MyProperty.getMyProperty("readerpath"));
     }
 
     public void loadFromFile() {
-        readerRepository.setReaders((List<Reader>) fileWorker.load("data/reader.bin"));
+        readerRepository.setReaders((List<Reader>) fileWorker.load(MyProperty.getMyProperty("readerpath")));
     }
 
     public void addReader(Reader newReader){

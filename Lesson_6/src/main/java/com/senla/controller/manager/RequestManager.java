@@ -4,6 +4,7 @@ import com.senla.entity.Book;
 import com.senla.controller.repositories.*;
 import com.senla.entity.Request;
 import com.senla.util.FileWorker;
+import com.senla.util.MyProperty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,21 +12,19 @@ import java.util.List;
 public class RequestManager {
     private RequestRepository requestRepository = new RequestRepository();
     private BookRepository bookRepository;
-    private ReaderRepository readerRepository;
     private FileWorker fileWorker = new FileWorker();
 
 
-    public RequestManager(ReaderManager readerManager, BookManager bookManager) {
-        this.readerRepository = readerManager.getReaderRepository();
+    public RequestManager(BookManager bookManager) {
         this.bookRepository = bookManager.getBookRepository();
     }
 
     public void saveToFile(){
-        fileWorker.save(requestRepository.getRequests(), "data/request.bin");
+        fileWorker.save(requestRepository.getRequests(), MyProperty.getMyProperty("requestpath"));
     }
 
     public void loadFromFile(){
-        requestRepository.setRequests((List<Request>) fileWorker.load("data/request.bin"));
+        requestRepository.setRequests((List<Request>) fileWorker.load(MyProperty.getMyProperty("requestpath")));
     }
 
     public void addRequest(Request request){
