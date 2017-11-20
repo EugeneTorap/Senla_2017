@@ -1,7 +1,7 @@
 package com.senla.entity;
 
 public class Request extends Entity {
-
+    private static final long serialVersionUID = 8836991922455907432L;
     private Book book;
     private Reader reader;
 

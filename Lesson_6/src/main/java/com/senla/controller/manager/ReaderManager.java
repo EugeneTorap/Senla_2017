@@ -5,17 +5,19 @@ import com.senla.controller.repositories.ReaderRepository;
 import com.senla.util.ArrayWorker;
 import com.senla.util.FileWorker;
 
+import java.util.List;
+
 public class ReaderManager {
     private ReaderRepository readerRepository = new ReaderRepository();
     private FileWorker fileWorker = new FileWorker();
 
 
     public void saveToFile(){
-        fileWorker.save(readerRepository.getReaders(), "data/reader.txt");
+        fileWorker.save(readerRepository.getReaders(), "data/reader.bin");
     }
 
-    public void loadFromFile(){
-        readerRepository.setReaders(fileWorker.loadReader("data/reader.txt"));
+    public void loadFromFile() {
+        readerRepository.setReaders((List<Reader>) fileWorker.load("data/reader.bin"));
     }
 
     public void addReader(Reader newReader){

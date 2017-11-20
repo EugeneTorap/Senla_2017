@@ -7,6 +7,7 @@ import com.senla.util.FileWorker;
 import com.senla.util.Printer;
 
 import java.util.Comparator;
+import java.util.List;
 
 public class BookManager {
     private BookRepository bookRepository = new BookRepository();
@@ -14,11 +15,11 @@ public class BookManager {
 
 
     public void saveToFile(){
-        fileWorker.save(bookRepository.getBooks(), "data/book.txt");
+        fileWorker.save(bookRepository.getBooks(), "data/book.bin");
     }
 
     public void loadFromFile() {
-        bookRepository.setBooks(fileWorker.loadBooks("data/book.txt"));
+        bookRepository.setBooks((List<Book>)fileWorker.load("data/book.bin"));
     }
 
     public void showBookInfo(int id) {

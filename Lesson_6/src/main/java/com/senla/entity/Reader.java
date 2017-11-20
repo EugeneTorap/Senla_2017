@@ -1,6 +1,7 @@
 package com.senla.entity;
 
 public class Reader extends Entity {
+    private static final long serialVersionUID = -561916297036215555L;
     private String name;
 
 

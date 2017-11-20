@@ -21,11 +21,11 @@ public class RequestManager {
     }
 
     public void saveToFile(){
-        fileWorker.save(requestRepository.getRequests(), "data/request.txt");
+        fileWorker.save(requestRepository.getRequests(), "data/request.bin");
     }
 
     public void loadFromFile(){
-        requestRepository.setRequests(fileWorker.loadRequests("data/request.txt", bookRepository.getBooks(), readerRepository.getReaders()));
+        requestRepository.setRequests((List<Request>) fileWorker.load("data/request.bin"));
     }
 
     public void addRequest(Request request){

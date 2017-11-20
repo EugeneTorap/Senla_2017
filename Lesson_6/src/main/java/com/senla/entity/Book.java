@@ -1,11 +1,16 @@
 package com.senla.entity;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Properties;
 
 public class Book extends Entity {
+    private static final long serialVersionUID = 5271189679230904618L;
     private String title;
     private int price;
     private Boolean isTheBookInStore;
@@ -27,10 +32,19 @@ public class Book extends Entity {
     }
 
     public Boolean getIsMoreSixMonth() {
+        Properties properties = new Properties();
+        try(FileInputStream in = new FileInputStream("src/main/resources/app.properties")) {
+            properties.load(in);
+        } catch (FileNotFoundException e) {
+            System.out.println("FileNotFoundException");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         Date current = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(current);
-        calendar.add(Calendar.MONTH, -6);
+        calendar.add(Calendar.MONTH, Integer.parseInt(properties.getProperty("amount")));
         return calendar.getTime().after(this.dateReceipted);
     }
 

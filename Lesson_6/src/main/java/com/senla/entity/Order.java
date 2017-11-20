@@ -1,13 +1,13 @@
 package com.senla.entity;
 
 import com.senla.enums.Status;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class Order extends Entity{
+public class Order extends Entity {
+    private static final long serialVersionUID = 1242876949608763678L;
     private Reader reader;
     private Status status;
     private Date dateExecuted;

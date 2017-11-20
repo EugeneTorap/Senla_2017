@@ -8,6 +8,7 @@ import com.senla.util.FileWorker;
 import com.senla.util.Printer;
 
 import java.util.Comparator;
+import java.util.List;
 
 public class OrderManager {
     private OrderRepository orderRepository = new OrderRepository();
@@ -19,11 +20,11 @@ public class OrderManager {
     }
 
     public void saveToFile(){
-        fileWorker.save(orderRepository.getOrders(), "data/order.txt");
+        fileWorker.save(orderRepository.getOrders(), "data/order.bin");
     }
 
     public void loadFromFile() {
-        orderRepository.setOrders(fileWorker.loadOrders("data/order.txt", bookRepository.getBooks()));
+        orderRepository.setOrders((List<Order>)fileWorker.load("data/order.bin"));
     }
 
     public void addOrder(Order order) {

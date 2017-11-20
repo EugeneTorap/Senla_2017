@@ -2,7 +2,9 @@ package com.senla.entity;
 
 import com.senla.util.IdGenerator;
 
-public abstract class Entity {
+import java.io.Serializable;
+
+public abstract class Entity implements Serializable {
     private int id;
 
 

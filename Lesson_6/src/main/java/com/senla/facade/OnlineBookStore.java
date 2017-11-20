@@ -21,18 +21,20 @@ public class OnlineBookStore {
 
 
     private OnlineBookStore(){
-        try {
-            bookStore.loadAllData();
-        } catch (ParseException e) {
-            LOGGER.error("ParseException");
-        }
+
     }
 
     public static OnlineBookStore getInstance() {
         if (bookStore == null) {
             synchronized (OnlineBookStore.class){
-                if (bookStore == null)
+                if (bookStore == null) {
                     bookStore = new OnlineBookStore();
+                    try {
+                        bookStore.loadAllData();
+                    } catch (ParseException e) {
+                        LOGGER.error("ParseException");
+                    }
+                }
             }
         }
         return bookStore;
