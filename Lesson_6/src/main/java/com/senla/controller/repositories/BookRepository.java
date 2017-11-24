@@ -8,7 +8,19 @@ import java.util.List;
 
 public class BookRepository {
     private List<Book> books = new ArrayList<>();
+    private static volatile BookRepository instance = null;
 
+
+    public static BookRepository getInstance() {
+        if (instance == null) {
+            synchronized (BookRepository.class){
+                if (instance == null) {
+                    instance = new BookRepository();
+                }
+            }
+        }
+        return instance;
+    }
 
     public List<Book> getBooks() {
         return books;

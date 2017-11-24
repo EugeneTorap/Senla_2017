@@ -2,23 +2,25 @@ package com.senla.controller.manager;
 
 import com.senla.entity.Reader;
 import com.senla.controller.repositories.ReaderRepository;
-import com.senla.util.ArrayWorker;
-import com.senla.util.FileWorker;
-import com.senla.util.MyProperty;
+import com.senla.util.*;
 
 import java.util.List;
 
 public class ReaderManager {
-    private ReaderRepository readerRepository = new ReaderRepository();
-    private FileWorker fileWorker = new FileWorker();
+    private ReaderRepository readerRepository;
+    private Serializer serializer = new Serializer();
 
+
+    public ReaderManager() {
+        readerRepository = ReaderRepository.getInstance();
+    }
 
     public void saveToFile(){
-        fileWorker.save(readerRepository.getReaders(), MyProperty.getMyProperty("readerpath"));
+        serializer.save(readerRepository.getReaders(), MyProperty.getInstance().getProperty("readerpath"));
     }
 
     public void loadFromFile() {
-        readerRepository.setReaders((List<Reader>) fileWorker.load(MyProperty.getMyProperty("readerpath")));
+        readerRepository.setReaders((List<Reader>) serializer.load(MyProperty.getInstance().getProperty("readerpath")));
     }
 
     public void addReader(Reader newReader){
@@ -31,5 +33,20 @@ public class ReaderManager {
 
     public ReaderRepository getReaderRepository() {
         return readerRepository;
+    }
+
+    public void exportReader() {
+        FileWorker.save(readerRepository.getReaders(), MyProperty.getInstance().getProperty("csvpath"));
+    }
+
+    public void importReader() {
+        int index;
+        for (Reader reader : Parser.parseReader(FileWorker.load(MyProperty.getInstance().getProperty("csvpath")))) {
+            if ((index = ArrayWorker.searchIndex(readerRepository.getReaders(), reader.getId())) != -1){
+                readerRepository.getReaders().set(index, reader);
+            } else {
+                readerRepository.addReader(reader);
+            }
+        }
     }
 }

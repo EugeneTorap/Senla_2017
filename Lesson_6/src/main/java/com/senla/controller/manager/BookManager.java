@@ -2,25 +2,27 @@ package com.senla.controller.manager;
 
 import com.senla.entity.Book;
 import com.senla.controller.repositories.BookRepository;
-import com.senla.util.ArrayWorker;
-import com.senla.util.FileWorker;
-import com.senla.util.MyProperty;
-import com.senla.util.Printer;
+import com.senla.util.*;
 
+import java.io.IOException;
 import java.util.Comparator;
 import java.util.List;
 
 public class BookManager {
-    private BookRepository bookRepository = new BookRepository();
-    private FileWorker fileWorker = new FileWorker();
+    private BookRepository bookRepository;
+    private Serializer serializer = new Serializer();
+
+    public BookManager() {
+        bookRepository = BookRepository.getInstance();
+    }
 
 
     public void saveToFile(){
-        fileWorker.save(bookRepository.getBooks(), MyProperty.getMyProperty("bookpath"));
+        serializer.save(bookRepository.getBooks(), MyProperty.getInstance().getProperty("bookpath"));
     }
 
     public void loadFromFile() {
-        bookRepository.setBooks((List<Book>)fileWorker.load(MyProperty.getMyProperty("bookpath")));
+        bookRepository.setBooks((List<Book>) serializer.load(MyProperty.getInstance().getProperty("bookpath")));
     }
 
     public void showBookInfo(int id) {
@@ -66,5 +68,20 @@ public class BookManager {
 
     public void sortUnsoldBooks(Comparator comparator){
         bookRepository.getBooksNotSoldMoreSixMonth().sort(comparator);
+    }
+
+    public void exportBook() {
+        FileWorker.save(bookRepository.getBooks(), MyProperty.getInstance().getProperty("csvpath"));
+    }
+
+    public void importBook() {
+        int index;
+        for (Book book : Parser.parseBook(FileWorker.load(MyProperty.getInstance().getProperty("csvpath")))) {
+            if ((index = ArrayWorker.searchIndex(bookRepository.getBooks(), book.getId())) != -1){
+                bookRepository.getBooks().set(index, book);
+            } else {
+                bookRepository.addBook(book);
+            }
+        }
     }
 }

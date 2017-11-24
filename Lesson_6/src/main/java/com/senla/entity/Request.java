@@ -25,4 +25,8 @@ public class Request extends Entity {
     public String toString() {
         return getId() + " " + reader.getId() + " " + book.getId() + " " + reader.getName() + " " + book.getTitle();
     }
+
+    public String toStringWithSign() {
+        return getId() + "," + reader.getId() + "," + book.getId() + "," + reader.getName() + "," + book.getTitle();
+    }
 }

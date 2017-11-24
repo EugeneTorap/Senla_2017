@@ -19,4 +19,6 @@ public abstract class Entity implements Serializable {
     public int getId() {
         return id;
     }
+
+    public abstract String toStringWithSign();
 }

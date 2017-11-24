@@ -7,7 +7,19 @@ import java.util.List;
 
 public class RequestRepository {
     private List<Request> requests = new ArrayList<>();
+    private static volatile RequestRepository instance = null;
 
+
+    public static RequestRepository getInstance() {
+        if (instance == null) {
+            synchronized (RequestRepository.class){
+                if (instance == null) {
+                    instance = new RequestRepository();
+                }
+            }
+        }
+        return instance;
+    }
 
     public List<Request> getRequests() {
         return requests;

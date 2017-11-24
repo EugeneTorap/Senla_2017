@@ -14,7 +14,7 @@ public class OnlineBookStore {
     private BookManager bookManager = new BookManager();
     private ReaderManager readerManager = new ReaderManager();
     private OrderManager orderManager = new OrderManager();
-    private RequestManager requestManager = new RequestManager(bookManager);
+    private RequestManager requestManager = new RequestManager();
     private final static Logger LOGGER = Logger.getLogger(OnlineBookStore.class);
 
     private static volatile OnlineBookStore bookStore = null;
@@ -164,6 +164,38 @@ public class OnlineBookStore {
 
     public Reader searchReader(int id){
         return readerManager.searchReader(id);
+    }
+
+    public void exportBook(){
+        bookManager.exportBook();
+    }
+
+    public void importBook(){
+        bookManager.importBook();
+    }
+
+    public void exportOrder(){
+        orderManager.exportOrder();
+    }
+
+    public void importOrder(){
+        orderManager.importOrder();
+    }
+
+    public void exportReader(){
+        readerManager.exportReader();
+    }
+
+    public void importReader(){
+        readerManager.importReader();
+    }
+
+    public void exportRequest(){
+        requestManager.exportRequest();
+    }
+
+    public void importRequest(){
+        requestManager.importRequest();
     }
 
     public void saveAllData(){

@@ -1,26 +1,28 @@
 package com.senla.controller.manager;
 
+import com.senla.controller.repositories.BookRepository;
 import com.senla.controller.repositories.OrderRepository;
 import com.senla.entity.Order;
-import com.senla.util.ArrayWorker;
-import com.senla.util.FileWorker;
-import com.senla.util.MyProperty;
-import com.senla.util.Printer;
+import com.senla.util.*;
 
 import java.util.Comparator;
 import java.util.List;
 
 public class OrderManager {
-    private OrderRepository orderRepository = new OrderRepository();
-    private FileWorker fileWorker = new FileWorker();
+    private OrderRepository orderRepository;
+    private Serializer serializer = new Serializer();
 
+
+    public OrderManager() {
+        orderRepository = OrderRepository.getInstance();
+    }
 
     public void saveToFile(){
-        fileWorker.save(orderRepository.getOrders(), MyProperty.getMyProperty("orderpath"));
+        serializer.save(orderRepository.getOrders(), MyProperty.getInstance().getProperty("orderpath"));
     }
 
     public void loadFromFile() {
-        orderRepository.setOrders((List<Order>)fileWorker.load(MyProperty.getMyProperty("orderpath")));
+        orderRepository.setOrders((List<Order>) serializer.load(MyProperty.getInstance().getProperty("orderpath")));
     }
 
     public void addOrder(Order order) {
@@ -70,5 +72,21 @@ public class OrderManager {
 
     public void sortExecutedOrders(Comparator comparator){
         orderRepository.getExecutedOrders().sort(comparator);
+    }
+
+    public void exportOrder() {
+        FileWorker.save(orderRepository.getOrders(), MyProperty.getInstance().getProperty("csvpath"));
+    }
+
+    public void importOrder() {
+        int index;
+        for (Order order : Parser.parseOrder(FileWorker.load(MyProperty.getInstance().getProperty("csvpath")),
+                BookRepository.getInstance().getBooks())) {
+            if ((index = ArrayWorker.searchIndex(orderRepository.getOrders(), order.getId())) != -1){
+                orderRepository.getOrders().set(index, order);
+            } else {
+                orderRepository.addOrder(order);
+            }
+        }
     }
 }

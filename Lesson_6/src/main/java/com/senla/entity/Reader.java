@@ -16,4 +16,8 @@ public class Reader extends Entity {
     public String toString() {
         return getId() + " " + name;
     }
+
+    public String toStringWithSign() {
+        return getId() + "," + name;
+    }
 }

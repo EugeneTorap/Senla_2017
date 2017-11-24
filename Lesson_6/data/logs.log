@@ -1,3 +1,10 @@
 2017-11-18 19:17:55 ERROR Input:24 - NumberFormatException
 2017-11-18 19:21:19 ERROR Input:28 - File not found
 2017-11-20 19:39:26 ERROR FileWorker:26 - File not found
+2017-11-24 20:49:28 ERROR Serializer:26 - File not found
+2017-11-24 20:50:26 ERROR Serializer:26 - File not found
+2017-11-24 20:50:28 ERROR Serializer:26 - File not found
+2017-11-24 20:50:30 ERROR Serializer:26 - File not found
+2017-11-24 20:50:31 ERROR Serializer:26 - File not found
+2017-11-24 20:52:50 ERROR Serializer:26 - File not found
+2017-11-24 20:58:05 ERROR Serializer:26 - File not found

@@ -62,6 +62,18 @@ public class Order extends Entity implements Cloneable {
         return string;
     }
 
+    public String toStringWithSign() {
+        StringBuilder stringBuilder = new StringBuilder();
+        String string = reader.getName() + "," + getId() + "," + getStatus() + "," + getPrice() + "," + df.format(dateExecuted) +
+                "," + books.size() + ",";
+        for (Book book: books) {
+            stringBuilder.append(book.getId());
+            stringBuilder.append(",");
+        }
+        string += stringBuilder;
+        return string;
+    }
+
     @Override
     public Order clone() {
         try {

@@ -9,7 +9,19 @@ import java.util.List;
 
 public class OrderRepository {
     private List<Order> orders = new ArrayList<>();
+    private static volatile OrderRepository instance = null;
 
+
+    public static OrderRepository getInstance() {
+        if (instance == null) {
+            synchronized (OrderRepository.class){
+                if (instance == null) {
+                    instance = new OrderRepository();
+                }
+            }
+        }
+        return instance;
+    }
 
     public List<Order> getOrders() {
         return orders;

@@ -7,6 +7,19 @@ import java.util.List;
 
 public class ReaderRepository {
     private List<Reader> readers = new ArrayList<>();
+    private static volatile ReaderRepository instance = null;
+
+
+    public static ReaderRepository getInstance() {
+        if (instance == null) {
+            synchronized (ReaderRepository.class){
+                if (instance == null) {
+                    instance = new ReaderRepository();
+                }
+            }
+        }
+        return instance;
+    }
 
 
     public List<Reader> getReaders() {

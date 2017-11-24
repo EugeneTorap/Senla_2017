@@ -14,13 +14,14 @@ public class MyProperty {
             synchronized (Properties.class){
                 if (properties == null) {
                     properties = new Properties();
+                    loadMyProperty();
                 }
             }
         }
         return properties;
     }
 
-    public static String getMyProperty(String str){
+    private static void loadMyProperty(){
         try(FileInputStream in = new FileInputStream("src/main/resources/app.properties")) {
             properties.load(in);
         } catch (FileNotFoundException e) {
@@ -28,6 +29,9 @@ public class MyProperty {
         } catch (IOException e) {
             System.out.println("IOException");
         }
+    }
+
+    public static String getMyProperty(String str){
         return properties.getProperty(str);
     }
 

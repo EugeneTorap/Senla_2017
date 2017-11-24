@@ -23,6 +23,8 @@ public class Builder {
         items.add(new MenuItem("Show books sorted by is store", new SortingBooksByStore()));
         items.add(new MenuItem("Show unsold books sorted by date", new SortingUnsoldBooksByDate()));
         items.add(new MenuItem("Show unsold books sorted by price", new SortingUnsoldBooksByPrice()));
+        items.add(new MenuItem("Export book", new ExportBook()));
+        items.add(new MenuItem("Import book", new ImportBook()));
         MenuItem begin = new MenuItem("To the beginning");
         begin.setNextMenu(menu);
         items.add(begin);
@@ -43,6 +45,8 @@ public class Builder {
         items.add(new MenuItem("Show orders sorted by status", new SortingOrdersByStatus()));
         items.add(new MenuItem("Show executed orders sorted by date", new SortingExecutedOrdersByDate()));
         items.add(new MenuItem("Show executed orders sorted by price", new SortingExecutedOrdersByPrice()));
+        items.add(new MenuItem("Export order", new ExportOrder()));
+        items.add(new MenuItem("Import order", new ImportOrder()));
         MenuItem begin = new MenuItem("To the beginning");
         begin.setNextMenu(menu);
         items.add(begin);
@@ -56,6 +60,8 @@ public class Builder {
         items.add(new MenuItem("Show request sorted by alphabet", new SortingRequestsByAlphabet()));
         items.add(new MenuItem("Show request sorted by date", new SortingRequestsByDate()));
         items.add(new MenuItem("Show request sorted by price", new SortingRequestsByPrice()));
+        items.add(new MenuItem("Export request", new ExportRequest()));
+        items.add(new MenuItem("Import request", new ImportRequest()));
         MenuItem begin = new MenuItem("To the beginning");
         begin.setNextMenu(menu);
         items.add(begin);

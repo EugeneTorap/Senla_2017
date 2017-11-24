@@ -73,4 +73,9 @@ public class Book extends Entity {
         return title + " " + getId() + " " + price + " " + isTheBookInStore + " " + df.format(datePublished) +
                 " " + df.format(dateReceipted);
     }
+
+    public String toStringWithSign() {
+        return title + "," + getId() + "," + price + "," + isTheBookInStore + "," + df.format(datePublished) +
+                "," + df.format(dateReceipted);
+    }
 }
