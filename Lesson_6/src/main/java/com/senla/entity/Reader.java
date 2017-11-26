@@ -20,4 +20,8 @@ public class Reader extends Entity {
     public String toStringWithSign() {
         return getId() + "," + name;
     }
+
+    public Reader clone() throws CloneNotSupportedException {
+        return (Reader) super.clone();
+    }
 }

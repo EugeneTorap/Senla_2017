@@ -1,18 +1,22 @@
 package com.senla.entity;
 
 import com.senla.enums.Status;
+import com.senla.util.IdGenerator;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
-public class Order extends Entity implements Cloneable {
+public class Order extends Entity {
     private static final long serialVersionUID = 1242876949608763678L;
     private Reader reader;
     private Status status;
     private Date dateExecuted;
     private List<Book> books;
-    private DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+
 
     public Order(Reader reader,Date dateExecuted, List<Book> books) {
         this.reader = reader;
@@ -51,6 +55,7 @@ public class Order extends Entity implements Cloneable {
     }
 
     public String toString() {
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         StringBuilder stringBuilder = new StringBuilder();
         String string = reader.getName() + " " + getId() + " " + getStatus() + " " + getPrice() + " " + df.format(dateExecuted) +
                 " " + books.size() + " ";
@@ -63,6 +68,7 @@ public class Order extends Entity implements Cloneable {
     }
 
     public String toStringWithSign() {
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         StringBuilder stringBuilder = new StringBuilder();
         String string = reader.getName() + "," + getId() + "," + getStatus() + "," + getPrice() + "," + df.format(dateExecuted) +
                 "," + books.size() + ",";
@@ -74,13 +80,19 @@ public class Order extends Entity implements Cloneable {
         return string;
     }
 
+    private List<Book> cloneList(List<Book> list) throws CloneNotSupportedException {
+        List<Book> clone = new ArrayList<>(list.size());
+        for (Book item : list) clone.add(item.clone());
+        return clone;
+    }
+
     @Override
-    public Order clone() {
-        try {
-            return (Order) super.clone();
-        } catch (CloneNotSupportedException e) {
-            System.out.println("CloneNotSupportedException");
-        }
-        return null;
+    public Order clone() throws CloneNotSupportedException {
+        Order clone = (Order) super.clone();
+        clone.books = cloneList(books);
+        clone.dateExecuted = (Date) dateExecuted.clone();
+        clone.reader = reader.clone();
+        clone.setId(IdGenerator.generateId());
+        return clone;
     }
 }

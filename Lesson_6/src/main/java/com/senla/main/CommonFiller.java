@@ -30,7 +30,7 @@ public class CommonFiller {
 
     private Date dateRec1 = df.parse("30/06/2014");
     private Date dateRec2 = df.parse("15/04/2015");
-    private Date dateRec3 = df.parse("10/03/2017");
+    private Date dateRec3 = df.parse("10/11/2017");
     private Date dateRec4 = df.parse("19/07/2016");
     private Date dateRec5 = df.parse("09/08/2015");
 
@@ -60,12 +60,12 @@ public class CommonFiller {
 
     private Request req1 = new Request(b1, r3);
     private Request req2 = new Request(b2, r4);
-    private Request req3 = new Request(b2, r4);
-    private Request req4 = new Request(b2, r3);
-    private Request req5 = new Request(b1, r3);
+    private Request req3 = new Request(b2, r1);
+    private Request req4 = new Request(b1, r2);
 
     public CommonFiller() throws ParseException {
     }
+
 
     public OnlineBookStore fillData() throws ParseException {
         OnlineBookStore store = OnlineBookStore.getInstance();
@@ -92,7 +92,6 @@ public class CommonFiller {
         store.addRequest(req2);
         store.addRequest(req3);
         store.addRequest(req4);
-        store.addRequest(req5);
 
         return store;
     }

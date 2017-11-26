@@ -1,15 +1,14 @@
 package com.senla.controller.manager;
 
+import com.senla.api.manager.IRequestManager;
 import com.senla.entity.Book;
 import com.senla.controller.repositories.*;
 import com.senla.entity.Request;
 import com.senla.util.*;
-
-import java.util.ArrayList;
 import java.util.List;
 
-public class RequestManager {
-    private RequestRepository requestRepository = new RequestRepository();
+public class RequestManager implements IRequestManager{
+    private RequestRepository requestRepository;
     private Serializer serializer = new Serializer();
 
 
@@ -17,73 +16,63 @@ public class RequestManager {
         requestRepository = RequestRepository.getInstance();
     }
 
-    public void saveToFile(){
-        serializer.save(requestRepository.getRequests(), MyProperty.getInstance().getProperty("requestpath"));
+    @Override
+    public void add(Request request) {
+        requestRepository.add(request);
     }
 
-    public void loadFromFile(){
-        requestRepository.setRequests((List<Request>) serializer.load(MyProperty.getInstance().getProperty("requestpath")));
-    }
-
-    public void addRequest(Request request){
-        requestRepository.addRequest(request);
-    }
-
-    private int requestCount(Book book){
-        int count = 0;
-        for (Request request : requestRepository.getRequests()) {
-            if (request.getBook().equals(book)) {
-                count++;
-            }
-        }
-        return count;
-    }
-
+    @Override
     public void showBookRequests(){
         System.out.println();
         for (Book book : BookRepository.getInstance().getBooks()) {
-            System.out.println(book.getTitle() + " " + book.getRequestAmount());
-            if (requestForBook(book) != null){
-                for (Request request : requestForBook(book)) {
-                    System.out.println(request.getId() + " " + request.getReader().getName());
+            System.out.println(book.toStringForRequest());
+            for (Request request : requestRepository.getRequests()) {
+                if (request.getBook().getId() == book.getId()) {
+                    System.out.println(request.toStringForRequest());
                 }
             }
             System.out.println("-----------------------");
         }
     }
 
-    private List<Request> requestForBook(Book book){
-        if (requestCount(book) != 0){
-            List<Request> bookRequests = new ArrayList<>();
-
+    @Override
+    public void setRequestAmount() {
+        int count = 0;
+        for (Book book: BookRepository.getInstance().getBooks()) {
             for (Request request : requestRepository.getRequests()) {
-                if (request.getBook().equals(book)) {
-                    bookRequests.add(request);
+                if (request.getBook().getId() == book.getId()) {
+                    count++;
                 }
             }
-            return bookRequests;
-        }
-        return null;
-    }
-
-    public void setRequestAmount() {
-        for (Book book: BookRepository.getInstance().getBooks()) {
-            book.setRequestAmount(requestCount(book));
+            book.setRequestAmount(count);
+            count = 0;
         }
     }
 
-    public void exportRequest() {
+    @Override
+    public void saveToFile(){
+        serializer.save(requestRepository.getRequests(), MyProperty.getInstance().getProperty("requestpath"));
+    }
+
+    @Override
+    public void loadFromFile(){
+        requestRepository.setRequests((List<Request>) serializer.load(MyProperty.getInstance().getProperty("requestpath")));
+    }
+
+    @Override
+    public void exportToFile() {
         FileWorker.save(requestRepository.getRequests(), MyProperty.getInstance().getProperty("csvpath"));
     }
 
-    public void importRequest() {
+    @Override
+    public void importFromFile() {
         int index;
         for (Request request : Parser.parseRequest(FileWorker.load(MyProperty.getInstance().getProperty("csvpath")),
                 BookRepository.getInstance().getBooks(), ReaderRepository.getInstance().getReaders())) {
             if ((index = ArrayWorker.searchIndex(requestRepository.getRequests(), request.getId())) != -1){
                 requestRepository.getRequests().set(index, request);
             } else {
-                requestRepository.addRequest(request);
+                requestRepository.add(request);
             }
         }
     }

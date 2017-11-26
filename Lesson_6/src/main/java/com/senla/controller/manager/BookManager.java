@@ -1,5 +1,6 @@
 package com.senla.controller.manager;
 
+import com.senla.api.manager.IBookManager;
 import com.senla.entity.Book;
 import com.senla.controller.repositories.BookRepository;
 import com.senla.util.*;
@@ -8,25 +9,48 @@ import java.io.IOException;
 import java.util.Comparator;
 import java.util.List;
 
-public class BookManager {
+public class BookManager implements IBookManager {
     private BookRepository bookRepository;
     private Serializer serializer = new Serializer();
+
 
     public BookManager() {
         bookRepository = BookRepository.getInstance();
     }
 
-
-    public void saveToFile(){
-        serializer.save(bookRepository.getBooks(), MyProperty.getInstance().getProperty("bookpath"));
+    @Override
+    public void add(Book newBook) {
+        bookRepository.add(newBook);
     }
 
-    public void loadFromFile() {
-        bookRepository.setBooks((List<Book>) serializer.load(MyProperty.getInstance().getProperty("bookpath")));
+    @Override
+    public void addOnStore(int id) {
+        bookRepository.addOnStore(id);
     }
 
+    @Override
+    public void delFromStore(int id) {
+        bookRepository.delFromStore(id);
+    }
+
+    @Override
+    public Book search(int id) {
+        return ArrayWorker.search(bookRepository.getBooks(), id);
+    }
+
+    @Override
+    public void sortBooks(Comparator comparator){
+        bookRepository.getBooks().sort(comparator);
+    }
+
+    @Override
+    public void sortUnsoldBooks(Comparator comparator){
+        bookRepository.getUnsoldBooks().sort(comparator);
+    }
+
+    @Override
     public void showBookInfo(int id) {
-        Book book = searchBook(id);
+        Book book = search(id);
         if (book != null){
             Printer.print(book);
             return;
@@ -34,53 +58,39 @@ public class BookManager {
         System.out.println("There's no such book");
     }
 
+    @Override
     public void showBooks(){
         Printer.printArray(bookRepository.getBooks());
     }
 
+    @Override
     public void showUnsoldBooks(){
-        Printer.printArray(bookRepository.getBooksNotSoldMoreSixMonth());
+        Printer.printArray(bookRepository.getUnsoldBooks());
     }
 
-    public void addBook(Book newBook){
-        bookRepository.addBook(newBook);
+    @Override
+    public void saveToFile(){
+        serializer.save(bookRepository.getBooks(), MyProperty.getInstance().getProperty("bookpath"));
     }
 
-    public void addBookOnStore(int id) {
-        bookRepository.addBookOnStore(id);
+    @Override
+    public void loadFromFile() {
+        bookRepository.setBooks((List<Book>) serializer.load(MyProperty.getInstance().getProperty("bookpath")));
     }
 
-    public void delBookFromStore(int id) {
-        bookRepository.delBookFromStore(id);
-    }
-
-    public BookRepository getBookRepository() {
-        return bookRepository;
-    }
-
-    public Book searchBook(int id){
-        return ArrayWorker.search(bookRepository.getBooks(), id);
-    }
-
-    public void sortBooks(Comparator comparator){
-        bookRepository.getBooks().sort(comparator);
-    }
-
-    public void sortUnsoldBooks(Comparator comparator){
-        bookRepository.getBooksNotSoldMoreSixMonth().sort(comparator);
-    }
-
-    public void exportBook() {
+    @Override
+    public void exportToFile() {
         FileWorker.save(bookRepository.getBooks(), MyProperty.getInstance().getProperty("csvpath"));
     }
 
-    public void importBook() {
+    @Override
+    public void importFromFile() {
         int index;
         for (Book book : Parser.parseBook(FileWorker.load(MyProperty.getInstance().getProperty("csvpath")))) {
             if ((index = ArrayWorker.searchIndex(bookRepository.getBooks(), book.getId())) != -1){
                 bookRepository.getBooks().set(index, book);
             } else {
-                bookRepository.addBook(book);
+                bookRepository.add(book);
             }
         }
     }

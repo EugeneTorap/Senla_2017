@@ -19,7 +19,6 @@ public class Book extends Entity {
     private Date datePublished;
     private Date dateReceipted;
     private int requestAmount;
-    private DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
 
     public Book(String title, int price, Date datePublished, Date dateReceipted) {
@@ -33,11 +32,11 @@ public class Book extends Entity {
         return isTheBookInStore;
     }
 
-    public Boolean getIsMoreSixMonth() {
+    public Boolean isMoreSixMonth() {
         Date current = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(current);
-        calendar.add(Calendar.MONTH, Integer.parseInt(MyProperty.getMyProperty("amount")));
+        calendar.add(Calendar.MONTH, (-1) * Integer.parseInt(MyProperty.getInstance().getProperty("amount")));
         return calendar.getTime().after(this.dateReceipted);
     }
 
@@ -70,12 +69,22 @@ public class Book extends Entity {
     }
 
     public String toString() {
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         return title + " " + getId() + " " + price + " " + isTheBookInStore + " " + df.format(datePublished) +
                 " " + df.format(dateReceipted);
     }
 
     public String toStringWithSign() {
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         return title + "," + getId() + "," + price + "," + isTheBookInStore + "," + df.format(datePublished) +
                 "," + df.format(dateReceipted);
+    }
+
+    public String toStringForRequest() {
+        return "\t\t" + title + ": " + requestAmount;
+    }
+
+    public Book clone() throws CloneNotSupportedException {
+        return (Book) super.clone();
     }
 }

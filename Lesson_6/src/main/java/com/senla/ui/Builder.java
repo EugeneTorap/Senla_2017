@@ -58,8 +58,7 @@ public class Builder {
 
         items.add(new MenuItem("Add request", new AdditionRequest()));
         items.add(new MenuItem("Show request sorted by alphabet", new SortingRequestsByAlphabet()));
-        items.add(new MenuItem("Show request sorted by date", new SortingRequestsByDate()));
-        items.add(new MenuItem("Show request sorted by price", new SortingRequestsByPrice()));
+        items.add(new MenuItem("Show request sorted by amount", new SortingRequestsByAmount()));
         items.add(new MenuItem("Export request", new ExportRequest()));
         items.add(new MenuItem("Import request", new ImportRequest()));
         MenuItem begin = new MenuItem("To the beginning");

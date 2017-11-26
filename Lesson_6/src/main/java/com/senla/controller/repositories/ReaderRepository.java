@@ -1,11 +1,12 @@
 package com.senla.controller.repositories;
 
+import com.senla.api.repository.IReaderRepository;
 import com.senla.entity.Reader;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReaderRepository {
+public class ReaderRepository implements IReaderRepository {
     private List<Reader> readers = new ArrayList<>();
     private static volatile ReaderRepository instance = null;
 
@@ -22,15 +23,18 @@ public class ReaderRepository {
     }
 
 
+    @Override
+    public void add(Reader reader) {
+        readers.add(reader);
+    }
+
+    @Override
     public List<Reader> getReaders() {
         return readers;
     }
 
+    @Override
     public void setReaders(List<Reader> readers) {
         this.readers = readers;
-    }
-
-    public void addReader(Reader reader){
-        readers.add(reader);
     }
 }

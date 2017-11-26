@@ -30,9 +30,4 @@ public class MyProperty {
             System.out.println("IOException");
         }
     }
-
-    public static String getMyProperty(String str){
-        return properties.getProperty(str);
-    }
-
 }
