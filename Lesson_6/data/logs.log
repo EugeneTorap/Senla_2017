@@ -14,3 +14,8 @@
 2017-11-26 18:39:19 ERROR Input:24 - NumberFormatException
 2017-11-27 12:11:23 ERROR Input:23 - NumberFormatException
 2017-11-27 12:18:59 ERROR Input:23 - NumberFormatException
+2017-11-27 18:48:20 ERROR Input:23 - For input string: "l"
+2017-11-27 18:49:29 ERROR Input:23 - For input string: "k"
+2017-11-27 18:54:14 ERROR Input:23 - java.lang.NumberFormatException: For input string: "k"
+2017-11-27 18:54:37 ERROR Input:23 - java.lang.NumberFormatException: For input string: "l"
+2017-11-27 18:55:30 ERROR Input:23 - For input string: "o"

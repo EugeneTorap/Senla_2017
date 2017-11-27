@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileWorker {
-    private final static Logger LOGGER = Logger.getLogger(Input.class);
+    private final static Logger LOGGER = Logger.getLogger(FileWorker.class);
 
 
     public static void save(List<? extends Entity> entities, String path){
@@ -18,7 +18,7 @@ public class FileWorker {
                     bw.write(entity.toStringWithSign() + "\n");
                 }
             } catch (IOException e) {
-                LOGGER.error("File not found");
+                LOGGER.error(e.getMessage());
                 path = Input.nextLine("Input path: ");
                 continue;
             }
@@ -35,7 +35,7 @@ public class FileWorker {
                     strings.add(str);
                 }
             } catch (IOException e) {
-                LOGGER.error("File not found");
+                LOGGER.error(e.getMessage());
                 path = Input.nextLine("Input path: ");
                 continue;
             }

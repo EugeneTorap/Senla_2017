@@ -4,6 +4,8 @@ import com.senla.api.repository.IOrderRepository;
 import com.senla.util.ArrayWorker;
 import com.senla.entity.Order;
 import com.senla.enums.Status;
+import com.senla.util.MyProperty;
+import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +13,7 @@ import java.util.List;
 public class OrderRepository implements IOrderRepository {
     private List<Order> orders = new ArrayList<>();
     private static volatile OrderRepository instance = null;
+    private final static Logger LOGGER = Logger.getLogger(OrderRepository.class);
 
 
     public static OrderRepository getInstance() {
@@ -46,7 +49,7 @@ public class OrderRepository implements IOrderRepository {
         try {
             orders.add(order.clone());
         } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
         }
     }
 

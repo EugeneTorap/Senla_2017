@@ -1,5 +1,7 @@
 package com.senla.util;
 
+import org.apache.log4j.Logger;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -7,6 +9,7 @@ import java.util.Properties;
 
 public class MyProperty {
     private static volatile Properties properties = null;
+    private final static Logger LOGGER = Logger.getLogger(MyProperty.class);
 
 
     public static Properties getInstance() {
@@ -22,12 +25,19 @@ public class MyProperty {
     }
 
     private static void loadMyProperty(){
-        try(FileInputStream in = new FileInputStream("src/main/resources/app.properties")) {
-            properties.load(in);
-        } catch (FileNotFoundException e) {
-            System.out.println("FileNotFoundException");
-        } catch (IOException e) {
-            System.out.println("IOException");
+        String path = "src/main/resources/app.properties";
+        while (true) {
+            try (FileInputStream in = new FileInputStream(path)) {
+                properties.load(in);
+            } catch (FileNotFoundException e) {
+                LOGGER.error(e.getMessage());
+                path = Input.nextLine("Input path: ");
+                continue;
+            } catch (IOException e) {
+                LOGGER.error(e.getMessage());
+                continue;
+            }
+            break;
         }
     }
 }

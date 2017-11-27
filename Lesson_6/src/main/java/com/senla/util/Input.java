@@ -20,7 +20,7 @@ public class Input {
             try {
                 input = Integer.valueOf(in.nextLine());
             }catch (NumberFormatException e){
-                LOGGER.error("NumberFormatException");
+                LOGGER.error(e.getMessage());
                 continue;
             }
             break;
@@ -44,7 +44,7 @@ public class Input {
                 date = df.parse(input);
             } catch (ParseException e) {
                 Printer.print("Incorrect, input dd/MM/yyyy format of the date");
-                LOGGER.error("NumberFormatException");
+                LOGGER.error(e.getMessage());
                 continue;
             }
             break;

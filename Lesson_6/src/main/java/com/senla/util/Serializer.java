@@ -12,7 +12,7 @@ public class Serializer {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(path))) {
             oos.writeObject(entities);
         } catch (IOException e) {
-            LOGGER.error("IOException");
+            LOGGER.error(e.getMessage());
         }
     }
 
@@ -21,9 +21,9 @@ public class Serializer {
             try (ObjectInputStream oos = new ObjectInputStream(new FileInputStream(path))) {
                 return oos.readObject();
             } catch (ClassNotFoundException e) {
-                LOGGER.error("ClassNotFoundException");
+                LOGGER.error(e.getMessage());
             } catch (IOException e) {
-                LOGGER.error("File not found");
+                LOGGER.error(e.getMessage());
                 path = Input.nextLine("Input path: ");
                 continue;
             }

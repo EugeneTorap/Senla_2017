@@ -24,7 +24,7 @@ public class Parser {
                 book.setTheBookInStore(Boolean.parseBoolean(str[3]));
                 books.add(book);
             } catch (ParseException e) {
-                LOGGER.error("ParseDate");
+                LOGGER.error(e.getMessage());
             }
         }
         return books;
@@ -55,7 +55,7 @@ public class Parser {
                 order.setStatus(Status.valueOf(str[2]));
                 orders.add(order);
             } catch (ParseException e) {
-                LOGGER.error("ParseDate");
+                LOGGER.error(e.getMessage());
             }
         }
         return orders;
