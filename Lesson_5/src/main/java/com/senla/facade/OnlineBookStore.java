@@ -1,38 +1,36 @@
 package com.senla.facade;
 
+import com.senla.api.facade.IOnlineBookStore;
+import com.senla.api.manager.*;
 import com.senla.comparator.book.*;
 import com.senla.comparator.order.*;
 import com.senla.controller.manager.*;
 import com.senla.entity.*;
 import com.senla.util.Printer;
 import com.senla.enums.SortingType;
-import org.apache.log4j.Logger;
 
-import java.text.ParseException;
-
-public class OnlineBookStore {
-    private BookManager bookManager = new BookManager();
-    private ReaderManager readerManager = new ReaderManager();
-    private OrderManager orderManager = new OrderManager(bookManager);
-    private RequestManager requestManager = new RequestManager(readerManager, bookManager);
-    private final static Logger LOGGER = Logger.getLogger(OnlineBookStore.class);
-
+public class OnlineBookStore implements IOnlineBookStore{
+    private IBookManager bookManager;
+    private IReaderManager readerManager;
+    private IOrderManager orderManager;
+    private IRequestManager requestManager;
     private static volatile OnlineBookStore bookStore = null;
 
 
     private OnlineBookStore(){
-        try {
-            bookStore.loadAllData();
-        } catch (ParseException e) {
-            LOGGER.error("ParseException");
-        }
+        bookManager = new BookManager();
+        readerManager = new ReaderManager();
+        orderManager = new OrderManager();
+        requestManager = new RequestManager();
     }
 
     public static OnlineBookStore getInstance() {
         if (bookStore == null) {
             synchronized (OnlineBookStore.class){
-                if (bookStore == null)
+                if (bookStore == null) {
                     bookStore = new OnlineBookStore();
+                    bookStore.loadAllData();
+                }
             }
         }
         return bookStore;
@@ -108,6 +106,42 @@ public class OnlineBookStore {
         requestManager.showBookRequests();
     }
 
+    public void addBook(Book newBook){
+        bookManager.add(newBook);
+    }
+
+    public void addBookOnStore(int id) {
+        bookManager.addOnStore(id);
+    }
+
+    public void delBookFromStore(int id) {
+        bookManager.delFromStore(id);
+    }
+
+    public void addOrder(Order order) {
+        orderManager.add(order);
+    }
+
+    public void cancelOrder(int id) {
+        orderManager.cancel(id);
+    }
+
+    public void addReader(Reader reader){
+        readerManager.add(reader);
+    }
+
+    public void addRequest(Request request){
+        requestManager.add(request);
+    }
+
+    public Book searchBook(int id){
+        return bookManager.search(id);
+    }
+
+    public Reader searchReader(int id){
+        return readerManager.search(id);
+    }
+
     public void showAllPrice(){
         Printer.print(orderManager.getAllPrice());
     }
@@ -124,53 +158,17 @@ public class OnlineBookStore {
         bookManager.showBookInfo(id);
     }
 
-    public void addReader(Reader reader){
-        readerManager.addReader(reader);
-    }
-
-    public void addBook(Book newBook){
-        bookManager.addBook(newBook);
-    }
-
-    public void addBookOnStore(int id) {
-        bookManager.addBookOnStore(id);
-    }
-
-    public void delBookFromStore(int id) {
-        bookManager.delBookFromStore(id);
-    }
-
-    public void addOrder(Order order) {
-        orderManager.addOrder(order);
-    }
-
-    public void cancelOrder(int id) {
-        orderManager.cancelOrder(id);
-    }
-
-    public void addRequest(Request request){
-        requestManager.addRequest(request);
-    }
-
-    public Book searchBook(int id){
-        return bookManager.searchBook(id);
-    }
-
-    public Reader searchReader(int id){
-        return readerManager.searchReader(id);
-    }
-
     public void saveAllData(){
-        bookManager.saveToFile();
-        orderManager.saveToFile();
-        requestManager.saveToFile();
-        readerManager.saveToFile();
+        bookManager.exportToFile();
+        orderManager.exportToFile();
+        requestManager.exportToFile();
+        readerManager.exportToFile();
     }
 
-    public void loadAllData() throws ParseException {
-        bookManager.loadFromFile();
-        readerManager.loadFromFile();
-        orderManager.loadFromFile();
-        requestManager.loadFromFile();
+    public void loadAllData(){
+        bookManager.importFromFile();
+        readerManager.importFromFile();
+        orderManager.importFromFile();
+        requestManager.importFromFile();
     }
 }

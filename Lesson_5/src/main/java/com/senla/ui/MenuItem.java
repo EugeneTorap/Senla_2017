@@ -8,13 +8,18 @@ public class MenuItem {
     private Menu nextMenu;
 
 
-    public MenuItem(String name) {
+    public MenuItem(String name, Menu nextMenu) {
         this.title = name;
+        this.nextMenu = nextMenu;
     }
 
     public MenuItem(String name, IAction action) {
         this.title = name;
         this.action = action;
+    }
+
+    public MenuItem(String name) {
+        this.title = name;
     }
 
     public void doAction() {

@@ -12,7 +12,6 @@ public class Book extends Entity {
     private Date datePublished;
     private Date dateReceipted;
     private int requestAmount;
-    private DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
 
     public Book(String title, int price, Date datePublished, Date dateReceipted) {
@@ -26,7 +25,7 @@ public class Book extends Entity {
         return isTheBookInStore;
     }
 
-    public Boolean getIsMoreSixMonth() {
+    public Boolean isMoreSixMonth() {
         Date current = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(current);
@@ -63,7 +62,12 @@ public class Book extends Entity {
     }
 
     public String toString() {
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         return title + " " + getId() + " " + price + " " + isTheBookInStore + " " + df.format(datePublished) +
                 " " + df.format(dateReceipted);
+    }
+
+    public String toStringForRequest() {
+        return "\t\t" + title + ": " + requestAmount;
     }
 }

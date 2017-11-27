@@ -2,6 +2,8 @@ package com.senla.entity;
 
 import com.senla.util.IdGenerator;
 
+import java.io.Serializable;
+
 public abstract class Entity {
     private int id;
 

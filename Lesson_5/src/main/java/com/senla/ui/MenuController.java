@@ -8,7 +8,6 @@ public class MenuController {
 
 
     public MenuController() {
-        super();
         builder = new Builder();
         navigator = new Navigator(builder.buildMenu());
     }
@@ -18,7 +17,7 @@ public class MenuController {
             navigator.printMenu();
             Integer num = Input.nextInt("Input num: ");
 
-            if(num.equals(0)) {
+            if(num == 0) {
                 break;
             }
             navigator.navigate(num - 1);

@@ -1,18 +1,21 @@
 package com.senla.entity;
 
 import com.senla.enums.Status;
+import com.senla.util.IdGenerator;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
-public class Order extends Entity{
+public class Order extends Entity {
     private Reader reader;
     private Status status;
     private Date dateExecuted;
     private List<Book> books;
-    private DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+
 
     public Order(Reader reader,Date dateExecuted, List<Book> books) {
         this.reader = reader;
@@ -51,6 +54,7 @@ public class Order extends Entity{
     }
 
     public String toString() {
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         StringBuilder stringBuilder = new StringBuilder();
         String string = reader.getName() + " " + getId() + " " + getStatus() + " " + getPrice() + " " + df.format(dateExecuted) +
                 " " + books.size() + " ";

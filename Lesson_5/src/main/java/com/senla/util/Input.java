@@ -10,12 +10,11 @@ import java.util.Scanner;
 
 public class Input {
     private static Scanner in = new Scanner(System.in);
-    private static DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
     private final static Logger LOGGER = Logger.getLogger(Input.class);
 
 
     public static Integer nextInt(String message) {
-        System.out.println(message);
+        Printer.print(message);
         Integer input;
         while (true){
             try {
@@ -30,12 +29,13 @@ public class Input {
     }
 
     public static String nextLine(String message) {
-        System.out.println(message);
+        Printer.print(message);
         return in.next();
     }
 
     public static Date nextDate(String message) {
-        System.out.println(message);
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        Printer.print(message);
         Date date;
         String input;
         while (true) {
@@ -43,7 +43,7 @@ public class Input {
             try {
                 date = df.parse(input);
             } catch (ParseException e) {
-                System.out.println("Incorrect, input dd/MM/yyyy format of the date");
+                Printer.print("Incorrect, input dd/MM/yyyy format of the date");
                 LOGGER.error("NumberFormatException");
                 continue;
             }

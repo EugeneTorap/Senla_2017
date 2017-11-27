@@ -1,32 +1,44 @@
 package com.senla.controller.manager;
 
+import com.senla.api.manager.IReaderManager;
 import com.senla.entity.Reader;
 import com.senla.controller.repositories.ReaderRepository;
-import com.senla.util.ArrayWorker;
-import com.senla.util.FileWorker;
+import com.senla.util.*;
 
-public class ReaderManager {
-    private ReaderRepository readerRepository = new ReaderRepository();
-    private FileWorker fileWorker = new FileWorker();
+import java.util.List;
+
+public class ReaderManager implements IReaderManager{
+    private ReaderRepository readerRepository;
 
 
-    public void saveToFile(){
-        fileWorker.save(readerRepository.getReaders(), "data/reader.txt");
+    public ReaderManager() {
+        readerRepository = ReaderRepository.getInstance();
     }
 
-    public void loadFromFile(){
-        readerRepository.setReaders(fileWorker.loadReader("data/reader.txt"));
+    @Override
+    public void add(Reader newReader) {
+        readerRepository.add(newReader);
     }
 
-    public void addReader(Reader newReader){
-        readerRepository.addReader(newReader);
-    }
-
-    public Reader searchReader(int id){
+    @Override
+    public Reader search(int id) {
         return ArrayWorker.search(readerRepository.getReaders(), id);
     }
 
-    public ReaderRepository getReaderRepository() {
-        return readerRepository;
+    @Override
+    public void exportToFile() {
+        FileWorker.save(readerRepository.getReaders(), "data/reader.txt");
+    }
+
+    @Override
+    public void importFromFile() {
+        int index;
+        for (Reader reader : Parser.parseReader(FileWorker.load("data/reader.txt"))) {
+            if ((index = ArrayWorker.searchIndex(readerRepository.getReaders(), reader.getId())) != -1){
+                readerRepository.getReaders().set(index, reader);
+            } else {
+                readerRepository.add(reader);
+            }
+        }
     }
 }

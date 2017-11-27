@@ -11,7 +11,7 @@ public class Builder {
     private Menu rootMenu;
 
 
-    private Menu buildBookMenu(Menu menu) {
+    private Menu buildBookMenu() {
         List<MenuItem> items = new ArrayList<>();
 
         items.add(new MenuItem("Add book", new AdditionBook()));
@@ -23,13 +23,11 @@ public class Builder {
         items.add(new MenuItem("Show books sorted by is store", new SortingBooksByStore()));
         items.add(new MenuItem("Show unsold books sorted by date", new SortingUnsoldBooksByDate()));
         items.add(new MenuItem("Show unsold books sorted by price", new SortingUnsoldBooksByPrice()));
-        MenuItem begin = new MenuItem("To the beginning");
-        begin.setNextMenu(menu);
-        items.add(begin);
+        items.add(new MenuItem("To the beginning", rootMenu));
         return new Menu("BookMenu", items);
     }
 
-    private Menu buildOrderMenu(Menu menu) {
+    private Menu buildOrderMenu() {
         List<MenuItem> items = new ArrayList<>();
 
         items.add(new MenuItem("Add order", new AdditionOrder()));
@@ -42,40 +40,32 @@ public class Builder {
         items.add(new MenuItem("Show orders sorted by status", new SortingOrdersByStatus()));
         items.add(new MenuItem("Show executed orders sorted by date", new SortingExecutedOrdersByDate()));
         items.add(new MenuItem("Show executed orders sorted by price", new SortingExecutedOrdersByPrice()));
-        MenuItem begin = new MenuItem("To the beginning");
-        begin.setNextMenu(menu);
-        items.add(begin);
+        items.add(new MenuItem("To the beginning", rootMenu));
         return new Menu("OrderMenu", items);
     }
 
-    private Menu buildRequestMenu(Menu menu) {
+    private Menu buildRequestMenu() {
         List<MenuItem> items = new ArrayList<>();
 
         items.add(new MenuItem("Add request", new AdditionRequest()));
         items.add(new MenuItem("Show request sorted by alphabet", new SortingRequestsByAlphabet()));
-        items.add(new MenuItem("Show request sorted by date", new SortingRequestsByDate()));
-        items.add(new MenuItem("Show request sorted by price", new SortingRequestsByPrice()));
-        MenuItem begin = new MenuItem("To the beginning");
-        begin.setNextMenu(menu);
-        items.add(begin);
+        items.add(new MenuItem("Show request sorted by amount", new SortingRequestsByAmount()));
+        items.add(new MenuItem("To the beginning", rootMenu));
         return new Menu("RequestMenu", items);
     }
 
     public Menu buildMenu() {
-        MenuItem bookItem = new MenuItem("books");
-        MenuItem orderItem = new MenuItem("orders");
-        MenuItem requestItem = new MenuItem("requests");
-
         List<MenuItem> items = new ArrayList<>();
-        items.add(bookItem);
-        items.add(orderItem);
-        items.add(requestItem);
+
+        items.add(new MenuItem("books"));
+        items.add(new MenuItem("orders"));
+        items.add(new MenuItem("requests"));
         items.add(new MenuItem("exit"));
 
-        rootMenu = new Menu("menu", items);
-        bookItem.setNextMenu(buildBookMenu(rootMenu));
-        orderItem.setNextMenu(buildOrderMenu(rootMenu));
-        requestItem.setNextMenu(buildRequestMenu(rootMenu));
+        rootMenu = new Menu("Menu", items);
+        items.get(0).setNextMenu(buildBookMenu());
+        items.get(1).setNextMenu(buildOrderMenu());
+        items.get(2).setNextMenu(buildRequestMenu());
         return rootMenu;
     }
 
