@@ -25,13 +25,13 @@ public class RequestManager implements IRequestManager{
     public void showBookRequests(){
         System.out.println();
         for (Book book : BookRepository.getInstance().getBooks()) {
-            System.out.println(book.toStringForRequest());
+            Printer.print(book.toStringForRequest());
             for (Request request : requestRepository.getRequests()) {
                 if (request.getBook().getId() == book.getId()) {
-                    System.out.println(request.toStringForRequest());
+                    Printer.print(request.toStringForRequest());
                 }
             }
-            System.out.println("-----------------------");
+            Printer.print("-----------------------");
         }
     }
 

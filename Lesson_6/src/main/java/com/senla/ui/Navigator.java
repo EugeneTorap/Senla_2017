@@ -1,35 +1,36 @@
 package com.senla.ui;
 
+import com.senla.util.Printer;
+
 public class Navigator {
     private Menu currentMenu;
 
     public Navigator(Menu currentMenu) {
-        super();
         this.currentMenu = currentMenu;
     }
 
     public void printMenu() {
-        for(int i = 0; i<currentMenu.getMenuItems().size(); i++) {
-            if (currentMenu.getMenuItems().get(i).getTitle().equals("exit")){
-                System.out.println(0 + " -- " + currentMenu.getMenuItems().get(i));
+        int i = 0;
+        Printer.print("--- " + currentMenu + " ---");
+        for (MenuItem item: currentMenu.getMenuItems()){
+            if (item.getTitle().equals("exit")){
+                Printer.print(0 + " -- " + item);
                 continue;
             }
-            System.out.println((i + 1) + " -- " + currentMenu.getMenuItems().get(i));
+            Printer.print(++i + " -- " + item);
         }
     }
 
     public void navigate(Integer index) {
         if (index >= 0 && index < currentMenu.getMenuItems().size()) {
             MenuItem menuItem = currentMenu.getMenuItems().get(index);
-            if (menuItem != null) {
-                if (menuItem.getAction() != null)
-                    menuItem.doAction();
-                else {
-                    currentMenu = menuItem.getNextMenu();
-                }
+            if (menuItem.getAction() == null) {
+                currentMenu = menuItem.getNextMenu();
+                return;
             }
-        return;
+            menuItem.doAction();
+            return;
         }
-        System.out.println("There's no such item");
+        Printer.print("There's no such item");
     }
 }

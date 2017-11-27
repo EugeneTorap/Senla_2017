@@ -18,15 +18,14 @@ public class Parser {
         List<Book> books = new ArrayList<>();
         for (String string: strings) {
             String[] str = string.split(",");
-            Book book = null;
             try {
-                book = new Book(str[0], Integer.parseInt(str[2]),df.parse(str[4]), df.parse(str[5]));
+                Book book = new Book(str[0], Integer.parseInt(str[2]),df.parse(str[4]), df.parse(str[5]));
+                book.setId(Integer.parseInt(str[1]));
+                book.setTheBookInStore(Boolean.parseBoolean(str[3]));
+                books.add(book);
             } catch (ParseException e) {
                 LOGGER.error("ParseDate");
             }
-            book.setId(Integer.parseInt(str[1]));
-            book.setTheBookInStore(Boolean.parseBoolean(str[3]));
-            books.add(book);
         }
         return books;
     }
@@ -50,15 +49,14 @@ public class Parser {
             for (int j = 0; j < Integer.parseInt(str[5]); j++) {
                 books.add(ArrayWorker.search(loadedBooks, Integer.parseInt(str[6 + j])));
             }
-            Order order = null;
             try {
-                order = new Order(new Reader(str[0]), df.parse(str[4]), books);
+                Order order = new Order(new Reader(str[0]), df.parse(str[4]), books);
+                order.setId(Integer.parseInt(str[1]));
+                order.setStatus(Status.valueOf(str[2]));
+                orders.add(order);
             } catch (ParseException e) {
                 LOGGER.error("ParseDate");
             }
-            order.setId(Integer.parseInt(str[1]));
-            order.setStatus(Status.valueOf(str[2]));
-            orders.add(order);
         }
         return orders;
     }

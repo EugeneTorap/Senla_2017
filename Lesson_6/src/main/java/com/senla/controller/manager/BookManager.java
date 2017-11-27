@@ -55,7 +55,7 @@ public class BookManager implements IBookManager {
             Printer.print(book);
             return;
         }
-        System.out.println("There's no such book");
+        Printer.print("There's no such book");
     }
 
     @Override

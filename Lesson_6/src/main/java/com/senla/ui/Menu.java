@@ -12,11 +12,12 @@ public class Menu {
         this.menuItems = menuItems;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public List<MenuItem> getMenuItems() {
         return menuItems;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

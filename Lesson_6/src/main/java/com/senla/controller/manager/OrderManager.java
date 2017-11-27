@@ -41,7 +41,7 @@ public class OrderManager implements IOrderManager{
             Printer.print(order);
             return;
         }
-        System.out.println("There's no such order");
+        Printer.print("There's no such order");
     }
 
     @Override

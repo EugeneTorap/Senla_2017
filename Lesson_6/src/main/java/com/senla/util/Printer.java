@@ -5,18 +5,13 @@ import java.util.List;
 
 public class Printer {
 
-    public static void print(int number) {
-        System.out.println(number);
-    }
-
-    public static void print(Entity entity) {
-        System.out.println(entity.toString());
+    public static <T> void print(T value) {
+        System.out.println(value);
     }
 
     public static void printArray(List<? extends Entity> entities){
         System.out.println();
-        for (Entity entity : entities) {
-            print(entity);
-        }
+        entities.forEach(Printer::print);
+        System.out.println();
     }
 }
