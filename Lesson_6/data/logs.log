@@ -19,3 +19,9 @@
 2017-11-27 18:54:14 ERROR Input:23 - java.lang.NumberFormatException: For input string: "k"
 2017-11-27 18:54:37 ERROR Input:23 - java.lang.NumberFormatException: For input string: "l"
 2017-11-27 18:55:30 ERROR Input:23 - For input string: "o"
+2017-11-29 13:11:06 ERROR Serializer:24 - com.senla.entity.Book
+2017-11-29 13:11:06 ERROR Serializer:24 - com.senla.entity.Order
+2017-11-29 13:11:06 ERROR Serializer:24 - com.senla.entity.Reader
+2017-11-29 13:11:06 ERROR Serializer:24 - com.senla.entity.Request
+2017-11-29 13:18:56 ERROR Input:23 - For input string: "l"
+2017-11-29 13:18:59 ERROR Input:23 - For input string: "o"
