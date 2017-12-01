@@ -1,5 +1,6 @@
 .idea/
 <<<<<<< HEAD
+<<<<<<< HEAD
 out/
 *.iml
 =======
@@ -10,3 +11,14 @@ out/
 target/
 test/
 >>>>>>> Lesson_5
+=======
+
+
+out/
+
+
+target/
+
+test/
+*.iml
+>>>>>>> Lesson_6
