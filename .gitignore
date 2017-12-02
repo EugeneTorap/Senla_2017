@@ -4,8 +4,15 @@
 out/
 
 
+<<<<<<< HEAD
 *.iml
 
 target/
 
 test/
+=======
+target/
+
+test/
+*.iml
+>>>>>>> Lesson_6
