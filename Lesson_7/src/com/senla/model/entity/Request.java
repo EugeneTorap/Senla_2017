@@ -1,5 +1,8 @@
 package com.senla.model.entity;
 
+import com.senla.annotations.CsvEntity;
+
+@CsvEntity(filename = "data/bean.csv", id = "id")
 public class Request extends Entity {
     private static final long serialVersionUID = 8836991922455907432L;
     private Book book;

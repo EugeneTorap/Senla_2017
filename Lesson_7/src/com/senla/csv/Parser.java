@@ -1,9 +1,10 @@
-package com.senla.util;
+package com.senla.csv;
 
 import com.senla.model.entity.Book;
 import com.senla.model.entity.*;
 
 import com.senla.enums.Status;
+import com.senla.util.ArrayWorker;
 import org.apache.log4j.Logger;
 
 import java.text.DateFormat;
@@ -16,10 +17,10 @@ public class Parser {
     private final static Logger LOGGER = Logger.getLogger(Parser.class);
     private static DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
-    public static List<Book> parseBook(String[] strings) {
+    public static List<Book> parseBook(String[] strings, String regex) {
         List<Book> books = new ArrayList<>();
         for (String string: strings) {
-            String[] str = string.split(",");
+            String[] str = string.split(regex);
             try {
                 Book book = new Book(str[0], Integer.parseInt(str[2]),df.parse(str[4]), df.parse(str[5]));
                 book.setId(Integer.parseInt(str[1]));
@@ -32,10 +33,10 @@ public class Parser {
         return books;
     }
 
-    public static List<Reader> parseReader(String[] strings) {
+    public static List<Reader> parseReader(String[] strings, String regex) {
         List<Reader> readers = new ArrayList<>();
         for(String string: strings){
-            String[] str = string.split(",");
+            String[] str = string.split(regex);
             Reader reader = new Reader(str[1]);
             reader.setId(Integer.parseInt(str[0]));
             readers.add(reader);
@@ -43,10 +44,10 @@ public class Parser {
         return readers;
     }
 
-    public static List<Order> parseOrder(String[] strings, List<Book> loadedBooks) {
+    public static List<Order> parseOrder(String[] strings, List<Book> loadedBooks, String regex) {
         List<Order> orders = new ArrayList<>();
         for(String string: strings){
-            String[] str = string.split(",");
+            String[] str = string.split(regex);
             List<Book> books = new ArrayList<>();
             for (int j = 0; j < Integer.parseInt(str[5]); j++) {
                 books.add(ArrayWorker.search(loadedBooks, Integer.parseInt(str[6 + j])));
@@ -63,10 +64,10 @@ public class Parser {
         return orders;
     }
 
-    public static List<Request> parseRequest(String[] strings, List<Book> loadedBooks, List<Reader> loadedReader) {
+    public static List<Request> parseRequest(String[] strings, List<Book> loadedBooks, List<Reader> loadedReader, String regex) {
         List<Request> requests = new ArrayList<>();
         for(String string: strings){
-            String[] str = string.split(",");
+            String[] str = string.split(regex);
             Book book = (ArrayWorker.search(loadedBooks, Integer.parseInt(str[2])));
             Reader reader = (ArrayWorker.search(loadedReader, Integer.parseInt(str[1])));
             Request request = new Request(book, reader);

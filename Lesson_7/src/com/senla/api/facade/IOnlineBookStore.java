@@ -30,14 +30,6 @@ public interface IOnlineBookStore {
     void sortOrdersBy(SortingType type);
     void sortExecutedOrdersBy(SortingType type);
     void sortRequestsBy(SortingType type);
-    void exportBook();
-    void importBook();
-    void exportOrder();
-    void importOrder();
-    void exportReader();
-    void importReader();
-    void exportRequest();
-    void importRequest();
     void serialize();
     void deserialize();
 }

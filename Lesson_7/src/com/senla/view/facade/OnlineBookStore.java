@@ -163,38 +163,6 @@ public class OnlineBookStore implements IOnlineBookStore{
         return orderManager.getAmountExecutedOrders();
     }
 
-    public void exportBook(){
-        bookManager.exportToFile();
-    }
-
-    public void importBook(){
-        bookManager.importFromFile();
-    }
-
-    public void exportOrder(){
-        orderManager.exportToFile();
-    }
-
-    public void importOrder(){
-        orderManager.importFromFile();
-    }
-
-    public void exportReader(){
-        readerManager.exportToFile();
-    }
-
-    public void importReader(){
-        readerManager.importFromFile();
-    }
-
-    public void exportRequest(){
-        requestManager.exportToFile();
-    }
-
-    public void importRequest(){
-        requestManager.importFromFile();
-    }
-
     public void serialize(){
         bookManager.serialize();
         orderManager.serialize();

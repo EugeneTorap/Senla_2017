@@ -1,6 +1,7 @@
 package com.senla.controller.manager;
 
 import com.senla.api.manager.IBookManager;
+import com.senla.csv.Parser;
 import com.senla.model.entity.Book;
 import com.senla.controller.repositories.BookRepository;
 import com.senla.util.*;
@@ -50,23 +51,6 @@ public class BookManager implements IBookManager {
     @Override
     public List<Book> getUnsoldBooks(){
         return bookRepository.getUnsoldBooks();
-    }
-
-    @Override
-    public void exportToFile() {
-        FileWorker.save(bookRepository.getBooks(), MyProperty.getInstance().getProperty("csvpath"));
-    }
-
-    @Override
-    public void importFromFile() {
-        int index;
-        for (Book book : Parser.parseBook(FileWorker.load(MyProperty.getInstance().getProperty("csvpath")))) {
-            if ((index = ArrayWorker.searchIndex(bookRepository.getBooks(), book.getId())) != -1){
-                bookRepository.getBooks().set(index, book);
-            } else {
-                bookRepository.add(book);
-            }
-        }
     }
 
     @Override

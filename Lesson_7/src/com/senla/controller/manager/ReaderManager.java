@@ -1,6 +1,7 @@
 package com.senla.controller.manager;
 
 import com.senla.api.manager.IReaderManager;
+import com.senla.csv.Parser;
 import com.senla.model.entity.Reader;
 import com.senla.controller.repositories.ReaderRepository;
 import com.senla.util.*;
@@ -24,23 +25,6 @@ public class ReaderManager implements IReaderManager{
     @Override
     public List<Reader> getReaders(){
         return readerRepository.getReaders();
-    }
-
-    @Override
-    public void exportToFile() {
-        FileWorker.save(readerRepository.getReaders(), MyProperty.getInstance().getProperty("csvpath"));
-    }
-
-    @Override
-    public void importFromFile() {
-        int index;
-        for (Reader reader : Parser.parseReader(FileWorker.load(MyProperty.getInstance().getProperty("csvpath")))) {
-            if ((index = ArrayWorker.searchIndex(readerRepository.getReaders(), reader.getId())) != -1){
-                readerRepository.getReaders().set(index, reader);
-            } else {
-                readerRepository.add(reader);
-            }
-        }
     }
 
     @Override

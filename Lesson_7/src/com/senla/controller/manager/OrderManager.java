@@ -3,6 +3,7 @@ package com.senla.controller.manager;
 import com.senla.api.manager.IOrderManager;
 import com.senla.controller.repositories.BookRepository;
 import com.senla.controller.repositories.OrderRepository;
+import com.senla.csv.Parser;
 import com.senla.model.entity.Order;
 import com.senla.util.*;
 
@@ -65,24 +66,6 @@ public class OrderManager implements IOrderManager{
     @Override
     public void sortExecutedOrders(Comparator comparator){
         orderRepository.getExecutedOrders().sort(comparator);
-    }
-
-    @Override
-    public void exportToFile() {
-        FileWorker.save(orderRepository.getOrders(), MyProperty.getInstance().getProperty("csvpath"));
-    }
-
-    @Override
-    public void importFromFile() {
-        int index;
-        for (Order order : Parser.parseOrder(FileWorker.load(MyProperty.getInstance().getProperty("csvpath")),
-                BookRepository.getInstance().getBooks())) {
-            if ((index = ArrayWorker.searchIndex(orderRepository.getOrders(), order.getId())) != -1){
-                orderRepository.getOrders().set(index, order);
-            } else {
-                orderRepository.add(order);
-            }
-        }
     }
 
     @Override

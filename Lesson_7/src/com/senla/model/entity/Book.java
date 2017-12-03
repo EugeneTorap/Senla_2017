@@ -1,12 +1,12 @@
 package com.senla.model.entity;
 
-import com.senla.util.MyProperty;
+import com.senla.annotations.CsvEntity;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
+@CsvEntity(filename = "data/bean.csv", id = "id")
 public class Book extends Entity {
     private static final long serialVersionUID = 5271189679230904618L;
     private String title;

@@ -1,5 +1,6 @@
 package com.senla.model.entity;
 
+import com.senla.annotations.CsvEntity;
 import com.senla.enums.Status;
 import com.senla.util.IdGenerator;
 
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@CsvEntity(filename = "data/bean.csv", id = "id")
 public class Order extends Entity {
     private static final long serialVersionUID = 1242876949608763678L;
     private Reader reader;

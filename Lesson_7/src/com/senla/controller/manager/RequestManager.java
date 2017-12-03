@@ -41,24 +41,6 @@ public class RequestManager implements IRequestManager{
     }
 
     @Override
-    public void exportToFile() {
-        FileWorker.save(requestRepository.getRequests(), MyProperty.getInstance().getProperty("csvpath"));
-    }
-
-    @Override
-    public void importFromFile() {
-        int index;
-        for (Request request : Parser.parseRequest(FileWorker.load(MyProperty.getInstance().getProperty("csvpath")),
-                BookRepository.getInstance().getBooks(), ReaderRepository.getInstance().getReaders())) {
-            if ((index = ArrayWorker.searchIndex(requestRepository.getRequests(), request.getId())) != -1){
-                requestRepository.getRequests().set(index, request);
-            } else {
-                requestRepository.add(request);
-            }
-        }
-    }
-
-    @Override
     public void serialize(){
         serializer.save(requestRepository.getRequests(), MyProperty.getInstance().getProperty("requestpath"));
     }
