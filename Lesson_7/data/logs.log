@@ -25,3 +25,11 @@
 2017-11-29 13:11:06 ERROR Serializer:24 - com.senla.entity.Request
 2017-11-29 13:18:56 ERROR Input:23 - For input string: "l"
 2017-11-29 13:18:59 ERROR Input:23 - For input string: "o"
+2017-12-03 09:16:03 ERROR Input:23 - For input string: "l"
+2017-12-03 09:17:00 ERROR Input:23 - For input string: "l"
+2017-12-03 09:17:52 ERROR Input:23 - For input string: "l"
+2017-12-03 09:18:57 ERROR Input:23 - For input string: "l"
+2017-12-03 09:21:34 ERROR Serializer:26 - data\boook.bin (The system cannot find the file specified)
+2017-12-03 09:22:08 ERROR Serializer:26 - data\boook.bin (The system cannot find the file specified)
+2017-12-03 09:22:13 ERROR Input:23 - For input string: ""
+2017-12-03 11:05:49 ERROR Input:23 - For input string: "l"
