@@ -1,7 +1,7 @@
 package com.senla.model.entity;
 
-import com.senla.annotations.CsvEntity;
-import com.senla.enums.Status;
+import com.senla.annotations.*;
+import com.senla.enums.*;
 import com.senla.util.IdGenerator;
 
 import java.text.DateFormat;
@@ -10,12 +10,18 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@CsvEntity(filename = "data/bean.csv", id = "id")
+@CsvEntity(filename = "data/csv/order.csv", id = "order")
 public class Order extends Entity {
     private static final long serialVersionUID = 1242876949608763678L;
+    @CsvProperty(propertyType = PropertyType.CompositeProperty, columnNumber = 1)
     private Reader reader;
+    @CsvProperty(propertyType = PropertyType.CompositeProperty, columnNumber = 2)
     private Status status;
+    @CsvProperty(propertyType = PropertyType.SimpleProperty, columnNumber = 3)
     private Date dateExecuted;
+    @CsvProperty(propertyType = PropertyType.SimpleProperty, columnNumber = 4)
+    private int price;
+    @CsvProperty(propertyType = PropertyType.CompositeProperty, columnNumber = 5)
     private List<Book> books;
 
 
@@ -29,6 +35,7 @@ public class Order extends Entity {
         }else{
             setStatus(Status.AWAITING);
         }
+        calculatePrice();
     }
 
     public Boolean isExecuted(){
@@ -44,11 +51,15 @@ public class Order extends Entity {
     }
 
     public int getPrice() {
+        return price;
+    }
+
+    private void calculatePrice() {
         int price = 0;
         for (Book book: books) {
             price += book.getPrice();
         }
-        return price;
+        this.price = price;
     }
 
     public Date getDateExecuted() {
@@ -58,12 +69,24 @@ public class Order extends Entity {
     public String toString() {
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         StringBuilder stringBuilder = new StringBuilder();
-        String string = reader.getName() + "," + getId() + "," + getStatus() + "," + getPrice() + "," + df.format(dateExecuted) +
+        String string = getId() + "," + status + "," + price + "," + df.format(dateExecuted) + "," + reader.getId() +
                 "," + books.size() + ",";
         for (Book book: books) {
             stringBuilder.append(book.getId());
             stringBuilder.append(",");
         }
+        string += stringBuilder;
+        return string;
+    }
+
+    public String toStringContents() {
+        StringBuilder stringBuilder = new StringBuilder();
+        String string = "Order ID" + "," + "Status" + "," + "Price" + "," + "Executed date" + "," + "Reader ID" +
+                "," + "Book amount" + ",";
+        for (int i = 1; i <= books.size(); i++) {
+            stringBuilder.append(i).append(" Book ID,");
+        }
+        stringBuilder.append("\n");
         string += stringBuilder;
         return string;
     }

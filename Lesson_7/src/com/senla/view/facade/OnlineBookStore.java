@@ -29,7 +29,7 @@ public class OnlineBookStore implements IOnlineBookStore{
     public static OnlineBookStore getInstance() {
         if (bookStore == null) {
             bookStore = new OnlineBookStore();
-            bookStore.deserialize();
+            bookStore = CommonFiller.fillData();
         }
         return bookStore;
     }

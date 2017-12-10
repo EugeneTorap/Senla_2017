@@ -1,11 +1,14 @@
 package com.senla.model.entity;
 
-import com.senla.annotations.CsvEntity;
+import com.senla.annotations.*;
+import com.senla.enums.PropertyType;
 
-@CsvEntity(filename = "data/bean.csv", id = "id")
+@CsvEntity(filename = "data/csv/request.csv", id = "request")
 public class Request extends Entity {
     private static final long serialVersionUID = 8836991922455907432L;
+    @CsvProperty(propertyType = PropertyType.CompositeProperty, columnNumber = 1)
     private Book book;
+    @CsvProperty(propertyType = PropertyType.CompositeProperty, columnNumber = 2)
     private Reader reader;
 
     public Request(Book book, Reader reader) {
@@ -26,7 +29,11 @@ public class Request extends Entity {
     }
 
     public String toString() {
-        return getId() + "," + reader.getId() + "," + book.getId() + "," + reader.getName() + "," + book.getTitle();
+        return getId() + "," + reader.getId() + "," + book.getId();// + "," + reader.getName() + "," + book.getTitle();
+    }
+
+    public String toStringContents() {
+        return "Request ID" + "," + "Reader ID" + "," + "Book ID" + "\n";// + "," + reader.getName() + "," + book.getTitle();
     }
 
     public String toStringForRequest() {
