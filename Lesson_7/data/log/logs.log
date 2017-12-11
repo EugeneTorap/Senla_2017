@@ -75,3 +75,5 @@
 2017-12-10 12:47:37 ERROR Input:23 - For input string: ""
 2017-12-10 12:53:45 ERROR CSVWorker:33 - data\csv\order.csv (The process cannot access the file because it is being used by another process)
 2017-12-10 12:53:52 ERROR Input:23 - For input string: ""
+2017-12-12 01:03:21 ERROR DependencyInjection:33 - Class com.senla.dependencyinjection.DependencyInjection can not access a member of class com.senla.controller.repositories.BookRepository with modifiers "private"
+2017-12-12 01:03:25 ERROR DependencyInjection:35 - Class com.senla.dependencyinjection.DependencyInjection can not access a member of class com.senla.controller.repositories.BookRepository with modifiers "private"

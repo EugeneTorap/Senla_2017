@@ -4,6 +4,7 @@ import com.senla.api.manager.IOrderManager;
 import com.senla.controller.repositories.BookRepository;
 import com.senla.controller.repositories.OrderRepository;
 import com.senla.csv.Parser;
+import com.senla.dependencyinjection.DependencyInjection;
 import com.senla.model.entity.Order;
 import com.senla.util.*;
 
@@ -16,7 +17,7 @@ public class OrderManager implements IOrderManager{
 
 
     public OrderManager() {
-        orderRepository = OrderRepository.getInstance();
+        orderRepository = (OrderRepository) DependencyInjection.getInstance().getObject(OrderRepository.class);
     }
 
     @Override

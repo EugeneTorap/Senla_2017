@@ -1,5 +1,6 @@
-package com.senla.util;
+package com.senla.dependencyinjection;
 
+import com.senla.util.Input;
 import org.apache.log4j.Logger;
 
 import java.io.FileInputStream;
@@ -7,9 +8,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
-public class MyProperty {
+public class ConfigProperty {
     private static Properties properties = null;
-    private final static Logger LOGGER = Logger.getLogger(MyProperty.class);
+    private final static Logger LOGGER = Logger.getLogger(ConfigProperty.class);
 
 
     public static Properties getInstance() {
@@ -21,7 +22,7 @@ public class MyProperty {
     }
 
     private static void loadMyProperty(){
-        String path = "resources/app.properties";
+        String path = "resources/config.properties";
         while (true) {
             try (FileInputStream in = new FileInputStream(path)) {
                 properties.load(in);

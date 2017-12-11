@@ -16,7 +16,7 @@ public class OrderRepository implements IOrderRepository {
     private final static Logger LOGGER = Logger.getLogger(OrderRepository.class);
 
 
-    private OrderRepository() {
+    public OrderRepository() {
         this.orders = new ArrayList<>();
     }
 

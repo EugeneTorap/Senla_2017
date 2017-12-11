@@ -2,6 +2,7 @@ package com.senla.controller.manager;
 
 import com.senla.api.manager.IReaderManager;
 import com.senla.csv.Parser;
+import com.senla.dependencyinjection.DependencyInjection;
 import com.senla.model.entity.Reader;
 import com.senla.controller.repositories.ReaderRepository;
 import com.senla.util.*;
@@ -14,7 +15,7 @@ public class ReaderManager implements IReaderManager{
 
 
     public ReaderManager() {
-        readerRepository = ReaderRepository.getInstance();
+        readerRepository = (ReaderRepository) DependencyInjection.getInstance().getObject(ReaderRepository.class);
     }
 
     @Override
