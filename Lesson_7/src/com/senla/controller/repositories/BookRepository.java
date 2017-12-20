@@ -16,7 +16,7 @@ public class BookRepository implements IBookRepository {
     private static BookRepository instance = null;
 
 
-    public BookRepository() {
+    private BookRepository() {
         this.books = new ArrayList<>();
     }
 

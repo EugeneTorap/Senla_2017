@@ -1,8 +1,8 @@
 package com.senla.dependencyinjection;
 
-import com.senla.controller.repositories.BookRepository;
 import org.apache.log4j.Logger;
 
+import java.lang.reflect.Constructor;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,7 +27,9 @@ public class DependencyInjection {
         if (obj1 == null) {
             try {
                 String className = ConfigProperty.getInstance().getProperty(clazz.getSimpleName());
-                Object obj2 = Class.forName(className).newInstance();
+                Constructor<?> constructor = Class.forName(className).getDeclaredConstructor();
+                constructor.setAccessible(true);
+                Object obj2 = constructor.newInstance();
                 stringObjectMap.put(className, obj2);
                 return obj2;
             } catch (Exception e) {

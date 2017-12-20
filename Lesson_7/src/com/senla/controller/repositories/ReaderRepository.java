@@ -11,7 +11,7 @@ public class ReaderRepository implements IReaderRepository {
     private static ReaderRepository instance = null;
 
 
-    public ReaderRepository() {
+    private ReaderRepository() {
         this.readers = new ArrayList<>();
     }
 

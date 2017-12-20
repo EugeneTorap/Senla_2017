@@ -11,7 +11,7 @@ public class RequestRepository implements IRequestRepository {
     private static RequestRepository instance = null;
 
 
-    public RequestRepository() {
+    private RequestRepository() {
         this.requests = new ArrayList<>();
     }
 
