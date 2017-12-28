@@ -13,17 +13,19 @@ public class Book extends Entity {
     private static final long serialVersionUID = 5271189679230904618L;
     @CsvProperty(propertyType = PropertyType.SimpleProperty, columnNumber = 1)
     private String title;
-    @CsvProperty(propertyType = PropertyType.SimpleProperty, columnNumber = 2)
-    private int price;
     @CsvProperty(propertyType = PropertyType.SimpleProperty, columnNumber = 3)
-    private Boolean isTheBookInStore;
+    private int price;
     @CsvProperty(propertyType = PropertyType.SimpleProperty, columnNumber = 4)
+    private Boolean isTheBookInStore;
+    @CsvProperty(propertyType = PropertyType.SimpleProperty, columnNumber = 7)
     private int requestAmount;
-    @CsvProperty(propertyType = PropertyType.SimpleProperty, columnNumber = 5)
-    private Date dateReceipted;
     @CsvProperty(propertyType = PropertyType.SimpleProperty, columnNumber = 6)
+    private Date dateReceipted;
+    @CsvProperty(propertyType = PropertyType.SimpleProperty, columnNumber = 5)
     private Date datePublished;
 
+    public Book() {
+    }
 
     public Book(String title, int price, Date datePublished, Date dateReceipted) {
         this.title = title;

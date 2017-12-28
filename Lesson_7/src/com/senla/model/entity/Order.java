@@ -25,6 +25,9 @@ public class Order extends Entity {
     private List<Book> books;
 
 
+    public Order() {
+    }
+
     public Order(Reader reader,Date dateExecuted, List<Book> books) {
         this.reader = reader;
         this.dateExecuted = dateExecuted;

@@ -11,6 +11,10 @@ public class Request extends Entity {
     @CsvProperty(propertyType = PropertyType.CompositeProperty, columnNumber = 2)
     private Reader reader;
 
+
+    public Request() {
+    }
+
     public Request(Book book, Reader reader) {
         this.book = book;
         this.reader = reader;
