@@ -1,6 +1,7 @@
 package com.senla.controller.manager;
 
 import com.senla.api.manager.IOrderManager;
+import com.senla.api.repository.IOrderRepository;
 import com.senla.controller.repositories.BookRepository;
 import com.senla.controller.repositories.OrderRepository;
 import com.senla.csv.Parser;
@@ -12,12 +13,12 @@ import java.util.Comparator;
 import java.util.List;
 
 public class OrderManager implements IOrderManager{
-    private OrderRepository orderRepository;
+    private IOrderRepository orderRepository;
     private Serializer serializer = new Serializer();
 
 
     public OrderManager() {
-        orderRepository = (OrderRepository) DependencyInjection.getInstance().getObject(OrderRepository.class);
+        orderRepository = (IOrderRepository) DependencyInjection.getInstance().getObject(OrderRepository.class);
     }
 
     @Override

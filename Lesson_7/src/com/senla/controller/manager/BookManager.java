@@ -1,6 +1,7 @@
 package com.senla.controller.manager;
 
 import com.senla.api.manager.IBookManager;
+import com.senla.api.repository.IBookRepository;
 import com.senla.csv.Parser;
 import com.senla.dependencyinjection.DependencyInjection;
 import com.senla.model.entity.Book;
@@ -11,12 +12,12 @@ import java.util.Comparator;
 import java.util.List;
 
 public class BookManager implements IBookManager {
-    private BookRepository bookRepository;
+    private IBookRepository bookRepository;
     private Serializer serializer = new Serializer();
 
 
     public BookManager() {
-        bookRepository = (BookRepository) DependencyInjection.getInstance().getObject(BookRepository.class);
+        bookRepository = (IBookRepository) DependencyInjection.getInstance().getObject(BookRepository.class);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.senla.controller.manager;
 
 import com.senla.api.manager.IRequestManager;
+import com.senla.api.repository.IRequestRepository;
 import com.senla.dependencyinjection.DependencyInjection;
 import com.senla.model.entity.Book;
 import com.senla.controller.repositories.*;
@@ -9,12 +10,12 @@ import com.senla.util.*;
 import java.util.List;
 
 public class RequestManager implements IRequestManager{
-    private RequestRepository requestRepository;
+    private IRequestRepository requestRepository;
     private Serializer serializer = new Serializer();
 
 
     public RequestManager() {
-        requestRepository = (RequestRepository) DependencyInjection.getInstance().getObject(RequestRepository.class);
+        requestRepository = (IRequestRepository) DependencyInjection.getInstance().getObject(RequestRepository.class);
     }
 
     @Override
