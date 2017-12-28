@@ -88,3 +88,30 @@
 2017-12-20 09:45:04 ERROR DependencyInjection:41 - Class com.senla.dependencyinjection.DependencyInjection can not access a member of class com.senla.controller.repositories.ReaderRepository with modifiers "private"
 2017-12-20 09:45:04 ERROR DependencyInjection:41 - Class com.senla.dependencyinjection.DependencyInjection can not access a member of class com.senla.controller.repositories.OrderRepository with modifiers "private"
 2017-12-20 09:45:04 ERROR DependencyInjection:41 - Class com.senla.dependencyinjection.DependencyInjection can not access a member of class com.senla.controller.repositories.RequestRepository with modifiers "private"
+2017-12-28 21:21:19 ERROR CSVWorker:154 - com.senla.model.entity.Book.<init>()
+2017-12-28 21:22:31 ERROR CSVWorker:154 - com.senla.model.entity.Book.<init>()
+2017-12-28 21:23:18 ERROR CSVWorker:154 - com.senla.model.entity.Book.<init>()
+2017-12-28 21:29:10 ERROR CSVWorker:154 - com.senla.model.entity.Book.<init>()
+2017-12-28 21:37:53 ERROR CSVWorker:154 - com.senla.model.entity.Book.<init>()
+2017-12-28 21:38:27 ERROR CSVWorker:156 - com.senla.model.entity.Book.<init>()
+2017-12-28 21:42:25 ERROR CSVWorker:156 - com.senla.model.entity.Book.<init>()
+2017-12-28 21:42:52 ERROR CSVWorker:156 - com.senla.model.entity.Book.<init>()
+2017-12-28 21:44:49 ERROR CSVWorker:156 - [Ljava.lang.StackTraceElement;@523884b2
+2017-12-28 21:47:28 ERROR CSVWorker:155 - com.senla.model.entity.Book.<init>()
+2017-12-28 21:50:05 ERROR CSVWorker:155 - com.senla.model.entity.Book.<init>()
+2017-12-28 21:51:44 ERROR CSVWorker:156 - com.senla.model.entity.Book
+2017-12-28 21:53:23 ERROR CSVWorker:156 - com.senla.model.entity.Book
+2017-12-28 21:54:22 ERROR CSVWorker:156 - Can not set int field com.senla.model.entity.Book.price to java.lang.String
+2017-12-28 21:57:18 ERROR CSVWorker:154 - Can not set int field com.senla.model.entity.Book.price to java.lang.String
+2017-12-28 22:04:38 ERROR CSVWorker:152 - Can not set int field com.senla.model.entity.Book.price to java.lang.String
+2017-12-28 22:05:08 ERROR CSVWorker:152 - Can not set int field com.senla.model.entity.Book.price to java.lang.String
+2017-12-28 22:08:31 ERROR CSVWorker:152 - Can not set int field com.senla.model.entity.Book.price to java.lang.String
+2017-12-28 22:09:51 ERROR CSVWorker:152 - java.lang.Integer.parseInteger(java.lang.String)
+2017-12-28 22:10:19 ERROR CSVWorker:152 - java.lang.Integer.parseInteger(java.lang.String)
+2017-12-28 22:24:30 ERROR CSVWorker:152 - java.lang.Integer.parseInteger(java.lang.String)
+2017-12-28 22:25:24 ERROR CSVWorker:140 - For input string: "false"
+2017-12-28 22:32:06 ERROR CSVWorker:144 - For input string: "false"
+2017-12-28 22:33:17 ERROR CSVWorker:144 - For input string: "false"
+2017-12-28 22:33:24 ERROR CSVWorker:145 - For input string: "false"
+2017-12-28 22:39:02 ERROR CSVWorker:145 - For input string: "false"
+2017-12-28 23:52:56 ERROR Parser:59 - For input string: "true"

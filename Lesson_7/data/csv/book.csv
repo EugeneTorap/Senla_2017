@@ -1,6 +1,6 @@
 Title,Book ID,Price,Is store,Published date,Receipted date,Amount of Request
-Knight,90,7,false,06/08/2001,09/08/2015,0
-Night,50,5,true,01/07/1999,30/06/2014,0
-Rome,70,2,false,16/03/1998,10/11/2017,0
-Space,80,9,false,22/07/2006,19/07/2016,0
-War,60,6,true,19/04/1987,15/04/2015,0
+Night,5,true,01/07/1999,Thu Jul 01 00:00:00 MSD 1999,30/06/2014,Mon Jun 30 00:00:00 MSK 2014,0,
+War,6,true,19/04/1987,Sun Apr 19 00:00:00 MSD 1987,15/04/2015,Wed Apr 15 00:00:00 MSK 2015,0,
+Rome,2,false,16/03/1998,Mon Mar 16 00:00:00 MSK 1998,10/11/2017,Fri Nov 10 00:00:00 MSK 2017,0,
+Space,9,false,22/07/2006,Sat Jul 22 00:00:00 MSD 2006,19/07/2016,Tue Jul 19 00:00:00 MSK 2016,0,
+Knight,7,false,06/08/2001,Mon Aug 06 00:00:00 MSD 2001,09/08/2015,Sun Aug 09 00:00:00 MSK 2015,0,
