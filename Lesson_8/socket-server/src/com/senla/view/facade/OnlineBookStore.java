@@ -16,7 +16,7 @@ public class OnlineBookStore implements IOnlineBookStore{
     private IReaderManager readerManager;
     private IOrderManager orderManager;
     private IRequestManager requestManager;
-    private static OnlineBookStore bookStore = null;
+    private static volatile OnlineBookStore bookStore = null;
 
 
     private OnlineBookStore(){
@@ -28,8 +28,11 @@ public class OnlineBookStore implements IOnlineBookStore{
 
     public static OnlineBookStore getInstance() {
         if (bookStore == null) {
-            bookStore = new OnlineBookStore();
-            bookStore = CommonFiller.fillData();
+            synchronized (OnlineBookStore.class) {
+                if (bookStore == null) {
+                    bookStore = new OnlineBookStore();
+                }
+            }
         }
         return bookStore;
     }
@@ -103,35 +106,35 @@ public class OnlineBookStore implements IOnlineBookStore{
         }
     }
 
-    public void addBook(Book newBook){
+    public synchronized void addBook(Book newBook){
         bookManager.add(newBook);
     }
 
-    public void addBookOnStore(int id) {
+    public synchronized void addBookOnStore(int id) {
         bookManager.addOnStore(id);
     }
 
-    public void delBookFromStore(int id) {
+    public synchronized void delBookFromStore(int id) {
         bookManager.delFromStore(id);
     }
 
-    public void addOrder(Order order) {
+    public synchronized void addOrder(Order order) {
         orderManager.add(order);
     }
 
-    public void cloneOrder(int id){
+    public synchronized void cloneOrder(int id){
         orderManager.clone(id);
     }
 
-    public void cancelOrder(int id) {
+    public synchronized void cancelOrder(int id) {
         orderManager.cancel(id);
     }
 
-    public void addReader(Reader reader){
+    public synchronized void addReader(Reader reader){
         readerManager.add(reader);
     }
 
-    public void addRequest(Request request){
+    public synchronized void addRequest(Request request){
         requestManager.add(request);
     }
 
