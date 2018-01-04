@@ -1,4 +1,0 @@
-Order ID,Status,Price,Executed date,Reader ID,Book amount,1 Book ID,2 Book ID,3 Book ID,4 Book ID
-100,EXECUTED,14,29/05/2017,10,3,50,70,90,
-110,EXECUTED,15,07/04/2014,20,2,60,80,
-120,AWAITING,23,23/07/2018,20,4,50,70,80,90,

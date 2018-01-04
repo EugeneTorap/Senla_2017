@@ -18,7 +18,7 @@ public class OrderManager implements IOrderManager{
 
 
     public OrderManager() {
-        orderRepository = (IOrderRepository) DependencyInjection.getInstance().getObject(OrderRepository.class);
+        orderRepository = (IOrderRepository) DependencyInjection.getInstance().getObject(IOrderRepository.class);
     }
 
     @Override
