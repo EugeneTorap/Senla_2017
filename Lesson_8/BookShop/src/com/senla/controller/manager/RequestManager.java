@@ -15,7 +15,7 @@ public class RequestManager implements IRequestManager{
 
 
     public RequestManager() {
-        requestRepository = (IRequestRepository) DependencyInjection.getInstance().getObject(RequestRepository.class);
+        requestRepository = (IRequestRepository) DependencyInjection.getInstance().getObject(IRequestRepository.class);
     }
 
     @Override

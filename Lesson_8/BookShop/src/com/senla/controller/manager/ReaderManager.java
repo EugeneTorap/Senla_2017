@@ -16,7 +16,7 @@ public class ReaderManager implements IReaderManager{
 
 
     public ReaderManager() {
-        readerRepository = (IReaderRepository) DependencyInjection.getInstance().getObject(ReaderRepository.class);
+        readerRepository = (IReaderRepository) DependencyInjection.getInstance().getObject(IReaderRepository.class);
     }
 
     @Override

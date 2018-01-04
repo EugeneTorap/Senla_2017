@@ -17,7 +17,7 @@ public class BookManager implements IBookManager {
 
 
     public BookManager() {
-        bookRepository = (IBookRepository) DependencyInjection.getInstance().getObject(BookRepository.class);
+        bookRepository = (IBookRepository) DependencyInjection.getInstance().getObject(IBookRepository.class);
     }
 
     @Override
