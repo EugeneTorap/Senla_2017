@@ -57,14 +57,8 @@ public class CSVWorker {
                     bw.write(str.toString());
                 }
 
-            } catch (NoSuchMethodException e) {
-                LOGGER.error(e.getMessage());
-            } catch (IOException e) {
-                LOGGER.error(e.getMessage());
-                path = Input.nextLine("Input path: ");
-                continue;
             } catch (Exception e) {
-                LOGGER.error(e.getMessage());
+                e.getMessage()
             }
             break;
         }

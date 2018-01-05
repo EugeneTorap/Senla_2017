@@ -16,14 +16,15 @@ public class Client implements Closeable {
     private ObjectInputStream input;
     private ObjectOutputStream output;
 
-    public Client(final String host, final int port) {
+    public Client(String host, int port) {
         try {
             socket = new Socket(host, port);
             InputStream inputStream = socket.getInputStream();
             OutputStream outputStream = socket.getOutputStream();
             output = new ObjectOutputStream(outputStream);
             input = new ObjectInputStream(inputStream);
-        } catch (IOException ignored) {
+        } catch (IOException e) {
+			e.getMessage();
         }
     }
 
@@ -37,23 +38,18 @@ public class Client implements Closeable {
         return response;
     }
 
-    public void sendRequest(final ClientRequest request) {
+    public void sendRequest(ClientRequest request) {
         try {
             output.writeObject(request);
             output.flush();
-        } catch (final IOException ignored) {
+        } catch (IOException e) {
+			e.getMessage();
         }
     }
 
     public void close() throws IOException {
-        if (input != null) {
-            input.close();
-        }
-        if (output != null) {
-            output.close();
-        }
-        if (socket != null) {
-            socket.close();
-        }
+        input.close();
+        output.close();
+        socket.close();
     }
 }
