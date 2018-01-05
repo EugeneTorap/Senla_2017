@@ -8,7 +8,7 @@ import com.senla.util.ServerResponse;
 public class SortingRequestsByAmount implements IAction {
     @Override
     public void execute() {
-        client.sendRequest(new RequestCreator().setMethod("sortRequestsBy").create());
+        client.sendRequest(new RequestCreator().setMethod("sortRequestsBy").setArgument(SortingType.AMOUNT).create());
         ServerResponse response = client.getResponse();
         Printer.print(response.getResponse());
     }
