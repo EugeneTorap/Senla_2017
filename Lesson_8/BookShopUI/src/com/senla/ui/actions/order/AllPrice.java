@@ -1,14 +1,19 @@
 package com.senla.ui.actions.order;
 
+import com.senla.main.Client;
 import com.senla.util.Printer;
-import com.senla.view.facade.OnlineBookStore;
+import com.senla.model.entity.Order;
 import com.senla.ui.actions.IAction;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class AllPrice implements IAction {
     @Override
     public void execute() {
-        client.sendRequest(new RequestCreator().setMethod("getAllPrice").create());
-        ServerResponse response = client.getResponse();
-        Printer.print(response.getResponse());
+        Map<String, List<Object>> request = new HashMap<>();
+        request.put("getAllPrice", null);
+        Printer.print((List<Order>) Client.send(request));
     }
 }

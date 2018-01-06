@@ -14,17 +14,17 @@ public class Builder {
     private Menu buildBookMenu() {
         List<MenuItem> items = new ArrayList<>();
 
-        //items.add(new MenuItem("Add book", new AdditionBook()));
-        //items.add(new MenuItem("Delete book", new DeletingBook()));
-        //items.add(new MenuItem("Show book info", new BookInfo()));
+        items.add(new MenuItem("Add book", new AdditionBook()));
+        items.add(new MenuItem("Delete book", new DeletingBook()));
+        items.add(new MenuItem("Show book info", new BookInfo()));
         items.add(new MenuItem("Show books sorted by alphabet", new SortingBooksByAlphabet()));
         items.add(new MenuItem("Show books sorted by date", new SortingBooksByDate()));
         items.add(new MenuItem("Show books sorted by price", new SortingBooksByPrice()));
         items.add(new MenuItem("Show books sorted by is store", new SortingBooksByStore()));
         items.add(new MenuItem("Show unsold books sorted by date", new SortingUnsoldBooksByDate()));
         items.add(new MenuItem("Show unsold books sorted by price", new SortingUnsoldBooksByPrice()));
-        //items.add(new MenuItem("Export book", new ExportBook()));
-        //items.add(new MenuItem("Import book", new ImportBook()));
+        items.add(new MenuItem("Export book", new ExportBook()));
+        items.add(new MenuItem("Import book", new ImportBook()));
         items.add(new MenuItem("To the beginning", rootMenu));
         return new Menu("BookMenu", items);
     }
@@ -32,19 +32,19 @@ public class Builder {
     private Menu buildOrderMenu() {
         List<MenuItem> items = new ArrayList<>();
 
-        //items.add(new MenuItem("Add order", new AdditionOrder()));
-        //items.add(new MenuItem("Clone order", new CloningOrder()));
-        //items.add(new MenuItem("Cancel order", new CancellationOrder()));
-        //items.add(new MenuItem("Show order info", new OrderInfo()));
-        //items.add(new MenuItem("Show all price", new AllPrice()));
-        //items.add(new MenuItem("Show amount of executed order", new ExecutedOrderAmount()));
+        items.add(new MenuItem("Add order", new AdditionOrder()));
+        items.add(new MenuItem("Clone order", new CloningOrder()));
+        items.add(new MenuItem("Cancel order", new CancellationOrder()));
+        items.add(new MenuItem("Show order info", new OrderInfo()));
+        items.add(new MenuItem("Show all price", new AllPrice()));
+        items.add(new MenuItem("Show amount of executed order", new ExecutedOrderAmount()));
         items.add(new MenuItem("Show orders sorted by date", new SortingOrdersByDate()));
         items.add(new MenuItem("Show orders sorted by price", new SortingOrdersByPrice()));
         items.add(new MenuItem("Show orders sorted by status", new SortingOrdersByStatus()));
         items.add(new MenuItem("Show executed orders sorted by date", new SortingExecutedOrdersByDate()));
         items.add(new MenuItem("Show executed orders sorted by price", new SortingExecutedOrdersByPrice()));
-        //items.add(new MenuItem("Export order", new ExportOrder()));
-        //items.add(new MenuItem("Import order", new ImportOrder()));
+        items.add(new MenuItem("Export order", new ExportOrder()));
+        items.add(new MenuItem("Import order", new ImportOrder()));
         items.add(new MenuItem("To the beginning", rootMenu));
         return new Menu("OrderMenu", items);
     }
@@ -52,11 +52,11 @@ public class Builder {
     private Menu buildRequestMenu() {
         List<MenuItem> items = new ArrayList<>();
 
-        //items.add(new MenuItem("Add request", new AdditionRequest()));
+        items.add(new MenuItem("Add request", new AdditionRequest()));
         items.add(new MenuItem("Show request sorted by alphabet", new SortingRequestsByAlphabet()));
         items.add(new MenuItem("Show request sorted by amount", new SortingRequestsByAmount()));
-        //items.add(new MenuItem("Export request", new ExportRequest()));
-        //items.add(new MenuItem("Import request", new ImportRequest()));
+        items.add(new MenuItem("Export request", new ExportRequest()));
+        items.add(new MenuItem("Import request", new ImportRequest()));
         items.add(new MenuItem("To the beginning", rootMenu));
         return new Menu("RequestMenu", items);
     }

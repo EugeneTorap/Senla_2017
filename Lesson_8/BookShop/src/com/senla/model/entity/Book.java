@@ -74,7 +74,7 @@ public class Book extends Entity {
 
     public String toStringContents() {
         return "Title" + "," + "Book ID" + "," + "Price" + "," + "Is store" + "," + "Published date" +
-                "," + "Receipted date" + "," + "Amount of ClientRequest" + "\n";
+                "," + "Receipted date" + "," + "Amount of Request" + "\n";
     }
 
     public String toStringForRequest() {

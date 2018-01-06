@@ -7,17 +7,14 @@ import java.net.Socket;
 public final class Main {
     public static final int PORT = 1234;
     public static void main(String[] args) throws IOException {
-        ServerSocket serverSocket = null;
+        ServerSocket serverSocket;
         try {
             serverSocket = new ServerSocket(PORT);
             System.out.println("Started, waiting for connection");
             while (true) {
                 Socket socket = serverSocket.accept();
-                try {
-                    new ServerThread(socket);
-                } catch (IOException e) {
-                    socket.close();
-                }
+                ServerThread server = new ServerThread(socket);
+                server.start();
             }
         } catch (IOException e){
             System.out.println(e.getMessage());

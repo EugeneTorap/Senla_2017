@@ -33,11 +33,11 @@ public class Request extends Entity {
     }
 
     public String toString() {
-        return getId() + "," + reader.getId() + "," + book.getId();// + "," + reader.getName() + "," + book.getTitle();
+        return getId() + "," + reader.getId() + "," + book.getId();
     }
 
     public String toStringContents() {
-        return "ClientRequest ID" + "," + "Reader ID" + "," + "Book ID" + "\n";// + "," + reader.getName() + "," + book.getTitle();
+        return "Request ID" + "," + "Reader ID" + "," + "Book ID" + "\n";
     }
 
     public String toStringForRequest() {

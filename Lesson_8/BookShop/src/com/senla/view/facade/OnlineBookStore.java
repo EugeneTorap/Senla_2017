@@ -37,7 +37,7 @@ public class OnlineBookStore implements IOnlineBookStore{
         return bookStore;
     }
 
-    /*public void sortBooksBy(SortingType type) {
+    public void sortBooksBy(SortingType type) {
         switch (type) {
             case ALPHABET:
                 bookManager.sortBooks(new SortingBooksByAlphabet());
@@ -52,10 +52,6 @@ public class OnlineBookStore implements IOnlineBookStore{
                 bookManager.sortBooks(new SortingBooksByStore());
                 break;
         }
-    }*/
-
-    public void sortBooksBy() {
-        bookManager.sortBooks(new SortingBooksByAlphabet());
     }
 
     public void sortUnsoldBooksBy(SortingType type) {

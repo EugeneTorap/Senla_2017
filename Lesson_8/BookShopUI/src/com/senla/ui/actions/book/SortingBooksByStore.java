@@ -1,16 +1,25 @@
 package com.senla.ui.actions.book;
 
+import com.senla.main.Client;
 import com.senla.util.Printer;
-import com.senla.util.RequestCreator;
-import com.senla.util.ServerResponse;
 import com.senla.enums.SortingType;
 import com.senla.ui.actions.IAction;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class SortingBooksByStore implements IAction {
     @Override
     public void execute() {
-        client.sendRequest(new RequestCreator().setMethod("sortBooksBy").setArgument(SortingType.IS_STORE).create());
-        ServerResponse response = client.getResponse();
-        Printer.print(response.getResponse());
+        List<Object> parameters = new ArrayList<>();
+        parameters.add(SortingType.IS_STORE);
+        Map<String, List<Object>> request = new HashMap<>();
+        request.put("sortBooksBy", parameters);
+        Client.send(request);
+        request = new HashMap<>();
+        request.put("getBooks", null);
+        Printer.print((List<Book>) Client.send(request));
     }
 }

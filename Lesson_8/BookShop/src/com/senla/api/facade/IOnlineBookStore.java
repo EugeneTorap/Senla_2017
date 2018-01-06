@@ -25,7 +25,7 @@ public interface IOnlineBookStore {
     List<Order> getExecutedOrders();
     List<Reader> getReaders();
     List<Request> getRequests();
-    void sortBooksBy();
+    void sortBooksBy(SortingType type);
     void sortUnsoldBooksBy(SortingType type);
     void sortOrdersBy(SortingType type);
     void sortExecutedOrdersBy(SortingType type);

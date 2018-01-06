@@ -1,16 +1,15 @@
 package com.senla.main;
 
-import com.senla.util.MethodCreator;
-import com.senla.util.ClientRequest;
-import com.senla.util.ServerResponse;
+import com.senla.util.MethodInvoker;
 
-import java.io.Closeable;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.List;
+import java.util.Map;
 
-public class ServerThread extends Thread implements Closeable {
+public class ServerThread extends Thread {
     private ObjectInputStream in;
     private ObjectOutputStream out;
 
@@ -20,22 +19,28 @@ public class ServerThread extends Thread implements Closeable {
     }
 
     public void run() {
+        Object request;
         while (true) {
             try {
-                ClientRequest request = (ClientRequest) in.readObject();
-                ServerResponse response = MethodCreator.execute(request);
-                out.writeObject(response);
-                out.flush();
+                while ((request = in.readObject()) != null) {
+                    out.writeObject(MethodInvoker.getResponse(((Map<String, List<Object>>) request)));
+                    out.flush();
+                }
             } catch (Exception e) {
                 e.getMessage();
+            } finally {
+                close();
             }
-
         }
 
     }
 
-    public void close() throws IOException {
-        in.close();
-        out.close();
+    public void close() {
+        try {
+            in.close();
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

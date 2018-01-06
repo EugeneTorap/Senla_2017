@@ -102,7 +102,7 @@ public class CSVWorker {
                 List<Reader> myReaders = ReaderRepository.getInstance().getReaders();
                 setEntity((List<Entity>)(List<?>)parsedReaders, (List<Entity>)(List<?>)myReaders);
                 break;
-            case "ClientRequest":
+            case "Request":
                 List<Request> parsedRequests = (List<Request>)(List<?>) Parser.parse(clazz, Arrays.asList(lines));
                 List<Request> myRequests = RequestRepository.getInstance().getRequests();
                 setEntity((List<Entity>)(List<?>)parsedRequests, (List<Entity>)(List<?>)myRequests);
