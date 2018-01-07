@@ -26,21 +26,11 @@ public class ServerThread extends Thread {
                     out.writeObject(MethodInvoker.getResponse(((Map<String, List<Object>>) request)));
                     out.flush();
                 }
+                in.close();
+                out.close();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
-            } finally {
-                close();
             }
-        }
-
-    }
-
-    public void close() {
-        try {
-            in.close();
-            out.close();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
         }
     }
 }

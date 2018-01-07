@@ -8,15 +8,15 @@ import java.util.List;
 import java.util.Map;
 
 public class Client {
-    static private ObjectInputStream in;
-    static private ObjectOutputStream out;
+    private static ObjectInputStream in;
+    private static ObjectOutputStream out;
 
     public Client(Socket socket) throws IOException {
         in = new ObjectInputStream(socket.getInputStream());
         out = new ObjectOutputStream(socket.getOutputStream());
     }
 
-    static public Map<String, Object> send(Map<String, List<Object>> request) {
+    public static Map<String, Object> send(Map<String, List<Object>> request) {
         try {
             out.writeObject(request);
             out.flush();
@@ -27,7 +27,7 @@ public class Client {
         return null;
     }
 
-    public void close() throws IOException {
+    public static void close() throws IOException {
         in.close();
         out.close();
     }

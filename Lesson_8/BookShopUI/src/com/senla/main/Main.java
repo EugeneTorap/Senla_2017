@@ -6,10 +6,11 @@ import java.net.Socket;
 
 public class Main {
     public static final int PORT = 1234;
+    public static final String HOST = "localhost";
 
     public static void main(String[] args) {
         try {
-            Socket socket = new Socket("localhost", PORT);
+            Socket socket = new Socket(HOST, PORT);
             new Client(socket);
             MenuController menuController = new MenuController();
             menuController.run();
