@@ -1,9 +1,6 @@
 package com.senla.api.facade;
 
-import com.senla.model.entity.Book;
-import com.senla.model.entity.Order;
-import com.senla.model.entity.Reader;
-import com.senla.model.entity.Request;
+import com.senla.model.entity.*;
 import com.senla.enums.SortingType;
 
 import java.util.List;
@@ -30,6 +27,8 @@ public interface IOnlineBookStore {
     void sortOrdersBy(SortingType type);
     void sortExecutedOrdersBy(SortingType type);
     void sortRequestsBy(SortingType type);
+    void saveCSV(List<? extends Entity> entities);
+    void loadCSV(Class<? extends Entity> clazz);
     void serialize();
     void deserialize();
 }

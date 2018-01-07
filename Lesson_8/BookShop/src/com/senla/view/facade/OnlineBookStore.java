@@ -5,6 +5,7 @@ import com.senla.api.manager.*;
 import com.senla.comparator.book.*;
 import com.senla.comparator.order.*;
 import com.senla.controller.manager.*;
+import com.senla.csv.CSVWorker;
 import com.senla.main.CommonFiller;
 import com.senla.model.entity.*;
 import com.senla.enums.SortingType;
@@ -164,6 +165,14 @@ public class OnlineBookStore implements IOnlineBookStore{
 
     public int getAmountExecutedOrders(){
         return orderManager.getAmountExecutedOrders();
+    }
+
+    public void saveCSV(List<? extends Entity> entities){
+        CSVWorker.save(entities);
+    }
+
+    public void loadCSV(Class<? extends Entity> clazz){
+        CSVWorker.load(clazz);
     }
 
     public void serialize(){

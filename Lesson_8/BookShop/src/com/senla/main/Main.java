@@ -6,6 +6,7 @@ import java.net.Socket;
 
 public final class Main {
     public static final int PORT = 1234;
+
     public static void main(String[] args) throws IOException {
         ServerSocket serverSocket;
         try {
@@ -13,8 +14,8 @@ public final class Main {
             System.out.println("Started, waiting for connection");
             while (true) {
                 Socket socket = serverSocket.accept();
-                ServerThread server = new ServerThread(socket);
-                server.start();
+                ServerThread thread = new ServerThread(socket);
+                thread.start();
             }
         } catch (IOException e){
             System.out.println(e.getMessage());

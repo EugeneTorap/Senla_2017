@@ -27,7 +27,7 @@ public class ServerThread extends Thread {
                     out.flush();
                 }
             } catch (Exception e) {
-                e.getMessage();
+                System.out.println(e.getMessage());
             } finally {
                 close();
             }
@@ -40,7 +40,7 @@ public class ServerThread extends Thread {
             in.close();
             out.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 }

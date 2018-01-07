@@ -11,8 +11,7 @@ public class Client {
     static private ObjectInputStream in;
     static private ObjectOutputStream out;
 
-
-    static public void initClentHandler(Socket socket) throws IOException {
+    public Client(Socket socket) throws IOException {
         in = new ObjectInputStream(socket.getInputStream());
         out = new ObjectOutputStream(socket.getOutputStream());
     }
