@@ -1,13 +1,16 @@
 package com.senla.ui.actions.request;
 
+import com.senla.enums.SortingType;
 import com.senla.main.Client;
-import com.senla.util.Printer;
+import com.senla.model.entity.Request;
 import com.senla.ui.actions.IAction;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.senla.util.Printer.printArray;
 
 public class SortingRequestsByAmount implements IAction {
     @Override
@@ -20,7 +23,6 @@ public class SortingRequestsByAmount implements IAction {
 
         request = new HashMap<>();
         request.put("getRequests", null);
-        Map<String, Object> response = Client.send(request);
-        Printer.print((List<Request>) Client.send(request));
+        printArray((List<Request>) Client.send(request));
     }
 }

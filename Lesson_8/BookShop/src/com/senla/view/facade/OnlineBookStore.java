@@ -32,6 +32,7 @@ public class OnlineBookStore implements IOnlineBookStore{
             synchronized (OnlineBookStore.class) {
                 if (bookStore == null) {
                     bookStore = new OnlineBookStore();
+                    CommonFiller.fillData(bookStore);
                 }
             }
         }

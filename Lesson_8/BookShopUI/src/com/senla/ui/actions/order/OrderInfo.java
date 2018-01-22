@@ -3,13 +3,14 @@ package com.senla.ui.actions.order;
 import com.senla.main.Client;
 import com.senla.model.entity.Order;
 import com.senla.util.ArrayWorker;
-import com.senla.util.Printer;
 import com.senla.ui.actions.IAction;
 import com.senla.util.Input;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.senla.util.Printer.print;
 
 public class OrderInfo implements IAction {
     @Override
@@ -18,9 +19,9 @@ public class OrderInfo implements IAction {
         request.put("getOrders", null);
         Order order = ArrayWorker.search((List<Order>) Client.send(request), Input.nextInt("Input ID order: "));
         if (order != null){
-            Printer.print(order);
+            print(order);
             return;
         }
-        Printer.print("There's no such order");
+        print("There's no such order");
     }
 }

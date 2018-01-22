@@ -1,5 +1,6 @@
 package com.senla.main;
 
+import static com.senla.util.Printer.print;
 import com.senla.util.MethodInvoker;
 
 import java.io.IOException;
@@ -14,8 +15,8 @@ public class ServerThread extends Thread {
     private ObjectOutputStream out;
 
     public ServerThread(Socket s) throws IOException {
-        in = new ObjectInputStream(s.getInputStream());
         out = new ObjectOutputStream(s.getOutputStream());
+        in = new ObjectInputStream(s.getInputStream());
     }
 
     public void run() {
@@ -26,10 +27,9 @@ public class ServerThread extends Thread {
                     out.writeObject(MethodInvoker.getResponse(((Map<String, List<Object>>) request)));
                     out.flush();
                 }
-                in.close();
-                out.close();
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                print(e.getMessage());
+                break;
             }
         }
     }

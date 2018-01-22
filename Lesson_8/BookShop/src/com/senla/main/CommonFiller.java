@@ -16,9 +16,8 @@ import java.util.Date;
 import java.util.List;
 
 public class CommonFiller {
-    public static OnlineBookStore fillData() {
+    public static void fillData(OnlineBookStore store) {
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        OnlineBookStore store = OnlineBookStore.getInstance();
 
         try {
             Reader r1 = new Reader("Eugene");
@@ -91,6 +90,5 @@ public class CommonFiller {
         } catch (ParseException e){
             Printer.print("ParseException");
         }
-        return store;
     }
 }

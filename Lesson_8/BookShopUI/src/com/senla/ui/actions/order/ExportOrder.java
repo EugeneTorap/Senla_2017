@@ -1,8 +1,6 @@
 package com.senla.ui.actions.order;
 
-import com.senla.csv.CSVWorker;
 import com.senla.main.Client;
-import com.senla.view.facade.OnlineBookStore;
 import com.senla.ui.actions.IAction;
 
 import java.util.ArrayList;

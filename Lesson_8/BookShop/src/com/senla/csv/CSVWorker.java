@@ -58,7 +58,7 @@ public class CSVWorker {
                 }
 
             } catch (Exception e) {
-                e.getMessage()
+                e.getMessage();
             }
             break;
         }

@@ -1,6 +1,7 @@
 package com.senla.main;
 
 import com.senla.ui.MenuController;
+import static com.senla.util.Printer.print;
 
 import java.net.Socket;
 
@@ -16,7 +17,7 @@ public class Main {
             menuController.run();
             socket.close();
         } catch (Exception e) {
-            Printer.print(e.getMessage());
+            print(e.getMessage());
         }
     }
 }

@@ -1,5 +1,7 @@
 package com.senla.main;
 
+import com.senla.view.facade.OnlineBookStore;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -8,6 +10,7 @@ public final class Main {
     public static final int PORT = 1234;
 
     public static void main(String[] args) throws IOException {
+        OnlineBookStore.getInstance();
         ServerSocket serverSocket;
         try {
             serverSocket = new ServerSocket(PORT);

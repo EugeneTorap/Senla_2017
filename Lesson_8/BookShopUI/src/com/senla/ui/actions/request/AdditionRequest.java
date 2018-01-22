@@ -5,7 +5,6 @@ import com.senla.model.entity.Book;
 import com.senla.model.entity.Reader;
 import com.senla.model.entity.Request;
 import com.senla.util.ArrayWorker;
-import com.senla.view.facade.OnlineBookStore;
 import com.senla.ui.actions.IAction;
 import com.senla.util.Input;
 
@@ -19,9 +18,9 @@ public class AdditionRequest implements IAction {
         Reader reader = ArrayWorker.search((List<Reader>) Client.send(request), Input.nextInt("Input ID reader: "));
         request = new HashMap<>();
         request.put("getBooks", null);
-        Book book = ArrayWorker.search((List<Book>) Client.send(request), Input.nextInt("Input ID book: ")));
+        Book book = ArrayWorker.search((List<Book>) Client.send(request), Input.nextInt("Input ID book: "));
         List<Object> parameters = new ArrayList<>();
-        parameters.add(new Request(reader, book));
+        parameters.add(new Request(book, reader));
         request = new HashMap<>();
         request.put("addRequest", parameters);
         Client.send(request);

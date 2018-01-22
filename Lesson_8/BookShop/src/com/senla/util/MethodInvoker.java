@@ -8,21 +8,21 @@ import java.util.List;
 import java.util.Map;
 
 public class MethodInvoker {
-    static public Map<String, Object> getResponse(Map<String, List<Object>> request) throws Exception {
-        Map<String, Object> response = new HashMap<>();
+    static public Object getResponse(Map<String, List<Object>> request) throws Exception {
+        Object invokedMethod = null;
         if (request != null) {
             String stringMethod = request.keySet().toArray()[0].toString();
             List<Object> objectList = request.get(stringMethod);
-            Method method = OnlineBookStore.class.getMethod(stringMethod, getTypes(objectList));
-            Object invokedMethod;
+
             if (objectList == null || objectList.isEmpty()) {
+                Method method = OnlineBookStore.class.getMethod(stringMethod);
                 invokedMethod = method.invoke(OnlineBookStore.getInstance());
             } else {
+                Method method = OnlineBookStore.class.getMethod(stringMethod, getTypes(objectList));
                 invokedMethod = method.invoke(OnlineBookStore.getInstance(), objectList.toArray());
             }
-            response.put("response", invokedMethod);
         }
-        return response;
+        return invokedMethod;
     }
 
     private static Class[] getTypes(List<Object> list) {

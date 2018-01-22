@@ -1,7 +1,7 @@
 package com.senla.ui.actions.order;
 
 import com.senla.main.Client;
-import com.senla.util.Printer;
+import com.senla.model.entity.Order;
 import com.senla.enums.SortingType;
 import com.senla.ui.actions.IAction;
 
@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.senla.util.Printer.printArray;
 
 public class SortingOrdersByPrice implements IAction {
     @Override
@@ -21,6 +23,6 @@ public class SortingOrdersByPrice implements IAction {
 
         request = new HashMap<>();
         request.put("getOrders", null);
-        Printer.print((List<Order>) Client.send(request));
+        printArray((List<Order>) Client.send(request));
     }
 }

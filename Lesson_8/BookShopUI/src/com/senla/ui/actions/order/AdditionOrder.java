@@ -20,7 +20,7 @@ public class AdditionOrder implements IAction {
         books.add(ArrayWorker.search((List<Book>) Client.send(request), Input.nextInt("Input ID book: ")));
         Date dateExecuted = Input.nextDate("Input the date executed: ");
         List<Object> parameters = new ArrayList<>();
-        parameters.add(new Order(reader, books, dateExecuted));
+        parameters.add(new Order(reader, dateExecuted, books));
         request = new HashMap<>();
         request.put("addBook", parameters);
         Client.send(request);

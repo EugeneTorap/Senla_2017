@@ -7,6 +7,8 @@ import java.net.Socket;
 import java.util.List;
 import java.util.Map;
 
+import static com.senla.util.Printer.print;
+
 public class Client {
     private static ObjectInputStream in;
     private static ObjectOutputStream out;
@@ -16,13 +18,13 @@ public class Client {
         out = new ObjectOutputStream(socket.getOutputStream());
     }
 
-    public static Map<String, Object> send(Map<String, List<Object>> request) {
+    public static Object send(Map<String, List<Object>> request) {
         try {
             out.writeObject(request);
             out.flush();
-            return (Map<String, Object>) in.readObject();
+            return in.readObject();
         } catch (Exception e) {
-            Printer.print(e.getMessage());
+            print(e.getMessage());
         }
         return null;
     }
