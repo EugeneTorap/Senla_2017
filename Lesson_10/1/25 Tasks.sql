@@ -114,7 +114,7 @@ SELECT
 FROM
     printer
 ORDER BY price DESC
-LIMIT 0 , 3;
+LIMIT 3;
 
 
 #Task 11
@@ -122,6 +122,7 @@ SELECT
     AVG(speed)
 FROM
     pc;
+
 
 #Task 12
 SELECT 
@@ -144,12 +145,29 @@ WHERE
 
 
 #Task 14
+SELECT 
+    speed, AVG(price)
+FROM
+    pc
+GROUP BY speed;
 
 
 #Task 15
+SELECT 
+    hd
+FROM
+    pc
+GROUP BY hd
+HAVING COUNT(*) > 1;
 
 
 #Task 16
+SELECT 
+    model, speed, ram
+FROM
+    pc
+GROUP BY speed , ram
+HAVING COUNT(*) = 2;
 
 
 #Task 17
@@ -182,57 +200,24 @@ WHERE
 
 
 #Task 19
+SELECT 
+    maker, AVG(screen)
+FROM
+    laptop
+        INNER JOIN
+    product USING (model)
+GROUP BY maker;
 
 
 #Task 20
 SELECT 
-    maker, COUNT(DISTINCT model)
+    maker, COUNT(DISTINCT model) AS unique_model
 FROM
     pc
-        LEFT JOIN
+        INNER JOIN
     product USING (model)
-WHERE
-    maker = 'A'
-        AND (SELECT 
-            COUNT(DISTINCT model)
-        FROM
-            pc
-                LEFT JOIN
-            product USING (model)
-        WHERE
-            maker = 'A') >= 3 
-UNION SELECT 
-    maker, COUNT(DISTINCT model)
-FROM
-    pc
-        LEFT JOIN
-    product USING (model)
-WHERE
-    maker = 'B'
-        AND (SELECT 
-            COUNT(DISTINCT model)
-        FROM
-            pc
-                LEFT JOIN
-            product USING (model)
-        WHERE
-            maker = 'B') >= 3
-UNION SELECT 
-    maker, COUNT(DISTINCT model)
-FROM
-    pc
-        LEFT JOIN
-    product USING (model)
-WHERE
-    maker = 'C'
-        AND (SELECT 
-            COUNT(DISTINCT model)
-        FROM
-            pc
-                LEFT JOIN
-            product USING (model)
-        WHERE
-            maker = 'C') >= 3;
+GROUP BY maker
+HAVING unique_model >= 3;
 
 
 #Task 21
@@ -240,64 +225,47 @@ SELECT
     maker, MAX(price)
 FROM
     pc
-        LEFT JOIN
+        INNER JOIN
     product USING (model)
-WHERE
-    maker = 'A' 
-UNION SELECT 
-    maker, MAX(price)
-FROM
-    pc
-        LEFT JOIN
-    product USING (model)
-WHERE
-    maker = 'B' 
-UNION SELECT 
-    maker, MAX(price)
-FROM
-    pc
-        LEFT JOIN
-    product USING (model)
-WHERE
-    maker = 'C';
+GROUP BY maker;
 
 
 #Task 22
-
+SELECT 
+    speed, AVG(price)
+FROM
+    pc
+WHERE
+    speed > 600
+GROUP BY speed
+HAVING COUNT(*) > 1;
 
 
 #Task 23
 SELECT 
     maker
 FROM
-    pc,
-    laptop
+    pc
         LEFT JOIN
     product USING (model)
 WHERE
-    maker = 'A' AND pc.speed >= 750
-        AND laptop.speed >= 750 
-UNION SELECT 
-    maker
-FROM
-    pc,
-    laptop
-        LEFT JOIN
-    product USING (model)
-WHERE
-    maker = 'B' AND pc.speed >= 750
-        AND laptop.speed >= 750 
-UNION SELECT 
-    maker
-FROM
-    pc,
-    laptop
-        LEFT JOIN
-    product USING (model)
-WHERE
-    maker = 'C' AND pc.speed >= 750
-        AND laptop.speed >= 750;
-
+    NOT maker IN (SELECT 
+            maker
+        FROM
+            pc
+                LEFT JOIN
+            product USING (model)
+        WHERE
+            speed < 750)
+        AND NOT maker IN (SELECT 
+            maker
+        FROM
+            laptop
+                LEFT JOIN
+            product USING (model)
+        WHERE
+            speed < 750);
+            
 
 #Task 24
 SELECT 
@@ -319,7 +287,7 @@ FROM
         LEFT JOIN
     product USING (model)
 ORDER BY price DESC
-LIMIT 0 , 3;
+LIMIT 3;
 
 
 #Task 25
@@ -341,7 +309,7 @@ WHERE
                     MIN(pc.ram)
                 FROM
                     pc)
-        LIMIT 0 , 1) , (SELECT 
+        LIMIT 1) , (SELECT 
                 maker
             FROM
                 pc
@@ -352,4 +320,4 @@ WHERE
                         MAX(pc.speed)
                     FROM
                         pc
-                    LIMIT 0 , 1)));
+                    LIMIT 1)));
