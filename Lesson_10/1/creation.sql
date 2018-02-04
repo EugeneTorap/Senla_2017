@@ -1,33 +1,37 @@
-create database creation;
+CREATE DATABASE creation;
 
-use creation;
+USE creation;
 
-create table product(
-	maker varchar(50) not null,
-    model varchar(50) primary key not null,
-    type varchar(50) not null);
+CREATE TABLE product (
+    maker VARCHAR(50) NOT NULL,
+    model VARCHAR(50) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    type VARCHAR(50) NOT NULL
+);
     
-create table pc(
-	code int primary key not null,
-    model varchar(50) not null,
-    speed smallint not null,
-    ram smallint not null,
-    hd real not null,
-    cd varchar(10) not null,
-    price int);
+CREATE TABLE pc (
+    code INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    model VARCHAR(50) NOT NULL,
+    speed SMALLINT NOT NULL,
+    ram SMALLINT NOT NULL,
+    hd REAL NOT NULL,
+    cd VARCHAR(10) NOT NULL,
+    price INT
+);
     
-create table laptop(
-	code int primary key not null,
-    model varchar(50) not null,
-    speed smallint not null,
-    ram smallint not null,
-    hd real not null,
-    price int,
-    screen tinyint not null);   
+CREATE TABLE laptop (
+    code INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    model VARCHAR(50) NOT NULL,
+    speed SMALLINT NOT NULL,
+    ram SMALLINT NOT NULL,
+    hd REAL NOT NULL,
+    price INT,
+    screen TINYINT NOT NULL
+);   
     
-create table printer(
-	code int primary key not null,
-    model varchar(50) not null,
-    color char(1) not null,
-    type varchar(10) not null,
-    price int);
+CREATE TABLE printer (
+    code INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    model VARCHAR(50) NOT NULL,
+    color CHAR(1) NOT NULL,
+    type VARCHAR(10) NOT NULL,
+    price INT
+);
