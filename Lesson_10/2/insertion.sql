@@ -1,3 +1,5 @@
+USE book_shop;
+
 INSERT INTO book(title, isTheBookInStore, requestAmount, dateReceipted, datePublished, price)
 VALUES ('Pride and Prejudice', true, 3, '2005-01-11', '1985-04-10', 10);
 INSERT INTO book(title, isTheBookInStore, requestAmount, dateReceipted, datePublished, price)

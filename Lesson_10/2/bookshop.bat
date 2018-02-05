@@ -1,1 +1,2 @@
-start /d" D:\Senla_2017\Lesson_10\2"creation
+mysql -h localhost -u root -p < creation.sql
+mysql -h localhost -u root -p < insertion.sql
