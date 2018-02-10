@@ -13,7 +13,6 @@ public class OnlineBookStore implements IOnlineBookStore{
     private IBookManager bookManager;
     private IReaderManager readerManager;
     private IOrderManager orderManager;
-    private IRequestManager requestManager;
     private static volatile OnlineBookStore bookStore = null;
 
 
@@ -21,7 +20,6 @@ public class OnlineBookStore implements IOnlineBookStore{
         bookManager = new BookManager();
         readerManager = new ReaderManager();
         orderManager = new OrderManager();
-        requestManager = new RequestManager();
     }
 
     public static OnlineBookStore getInstance() {
@@ -35,12 +33,13 @@ public class OnlineBookStore implements IOnlineBookStore{
         return bookStore;
     }
 
+    @Override
     public List<Book> sortBooksBy(SortingType type) {
         String query = "SELECT * FROM book ORDER BY ";
 
         switch (type) {
             case ALPHABET:
-                return bookManager.sortBooks(query, "name");
+                return bookManager.sortBooks(query, "title");
             case DATE:
                 return bookManager.sortBooks(query, "datePublished");
             case PRICE:
@@ -51,6 +50,7 @@ public class OnlineBookStore implements IOnlineBookStore{
         return null;
     }
 
+    @Override
     public List<Book> sortUnsoldBooksBy(SortingType type) {
         String query = "SELECT * FROM book " +
                 "WHERE dateReceipted < (SELECT DATE_SUB((SELECT CURDATE()), INTERVAL 6 MONTH)) ORDER BY ";
@@ -64,6 +64,7 @@ public class OnlineBookStore implements IOnlineBookStore{
         return null;
     }
 
+    @Override
     public List<Order> sortOrdersBy(SortingType type) {
         String query = "SELECT * FROM book_order ORDER BY ";
 
@@ -73,11 +74,12 @@ public class OnlineBookStore implements IOnlineBookStore{
             case PRICE:
                 return orderManager.sortOrders(query, "price");
             case STATUS:
-                return orderManager.sortOrders(query, "");
+                return orderManager.sortOrders(query, "status");
         }
         return null;
     }
 
+    @Override
     public List<Order> sortExecutedOrdersBy(SortingType type) {
         String query = "SELECT * FROM book_order WHERE status = CANCELED ORDER BY ";
 
@@ -90,78 +92,96 @@ public class OnlineBookStore implements IOnlineBookStore{
         return null;
     }
 
-    public void sortRequestsBy(SortingType type) {
-        //requestManager.setRequestAmount();
+    @Override
+    public List<Book> sortRequestsBy(SortingType type) {
+        String query = "SELECT * FROM book WHERE status = CANCELED ORDER BY ";
+
         switch (type) {
             case AMOUNT:
-                bookManager.sortBooks(new SortingBooksByAmount());
-                break;
+                return bookManager.sortBooks(query, "");
             case ALPHABET:
-                bookManager.sortBooks(new SortingBooksByAlphabet());
-                break;
+                return bookManager.sortBooks(query, "title");
         }
+        return null;
     }
 
+    @Override
+    public List<Reader> sortReadersBy(SortingType type) {
+        String query = "SELECT * FROM reader WHERE ORDER BY ";
+
+        switch (type) {
+            case ID:
+                return readerManager.sortReaders(query, "readerId");
+        }
+        return null;
+    }
+
+    @Override
     public synchronized void addBook(Book book){
         bookManager.add(book);
     }
 
+    @Override
     public synchronized void addBookOnStore(int id) {
         bookManager.addOnStore(id);
     }
 
+    @Override
     public synchronized void delBookFromStore(int id) {
         bookManager.delFromStore(id);
     }
 
+    @Override
     public synchronized void addOrder(Order order) {
         orderManager.add(order);
     }
 
+    @Override
     public synchronized void cloneOrder(int id){
         orderManager.clone(id);
     }
 
+    @Override
     public synchronized void cancelOrder(int id) {
         orderManager.cancel(id);
     }
 
+    @Override
     public synchronized void addReader(Reader reader){
         readerManager.add(reader);
     }
 
-    public synchronized void addRequest(Request request){
-        requestManager.add(request);
-    }
-
+    @Override
     public Book getBook(int id){
         return bookManager.findById(id);
     }
 
+    @Override
     public Order getOrder(int id){
         return orderManager.findById(id);
     }
 
+    @Override
     public Reader getReader(int id){
         return readerManager.findById(id);
     }
 
-    public List<Request> getRequests(){
-        return requestManager.getRequests();
-    }
-
+    @Override
     public int getAllPrice(){
         return orderManager.getAllPrice();
     }
 
+    @Override
     public int getAmountExecutedOrders(){
         return orderManager.getAmountExecutedOrders();
     }
 
+    @Override
     public void saveCSV(List<? extends Entity> entities){
         CSVWorker.save(entities);
     }
 
+    @Override
     public void loadCSV(Class<? extends Entity> clazz){
         CSVWorker.load(clazz);
     }

@@ -1,5 +1,6 @@
 package com.senla.controller.dao.mysql;
 
+import com.senla.api.dao.IOrderDao;
 import com.senla.controller.dao.DaoFactory;
 import com.senla.executor.Executor;
 import com.senla.executor.ResultHandler;
@@ -13,11 +14,12 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
-public class OrderDao {
+public class OrderDao implements IOrderDao {
     private DaoFactory daoFactory = DaoFactory.getInstance();
     private final static Logger LOGGER = Logger.getLogger(OrderDao.class);
 
 
+    @Override
     public void create(Order order) {
         String sql = "INSERT INTO book_order(readerId, dateExecuted, price) VALUES (?,?,?);";
 
@@ -40,6 +42,7 @@ public class OrderDao {
         }
     }
 
+    @Override
     public Order findById(int id) {
         String sql = "SELECT * FROM book WHERE bookId = " + id + ";";
 
@@ -58,6 +61,7 @@ public class OrderDao {
         return null;
     }
 
+    @Override
     public void update(int id) {
         String sql = "UPDATE book SET status = CANCELED WHERE bookId = " + id + ";";
 
@@ -70,6 +74,7 @@ public class OrderDao {
         }
     }
 
+    @Override
     public void clone(int id) {
         Order order = findById(id);
         assert order != null;

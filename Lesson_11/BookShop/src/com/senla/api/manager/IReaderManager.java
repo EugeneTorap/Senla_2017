@@ -7,4 +7,5 @@ import java.util.List;
 public interface IReaderManager {
     void add(Reader reader);
     Reader findById(int id);
+    List<Reader> sortReaders(String query, String column);
 }

@@ -99,13 +99,8 @@ public class CSVWorker {
                 break;
             case "Reader":
                 List<Reader> parsedReaders = (List<Reader>) Parser.parse(clazz, Arrays.asList(lines));
-                List<Reader> myReaders = OnlineBookStore.getInstance().sortOrdersBy(SortingType.ALPHABET);
+                List<Reader> myReaders = OnlineBookStore.getInstance().sortReadersBy(SortingType.ID);
                 setEntity((List<Entity>)(List<?>)parsedReaders, (List<Entity>)(List<?>)myReaders);
-                break;
-            case "Request":
-                List<Request> parsedRequests = (List<Request>) Parser.parse(clazz, Arrays.asList(lines));
-                List<Request> myRequests = OnlineBookStore.getInstance().sortRequestsBy(SortingType.ALPHABET);
-                setEntity((List<Entity>)(List<?>)parsedRequests, (List<Entity>)(List<?>)myRequests);
                 break;
         }
     }

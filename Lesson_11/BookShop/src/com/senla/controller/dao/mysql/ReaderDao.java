@@ -1,5 +1,6 @@
 package com.senla.controller.dao.mysql;
 
+import com.senla.api.dao.IReaderDao;
 import com.senla.controller.dao.DaoFactory;
 import com.senla.executor.Executor;
 import com.senla.executor.ResultHandler;
@@ -12,11 +13,12 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
-public class ReaderDao {
+public class ReaderDao implements IReaderDao {
     private DaoFactory daoFactory = DaoFactory.getInstance();
     private final static Logger LOGGER = Logger.getLogger(ReaderDao.class);
 
 
+    @Override
     public void create(Reader reader) {
         String sql = "INSERT INTO reader(name) VALUES (?);";
 
@@ -37,6 +39,7 @@ public class ReaderDao {
         }
     }
 
+    @Override
     public Reader findById(int id) {
         String sql = "SELECT * FROM reader WHERE bookId = " + id + ";";
 

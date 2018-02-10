@@ -1,5 +1,6 @@
 package com.senla.controller.dao.mysql;
 
+import com.senla.api.dao.IBookDao;
 import com.senla.controller.dao.DaoFactory;
 import com.senla.executor.Executor;
 import com.senla.executor.ResultHandler;
@@ -13,11 +14,12 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
-public class BookDao {
+public class BookDao implements IBookDao {
     private DaoFactory daoFactory = DaoFactory.getInstance();
     private final static Logger LOGGER = Logger.getLogger(BookDao.class);
 
 
+    @Override
     public void create(Book book) {
         String sql = "INSERT INTO book(title, isTheBookInStore, requestAmount," +
                 " dateReceipted, datePublished, price) VALUES (?,?,?,?,?,?);";
@@ -44,6 +46,7 @@ public class BookDao {
         }
     }
 
+    @Override
     public Book findById(int id) {
         String sql = "SELECT * FROM book WHERE bookId = " + id + ";";
 
@@ -62,6 +65,7 @@ public class BookDao {
         return null;
     }
 
+    @Override
     public void update(int id, boolean status) {
         StringBuilder sql = new StringBuilder();
         sql.append("UPDATE book SET isTheBookInStore = ").append(status);

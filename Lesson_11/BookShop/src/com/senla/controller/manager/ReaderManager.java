@@ -1,16 +1,27 @@
 package com.senla.controller.manager;
 
+import com.senla.api.dao.IReaderDao;
 import com.senla.api.manager.IReaderManager;
-import com.senla.controller.dao.mysql.ReaderDao;
-import com.senla.model.entity.Order;
+import com.senla.controller.dao.DaoFactory;
+import com.senla.dependencyinjection.DependencyInjection;
+import com.senla.executor.Executor;
+import com.senla.executor.ResultHandler;
+import com.senla.executor.handler.ReaderHandler;
 import com.senla.model.entity.Reader;
+import org.apache.log4j.Logger;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
 
 public class ReaderManager implements IReaderManager{
-    private ReaderDao readerDao;
+    private IReaderDao readerDao;
+    private DaoFactory daoFactory = DaoFactory.getInstance();
+    private final static Logger LOGGER = Logger.getLogger(ReaderManager.class);
 
 
     public ReaderManager() {
-        readerDao = new ReaderDao();
+        readerDao = (IReaderDao) DependencyInjection.getInstance().getObject(IReaderDao.class);
     }
 
     @Override
@@ -21,5 +32,20 @@ public class ReaderManager implements IReaderManager{
     @Override
     public Reader findById(int id){
         return readerDao.findById(id);
+    }
+
+    @Override
+    public List<Reader> sortReaders(String query, String column){
+        String sql = query + column + ";";
+
+        LOGGER.trace("Open connection");
+        try (Connection connection = daoFactory.getConnection()) {
+            ResultHandler<List<Reader>> readers = new ReaderHandler();
+            return Executor.execQuery(connection, sql, readers);
+        }
+        catch (SQLException e){
+            LOGGER.error("Can't close", e);
+        }
+        return null;
     }
 }

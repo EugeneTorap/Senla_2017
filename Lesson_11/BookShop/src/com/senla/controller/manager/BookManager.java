@@ -1,8 +1,9 @@
 package com.senla.controller.manager;
 
+import com.senla.api.dao.IBookDao;
 import com.senla.api.manager.IBookManager;
 import com.senla.controller.dao.DaoFactory;
-import com.senla.controller.dao.mysql.BookDao;
+import com.senla.dependencyinjection.DependencyInjection;
 import com.senla.executor.Executor;
 import com.senla.executor.ResultHandler;
 import com.senla.executor.handler.BookHandler;
@@ -14,13 +15,13 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class BookManager implements IBookManager {
-    private BookDao bookDao;
+    private IBookDao bookDao;
     private DaoFactory daoFactory = DaoFactory.getInstance();
     private final static Logger LOGGER = Logger.getLogger(BookManager.class);
 
 
     public BookManager() {
-        bookDao = new BookDao();
+        bookDao = (IBookDao) DependencyInjection.getInstance().getObject(IBookDao.class);
     }
 
     @Override

@@ -1,9 +1,11 @@
 package com.senla.controller.manager;
 
+import com.senla.api.dao.IOrderDao;
 import com.senla.api.manager.IOrderManager;
 
 import com.senla.controller.dao.DaoFactory;
 import com.senla.controller.dao.mysql.OrderDao;
+import com.senla.dependencyinjection.DependencyInjection;
 import com.senla.executor.Executor;
 import com.senla.executor.ResultHandler;
 import com.senla.executor.handler.OrderHandler;
@@ -17,13 +19,13 @@ import java.sql.Statement;
 import java.util.List;
 
 public class OrderManager implements IOrderManager{
-    private OrderDao orderDao;
+    private IOrderDao orderDao;
     private DaoFactory daoFactory = DaoFactory.getInstance();
     private final static Logger LOGGER = Logger.getLogger(OrderManager.class);
 
 
     public OrderManager() {
-        orderDao = new OrderDao();
+        orderDao = (IOrderDao) DependencyInjection.getInstance().getObject(IOrderDao.class);
     }
 
     @Override
