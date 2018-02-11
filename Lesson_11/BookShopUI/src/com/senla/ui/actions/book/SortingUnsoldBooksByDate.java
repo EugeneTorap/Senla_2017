@@ -15,11 +15,12 @@ import static com.senla.util.Printer.printArray;
 public class SortingUnsoldBooksByDate implements IAction {
     @Override
     public void execute() {
+
         List<Object> parameters = new ArrayList<>();
         parameters.add(SortingType.DATE);
+
         Map<String, List<Object>> request = new HashMap<>();
         request.put("sortUnsoldBooksBy", parameters);
-        Client.send(request);
         printArray((List<Book>) Client.send(request));
     }
 }

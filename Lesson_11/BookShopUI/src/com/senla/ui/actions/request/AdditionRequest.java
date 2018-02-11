@@ -3,8 +3,6 @@ package com.senla.ui.actions.request;
 import com.senla.main.Client;
 import com.senla.model.entity.Book;
 import com.senla.model.entity.Reader;
-import com.senla.model.entity.Request;
-import com.senla.util.ArrayWorker;
 import com.senla.ui.actions.IAction;
 import com.senla.util.Input;
 
@@ -12,20 +10,25 @@ import java.util.*;
 
 public class AdditionRequest implements IAction {
     @Override
-    public void execute() {////****
-        Map<String, List<Object>> request = new HashMap<>();
-        request.put("getReaders", null);
-        Reader reader = ArrayWorker.search((List<Reader>) Client.send(request), Input.nextInt("Input ID reader: "));
+    public void execute() {
 
         List<Object> parameters = new ArrayList<>();
+        parameters.add(Input.nextInt("Input ID reader: "));
+
+        Map<String, List<Object>> request = new HashMap<>();
+        request.put("getReader", parameters);
+        Reader reader = (Reader) Client.send(request);
+
+        parameters = new ArrayList<>();
         parameters.add(Input.nextInt("Input ID book: "));
 
-        Map<String, List<Object>> request = new HashMap<>();
+        request = new HashMap<>();
         request.put("getBook", parameters);
+        Book book = (Book) Client.send(request);
 
-        Book book = print((Book) Client.send(request));
-        List<Object> parameters = new ArrayList<>();
-        parameters.add(new Request(book, reader));
+        parameters = new ArrayList<>();
+        parameters.add(book);
+        parameters.add(reader);
         request = new HashMap<>();
         request.put("addRequest", parameters);
         Client.send(request);

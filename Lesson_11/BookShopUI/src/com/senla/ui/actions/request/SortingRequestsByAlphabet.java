@@ -2,7 +2,7 @@ package com.senla.ui.actions.request;
 
 import com.senla.enums.SortingType;
 import com.senla.main.Client;
-import com.senla.model.entity.Request;
+import com.senla.model.entity.Book;
 import com.senla.ui.actions.IAction;
 
 import java.util.ArrayList;
@@ -21,6 +21,6 @@ public class SortingRequestsByAlphabet implements IAction {
 
         Map<String, List<Object>> request = new HashMap<>();
         request.put("sortRequestsBy", parameters);
-        printArray((List<Request>) Client.send(request));
+        printArray((List<Book>) Client.send(request));
     }
 }

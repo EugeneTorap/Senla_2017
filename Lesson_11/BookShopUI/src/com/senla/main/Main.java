@@ -6,7 +6,7 @@ import static com.senla.util.Printer.print;
 import java.net.Socket;
 
 public class Main {
-    public static final int PORT = 1234;
+    public static final int PORT = 1235;
     public static final String HOST = "localhost";
 
     public static void main(String[] args) {
@@ -16,6 +16,7 @@ public class Main {
             MenuController menuController = new MenuController();
             menuController.run();
             socket.close();
+            Client.close();
         } catch (Exception e) {
             print(e.getMessage());
         }

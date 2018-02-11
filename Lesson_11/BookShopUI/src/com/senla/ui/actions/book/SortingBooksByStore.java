@@ -15,11 +15,12 @@ import static com.senla.util.Printer.printArray;
 public class SortingBooksByStore implements IAction {
     @Override
     public void execute() {
+
         List<Object> parameters = new ArrayList<>();
         parameters.add(SortingType.IS_STORE);
+
         Map<String, List<Object>> request = new HashMap<>();
         request.put("sortBooksBy", parameters);
-        Client.send(request);
         printArray((List<Book>) Client.send(request));
     }
 }
