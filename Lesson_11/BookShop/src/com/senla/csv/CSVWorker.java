@@ -23,15 +23,13 @@ public class CSVWorker {
     private final static Logger LOGGER = Logger.getLogger(CSVWorker.class);
 
 
-    public static void save(List<? extends Entity> entities) {
+    public static void saveToCSV(List<? extends Entity> entities) {
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         CsvEntity csvEntity = entities.get(0).getClass().getAnnotation(CsvEntity.class);
         String path = csvEntity.filename();
         String separator = csvEntity.valuesSeparator();
         while (true) {
             try (BufferedWriter bw = new BufferedWriter(new FileWriter(path, false))) {
-                Method method = entities.get(0).getClass().getMethod("toStringContents");
-                bw.write((String)method.invoke(entities.get(0)));
 
                 for (Entity entity : entities) {
                     StringBuilder str = new StringBuilder();
@@ -57,30 +55,26 @@ public class CSVWorker {
                     bw.write(str.toString());
                 }
 
-            } catch (Exception e) {
-                e.getMessage();
+            }
+            catch (Exception e) {
+                LOGGER.error("Can't close", e);
             }
             break;
         }
     }
 
-    public static void load(Class<? extends Entity> clazz) {
+    public static void loadFromCSV(Class<? extends Entity> clazz) {
         CsvEntity csvEntity = clazz.getAnnotation(CsvEntity.class);
-        String path = csvEntity.filename();
         List<String> strings = new ArrayList<>();
-        while (true) {
-            String str;
-            try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
-                reader.readLine();
-                while ((str = reader.readLine()) != null) {
-                    strings.add(str);
-                }
-            } catch (IOException e) {
-                LOGGER.error(e.getMessage());
-                path = Input.nextLine("Input path: ");
-                continue;
+        String str;
+        try (BufferedReader reader = new BufferedReader(new FileReader(csvEntity.filename()))) {
+
+            while ((str = reader.readLine()) != null) {
+                strings.add(str);
             }
-            break;
+        }
+        catch (IOException e) {
+            LOGGER.error(e);
         }
         setChanges(clazz, csvEntity, strings.toArray(new String[0]));
     }

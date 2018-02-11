@@ -24,13 +24,12 @@ public class Order extends Entity {
     private List<Book> books;
 
 
-    public Order(int id, Reader reader, Date dateExecuted, List<Book> books, Status status) {
+    public Order(int id, Reader reader, Date dateExecuted, Status status, int price) {
         super(id);
         this.reader = reader;
         this.dateExecuted = dateExecuted;
-        this.books = books;
         this.status = status;
-        calculatePrice();
+        this.price = price;
     }
 
     public Order(int id, Reader reader,Date dateExecuted, List<Book> books) {
@@ -73,27 +72,7 @@ public class Order extends Entity {
 
     public String toString() {
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        StringBuilder stringBuilder = new StringBuilder();
-        String string = getId() + "," + status + "," + price + "," + df.format(dateExecuted) + "," + reader.getId() +
-                "," + books.size() + ",";
-        for (Book book: books) {
-            stringBuilder.append(book.getId());
-            stringBuilder.append(",");
-        }
-        string += stringBuilder;
-        return string;
-    }
-
-    public String toStringContents() {
-        StringBuilder stringBuilder = new StringBuilder();
-        String string = "Order ID" + "," + "ResponseStatus" + "," + "Price" + "," + "Executed date" + "," + "Reader ID" +
-                "," + "Book amount" + ",";
-        for (int i = 1; i <= books.size(); i++) {
-            stringBuilder.append(i).append(" Book ID,");
-        }
-        stringBuilder.append("\n");
-        string += stringBuilder;
-        return string;
+        return getId() + "," + status + "," + price + "," + df.format(dateExecuted) + "," + reader.getId();
     }
 
     private List<Book> cloneList(List<Book> list) throws CloneNotSupportedException {

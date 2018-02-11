@@ -17,7 +17,6 @@ import java.util.List;
 
 public class BookManager implements IBookManager {
     private IBookDao bookDao;
-    private DaoFactory daoFactory = DaoFactory.getInstance();
     private final static Logger LOGGER = Logger.getLogger(BookManager.class);
 
 
@@ -55,7 +54,7 @@ public class BookManager implements IBookManager {
         String sql = query + column + ";";
 
         LOGGER.trace("Open connection");
-        try (Connection connection = daoFactory.getConnection()) {
+        try (Connection connection = DaoFactory.getInstance().getConnection()) {
             ResultHandler<List<Book>> books = new BookHandler();
             return Executor.execQuery(connection, sql, books);
         }

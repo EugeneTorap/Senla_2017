@@ -20,7 +20,6 @@ import java.util.List;
 
 public class OrderManager implements IOrderManager{
     private IOrderDao orderDao;
-    private DaoFactory daoFactory = DaoFactory.getInstance();
     private final static Logger LOGGER = Logger.getLogger(OrderManager.class);
 
 
@@ -48,7 +47,7 @@ public class OrderManager implements IOrderManager{
         String query = "SELECT SUM(price) AS allPrice FROM book_order";
 
         try (
-            Connection connection = daoFactory.getConnection();
+            Connection connection = DaoFactory.getInstance().getConnection();
             Statement statement = connection.createStatement();
             ResultSet result = statement.executeQuery(query)
         ){
@@ -67,7 +66,7 @@ public class OrderManager implements IOrderManager{
         String query = "SELECT COUNT() AS count FROM book_order WHERE status = CANCELED";
 
         try (
-                Connection connection = daoFactory.getConnection();
+                Connection connection = DaoFactory.getInstance().getConnection();
                 Statement statement = connection.createStatement();
                 ResultSet result = statement.executeQuery(query)
         ){
@@ -91,7 +90,7 @@ public class OrderManager implements IOrderManager{
         String sql = query + column + ";";
 
         LOGGER.trace("Open connection");
-        try (Connection connection = daoFactory.getConnection()) {
+        try (Connection connection = DaoFactory.getInstance().getConnection()) {
             ResultHandler<List<Order>> orders = new OrderHandler();
             return Executor.execQuery(connection, sql, orders);
         }

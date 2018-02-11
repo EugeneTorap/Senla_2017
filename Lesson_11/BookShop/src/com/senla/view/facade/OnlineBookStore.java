@@ -35,7 +35,7 @@ public class OnlineBookStore implements IOnlineBookStore{
 
     @Override
     public List<Book> sortBooksBy(SortingType type) {
-        String query = "SELECT * FROM request INNER JOIN book USING (bookId) JOIN reader USING (readerId) ORDER BY ";
+        String query = "SELECT * FROM book ORDER BY ";
 
         switch (type) {
             case ALPHABET:
@@ -52,8 +52,7 @@ public class OnlineBookStore implements IOnlineBookStore{
 
     @Override
     public List<Book> sortUnsoldBooksBy(SortingType type) {
-        String query = "SELECT * FROM request INNER JOIN book USING (bookId) JOIN reader USING (readerId) " +
-                "WHERE dateReceipted < (SELECT DATE_SUB((SELECT CURDATE()), INTERVAL 6 MONTH)) ORDER BY ";
+        String query = "SELECT * FROM book WHERE dateReceipted < (SELECT DATE_SUB((SELECT CURDATE()), INTERVAL 6 MONTH)) ORDER BY ";
 
         switch (type) {
             case DATE:
@@ -66,7 +65,7 @@ public class OnlineBookStore implements IOnlineBookStore{
 
     @Override
     public List<Order> sortOrdersBy(SortingType type) {
-        String query = "SELECT * FROM order_history INNER JOIN book USING (bookId) JOIN book_order USING (orderId) ORDER BY ";
+        String query = "SELECT * FROM book_order INNER JOIN reader USING (readerId) ORDER BY ";
 
         switch (type) {
             case DATE:
@@ -81,7 +80,7 @@ public class OnlineBookStore implements IOnlineBookStore{
 
     @Override
     public List<Order> sortExecutedOrdersBy(SortingType type) {
-        String query = "SELECT * FROM book_order WHERE status = CANCELED ORDER BY ";
+        String query = "SELECT * FROM book_order INNER JOIN reader USING (readerId) WHERE status = 'EXECUTED' ORDER BY ";
 
         switch (type) {
             case PRICE:
@@ -94,7 +93,7 @@ public class OnlineBookStore implements IOnlineBookStore{
 
     @Override
     public List<Book> sortRequestsBy(SortingType type) {
-        String query = "SELECT * FROM request INNER JOIN book USING (bookId) JOIN reader USING (readerId) WHERE ORDER BY ";
+        String query = "SELECT * FROM request INNER JOIN book USING (bookId) JOIN reader USING (readerId) ORDER BY ";
 
         switch (type) {
             case AMOUNT:
@@ -183,11 +182,11 @@ public class OnlineBookStore implements IOnlineBookStore{
 
     @Override
     public void saveCSV(List<? extends Entity> entities){
-        CSVWorker.save(entities);
+        CSVWorker.saveToCSV(entities);
     }
 
     @Override
     public void loadCSV(Class<? extends Entity> clazz){
-        CSVWorker.load(clazz);
+        CSVWorker.loadFromCSV(clazz);
     }
 }

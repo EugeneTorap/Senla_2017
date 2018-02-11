@@ -16,7 +16,6 @@ import java.util.List;
 
 public class ReaderManager implements IReaderManager{
     private IReaderDao readerDao;
-    private DaoFactory daoFactory = DaoFactory.getInstance();
     private final static Logger LOGGER = Logger.getLogger(ReaderManager.class);
 
 
@@ -39,7 +38,7 @@ public class ReaderManager implements IReaderManager{
         String sql = query + column + ";";
 
         LOGGER.trace("Open connection");
-        try (Connection connection = daoFactory.getConnection()) {
+        try (Connection connection = DaoFactory.getInstance().getConnection()) {
             ResultHandler<List<Reader>> readers = new ReaderHandler();
             return Executor.execQuery(connection, sql, readers);
         }

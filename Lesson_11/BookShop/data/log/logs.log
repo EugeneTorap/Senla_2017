@@ -600,3 +600,612 @@ java.sql.SQLException: Column 'name' not found.
 	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
 	at com.senla.util.MethodInvoker.getResponse(MethodInvoker.java:22)
 	at com.senla.main.ServerThread.run(ServerThread.java:27)
+2018-02-11 15:59:19 TRACE Main:18 - Started, waiting for connection
+2018-02-11 15:59:29 TRACE OrderManager:93 - Open connection
+2018-02-11 15:59:29 ERROR Executor:29 - Can't close result
+java.sql.SQLException: Column 'name' not found.
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:965)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:898)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:887)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:861)
+	at com.mysql.jdbc.ResultSetImpl.findColumn(ResultSetImpl.java:1080)
+	at com.mysql.jdbc.ResultSetImpl.getString(ResultSetImpl.java:5177)
+	at com.senla.executor.handler.OrderHandler.handle(OrderHandler.java:34)
+	at com.senla.executor.handler.OrderHandler.handle(OrderHandler.java:15)
+	at com.senla.executor.Executor.execQuery(Executor.java:27)
+	at com.senla.controller.manager.OrderManager.sortOrders(OrderManager.java:96)
+	at com.senla.view.facade.OnlineBookStore.sortOrdersBy(OnlineBookStore.java:73)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at com.senla.util.MethodInvoker.getResponse(MethodInvoker.java:22)
+	at com.senla.main.ServerThread.run(ServerThread.java:27)
+2018-02-11 16:00:46 TRACE Main:18 - Started, waiting for connection
+2018-02-11 16:01:13 TRACE OrderManager:93 - Open connection
+2018-02-11 16:01:47 TRACE Main:18 - Started, waiting for connection
+2018-02-11 16:01:56 TRACE OrderManager:93 - Open connection
+2018-02-11 16:02:10 TRACE Main:18 - Started, waiting for connection
+2018-02-11 16:02:24 TRACE OrderManager:93 - Open connection
+2018-02-11 16:05:39 TRACE Main:18 - Started, waiting for connection
+2018-02-11 16:05:42 TRACE Main:18 - Started, waiting for connection
+2018-02-11 16:05:51 TRACE OrderManager:93 - Open connection
+2018-02-11 16:07:04 ERROR Executor:32 - Can't close statement
+com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'readerId' in 'from clause'
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.Util.getInstance(Util.java:408)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:944)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3973)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3909)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2527)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2680)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2480)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2438)
+	at com.mysql.jdbc.StatementImpl.executeInternal(StatementImpl.java:845)
+	at com.mysql.jdbc.StatementImpl.execute(StatementImpl.java:745)
+	at com.senla.executor.Executor.execQuery(Executor.java:25)
+	at com.senla.controller.manager.OrderManager.sortOrders(OrderManager.java:96)
+	at com.senla.view.facade.OnlineBookStore.sortOrdersBy(OnlineBookStore.java:73)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at com.senla.util.MethodInvoker.getResponse(MethodInvoker.java:22)
+	at com.senla.main.ServerThread.run(ServerThread.java:27)
+2018-02-11 16:07:07 TRACE Main:18 - Started, waiting for connection
+2018-02-11 16:07:13 TRACE OrderManager:93 - Open connection
+2018-02-11 16:07:24 TRACE Main:18 - Started, waiting for connection
+2018-02-11 16:07:38 TRACE OrderManager:93 - Open connection
+2018-02-11 16:10:26 TRACE Main:18 - Started, waiting for connection
+2018-02-11 16:10:30 TRACE OrderManager:93 - Open connection
+2018-02-11 16:10:59 TRACE Main:18 - Started, waiting for connection
+2018-02-11 16:11:04 TRACE OrderManager:93 - Open connection
+2018-02-11 16:12:17 TRACE Main:18 - Started, waiting for connection
+2018-02-11 16:12:22 TRACE OrderManager:93 - Open connection
+2018-02-11 16:18:51 TRACE Main:18 - Started, waiting for connection
+2018-02-11 16:18:57 TRACE OrderManager:93 - Open connection
+2018-02-11 16:18:57 ERROR Executor:29 - Can't close result
+java.sql.SQLException: Conversion not supported for type com.senla.enums.Status
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:965)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:898)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:887)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:861)
+	at com.mysql.jdbc.ResultSetImpl.getObject(ResultSetImpl.java:4648)
+	at com.mysql.jdbc.JDBC4ResultSet.getObject(JDBC4ResultSet.java:531)
+	at com.mysql.jdbc.JDBC42ResultSet.getObject(JDBC42ResultSet.java:91)
+	at com.mysql.jdbc.ResultSetImpl.getObject(ResultSetImpl.java:4655)
+	at com.senla.executor.handler.OrderHandler.handle(OrderHandler.java:40)
+	at com.senla.executor.handler.OrderHandler.handle(OrderHandler.java:15)
+	at com.senla.executor.Executor.execQuery(Executor.java:27)
+	at com.senla.controller.manager.OrderManager.sortOrders(OrderManager.java:96)
+	at com.senla.view.facade.OnlineBookStore.sortOrdersBy(OnlineBookStore.java:75)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at com.senla.util.MethodInvoker.getResponse(MethodInvoker.java:22)
+	at com.senla.main.ServerThread.run(ServerThread.java:27)
+2018-02-11 16:19:54 TRACE Main:18 - Started, waiting for connection
+2018-02-11 16:20:07 TRACE OrderManager:93 - Open connection
+2018-02-11 16:20:22 TRACE BookManager:57 - Open connection
+2018-02-11 16:20:22 ERROR Executor:32 - Can't close statement
+com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: No operations allowed after connection closed.
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.Util.getInstance(Util.java:408)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:919)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:898)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:887)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:861)
+	at com.mysql.jdbc.ConnectionImpl.throwConnectionClosedException(ConnectionImpl.java:1184)
+	at com.mysql.jdbc.ConnectionImpl.checkClosed(ConnectionImpl.java:1179)
+	at com.mysql.jdbc.ConnectionImpl.createStatement(ConnectionImpl.java:2371)
+	at com.mysql.jdbc.ConnectionImpl.createStatement(ConnectionImpl.java:2355)
+	at com.senla.executor.Executor.execQuery(Executor.java:24)
+	at com.senla.controller.manager.BookManager.sortBooks(BookManager.java:60)
+	at com.senla.view.facade.OnlineBookStore.sortBooksBy(OnlineBookStore.java:42)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at com.senla.util.MethodInvoker.getResponse(MethodInvoker.java:22)
+	at com.senla.main.ServerThread.run(ServerThread.java:27)
+2018-02-11 16:21:21 TRACE Main:18 - Started, waiting for connection
+2018-02-11 16:21:28 TRACE OrderManager:93 - Open connection
+2018-02-11 16:24:53 TRACE Main:18 - Started, waiting for connection
+2018-02-11 16:25:00 TRACE BookManager:57 - Open connection
+2018-02-11 16:30:42 TRACE Main:18 - Started, waiting for connection
+2018-02-11 16:31:12 TRACE BookManager:57 - Open connection
+2018-02-11 16:32:04 TRACE Main:18 - Started, waiting for connection
+2018-02-11 16:32:16 TRACE OrderManager:93 - Open connection
+2018-02-11 16:32:22 TRACE BookManager:57 - Open connection
+2018-02-11 16:32:22 ERROR Executor:32 - Can't close statement
+com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: No operations allowed after connection closed.
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.Util.getInstance(Util.java:408)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:919)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:898)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:887)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:861)
+	at com.mysql.jdbc.ConnectionImpl.throwConnectionClosedException(ConnectionImpl.java:1184)
+	at com.mysql.jdbc.ConnectionImpl.checkClosed(ConnectionImpl.java:1179)
+	at com.mysql.jdbc.ConnectionImpl.createStatement(ConnectionImpl.java:2371)
+	at com.mysql.jdbc.ConnectionImpl.createStatement(ConnectionImpl.java:2355)
+	at com.senla.executor.Executor.execQuery(Executor.java:24)
+	at com.senla.controller.manager.BookManager.sortBooks(BookManager.java:60)
+	at com.senla.view.facade.OnlineBookStore.sortBooksBy(OnlineBookStore.java:42)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at com.senla.util.MethodInvoker.getResponse(MethodInvoker.java:22)
+	at com.senla.main.ServerThread.run(ServerThread.java:27)
+2018-02-11 16:32:29 TRACE Main:18 - Started, waiting for connection
+2018-02-11 16:32:36 TRACE BookManager:57 - Open connection
+2018-02-11 16:32:41 TRACE BookManager:57 - Open connection
+2018-02-11 16:32:41 ERROR Executor:32 - Can't close statement
+com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: No operations allowed after connection closed.
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.Util.getInstance(Util.java:408)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:919)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:898)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:887)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:861)
+	at com.mysql.jdbc.ConnectionImpl.throwConnectionClosedException(ConnectionImpl.java:1184)
+	at com.mysql.jdbc.ConnectionImpl.checkClosed(ConnectionImpl.java:1179)
+	at com.mysql.jdbc.ConnectionImpl.createStatement(ConnectionImpl.java:2371)
+	at com.mysql.jdbc.ConnectionImpl.createStatement(ConnectionImpl.java:2355)
+	at com.senla.executor.Executor.execQuery(Executor.java:24)
+	at com.senla.controller.manager.BookManager.sortBooks(BookManager.java:60)
+	at com.senla.view.facade.OnlineBookStore.sortBooksBy(OnlineBookStore.java:44)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at com.senla.util.MethodInvoker.getResponse(MethodInvoker.java:22)
+	at com.senla.main.ServerThread.run(ServerThread.java:27)
+2018-02-11 16:34:10 TRACE Main:18 - Started, waiting for connection
+2018-02-11 16:34:19 TRACE BookManager:57 - Open connection
+2018-02-11 16:35:00 TRACE Main:18 - Started, waiting for connection
+2018-02-11 16:35:00 ERROR Main:25 - Failed socket connection
+java.net.SocketException: Connection reset by peer: socket write error
+	at java.base/java.net.SocketOutputStream.socketWrite0(Native Method)
+	at java.base/java.net.SocketOutputStream.socketWrite(SocketOutputStream.java:111)
+	at java.base/java.net.SocketOutputStream.write(SocketOutputStream.java:155)
+	at java.base/java.io.ObjectOutputStream$BlockDataOutputStream.drain(ObjectOutputStream.java:1883)
+	at java.base/java.io.ObjectOutputStream$BlockDataOutputStream.setBlockDataMode(ObjectOutputStream.java:1792)
+	at java.base/java.io.ObjectOutputStream.<init>(ObjectOutputStream.java:248)
+	at com.senla.main.ServerThread.<init>(ServerThread.java:18)
+	at com.senla.main.Main.main(Main.java:21)
+2018-02-11 16:35:06 TRACE Main:18 - Started, waiting for connection
+2018-02-11 16:35:08 TRACE Main:18 - Started, waiting for connection
+2018-02-11 16:35:13 TRACE BookManager:57 - Open connection
+2018-02-11 16:36:33 ERROR Main:25 - Failed socket connection
+java.net.BindException: Address already in use: NET_Bind
+	at java.base/java.net.DualStackPlainSocketImpl.bind0(Native Method)
+	at java.base/java.net.DualStackPlainSocketImpl.socketBind(DualStackPlainSocketImpl.java:106)
+	at java.base/java.net.AbstractPlainSocketImpl.bind(AbstractPlainSocketImpl.java:437)
+	at java.base/java.net.PlainSocketImpl.bind(PlainSocketImpl.java:174)
+	at java.base/java.net.ServerSocket.bind(ServerSocket.java:381)
+	at java.base/java.net.ServerSocket.<init>(ServerSocket.java:243)
+	at java.base/java.net.ServerSocket.<init>(ServerSocket.java:135)
+	at com.senla.main.Main.main(Main.java:17)
+2018-02-11 16:36:37 TRACE Main:18 - Started, waiting for connection
+2018-02-11 16:36:57 TRACE Main:18 - Started, waiting for connection
+2018-02-11 16:37:06 TRACE BookManager:57 - Open connection
+2018-02-11 16:39:02 TRACE Main:18 - Started, waiting for connection
+2018-02-11 16:39:09 TRACE BookManager:57 - Open connection
+2018-02-11 16:39:13 TRACE BookManager:57 - Open connection
+2018-02-11 16:39:13 ERROR Executor:32 - Can't close statement
+com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: No operations allowed after connection closed.
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.Util.getInstance(Util.java:408)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:919)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:898)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:887)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:861)
+	at com.mysql.jdbc.ConnectionImpl.throwConnectionClosedException(ConnectionImpl.java:1184)
+	at com.mysql.jdbc.ConnectionImpl.checkClosed(ConnectionImpl.java:1179)
+	at com.mysql.jdbc.ConnectionImpl.createStatement(ConnectionImpl.java:2371)
+	at com.mysql.jdbc.ConnectionImpl.createStatement(ConnectionImpl.java:2355)
+	at com.senla.executor.Executor.execQuery(Executor.java:24)
+	at com.senla.controller.manager.BookManager.sortBooks(BookManager.java:60)
+	at com.senla.view.facade.OnlineBookStore.sortBooksBy(OnlineBookStore.java:44)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at com.senla.util.MethodInvoker.getResponse(MethodInvoker.java:22)
+	at com.senla.main.ServerThread.run(ServerThread.java:27)
+2018-02-11 16:39:20 TRACE Main:18 - Started, waiting for connection
+2018-02-11 16:39:26 TRACE BookManager:57 - Open connection
+2018-02-11 16:39:29 TRACE BookManager:57 - Open connection
+2018-02-11 16:39:29 ERROR Executor:32 - Can't close statement
+com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: No operations allowed after connection closed.
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.Util.getInstance(Util.java:408)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:919)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:898)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:887)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:861)
+	at com.mysql.jdbc.ConnectionImpl.throwConnectionClosedException(ConnectionImpl.java:1184)
+	at com.mysql.jdbc.ConnectionImpl.checkClosed(ConnectionImpl.java:1179)
+	at com.mysql.jdbc.ConnectionImpl.createStatement(ConnectionImpl.java:2371)
+	at com.mysql.jdbc.ConnectionImpl.createStatement(ConnectionImpl.java:2355)
+	at com.senla.executor.Executor.execQuery(Executor.java:24)
+	at com.senla.controller.manager.BookManager.sortBooks(BookManager.java:60)
+	at com.senla.view.facade.OnlineBookStore.sortBooksBy(OnlineBookStore.java:42)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at com.senla.util.MethodInvoker.getResponse(MethodInvoker.java:22)
+	at com.senla.main.ServerThread.run(ServerThread.java:27)
+2018-02-11 16:39:49 TRACE OrderManager:93 - Open connection
+2018-02-11 16:39:49 ERROR Executor:32 - Can't close statement
+com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: No operations allowed after connection closed.
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.Util.getInstance(Util.java:408)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:919)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:898)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:887)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:861)
+	at com.mysql.jdbc.ConnectionImpl.throwConnectionClosedException(ConnectionImpl.java:1184)
+	at com.mysql.jdbc.ConnectionImpl.checkClosed(ConnectionImpl.java:1179)
+	at com.mysql.jdbc.ConnectionImpl.createStatement(ConnectionImpl.java:2371)
+	at com.mysql.jdbc.ConnectionImpl.createStatement(ConnectionImpl.java:2355)
+	at com.senla.executor.Executor.execQuery(Executor.java:24)
+	at com.senla.controller.manager.OrderManager.sortOrders(OrderManager.java:96)
+	at com.senla.view.facade.OnlineBookStore.sortOrdersBy(OnlineBookStore.java:75)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at com.senla.util.MethodInvoker.getResponse(MethodInvoker.java:22)
+	at com.senla.main.ServerThread.run(ServerThread.java:27)
+2018-02-11 16:40:04 TRACE Main:18 - Started, waiting for connection
+2018-02-11 16:40:09 TRACE BookManager:57 - Open connection
+2018-02-11 16:40:11 TRACE BookManager:57 - Open connection
+2018-02-11 16:40:11 ERROR Executor:32 - Can't close statement
+com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: No operations allowed after connection closed.
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.Util.getInstance(Util.java:408)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:919)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:898)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:887)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:861)
+	at com.mysql.jdbc.ConnectionImpl.throwConnectionClosedException(ConnectionImpl.java:1184)
+	at com.mysql.jdbc.ConnectionImpl.checkClosed(ConnectionImpl.java:1179)
+	at com.mysql.jdbc.ConnectionImpl.createStatement(ConnectionImpl.java:2371)
+	at com.mysql.jdbc.ConnectionImpl.createStatement(ConnectionImpl.java:2355)
+	at com.senla.executor.Executor.execQuery(Executor.java:24)
+	at com.senla.controller.manager.BookManager.sortBooks(BookManager.java:60)
+	at com.senla.view.facade.OnlineBookStore.sortBooksBy(OnlineBookStore.java:44)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at com.senla.util.MethodInvoker.getResponse(MethodInvoker.java:22)
+	at com.senla.main.ServerThread.run(ServerThread.java:27)
+2018-02-11 16:45:22 TRACE Main:18 - Started, waiting for connection
+2018-02-11 16:45:29 TRACE BookManager:57 - Open connection
+2018-02-11 16:45:31 TRACE BookManager:57 - Open connection
+2018-02-11 16:45:34 TRACE BookManager:57 - Open connection
+2018-02-11 16:45:37 TRACE BookManager:57 - Open connection
+2018-02-11 16:45:46 TRACE OrderManager:93 - Open connection
+2018-02-11 16:45:46 ERROR Executor:32 - Can't close statement
+com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: No operations allowed after connection closed.
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.Util.getInstance(Util.java:408)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:919)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:898)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:887)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:861)
+	at com.mysql.jdbc.ConnectionImpl.throwConnectionClosedException(ConnectionImpl.java:1184)
+	at com.mysql.jdbc.ConnectionImpl.checkClosed(ConnectionImpl.java:1179)
+	at com.mysql.jdbc.ConnectionImpl.createStatement(ConnectionImpl.java:2371)
+	at com.mysql.jdbc.ConnectionImpl.createStatement(ConnectionImpl.java:2355)
+	at com.senla.executor.Executor.execQuery(Executor.java:24)
+	at com.senla.controller.manager.OrderManager.sortOrders(OrderManager.java:96)
+	at com.senla.view.facade.OnlineBookStore.sortOrdersBy(OnlineBookStore.java:75)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at com.senla.util.MethodInvoker.getResponse(MethodInvoker.java:22)
+	at com.senla.main.ServerThread.run(ServerThread.java:27)
+2018-02-11 16:49:02 TRACE Main:18 - Started, waiting for connection
+2018-02-11 16:49:08 TRACE BookManager:57 - Open connection
+2018-02-11 16:49:09 TRACE BookManager:57 - Open connection
+2018-02-11 16:49:09 ERROR Executor:32 - Can't close statement
+com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: No operations allowed after connection closed.
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.Util.getInstance(Util.java:408)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:919)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:898)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:887)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:861)
+	at com.mysql.jdbc.ConnectionImpl.throwConnectionClosedException(ConnectionImpl.java:1184)
+	at com.mysql.jdbc.ConnectionImpl.checkClosed(ConnectionImpl.java:1179)
+	at com.mysql.jdbc.ConnectionImpl.createStatement(ConnectionImpl.java:2371)
+	at com.mysql.jdbc.ConnectionImpl.createStatement(ConnectionImpl.java:2355)
+	at com.senla.executor.Executor.execQuery(Executor.java:24)
+	at com.senla.controller.manager.BookManager.sortBooks(BookManager.java:60)
+	at com.senla.view.facade.OnlineBookStore.sortBooksBy(OnlineBookStore.java:44)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at com.senla.util.MethodInvoker.getResponse(MethodInvoker.java:22)
+	at com.senla.main.ServerThread.run(ServerThread.java:27)
+2018-02-11 16:50:47 TRACE Main:18 - Started, waiting for connection
+2018-02-11 16:50:55 TRACE BookManager:56 - Open connection
+2018-02-11 16:50:57 TRACE BookManager:56 - Open connection
+2018-02-11 16:50:59 TRACE BookManager:56 - Open connection
+2018-02-11 16:51:01 TRACE BookManager:56 - Open connection
+2018-02-11 16:51:33 ERROR OrderManager:78 - Can't close
+com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') AS count FROM book_order WHERE status = CANCELED' at line 1
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.Util.getInstance(Util.java:408)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:944)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3973)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3909)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2527)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2680)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2480)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2438)
+	at com.mysql.jdbc.StatementImpl.executeQuery(StatementImpl.java:1381)
+	at com.senla.controller.manager.OrderManager.getAmountExecutedOrders(OrderManager.java:71)
+	at com.senla.view.facade.OnlineBookStore.getAmountExecutedOrders(OnlineBookStore.java:181)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at com.senla.util.MethodInvoker.getResponse(MethodInvoker.java:19)
+	at com.senla.main.ServerThread.run(ServerThread.java:27)
+2018-02-11 16:51:40 TRACE OrderManager:92 - Open connection
+2018-02-11 16:55:52 TRACE Main:18 - Started, waiting for connection
+2018-02-11 16:55:59 TRACE OrderManager:92 - Open connection
+2018-02-11 16:59:46 TRACE Main:18 - Started, waiting for connection
+2018-02-11 16:59:49 TRACE OrderManager:92 - Open connection
+2018-02-11 19:56:22 TRACE Main:18 - Started, waiting for connection
+2018-02-11 19:56:26 TRACE Main:18 - Started, waiting for connection
+2018-02-11 19:56:36 TRACE BookManager:56 - Open connection
+2018-02-11 19:56:46 TRACE Main:18 - Started, waiting for connection
+2018-02-11 19:56:52 TRACE BookManager:56 - Open connection
+2018-02-11 19:56:53 TRACE BookManager:56 - Open connection
+2018-02-11 19:56:54 TRACE BookManager:56 - Open connection
+2018-02-11 19:57:01 TRACE BookManager:56 - Open connection
+2018-02-11 19:57:04 TRACE BookManager:56 - Open connection
+2018-02-11 19:57:52 TRACE BookManager:56 - Open connection
+2018-02-11 19:58:17 TRACE OrderManager:92 - Open connection
+2018-02-11 19:58:28 TRACE OrderManager:92 - Open connection
+2018-02-11 19:58:29 TRACE OrderManager:92 - Open connection
+2018-02-11 19:58:30 TRACE OrderManager:92 - Open connection
+2018-02-11 20:00:13 TRACE OrderManager:92 - Open connection
+2018-02-11 20:00:13 ERROR Executor:32 - Can't close statement
+com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'CANCELED' in 'where clause'
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.Util.getInstance(Util.java:408)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:944)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3973)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3909)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2527)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2680)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2480)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2438)
+	at com.mysql.jdbc.StatementImpl.executeInternal(StatementImpl.java:845)
+	at com.mysql.jdbc.StatementImpl.execute(StatementImpl.java:745)
+	at com.senla.executor.Executor.execQuery(Executor.java:25)
+	at com.senla.controller.manager.OrderManager.sortOrders(OrderManager.java:95)
+	at com.senla.view.facade.OnlineBookStore.sortExecutedOrdersBy(OnlineBookStore.java:88)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at com.senla.util.MethodInvoker.getResponse(MethodInvoker.java:22)
+	at com.senla.main.ServerThread.run(ServerThread.java:27)
+2018-02-11 20:00:24 TRACE OrderManager:92 - Open connection
+2018-02-11 20:00:24 ERROR Executor:32 - Can't close statement
+com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'CANCELED' in 'where clause'
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.Util.getInstance(Util.java:408)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:944)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3973)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3909)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2527)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2680)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2480)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2438)
+	at com.mysql.jdbc.StatementImpl.executeInternal(StatementImpl.java:845)
+	at com.mysql.jdbc.StatementImpl.execute(StatementImpl.java:745)
+	at com.senla.executor.Executor.execQuery(Executor.java:25)
+	at com.senla.controller.manager.OrderManager.sortOrders(OrderManager.java:95)
+	at com.senla.view.facade.OnlineBookStore.sortExecutedOrdersBy(OnlineBookStore.java:90)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at com.senla.util.MethodInvoker.getResponse(MethodInvoker.java:22)
+	at com.senla.main.ServerThread.run(ServerThread.java:27)
+2018-02-11 20:02:32 TRACE OrderManager:92 - Open connection
+2018-02-11 20:02:56 TRACE OrderManager:92 - Open connection
+2018-02-11 20:06:33 TRACE Main:18 - Started, waiting for connection
+2018-02-11 20:06:44 TRACE OrderManager:92 - Open connection
+2018-02-11 20:06:56 TRACE OrderManager:92 - Open connection
+2018-02-11 20:07:27 TRACE OrderManager:92 - Open connection
+2018-02-11 20:07:27 ERROR Executor:32 - Can't close statement
+com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'EXECUTED' in 'where clause'
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.Util.getInstance(Util.java:408)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:944)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3973)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3909)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2527)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2680)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2480)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2438)
+	at com.mysql.jdbc.StatementImpl.executeInternal(StatementImpl.java:845)
+	at com.mysql.jdbc.StatementImpl.execute(StatementImpl.java:745)
+	at com.senla.executor.Executor.execQuery(Executor.java:25)
+	at com.senla.controller.manager.OrderManager.sortOrders(OrderManager.java:95)
+	at com.senla.view.facade.OnlineBookStore.sortExecutedOrdersBy(OnlineBookStore.java:90)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at com.senla.util.MethodInvoker.getResponse(MethodInvoker.java:22)
+	at com.senla.main.ServerThread.run(ServerThread.java:27)
+2018-02-11 20:10:09 TRACE Main:18 - Started, waiting for connection
+2018-02-11 20:10:14 TRACE OrderManager:92 - Open connection
+2018-02-11 20:10:21 TRACE OrderManager:92 - Open connection
+2018-02-11 20:13:57 TRACE Main:18 - Started, waiting for connection
+2018-02-11 20:14:04 TRACE OrderManager:92 - Open connection
+2018-02-11 20:14:36 TRACE OrderManager:92 - Open connection
+2018-02-11 20:14:42 TRACE OrderManager:92 - Open connection
+2018-02-11 20:14:46 TRACE OrderManager:92 - Open connection
+2018-02-11 20:15:24 TRACE OrderManager:92 - Open connection
+2018-02-11 20:15:58 TRACE OrderManager:92 - Open connection
+2018-02-11 20:16:26 TRACE OrderManager:92 - Open connection
+2018-02-11 20:17:08 TRACE OrderManager:92 - Open connection
+2018-02-11 20:17:36 TRACE OrderManager:92 - Open connection
+2018-02-11 20:18:50 TRACE OrderManager:92 - Open connection
+2018-02-11 20:19:15 TRACE OrderManager:92 - Open connection
+2018-02-11 20:22:39 TRACE Main:18 - Started, waiting for connection
+2018-02-11 20:22:59 TRACE OrderManager:92 - Open connection
+2018-02-11 20:23:31 TRACE Main:18 - Started, waiting for connection
+2018-02-11 20:23:43 TRACE OrderManager:92 - Open connection
+2018-02-11 20:29:52 TRACE Main:18 - Started, waiting for connection
+2018-02-11 20:29:57 TRACE OrderManager:92 - Open connection
+2018-02-11 20:30:00 TRACE OrderManager:92 - Open connection
+2018-02-11 20:31:20 TRACE BookManager:56 - Open connection
+2018-02-11 20:35:26 TRACE Main:18 - Started, waiting for connection
+2018-02-11 20:35:41 TRACE BookManager:56 - Open connection
+2018-02-11 20:35:41 ERROR Executor:29 - Can't close result
+java.sql.SQLException: Column 'readerId' not found.
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:965)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:898)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:887)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:861)
+	at com.mysql.jdbc.ResultSetImpl.findColumn(ResultSetImpl.java:1080)
+	at com.mysql.jdbc.ResultSetImpl.getInt(ResultSetImpl.java:2570)
+	at com.senla.executor.handler.BookHandler.handle(BookHandler.java:42)
+	at com.senla.executor.handler.BookHandler.handle(BookHandler.java:13)
+	at com.senla.executor.Executor.execQuery(Executor.java:27)
+	at com.senla.controller.manager.BookManager.sortBooks(BookManager.java:59)
+	at com.senla.view.facade.OnlineBookStore.sortBooksBy(OnlineBookStore.java:42)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at com.senla.util.MethodInvoker.getResponse(MethodInvoker.java:22)
+	at com.senla.main.ServerThread.run(ServerThread.java:27)
+2018-02-11 20:59:08 TRACE Main:18 - Started, waiting for connection
+2018-02-11 20:59:28 TRACE BookManager:56 - Open connection
+2018-02-11 20:59:34 TRACE BookManager:56 - Open connection
+2018-02-11 20:59:43 TRACE BookManager:56 - Open connection
+2018-02-11 20:59:43 ERROR Executor:32 - Can't close statement
+com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ORDER BY title' at line 1
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.Util.getInstance(Util.java:408)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:944)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3973)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3909)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2527)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2680)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2480)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2438)
+	at com.mysql.jdbc.StatementImpl.executeInternal(StatementImpl.java:845)
+	at com.mysql.jdbc.StatementImpl.execute(StatementImpl.java:745)
+	at com.senla.executor.Executor.execQuery(Executor.java:25)
+	at com.senla.controller.manager.BookManager.sortBooks(BookManager.java:59)
+	at com.senla.view.facade.OnlineBookStore.sortRequestsBy(OnlineBookStore.java:102)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at com.senla.util.MethodInvoker.getResponse(MethodInvoker.java:22)
+	at com.senla.main.ServerThread.run(ServerThread.java:28)
+2018-02-11 20:59:43 ERROR ServerThread:32 - ServerThread stream is failed
+java.net.SocketException: Connection reset
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:210)
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:224)
+	at java.base/java.io.ObjectInputStream$PeekInputStream.peek(ObjectInputStream.java:2714)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.peek(ObjectInputStream.java:3041)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.peekByte(ObjectInputStream.java:3051)
+	at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1552)
+	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:422)
+	at com.senla.main.ServerThread.run(ServerThread.java:27)
+2018-02-11 21:00:18 TRACE Main:18 - Started, waiting for connection
+2018-02-11 21:00:24 TRACE BookManager:56 - Open connection
+2018-02-11 21:00:31 ERROR ServerThread:32 - ServerThread stream is failed
+java.net.SocketException: Connection reset
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:210)
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:224)
+	at java.base/java.io.ObjectInputStream$PeekInputStream.peek(ObjectInputStream.java:2714)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.peek(ObjectInputStream.java:3041)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.peekByte(ObjectInputStream.java:3051)
+	at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1552)
+	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:422)
+	at com.senla.main.ServerThread.run(ServerThread.java:27)

@@ -1,7 +1,7 @@
 package com.senla.main;
 
-import static com.senla.util.Printer.print;
 import com.senla.util.MethodInvoker;
+import org.apache.log4j.Logger;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 public class ServerThread extends Thread {
+    private final static Logger LOGGER = Logger.getLogger(ServerThread.class);
     private ObjectInputStream in;
     private ObjectOutputStream out;
 
@@ -28,7 +29,7 @@ public class ServerThread extends Thread {
                     out.flush();
                 }
             } catch (Exception e) {
-                print(e.getMessage());
+                LOGGER.error("ServerThread stream is failed", e);
                 break;
             }
         }

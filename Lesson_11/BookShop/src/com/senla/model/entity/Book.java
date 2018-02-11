@@ -36,6 +36,15 @@ public class Book extends Entity {
         this.requests = requests;
     }
 
+    public Book(int id, String title, int price, boolean isTheBookInStore, Date datePublished, Date dateReceipted) {
+        super(id);
+        this.title = title;
+        this.price = price;
+        this.isTheBookInStore = isTheBookInStore;
+        this.datePublished = datePublished;
+        this.dateReceipted = dateReceipted;
+    }
+
     public Boolean getTheBookInStore() {
         return isTheBookInStore;
     }
@@ -60,11 +69,6 @@ public class Book extends Entity {
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         return title + "," + getId() + "," + price + "," + isTheBookInStore + "," + df.format(datePublished) +
                 "," + df.format(dateReceipted);
-    }
-
-    public String toStringContents() {
-        return "Title" + "," + "Book ID" + "," + "Price" + "," + "Is store" + "," + "Published date" +
-                "," + "Receipted date" + "," + "Amount of Request" + "\n";
     }
 
     public Book clone() throws CloneNotSupportedException {
