@@ -8,6 +8,7 @@ import com.senla.executor.Executor;
 import com.senla.executor.ResultHandler;
 import com.senla.executor.handler.BookHandler;
 import com.senla.model.entity.Book;
+import com.senla.model.entity.Reader;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
@@ -27,6 +28,11 @@ public class BookManager implements IBookManager {
     @Override
     public void add(Book book) {
         bookDao.create(book);
+    }
+
+    @Override
+    public void add(Book book, Reader reader) {
+        bookDao.create(book, reader);
     }
 
     @Override

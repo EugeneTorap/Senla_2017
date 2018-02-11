@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface IOnlineBookStore {
     void addReader(Reader reader);
+    void addRequest(Book book, Reader reader);
     void addBook(Book newBook);
     void addBookOnStore(int id);
     void delBookFromStore(int id);

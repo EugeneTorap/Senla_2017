@@ -6,6 +6,7 @@ import com.senla.executor.Executor;
 import com.senla.executor.ResultHandler;
 import com.senla.model.entity.Book;
 import com.senla.executor.handler.BookHandler;
+import com.senla.model.entity.Reader;
 import com.senla.util.DateConverter;
 import org.apache.log4j.Logger;
 
@@ -22,7 +23,7 @@ public class BookDao implements IBookDao {
     @Override
     public void create(Book book) {
         String sql = "INSERT INTO book(title, isTheBookInStore, requestAmount," +
-                " dateReceipted, datePublished, price) VALUES (?,?,?,?,?,?);";
+                " dateReceipted, datePublished, price) VALUES (?,?,?,?,?);";
 
 
         LOGGER.trace("Open connection");
@@ -34,10 +35,31 @@ public class BookDao implements IBookDao {
 
             statement.setString(1, book.getTitle());
             statement.setBoolean(2, book.getTheBookInStore());
-            statement.setInt(3, book.getRequestAmount());
-            statement.setDate(4, DateConverter.valueOf(book.getDateReceipted()));
-            statement.setDate(5, DateConverter.valueOf(book.getDatePublished()));
-            statement.setInt(6, book.getPrice());
+            statement.setDate(3, DateConverter.valueOf(book.getDateReceipted()));
+            statement.setDate(4, DateConverter.valueOf(book.getDatePublished()));
+            statement.setInt(5, book.getPrice());
+
+            statement.execute();
+        }
+        catch (SQLException e) {
+            LOGGER.error("Can't close", e);
+        }
+    }
+
+    @Override
+    public void create(Book book, Reader reader) {
+        String sql = "INSERT INTO request(bookId, readerId) VALUES (?,?);";
+
+
+        LOGGER.trace("Open connection");
+        try (
+                Connection connection = daoFactory.getConnection();
+                PreparedStatement statement = connection.prepareStatement(sql)
+        ) {
+            LOGGER.trace("Fill prepared statement");
+
+            statement.setInt(1, book.getId());
+            statement.setInt(2, reader.getId());
 
             statement.execute();
         }

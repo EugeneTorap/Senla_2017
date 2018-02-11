@@ -7,6 +7,7 @@ import com.senla.enums.PropertyType;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @CsvEntity(filename = "data/csv/book.csv", id = "book")
 public class Book extends Entity {
@@ -17,21 +18,22 @@ public class Book extends Entity {
     private int price;
     @CsvProperty(propertyType = PropertyType.SimpleProperty, columnNumber = 4)
     private Boolean isTheBookInStore;
-    @CsvProperty(propertyType = PropertyType.SimpleProperty, columnNumber = 7)
-    private int requestAmount;
     @CsvProperty(propertyType = PropertyType.SimpleProperty, columnNumber = 6)
     private Date dateReceipted;
     @CsvProperty(propertyType = PropertyType.SimpleProperty, columnNumber = 5)
     private Date datePublished;
+    @CsvProperty(propertyType = PropertyType.CompositeProperty, columnNumber = 7)
+    private List<Reader> requests;
 
 
-    public Book(int id, String title, int price, boolean isTheBookInStore, Date datePublished, Date dateReceipted) {
+    public Book(int id, String title, int price, boolean isTheBookInStore, Date datePublished, Date dateReceipted, List<Reader> requests) {
         super(id);
         this.title = title;
         this.price = price;
         this.isTheBookInStore = isTheBookInStore;
         this.datePublished = datePublished;
         this.dateReceipted = dateReceipted;
+        this.requests = requests;
     }
 
     public Boolean getTheBookInStore() {
@@ -54,27 +56,15 @@ public class Book extends Entity {
         return dateReceipted;
     }
 
-    public int getRequestAmount() {
-        return requestAmount;
-    }
-
-    public void setRequestAmount(int requestAmount) {
-        this.requestAmount = requestAmount;
-    }
-
     public String toString() {
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         return title + "," + getId() + "," + price + "," + isTheBookInStore + "," + df.format(datePublished) +
-                "," + df.format(dateReceipted) + "," + requestAmount;
+                "," + df.format(dateReceipted);
     }
 
     public String toStringContents() {
         return "Title" + "," + "Book ID" + "," + "Price" + "," + "Is store" + "," + "Published date" +
                 "," + "Receipted date" + "," + "Amount of Request" + "\n";
-    }
-
-    public String toStringForRequest() {
-        return "\t\t" + title + ": " + requestAmount;
     }
 
     public Book clone() throws CloneNotSupportedException {

@@ -24,7 +24,7 @@ public class Order extends Entity {
     private List<Book> books;
 
 
-    public Order(int id, Reader reader,Date dateExecuted, List<Book> books, Status status) {
+    public Order(int id, Reader reader, Date dateExecuted, List<Book> books, Status status) {
         super(id);
         this.reader = reader;
         this.dateExecuted = dateExecuted;
@@ -40,9 +40,9 @@ public class Order extends Entity {
         this.books = books;
         Date current = new Date();
         if (current.after(this.dateExecuted)) {
-            setStatus(Status.EXECUTED);
+            this.status = Status.EXECUTED;
         }else{
-            setStatus(Status.AWAITING);
+            this.status = Status.AWAITING;
         }
         calculatePrice();
     }
@@ -53,10 +53,6 @@ public class Order extends Entity {
 
     public Reader getReader() {
         return reader;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
     }
 
     public int getPrice() {
