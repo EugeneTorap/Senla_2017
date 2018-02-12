@@ -92,4 +92,14 @@ public class OrderManager implements IOrderManager{
         ResultHandler<List<Order>> orders = new OrderHandler();
         return Executor.execQuery(connection, sql, orders);
     }
+
+    @Override
+    public void finishOrder(){
+        String[] sql = {"UPDATE reader SET balance = balance - 10 WHERE readerId IN (1, 2, 4);",
+        "UPDATE book_order SET status = 'EXECUTED' WHERE orderId IN (1, 2, 4);"};
+
+        LOGGER.trace("Open connection");
+        Connection connection = DaoFactory.getInstance().getConnection();
+        Executor.execUpdate(connection, sql);
+    }
 }

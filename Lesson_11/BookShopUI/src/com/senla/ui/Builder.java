@@ -35,6 +35,7 @@ public class Builder {
         items.add(new MenuItem("Add order", new AdditionOrder()));
         items.add(new MenuItem("Clone order", new CloningOrder()));
         items.add(new MenuItem("Cancel order", new CancellationOrder()));
+        items.add(new MenuItem("Finish order", new FinishedOrder()));
         items.add(new MenuItem("Show order info", new OrderInfo()));
         items.add(new MenuItem("Show all price", new AllPrice()));
         items.add(new MenuItem("Show amount of executed order", new ExecutedOrderAmount()));

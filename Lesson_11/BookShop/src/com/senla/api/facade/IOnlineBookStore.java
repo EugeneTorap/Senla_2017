@@ -25,6 +25,7 @@ public interface IOnlineBookStore {
     List<Order> sortExecutedOrdersBy(SortingType type);
     List<Book> sortRequestsBy(SortingType type);
     List<Reader> sortReadersBy(SortingType type);
+    void finishOrder();
     void saveCSV(List<? extends Entity> entities);
     void loadCSV(Class<? extends Entity> clazz);
 }

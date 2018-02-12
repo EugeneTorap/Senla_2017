@@ -13,4 +13,5 @@ public interface IOrderManager {
     int getAmountExecutedOrders();
     Order findById(int id);
     List<Order> sortOrders(String query, String column);
+    void finishOrder();
 }

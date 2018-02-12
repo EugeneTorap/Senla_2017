@@ -1493,3 +1493,8 @@ java.net.SocketException: Connection reset
 	at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1552)
 	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:422)
 	at com.senla.main.ServerThread.run(ServerThread.java:27)
+2018-02-12 19:12:48 TRACE Main:18 - Started, waiting for connection
+2018-02-12 20:08:56 TRACE Main:18 - Started, waiting for connection
+2018-02-12 20:12:54 TRACE Main:18 - Started, waiting for connection
+2018-02-12 20:13:09 TRACE OrderManager:101 - Open connection
+2018-02-12 20:13:45 TRACE OrderManager:101 - Open connection

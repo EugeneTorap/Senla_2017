@@ -181,6 +181,11 @@ public class OnlineBookStore implements IOnlineBookStore{
     }
 
     @Override
+    public void finishOrder(){
+        orderManager.finishOrder();
+    }
+
+    @Override
     public void saveCSV(List<? extends Entity> entities){
         CSVWorker.saveToCSV(entities);
     }
