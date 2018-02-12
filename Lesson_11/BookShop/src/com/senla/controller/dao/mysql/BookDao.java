@@ -16,9 +16,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class BookDao implements IBookDao {
-    private DaoFactory daoFactory = DaoFactory.getInstance();
     private final static Logger LOGGER = Logger.getLogger(BookDao.class);
-
 
     @Override
     public void create(Book book) {
@@ -27,8 +25,8 @@ public class BookDao implements IBookDao {
 
 
         LOGGER.trace("Open connection");
+        Connection connection = DaoFactory.getInstance().getConnection();
         try (
-            Connection connection = daoFactory.getConnection();
             PreparedStatement statement = connection.prepareStatement(sql)
         ) {
             LOGGER.trace("Fill prepared statement");
@@ -42,7 +40,7 @@ public class BookDao implements IBookDao {
             statement.execute();
         }
         catch (SQLException e) {
-            LOGGER.error("Can't close", e);
+            LOGGER.error("Can't close prepared statement", e);
         }
     }
 
@@ -52,9 +50,9 @@ public class BookDao implements IBookDao {
 
 
         LOGGER.trace("Open connection");
+        Connection connection = DaoFactory.getInstance().getConnection();
         try (
-                Connection connection = daoFactory.getConnection();
-                PreparedStatement statement = connection.prepareStatement(sql)
+            PreparedStatement statement = connection.prepareStatement(sql)
         ) {
             LOGGER.trace("Fill prepared statement");
 
@@ -64,7 +62,7 @@ public class BookDao implements IBookDao {
             statement.execute();
         }
         catch (SQLException e) {
-            LOGGER.error("Can't close", e);
+            LOGGER.error("Can't close prepared statement", e);
         }
     }
 
@@ -73,17 +71,13 @@ public class BookDao implements IBookDao {
         String sql = "SELECT * FROM book WHERE bookId = " + id + ";";
 
         LOGGER.trace("Open connection");
-        try (Connection connection = daoFactory.getConnection()) {
-            ResultHandler<List<Book>> books = new BookHandler();
-            Book book = Executor.execQuery(connection, sql, books).get(0);
-            if (book != null){
-                return book;
-            }
-            LOGGER.warn("Book is null");
+        Connection connection = DaoFactory.getInstance().getConnection();
+        ResultHandler<List<Book>> books = new BookHandler();
+        Book book = Executor.execQuery(connection, sql, books).get(0);
+        if (book != null){
+            return book;
         }
-        catch (SQLException e){
-            LOGGER.error("Can't close", e);
-        }
+        LOGGER.warn("Book is null");
         return null;
     }
 
@@ -94,11 +88,7 @@ public class BookDao implements IBookDao {
         sql.append(" WHERE bookId = ").append(id).append(";");
 
         LOGGER.trace("Open connection");
-        try (Connection connection = daoFactory.getConnection()) {
-            Executor.execUpdate(connection, sql.toString());
-        }
-        catch (SQLException e){
-            LOGGER.error("Can't close", e);
-        }
+        Connection connection = DaoFactory.getInstance().getConnection();
+        Executor.execUpdate(connection, sql.toString());
     }
 }

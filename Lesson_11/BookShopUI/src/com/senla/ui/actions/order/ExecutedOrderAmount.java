@@ -13,6 +13,7 @@ import static com.senla.util.Printer.print;
 public class ExecutedOrderAmount implements IAction {
     @Override
     public void execute() {
+
         Map<String, List<Object>> request = new HashMap<>();
         request.put("getAmountExecutedOrders", null);
         print(Client.send(request));

@@ -44,39 +44,37 @@ public class OrderManager implements IOrderManager{
 
     @Override
     public int getAllPrice(){
-        String query = "SELECT SUM(price) AS allPrice FROM book_order";
+        String query = "SELECT SUM(price) AS allPrice FROM book_order;";
 
-        try (
-            Connection connection = DaoFactory.getInstance().getConnection();
-            Statement statement = connection.createStatement();
-            ResultSet result = statement.executeQuery(query)
-        ){
-            if (result.next()) {
-                return result.getInt("allPrice");
+        Connection connection = DaoFactory.getInstance().getConnection();
+        Integer allPrice = Executor.execQuery(connection, query, resultSet -> {
+            if (resultSet.next()) {
+                return resultSet.getInt("allPrice");
             }
+            return null;
+        });
+        if (allPrice != null){
+            return allPrice;
         }
-        catch (SQLException e){
-            LOGGER.error("Can't close", e);
-        }
+        LOGGER.warn("Sum of all price is null");
         return 0;
     }
 
     @Override
     public int getAmountExecutedOrders(){
-        String query = "SELECT COUNT() AS count FROM book_order WHERE status = CANCELED";
+        String query = "SELECT COUNT(*) AS count FROM book_order WHERE status = 'CANCELED';";
 
-        try (
-                Connection connection = DaoFactory.getInstance().getConnection();
-                Statement statement = connection.createStatement();
-                ResultSet result = statement.executeQuery(query)
-        ){
-            if (result.next()) {
-                return result.getInt("count");
+        Connection connection = DaoFactory.getInstance().getConnection();
+        Integer count = Executor.execQuery(connection, query, resultSet -> {
+            if (resultSet.next()) {
+                return resultSet.getInt("count");
             }
+            return null;
+        });
+        if (count != null){
+            return count;
         }
-        catch (SQLException e){
-            LOGGER.error("Can't close", e);
-        }
+        LOGGER.warn("count of executed orders is null");
         return 0;
     }
 
@@ -90,13 +88,8 @@ public class OrderManager implements IOrderManager{
         String sql = query + column + ";";
 
         LOGGER.trace("Open connection");
-        try (Connection connection = DaoFactory.getInstance().getConnection()) {
-            ResultHandler<List<Order>> orders = new OrderHandler();
-            return Executor.execQuery(connection, sql, orders);
-        }
-        catch (SQLException e){
-            LOGGER.error("Can't close", e);
-        }
-        return null;
+        Connection connection = DaoFactory.getInstance().getConnection();
+        ResultHandler<List<Order>> orders = new OrderHandler();
+        return Executor.execQuery(connection, sql, orders);
     }
 }

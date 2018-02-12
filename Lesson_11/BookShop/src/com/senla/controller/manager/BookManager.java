@@ -54,13 +54,8 @@ public class BookManager implements IBookManager {
         String sql = query + column + ";";
 
         LOGGER.trace("Open connection");
-        try (Connection connection = DaoFactory.getInstance().getConnection()) {
-            ResultHandler<List<Book>> books = new BookHandler();
-            return Executor.execQuery(connection, sql, books);
-        }
-        catch (SQLException e){
-            LOGGER.error("Can't close", e);
-        }
-        return null;
+        Connection connection = DaoFactory.getInstance().getConnection();
+        ResultHandler<List<Book>> books = new BookHandler();
+        return Executor.execQuery(connection, sql, books);
     }
 }

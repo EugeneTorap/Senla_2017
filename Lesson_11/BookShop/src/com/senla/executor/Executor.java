@@ -26,7 +26,7 @@ public class Executor {
             try (ResultSet result = statement.getResultSet()){
                 return handler.handle(result);
             } catch (SQLException e){
-                LOGGER.error("Can't close result", e);
+                LOGGER.error("Can't close resultSet", e);
             }
         } catch (SQLException e){
             LOGGER.error("Can't close statement", e);

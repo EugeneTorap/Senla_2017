@@ -15,9 +15,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class OrderDao implements IOrderDao {
-    private DaoFactory daoFactory = DaoFactory.getInstance();
     private final static Logger LOGGER = Logger.getLogger(OrderDao.class);
-
 
     @Override
     public void create(Order order) {
@@ -25,9 +23,9 @@ public class OrderDao implements IOrderDao {
 
 
         LOGGER.trace("Open connection");
+        Connection connection = DaoFactory.getInstance().getConnection();
         try (
-                Connection connection = daoFactory.getConnection();
-                PreparedStatement statement = connection.prepareStatement(sql)
+            PreparedStatement statement = connection.prepareStatement(sql)
         ) {
             LOGGER.trace("Fill prepared statement");
 
@@ -38,40 +36,32 @@ public class OrderDao implements IOrderDao {
             statement.execute();
         }
         catch (SQLException e) {
-            LOGGER.error("Can't close", e);
+            LOGGER.error("Can't close prepared statement", e);
         }
     }
 
     @Override
     public Order findById(int id) {
-        String sql = "SELECT * FROM book WHERE bookId = " + id + ";";
+        String sql = "SELECT * FROM book_order INNER JOIN reader USING(readerId) WHERE orderId = " + id + ";";
 
         LOGGER.trace("Open connection");
-        try (Connection connection = daoFactory.getConnection()) {
-            ResultHandler<List<Order>> orders = new OrderHandler();
-            Order order = Executor.execQuery(connection, sql, orders).get(0);
-            if (order != null){
-                return order;
-            }
-            LOGGER.warn("Order is null");
+        Connection connection = DaoFactory.getInstance().getConnection();
+        ResultHandler<List<Order>> orders = new OrderHandler();
+        Order order = Executor.execQuery(connection, sql, orders).get(0);
+        if (order != null){
+            return order;
         }
-        catch (SQLException e){
-            LOGGER.error("Can't close", e);
-        }
+        LOGGER.warn("Order is null");
         return null;
     }
 
     @Override
     public void update(int id) {
-        String sql = "UPDATE book SET status = CANCELED WHERE bookId = " + id + ";";
+        String sql = "UPDATE book_order SET status = CANCELED WHERE orderId = " + id + ";";
 
         LOGGER.trace("Open connection");
-        try (Connection connection = daoFactory.getConnection()) {
-            Executor.execUpdate(connection, sql);
-        }
-        catch (SQLException e){
-            LOGGER.error("Can't close", e);
-        }
+        Connection connection = DaoFactory.getInstance().getConnection();
+        Executor.execUpdate(connection, sql);
     }
 
     @Override

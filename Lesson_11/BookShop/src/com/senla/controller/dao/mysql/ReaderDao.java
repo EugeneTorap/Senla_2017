@@ -14,7 +14,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class ReaderDao implements IReaderDao {
-    private DaoFactory daoFactory = DaoFactory.getInstance();
     private final static Logger LOGGER = Logger.getLogger(ReaderDao.class);
 
 
@@ -24,37 +23,31 @@ public class ReaderDao implements IReaderDao {
 
 
         LOGGER.trace("Open connection");
+        Connection connection = DaoFactory.getInstance().getConnection();
         try (
-                Connection connection = daoFactory.getConnection();
-                PreparedStatement statement = connection.prepareStatement(sql)
+            PreparedStatement statement = connection.prepareStatement(sql)
         ) {
             LOGGER.trace("Fill prepared statement");
-
             statement.setString(1, reader.getName());
-
             statement.execute();
         }
         catch (SQLException e) {
-            LOGGER.error("Can't close", e);
+            LOGGER.error("Can't close prepared statement", e);
         }
     }
 
     @Override
     public Reader findById(int id) {
-        String sql = "SELECT * FROM reader WHERE bookId = " + id + ";";
+        String sql = "SELECT * FROM reader WHERE readerId = " + id + ";";
 
         LOGGER.trace("Open connection");
-        try (Connection connection = daoFactory.getConnection()) {
-            ResultHandler<List<Reader>> readers = new ReaderHandler();
-            Reader reader = Executor.execQuery(connection, sql, readers).get(0);
-            if (reader != null){
-                return reader;
-            }
-            LOGGER.warn("Order is null");
+        Connection connection = DaoFactory.getInstance().getConnection();
+        ResultHandler<List<Reader>> readers = new ReaderHandler();
+        Reader reader = Executor.execQuery(connection, sql, readers).get(0);
+        if (reader != null){
+            return reader;
         }
-        catch (SQLException e){
-            LOGGER.error("Can't close", e);
-        }
+        LOGGER.warn("Order is null");
         return null;
     }
 }

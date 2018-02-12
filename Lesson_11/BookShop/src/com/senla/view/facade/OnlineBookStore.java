@@ -156,17 +156,17 @@ public class OnlineBookStore implements IOnlineBookStore{
     }
 
     @Override
-    public Book getBook(int id){
+    public Book getBook(Integer id){
         return bookManager.findById(id);
     }
 
     @Override
-    public Order getOrder(int id){
+    public Order getOrder(Integer id){
         return orderManager.findById(id);
     }
 
     @Override
-    public Reader getReader(int id){
+    public Reader getReader(Integer id){
         return readerManager.findById(id);
     }
 

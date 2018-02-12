@@ -21,19 +21,22 @@ import java.util.List;
 
 public class CSVWorker {
     private final static Logger LOGGER = Logger.getLogger(CSVWorker.class);
-
+    private static DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
     public static void saveToCSV(List<? extends Entity> entities) {
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+
         CsvEntity csvEntity = entities.get(0).getClass().getAnnotation(CsvEntity.class);
         String path = csvEntity.filename();
         String separator = csvEntity.valuesSeparator();
+
         while (true) {
             try (BufferedWriter bw = new BufferedWriter(new FileWriter(path, false))) {
 
                 for (Entity entity : entities) {
+
                     StringBuilder str = new StringBuilder();
                     Field[] fields = entity.getClass().getDeclaredFields();
+
                     for (int j = 0; j < fields.length; j++) {
                         for (Field field : fields) {
                             if (field.isAnnotationPresent(CsvProperty.class)) {

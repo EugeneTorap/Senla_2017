@@ -11,7 +11,6 @@ import com.senla.model.entity.Reader;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.List;
 
 public class ReaderManager implements IReaderManager{
@@ -38,13 +37,8 @@ public class ReaderManager implements IReaderManager{
         String sql = query + column + ";";
 
         LOGGER.trace("Open connection");
-        try (Connection connection = DaoFactory.getInstance().getConnection()) {
-            ResultHandler<List<Reader>> readers = new ReaderHandler();
-            return Executor.execQuery(connection, sql, readers);
-        }
-        catch (SQLException e){
-            LOGGER.error("Can't close", e);
-        }
-        return null;
+        Connection connection = DaoFactory.getInstance().getConnection();
+        ResultHandler<List<Reader>> readers = new ReaderHandler();
+        return Executor.execQuery(connection, sql, readers);
     }
 }

@@ -1209,3 +1209,287 @@ java.net.SocketException: Connection reset
 	at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1552)
 	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:422)
 	at com.senla.main.ServerThread.run(ServerThread.java:27)
+2018-02-12 15:36:52 TRACE Main:18 - Started, waiting for connection
+2018-02-12 15:37:04 ERROR OrderManager:78 - Can't close
+com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') AS count FROM book_order WHERE status = CANCELED' at line 1
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.Util.getInstance(Util.java:408)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:944)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3973)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3909)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2527)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2680)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2480)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2438)
+	at com.mysql.jdbc.StatementImpl.executeQuery(StatementImpl.java:1381)
+	at com.senla.controller.manager.OrderManager.getAmountExecutedOrders(OrderManager.java:71)
+	at com.senla.view.facade.OnlineBookStore.getAmountExecutedOrders(OnlineBookStore.java:180)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at com.senla.util.MethodInvoker.getResponse(MethodInvoker.java:19)
+	at com.senla.main.ServerThread.run(ServerThread.java:28)
+2018-02-12 15:37:16 ERROR ServerThread:32 - ServerThread stream is failed
+java.net.SocketException: Connection reset
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:210)
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:224)
+	at java.base/java.io.ObjectInputStream$PeekInputStream.peek(ObjectInputStream.java:2714)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.peek(ObjectInputStream.java:3041)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.peekByte(ObjectInputStream.java:3051)
+	at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1552)
+	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:422)
+	at com.senla.main.ServerThread.run(ServerThread.java:27)
+2018-02-12 15:54:09 TRACE Main:18 - Started, waiting for connection
+2018-02-12 15:54:24 ERROR OrderManager:77 - Can't close
+com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') AS count FROM book_order WHERE status = CANCELED' at line 1
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.Util.getInstance(Util.java:408)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:944)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3973)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3909)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2527)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2680)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2480)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2438)
+	at com.mysql.jdbc.StatementImpl.executeQuery(StatementImpl.java:1381)
+	at com.senla.controller.manager.OrderManager.getAmountExecutedOrders(OrderManager.java:70)
+	at com.senla.view.facade.OnlineBookStore.getAmountExecutedOrders(OnlineBookStore.java:180)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at com.senla.util.MethodInvoker.getResponse(MethodInvoker.java:19)
+	at com.senla.main.ServerThread.run(ServerThread.java:28)
+2018-02-12 15:54:27 ERROR ServerThread:32 - ServerThread stream is failed
+java.net.SocketException: Connection reset
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:210)
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:224)
+	at java.base/java.io.ObjectInputStream$PeekInputStream.peek(ObjectInputStream.java:2714)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.peek(ObjectInputStream.java:3041)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.peekByte(ObjectInputStream.java:3051)
+	at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1552)
+	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:422)
+	at com.senla.main.ServerThread.run(ServerThread.java:27)
+2018-02-12 15:56:42 TRACE Main:18 - Started, waiting for connection
+2018-02-12 15:56:50 ERROR OrderManager:77 - Can't close
+com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') AS count FROM book_order WHERE status = 'CANCELED'' at line 1
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.Util.getInstance(Util.java:408)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:944)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3973)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3909)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2527)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2680)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2480)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2438)
+	at com.mysql.jdbc.StatementImpl.executeQuery(StatementImpl.java:1381)
+	at com.senla.controller.manager.OrderManager.getAmountExecutedOrders(OrderManager.java:70)
+	at com.senla.view.facade.OnlineBookStore.getAmountExecutedOrders(OnlineBookStore.java:180)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at com.senla.util.MethodInvoker.getResponse(MethodInvoker.java:19)
+	at com.senla.main.ServerThread.run(ServerThread.java:28)
+2018-02-12 15:56:53 ERROR ServerThread:32 - ServerThread stream is failed
+java.net.SocketException: Connection reset
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:210)
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:224)
+	at java.base/java.io.ObjectInputStream$PeekInputStream.peek(ObjectInputStream.java:2714)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.peek(ObjectInputStream.java:3041)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.peekByte(ObjectInputStream.java:3051)
+	at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1552)
+	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:422)
+	at com.senla.main.ServerThread.run(ServerThread.java:27)
+2018-02-12 15:58:50 TRACE Main:18 - Started, waiting for connection
+2018-02-12 15:58:57 ERROR ServerThread:32 - ServerThread stream is failed
+java.net.SocketException: Connection reset
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:210)
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:224)
+	at java.base/java.io.ObjectInputStream$PeekInputStream.peek(ObjectInputStream.java:2714)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.peek(ObjectInputStream.java:3041)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.peekByte(ObjectInputStream.java:3051)
+	at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1552)
+	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:422)
+	at com.senla.main.ServerThread.run(ServerThread.java:27)
+2018-02-12 16:01:08 TRACE Main:18 - Started, waiting for connection
+2018-02-12 16:01:19 ERROR ServerThread:32 - ServerThread stream is failed
+java.net.SocketException: Connection reset
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:210)
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:224)
+	at java.base/java.io.ObjectInputStream$PeekInputStream.peek(ObjectInputStream.java:2714)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.peek(ObjectInputStream.java:3041)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.peekByte(ObjectInputStream.java:3051)
+	at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1552)
+	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:422)
+	at com.senla.main.ServerThread.run(ServerThread.java:27)
+2018-02-12 16:43:39 TRACE Main:18 - Started, waiting for connection
+2018-02-12 16:43:50 TRACE BookManager:56 - Open connection
+2018-02-12 16:43:59 TRACE BookManager:56 - Open connection
+2018-02-12 16:44:35 TRACE BookManager:56 - Open connection
+2018-02-12 16:44:42 TRACE BookManager:56 - Open connection
+2018-02-12 16:45:19 ERROR ServerThread:32 - ServerThread stream is failed
+java.lang.NoSuchMethodException: com.senla.view.facade.OnlineBookStore.getOrder(java.lang.Integer)
+	at java.base/java.lang.Class.getMethod(Class.java:2065)
+	at com.senla.util.MethodInvoker.getResponse(MethodInvoker.java:21)
+	at com.senla.main.ServerThread.run(ServerThread.java:28)
+2018-02-12 16:45:51 ERROR ServerThread:32 - ServerThread stream is failed
+java.lang.NoSuchMethodException: com.senla.view.facade.OnlineBookStore.getBook(java.lang.Integer)
+	at java.base/java.lang.Class.getMethod(Class.java:2065)
+	at com.senla.util.MethodInvoker.getResponse(MethodInvoker.java:21)
+	at com.senla.main.ServerThread.run(ServerThread.java:28)
+2018-02-12 16:46:10 TRACE Main:18 - Started, waiting for connection
+2018-02-12 16:54:12 ERROR ServerThread:32 - ServerThread stream is failed
+java.lang.NoSuchMethodException: com.senla.view.facade.OnlineBookStore.getBook(java.lang.Integer)
+	at java.base/java.lang.Class.getMethod(Class.java:2065)
+	at com.senla.util.MethodInvoker.getResponse(MethodInvoker.java:21)
+	at com.senla.main.ServerThread.run(ServerThread.java:28)
+2018-02-12 16:54:44 TRACE Main:18 - Started, waiting for connection
+2018-02-12 16:54:52 TRACE BookDao:73 - Open connection
+2018-02-12 16:55:08 TRACE OrderDao:47 - Open connection
+2018-02-12 16:55:08 ERROR Executor:29 - Can't close resultSet
+java.sql.SQLException: Column 'orderId' not found.
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:965)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:898)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:887)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:861)
+	at com.mysql.jdbc.ResultSetImpl.findColumn(ResultSetImpl.java:1080)
+	at com.mysql.jdbc.ResultSetImpl.getInt(ResultSetImpl.java:2570)
+	at com.senla.executor.handler.OrderHandler.handle(OrderHandler.java:20)
+	at com.senla.executor.handler.OrderHandler.handle(OrderHandler.java:14)
+	at com.senla.executor.Executor.execQuery(Executor.java:27)
+	at com.senla.controller.dao.mysql.OrderDao.findById(OrderDao.java:50)
+	at com.senla.controller.manager.OrderManager.findById(OrderManager.java:83)
+	at com.senla.view.facade.OnlineBookStore.getOrder(OnlineBookStore.java:165)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at com.senla.util.MethodInvoker.getResponse(MethodInvoker.java:22)
+	at com.senla.main.ServerThread.run(ServerThread.java:28)
+2018-02-12 16:55:08 ERROR ServerThread:32 - ServerThread stream is failed
+java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at com.senla.util.MethodInvoker.getResponse(MethodInvoker.java:22)
+	at com.senla.main.ServerThread.run(ServerThread.java:28)
+Caused by: java.lang.NullPointerException
+	at com.senla.controller.dao.mysql.OrderDao.findById(OrderDao.java:50)
+	at com.senla.controller.manager.OrderManager.findById(OrderManager.java:83)
+	at com.senla.view.facade.OnlineBookStore.getOrder(OnlineBookStore.java:165)
+	... 6 more
+2018-02-12 16:57:23 TRACE Main:18 - Started, waiting for connection
+2018-02-12 16:57:29 TRACE BookDao:73 - Open connection
+2018-02-12 16:57:37 TRACE OrderDao:47 - Open connection
+2018-02-12 16:57:37 ERROR Executor:32 - Can't close statement
+com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'orderId' in 'where clause'
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.Util.getInstance(Util.java:408)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:944)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3973)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3909)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2527)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2680)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2480)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2438)
+	at com.mysql.jdbc.StatementImpl.executeInternal(StatementImpl.java:845)
+	at com.mysql.jdbc.StatementImpl.execute(StatementImpl.java:745)
+	at com.senla.executor.Executor.execQuery(Executor.java:25)
+	at com.senla.controller.dao.mysql.OrderDao.findById(OrderDao.java:50)
+	at com.senla.controller.manager.OrderManager.findById(OrderManager.java:83)
+	at com.senla.view.facade.OnlineBookStore.getOrder(OnlineBookStore.java:165)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at com.senla.util.MethodInvoker.getResponse(MethodInvoker.java:22)
+	at com.senla.main.ServerThread.run(ServerThread.java:28)
+2018-02-12 16:57:37 ERROR ServerThread:32 - ServerThread stream is failed
+java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at com.senla.util.MethodInvoker.getResponse(MethodInvoker.java:22)
+	at com.senla.main.ServerThread.run(ServerThread.java:28)
+Caused by: java.lang.NullPointerException
+	at com.senla.controller.dao.mysql.OrderDao.findById(OrderDao.java:50)
+	at com.senla.controller.manager.OrderManager.findById(OrderManager.java:83)
+	at com.senla.view.facade.OnlineBookStore.getOrder(OnlineBookStore.java:165)
+	... 6 more
+2018-02-12 16:59:26 TRACE Main:18 - Started, waiting for connection
+2018-02-12 16:59:30 TRACE OrderDao:47 - Open connection
+2018-02-12 16:59:31 ERROR Executor:29 - Can't close resultSet
+java.sql.SQLException: Column 'name' not found.
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:965)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:898)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:887)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:861)
+	at com.mysql.jdbc.ResultSetImpl.findColumn(ResultSetImpl.java:1080)
+	at com.mysql.jdbc.ResultSetImpl.getString(ResultSetImpl.java:5177)
+	at com.senla.executor.handler.OrderHandler.handle(OrderHandler.java:22)
+	at com.senla.executor.handler.OrderHandler.handle(OrderHandler.java:14)
+	at com.senla.executor.Executor.execQuery(Executor.java:27)
+	at com.senla.controller.dao.mysql.OrderDao.findById(OrderDao.java:50)
+	at com.senla.controller.manager.OrderManager.findById(OrderManager.java:83)
+	at com.senla.view.facade.OnlineBookStore.getOrder(OnlineBookStore.java:165)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at com.senla.util.MethodInvoker.getResponse(MethodInvoker.java:22)
+	at com.senla.main.ServerThread.run(ServerThread.java:28)
+2018-02-12 16:59:31 ERROR ServerThread:32 - ServerThread stream is failed
+java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at com.senla.util.MethodInvoker.getResponse(MethodInvoker.java:22)
+	at com.senla.main.ServerThread.run(ServerThread.java:28)
+Caused by: java.lang.NullPointerException
+	at com.senla.controller.dao.mysql.OrderDao.findById(OrderDao.java:50)
+	at com.senla.controller.manager.OrderManager.findById(OrderManager.java:83)
+	at com.senla.view.facade.OnlineBookStore.getOrder(OnlineBookStore.java:165)
+	... 6 more
+2018-02-12 17:03:24 TRACE Main:18 - Started, waiting for connection
+2018-02-12 17:03:35 TRACE OrderDao:47 - Open connection
+2018-02-12 17:03:51 TRACE OrderManager:90 - Open connection
+2018-02-12 17:04:00 TRACE OrderManager:90 - Open connection
+2018-02-12 17:04:04 TRACE OrderManager:90 - Open connection
+2018-02-12 17:04:11 TRACE BookManager:56 - Open connection
+2018-02-12 17:04:19 ERROR ServerThread:32 - ServerThread stream is failed
+java.net.SocketException: Connection reset
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:210)
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:224)
+	at java.base/java.io.ObjectInputStream$PeekInputStream.peek(ObjectInputStream.java:2714)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.peek(ObjectInputStream.java:3041)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.peekByte(ObjectInputStream.java:3051)
+	at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1552)
+	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:422)
+	at com.senla.main.ServerThread.run(ServerThread.java:27)

@@ -1,7 +1,6 @@
 package com.senla.ui.actions.book;
 
 import com.senla.main.Client;
-import com.senla.model.entity.Book;
 import com.senla.ui.actions.IAction;
 import com.senla.util.Input;
 
@@ -20,6 +19,6 @@ public class BookInfo implements IAction {
 
         Map<String, List<Object>> request = new HashMap<>();
         request.put("getBook", parameters);
-        print((Book) Client.send(request));
+        print(Client.send(request));
     }
 }

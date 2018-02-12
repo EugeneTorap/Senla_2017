@@ -1,9 +1,6 @@
 package com.senla.ui.actions.order;
 
 import com.senla.main.Client;
-import com.senla.model.entity.Book;
-import com.senla.model.entity.Order;
-import com.senla.util.ArrayWorker;
 import com.senla.ui.actions.IAction;
 import com.senla.util.Input;
 
@@ -23,6 +20,6 @@ public class OrderInfo implements IAction {
 
         Map<String, List<Object>> request = new HashMap<>();
         request.put("getOrder", parameters);
-        print((Book) Client.send(request));
+        print(Client.send(request));
     }
 }

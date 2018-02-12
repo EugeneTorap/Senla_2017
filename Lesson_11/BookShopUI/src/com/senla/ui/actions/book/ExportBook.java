@@ -1,7 +1,6 @@
 package com.senla.ui.actions.book;
 
 import com.senla.main.Client;
-import com.senla.model.entity.Book;
 import com.senla.ui.actions.IAction;
 
 import java.util.ArrayList;

@@ -16,9 +16,9 @@ public interface IOnlineBookStore {
     void cancelOrder(int id);
     int getAllPrice();
     int getAmountExecutedOrders();
-    Book getBook(int id);
-    Order getOrder(int id);
-    Reader getReader(int id);
+    Book getBook(Integer id);
+    Order getOrder(Integer id);
+    Reader getReader(Integer id);
     List<Book> sortBooksBy(SortingType type);
     List<Book> sortUnsoldBooksBy(SortingType type);
     List<Order> sortOrdersBy(SortingType type);
