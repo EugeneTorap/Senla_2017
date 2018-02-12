@@ -4,7 +4,7 @@ SELECT
 FROM
     pc
 WHERE
-    price >= 500;
+    price < 500;
     
 
 #Task 2
@@ -40,7 +40,7 @@ SELECT
 FROM
     pc
 WHERE
-    price >= 600 AND cd IN ('18x' , '24x');
+    price < 600 AND cd IN ('18x' , '24x');
         
         
 #Task 6
@@ -98,7 +98,7 @@ WHERE
 
 
 #Task 9
-SELECT 
+SELECT DISTINCT
     maker
 FROM
     pc
@@ -163,11 +163,14 @@ HAVING COUNT(*) > 1;
 
 #Task 16
 SELECT 
-    model, speed, ram
+    pc1.model, pc2.model, pc1.speed, pc1.ram
 FROM
-    pc
-GROUP BY speed , ram
-HAVING COUNT(*) = 2;
+    pc pc1,
+    pc pc2
+WHERE
+    pc1.model > pc2.model
+        AND pc1.speed = pc2.speed
+        AND pc1.ram = pc2.ram;
 
 
 #Task 17
@@ -291,7 +294,7 @@ LIMIT 3;
 
 
 #Task 25
-SELECT 
+SELECT DISTINCT
     maker
 FROM
     printer

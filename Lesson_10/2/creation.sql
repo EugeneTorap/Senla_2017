@@ -4,7 +4,7 @@ USE book_shop;
 
 CREATE TABLE book (
     bookId INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    title VARCHAR(50) NOT NULL,
+    title VARCHAR(50) NOT NULL UNIQUE,
     isTheBookInStore BOOLEAN NOT NULL,
     dateReceipted DATE NOT NULL,
     datePublished DATE NOT NULL,
@@ -14,7 +14,7 @@ CREATE TABLE book (
 CREATE TABLE reader (
     readerId INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
-    balance INT NOT NULL
+    balance INT NOT NULL DEFAULT 0
 );
     
 CREATE TABLE request (

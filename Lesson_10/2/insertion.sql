@@ -16,13 +16,13 @@ VALUES
 	('The Catcher in the Rye', true, '2011-07-21', '1968-02-02', 15);
 
 
-INSERT INTO reader(name) 
+INSERT INTO reader(name, balance) 
 VALUES 
-	('Eugene'),
-	('Alla'),
-	('Vlad'),
-	('Maksim'),
-	('Olya');
+	('Eugene', 1000),
+	('Alla', 750),
+	('Vlad', 230),
+	('Maksim', default),
+	('Olya', 1340);
 
 
 INSERT INTO request(bookId, readerId) 
