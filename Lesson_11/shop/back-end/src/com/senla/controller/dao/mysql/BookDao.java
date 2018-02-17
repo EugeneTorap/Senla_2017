@@ -3,6 +3,7 @@ package com.senla.controller.dao.mysql;
 import com.senla.api.dao.IBookDao;
 import com.senla.api.model.IBook;
 import com.senla.connector.DBConnector;
+import com.senla.controller.dao.DaoException;
 import com.senla.executor.Executor;
 import com.senla.executor.ResultHandler;
 import com.senla.executor.handler.BookHandler;
@@ -72,7 +73,7 @@ public class BookDao extends ADao<IBook> implements IBookDao {
     }
 
     @Override
-    public List<IBook> getAllUnsold(String sort) {
+    public List<IBook> getAllUnsold(String sort) throws DaoException {
         Connection connection = connector.getConnection();
         if (sort == null){
             sort = "id";

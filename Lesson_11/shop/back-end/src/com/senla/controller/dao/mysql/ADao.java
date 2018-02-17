@@ -2,6 +2,7 @@ package com.senla.controller.dao.mysql;
 
 import com.senla.api.dao.GenericDao;
 import com.senla.connector.DBConnector;
+import com.senla.controller.dao.DaoException;
 import com.senla.executor.Executor;
 import com.senla.executor.ResultHandler;
 import org.apache.log4j.Logger;
@@ -31,7 +32,7 @@ public abstract class ADao<T> implements GenericDao<T> {
     }
 
     @Override
-    public void create(T t) {
+    public void create(T t) throws DaoException {
         Connection connection = connector.getConnection();
         try(PreparedStatement statement = connection.prepareStatement(getCreate())) {
             fillCreateQuery(statement, t);
@@ -39,11 +40,12 @@ public abstract class ADao<T> implements GenericDao<T> {
         }
         catch (SQLException e){
             LOGGER.error("Can't close prepared statement", e);
+            throw new DaoException("Can't close prepared statement in method create(T t)", e);
         }
     }
 
     @Override
-    public void update(int id) {
+    public void update(int id) throws DaoException {
         Connection connection = connector.getConnection();
         try(PreparedStatement statement = connection.prepareStatement(getUpdate())) {
             fillUpdateQuery(statement, id);
@@ -51,25 +53,26 @@ public abstract class ADao<T> implements GenericDao<T> {
         }
         catch (SQLException e){
             LOGGER.error("Can't close prepared statement", e);
+            throw new DaoException("Can't close prepared statement in method update(int id)", e);
         }
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(int id) throws DaoException {
         Connection connection = connector.getConnection();
         String sql = getDelete() + id;
         Executor.execUpdate(connection, sql);
     }
 
     @Override
-    public T getById(int id) {
+    public T getById(int id) throws DaoException {
         Connection connection = connector.getConnection();
         String sql = getGetById() + id;
         return Executor.execQuery(connection, sql, handle()).get(0);
     }
 
     @Override
-    public List<T> getAll(String sort) {
+    public List<T> getAll(String sort) throws DaoException {
         Connection connection = connector.getConnection();
         if (sort == null){
             sort = "id";

@@ -12,7 +12,7 @@ public class ImportOrder implements IAction {
     public void execute() {
 
         Map<String, List<Object>> request = new HashMap<>();
-        request.put("loadCSV", null);
+        request.put("importOrders", null);
         Client.send(request);
     }
 }

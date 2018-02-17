@@ -4,7 +4,7 @@ import com.senla.enums.Status;
 
 import java.util.Date;
 
-public interface IOrder {
+public interface IOrder extends IEntity {
     Status getStatus();
 
     IReader getReader();

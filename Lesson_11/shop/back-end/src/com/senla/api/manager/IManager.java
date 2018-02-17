@@ -11,7 +11,7 @@ public interface IManager<T> {
 
     List<T> getAll(String sort);
 
-    String importToCsv();
+    void importFromCsv();
 
-    String exportFromCsv();
+    void exportToCsv();
 }

@@ -14,7 +14,7 @@ public class ReaderDao extends ADao<IReader> implements IReaderDao {
     private static final String CREATE = "INSERT INTO reader(name, balance) VALUES (?,?);";
     private static final String UPDATE = "UPDATE reader SET status = CANCELED WHERE id = ? ;";
     private static final String DELETE = "DELETE FROM reader WHERE id = ";
-    private static final String GET_BY_ID = "SELECT * FROM reader WHERE readerId = ";
+    private static final String GET_BY_ID = "SELECT * FROM reader WHERE id = ";
     private static final String GET_ALL = "SELECT * FROM reader ORDER BY ";
 
     protected ReaderDao(DBConnector connector) {

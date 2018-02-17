@@ -122,8 +122,8 @@ java.sql.SQLException: No suitable driver found for "jdbc:mysql://localhost:3306
 	at com.senla.connector.DBConnector.<init>(DaoFactory.java:36)
 	at com.senla.connector.DBConnector.getInstance(DaoFactory.java:17)
 	at com.senla.controller.manager.BookManager.<init>(BookManager.java:19)
-	at com.senla.view.facade.OnlineBookStore.<init>(OnlineBookStore.java:20)
-	at com.senla.view.facade.OnlineBookStore.getInstance(OnlineBookStore.java:29)
+	at Facade.<init>(OnlineBookStore.java:20)
+	at Facade.getInstance(OnlineBookStore.java:29)
 	at com.senla.main.Main.main(Main.java:14)
 2018-02-11 01:23:59 ERROR DependencyInjection:36 - 
 2018-02-11 01:33:59 ERROR DaoFactory:41 - Database Connection Creation Failed: 
@@ -133,8 +133,8 @@ java.sql.SQLException: No suitable driver found for "jdbc:mysql://localhost:3306
 	at com.senla.connector.DBConnector.<init>(DaoFactory.java:38)
 	at com.senla.connector.DBConnector.getInstance(DaoFactory.java:18)
 	at com.senla.controller.manager.BookManager.<init>(BookManager.java:19)
-	at com.senla.view.facade.OnlineBookStore.<init>(OnlineBookStore.java:20)
-	at com.senla.view.facade.OnlineBookStore.getInstance(OnlineBookStore.java:29)
+	at Facade.<init>(OnlineBookStore.java:20)
+	at Facade.getInstance(OnlineBookStore.java:29)
 	at com.senla.main.Main.main(Main.java:14)
 2018-02-11 01:33:59 ERROR DependencyInjection:36 - 
 2018-02-11 01:37:16 ERROR DaoFactory:41 - Database Connection Creation Failed: 
@@ -144,8 +144,8 @@ java.sql.SQLException: No suitable driver found for "jdbc:mysql://localhost:3306
 	at com.senla.connector.DBConnector.<init>(DaoFactory.java:38)
 	at com.senla.connector.DBConnector.getInstance(DaoFactory.java:18)
 	at com.senla.controller.manager.BookManager.<init>(BookManager.java:19)
-	at com.senla.view.facade.OnlineBookStore.<init>(OnlineBookStore.java:20)
-	at com.senla.view.facade.OnlineBookStore.getInstance(OnlineBookStore.java:29)
+	at Facade.<init>(OnlineBookStore.java:20)
+	at Facade.getInstance(OnlineBookStore.java:29)
 	at com.senla.main.Main.main(Main.java:14)
 2018-02-11 01:37:16 ERROR DependencyInjection:36 - 
 2018-02-11 01:40:02 ERROR DaoFactory:42 - Database Connection Creation Failed: 
@@ -155,8 +155,8 @@ java.sql.SQLException: No suitable driver found for "jdbc:mysql://localhost:3306
 	at com.senla.connector.DBConnector.<init>(DaoFactory.java:39)
 	at com.senla.connector.DBConnector.getInstance(DaoFactory.java:19)
 	at com.senla.controller.manager.BookManager.<init>(BookManager.java:19)
-	at com.senla.view.facade.OnlineBookStore.<init>(OnlineBookStore.java:20)
-	at com.senla.view.facade.OnlineBookStore.getInstance(OnlineBookStore.java:29)
+	at Facade.<init>(OnlineBookStore.java:20)
+	at Facade.getInstance(OnlineBookStore.java:29)
 	at com.senla.main.Main.main(Main.java:14)
 2018-02-11 01:40:02 ERROR DependencyInjection:36 - 
 2018-02-11 02:08:42 ERROR Executor:32 - Can't close statement
@@ -177,7 +177,7 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: No operati
 	at com.mysql.jdbc.ConnectionImpl.createStatement(ConnectionImpl.java:2355)
 	at com.senla.executor.Executor.execQuery(Executor.java:24)
 	at com.senla.controller.manager.BookManager.sortBooks(BookManager.java:54)
-	at com.senla.view.facade.OnlineBookStore.sortBooksBy(OnlineBookStore.java:42)
+	at Facade.sortBooksBy(OnlineBookStore.java:42)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -232,7 +232,7 @@ java.sql.SQLException: Column 'orderId' not found.
 	at com.senla.executor.handler.BookHandler.handle(BookHandler.java:13)
 	at com.senla.executor.Executor.execQuery(Executor.java:27)
 	at com.senla.controller.manager.BookManager.sortBooks(BookManager.java:60)
-	at com.senla.view.facade.OnlineBookStore.sortBooksBy(OnlineBookStore.java:42)
+	at Facade.sortBooksBy(OnlineBookStore.java:42)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -256,7 +256,7 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: No operati
 	at com.mysql.jdbc.ConnectionImpl.createStatement(ConnectionImpl.java:2371)
 	at com.mysql.jdbc.ConnectionImpl.createStatement(ConnectionImpl.java:2355)
 	at com.senla.controller.manager.OrderManager.getAmountExecutedOrders(OrderManager.java:71)
-	at com.senla.view.facade.OnlineBookStore.getAmountExecutedOrders(OnlineBookStore.java:181)
+	at Facade.getAmountExecutedOrders(OnlineBookStore.java:181)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -280,7 +280,7 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: No operati
 	at com.mysql.jdbc.ConnectionImpl.createStatement(ConnectionImpl.java:2371)
 	at com.mysql.jdbc.ConnectionImpl.createStatement(ConnectionImpl.java:2355)
 	at com.senla.controller.manager.OrderManager.getAllPrice(OrderManager.java:52)
-	at com.senla.view.facade.OnlineBookStore.getAllPrice(OnlineBookStore.java:176)
+	at Facade.getAllPrice(OnlineBookStore.java:176)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -305,7 +305,7 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: No operati
 	at com.mysql.jdbc.ConnectionImpl.createStatement(ConnectionImpl.java:2355)
 	at com.senla.executor.Executor.execQuery(Executor.java:24)
 	at com.senla.controller.manager.OrderManager.sortOrders(OrderManager.java:96)
-	at com.senla.view.facade.OnlineBookStore.sortOrdersBy(OnlineBookStore.java:73)
+	at Facade.sortOrdersBy(OnlineBookStore.java:73)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -333,7 +333,7 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: No operati
 	at com.mysql.jdbc.ConnectionImpl.createStatement(ConnectionImpl.java:2355)
 	at com.senla.executor.Executor.execQuery(Executor.java:24)
 	at com.senla.controller.manager.BookManager.sortBooks(BookManager.java:60)
-	at com.senla.view.facade.OnlineBookStore.sortBooksBy(OnlineBookStore.java:42)
+	at Facade.sortBooksBy(OnlineBookStore.java:42)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -359,7 +359,7 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: No operati
 	at com.mysql.jdbc.ConnectionImpl.createStatement(ConnectionImpl.java:2355)
 	at com.senla.executor.Executor.execQuery(Executor.java:24)
 	at com.senla.controller.manager.BookManager.sortBooks(BookManager.java:60)
-	at com.senla.view.facade.OnlineBookStore.sortBooksBy(OnlineBookStore.java:42)
+	at Facade.sortBooksBy(OnlineBookStore.java:42)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -387,7 +387,7 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: No operati
 	at com.mysql.jdbc.ConnectionImpl.createStatement(ConnectionImpl.java:2355)
 	at com.senla.executor.Executor.execQuery(Executor.java:24)
 	at com.senla.controller.manager.BookManager.sortBooks(BookManager.java:60)
-	at com.senla.view.facade.OnlineBookStore.sortBooksBy(OnlineBookStore.java:42)
+	at Facade.sortBooksBy(OnlineBookStore.java:42)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -412,7 +412,7 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: No operati
 	at com.mysql.jdbc.ConnectionImpl.createStatement(ConnectionImpl.java:2355)
 	at com.senla.executor.Executor.execQuery(Executor.java:24)
 	at com.senla.controller.manager.BookManager.sortBooks(BookManager.java:60)
-	at com.senla.view.facade.OnlineBookStore.sortBooksBy(OnlineBookStore.java:44)
+	at Facade.sortBooksBy(OnlineBookStore.java:44)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -437,7 +437,7 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: No operati
 	at com.mysql.jdbc.ConnectionImpl.createStatement(ConnectionImpl.java:2355)
 	at com.senla.executor.Executor.execQuery(Executor.java:24)
 	at com.senla.controller.manager.BookManager.sortBooks(BookManager.java:60)
-	at com.senla.view.facade.OnlineBookStore.sortBooksBy(OnlineBookStore.java:44)
+	at Facade.sortBooksBy(OnlineBookStore.java:44)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -458,7 +458,7 @@ java.sql.SQLException: Column 'orderId' not found.
 	at com.senla.executor.handler.BookHandler.handle(BookHandler.java:13)
 	at com.senla.executor.Executor.execQuery(Executor.java:27)
 	at com.senla.controller.manager.BookManager.sortBooks(BookManager.java:60)
-	at com.senla.view.facade.OnlineBookStore.sortBooksBy(OnlineBookStore.java:42)
+	at Facade.sortBooksBy(OnlineBookStore.java:42)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -485,7 +485,7 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: No operati
 	at com.mysql.jdbc.ConnectionImpl.createStatement(ConnectionImpl.java:2355)
 	at com.senla.executor.Executor.execQuery(Executor.java:24)
 	at com.senla.controller.manager.BookManager.sortBooks(BookManager.java:60)
-	at com.senla.view.facade.OnlineBookStore.sortBooksBy(OnlineBookStore.java:42)
+	at Facade.sortBooksBy(OnlineBookStore.java:42)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -528,7 +528,7 @@ java.sql.SQLException: Column 'orderId' not found.
 	at com.senla.executor.handler.BookHandler.handle(BookHandler.java:13)
 	at com.senla.executor.Executor.execQuery(Executor.java:27)
 	at com.senla.controller.manager.BookManager.sortBooks(BookManager.java:60)
-	at com.senla.view.facade.OnlineBookStore.sortBooksBy(OnlineBookStore.java:42)
+	at Facade.sortBooksBy(OnlineBookStore.java:42)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -549,7 +549,7 @@ java.sql.SQLException: Column 'readerId' not found.
 	at com.senla.executor.handler.BookHandler.handle(BookHandler.java:13)
 	at com.senla.executor.Executor.execQuery(Executor.java:27)
 	at com.senla.controller.manager.BookManager.sortBooks(BookManager.java:60)
-	at com.senla.view.facade.OnlineBookStore.sortBooksBy(OnlineBookStore.java:42)
+	at Facade.sortBooksBy(OnlineBookStore.java:42)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -572,7 +572,7 @@ java.sql.SQLException: Column 'name' not found.
 	at com.senla.executor.handler.OrderHandler.handle(OrderHandler.java:14)
 	at com.senla.executor.Executor.execQuery(Executor.java:27)
 	at com.senla.controller.manager.OrderManager.sortOrders(OrderManager.java:96)
-	at com.senla.view.facade.OnlineBookStore.sortOrdersBy(OnlineBookStore.java:75)
+	at Facade.sortOrdersBy(OnlineBookStore.java:75)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -593,7 +593,7 @@ java.sql.SQLException: Column 'name' not found.
 	at com.senla.executor.handler.OrderHandler.handle(OrderHandler.java:14)
 	at com.senla.executor.Executor.execQuery(Executor.java:27)
 	at com.senla.controller.manager.OrderManager.sortOrders(OrderManager.java:96)
-	at com.senla.view.facade.OnlineBookStore.sortOrdersBy(OnlineBookStore.java:73)
+	at Facade.sortOrdersBy(OnlineBookStore.java:73)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -614,7 +614,7 @@ java.sql.SQLException: Column 'name' not found.
 	at com.senla.executor.handler.OrderHandler.handle(OrderHandler.java:15)
 	at com.senla.executor.Executor.execQuery(Executor.java:27)
 	at com.senla.controller.manager.OrderManager.sortOrders(OrderManager.java:96)
-	at com.senla.view.facade.OnlineBookStore.sortOrdersBy(OnlineBookStore.java:73)
+	at Facade.sortOrdersBy(OnlineBookStore.java:73)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -649,7 +649,7 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'reade
 	at com.mysql.jdbc.StatementImpl.execute(StatementImpl.java:745)
 	at com.senla.executor.Executor.execQuery(Executor.java:25)
 	at com.senla.controller.manager.OrderManager.sortOrders(OrderManager.java:96)
-	at com.senla.view.facade.OnlineBookStore.sortOrdersBy(OnlineBookStore.java:73)
+	at Facade.sortOrdersBy(OnlineBookStore.java:73)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -682,7 +682,7 @@ java.sql.SQLException: Conversion not supported for type com.senla.enums.Status
 	at com.senla.executor.handler.OrderHandler.handle(OrderHandler.java:15)
 	at com.senla.executor.Executor.execQuery(Executor.java:27)
 	at com.senla.controller.manager.OrderManager.sortOrders(OrderManager.java:96)
-	at com.senla.view.facade.OnlineBookStore.sortOrdersBy(OnlineBookStore.java:75)
+	at Facade.sortOrdersBy(OnlineBookStore.java:75)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -710,7 +710,7 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: No operati
 	at com.mysql.jdbc.ConnectionImpl.createStatement(ConnectionImpl.java:2355)
 	at com.senla.executor.Executor.execQuery(Executor.java:24)
 	at com.senla.controller.manager.BookManager.sortBooks(BookManager.java:60)
-	at com.senla.view.facade.OnlineBookStore.sortBooksBy(OnlineBookStore.java:42)
+	at Facade.sortBooksBy(OnlineBookStore.java:42)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -744,7 +744,7 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: No operati
 	at com.mysql.jdbc.ConnectionImpl.createStatement(ConnectionImpl.java:2355)
 	at com.senla.executor.Executor.execQuery(Executor.java:24)
 	at com.senla.controller.manager.BookManager.sortBooks(BookManager.java:60)
-	at com.senla.view.facade.OnlineBookStore.sortBooksBy(OnlineBookStore.java:42)
+	at Facade.sortBooksBy(OnlineBookStore.java:42)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -772,7 +772,7 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: No operati
 	at com.mysql.jdbc.ConnectionImpl.createStatement(ConnectionImpl.java:2355)
 	at com.senla.executor.Executor.execQuery(Executor.java:24)
 	at com.senla.controller.manager.BookManager.sortBooks(BookManager.java:60)
-	at com.senla.view.facade.OnlineBookStore.sortBooksBy(OnlineBookStore.java:44)
+	at Facade.sortBooksBy(OnlineBookStore.java:44)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -829,7 +829,7 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: No operati
 	at com.mysql.jdbc.ConnectionImpl.createStatement(ConnectionImpl.java:2355)
 	at com.senla.executor.Executor.execQuery(Executor.java:24)
 	at com.senla.controller.manager.BookManager.sortBooks(BookManager.java:60)
-	at com.senla.view.facade.OnlineBookStore.sortBooksBy(OnlineBookStore.java:44)
+	at Facade.sortBooksBy(OnlineBookStore.java:44)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -857,7 +857,7 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: No operati
 	at com.mysql.jdbc.ConnectionImpl.createStatement(ConnectionImpl.java:2355)
 	at com.senla.executor.Executor.execQuery(Executor.java:24)
 	at com.senla.controller.manager.BookManager.sortBooks(BookManager.java:60)
-	at com.senla.view.facade.OnlineBookStore.sortBooksBy(OnlineBookStore.java:42)
+	at Facade.sortBooksBy(OnlineBookStore.java:42)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -883,7 +883,7 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: No operati
 	at com.mysql.jdbc.ConnectionImpl.createStatement(ConnectionImpl.java:2355)
 	at com.senla.executor.Executor.execQuery(Executor.java:24)
 	at com.senla.controller.manager.OrderManager.sortOrders(OrderManager.java:96)
-	at com.senla.view.facade.OnlineBookStore.sortOrdersBy(OnlineBookStore.java:75)
+	at Facade.sortOrdersBy(OnlineBookStore.java:75)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -911,7 +911,7 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: No operati
 	at com.mysql.jdbc.ConnectionImpl.createStatement(ConnectionImpl.java:2355)
 	at com.senla.executor.Executor.execQuery(Executor.java:24)
 	at com.senla.controller.manager.BookManager.sortBooks(BookManager.java:60)
-	at com.senla.view.facade.OnlineBookStore.sortBooksBy(OnlineBookStore.java:44)
+	at Facade.sortBooksBy(OnlineBookStore.java:44)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -942,7 +942,7 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: No operati
 	at com.mysql.jdbc.ConnectionImpl.createStatement(ConnectionImpl.java:2355)
 	at com.senla.executor.Executor.execQuery(Executor.java:24)
 	at com.senla.controller.manager.OrderManager.sortOrders(OrderManager.java:96)
-	at com.senla.view.facade.OnlineBookStore.sortOrdersBy(OnlineBookStore.java:75)
+	at Facade.sortOrdersBy(OnlineBookStore.java:75)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -970,7 +970,7 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: No operati
 	at com.mysql.jdbc.ConnectionImpl.createStatement(ConnectionImpl.java:2355)
 	at com.senla.executor.Executor.execQuery(Executor.java:24)
 	at com.senla.controller.manager.BookManager.sortBooks(BookManager.java:60)
-	at com.senla.view.facade.OnlineBookStore.sortBooksBy(OnlineBookStore.java:44)
+	at Facade.sortBooksBy(OnlineBookStore.java:44)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -999,7 +999,7 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in 
 	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2438)
 	at com.mysql.jdbc.StatementImpl.executeQuery(StatementImpl.java:1381)
 	at com.senla.controller.manager.OrderManager.getAmountExecutedOrders(OrderManager.java:71)
-	at com.senla.view.facade.OnlineBookStore.getAmountExecutedOrders(OnlineBookStore.java:181)
+	at Facade.getAmountExecutedOrders(OnlineBookStore.java:181)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -1045,7 +1045,7 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'CANCE
 	at com.mysql.jdbc.StatementImpl.execute(StatementImpl.java:745)
 	at com.senla.executor.Executor.execQuery(Executor.java:25)
 	at com.senla.controller.manager.OrderManager.sortOrders(OrderManager.java:95)
-	at com.senla.view.facade.OnlineBookStore.sortExecutedOrdersBy(OnlineBookStore.java:88)
+	at Facade.sortExecutedOrdersBy(OnlineBookStore.java:88)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -1072,7 +1072,7 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'CANCE
 	at com.mysql.jdbc.StatementImpl.execute(StatementImpl.java:745)
 	at com.senla.executor.Executor.execQuery(Executor.java:25)
 	at com.senla.controller.manager.OrderManager.sortOrders(OrderManager.java:95)
-	at com.senla.view.facade.OnlineBookStore.sortExecutedOrdersBy(OnlineBookStore.java:90)
+	at Facade.sortExecutedOrdersBy(OnlineBookStore.java:90)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -1104,7 +1104,7 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'EXECU
 	at com.mysql.jdbc.StatementImpl.execute(StatementImpl.java:745)
 	at com.senla.executor.Executor.execQuery(Executor.java:25)
 	at com.senla.controller.manager.OrderManager.sortOrders(OrderManager.java:95)
-	at com.senla.view.facade.OnlineBookStore.sortExecutedOrdersBy(OnlineBookStore.java:90)
+	at Facade.sortExecutedOrdersBy(OnlineBookStore.java:90)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -1148,7 +1148,7 @@ java.sql.SQLException: Column 'readerId' not found.
 	at com.senla.executor.handler.BookHandler.handle(BookHandler.java:13)
 	at com.senla.executor.Executor.execQuery(Executor.java:27)
 	at com.senla.controller.manager.BookManager.sortBooks(BookManager.java:59)
-	at com.senla.view.facade.OnlineBookStore.sortBooksBy(OnlineBookStore.java:42)
+	at Facade.sortBooksBy(OnlineBookStore.java:42)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -1178,7 +1178,7 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in 
 	at com.mysql.jdbc.StatementImpl.execute(StatementImpl.java:745)
 	at com.senla.executor.Executor.execQuery(Executor.java:25)
 	at com.senla.controller.manager.BookManager.sortBooks(BookManager.java:59)
-	at com.senla.view.facade.OnlineBookStore.sortRequestsBy(OnlineBookStore.java:102)
+	at Facade.sortRequestsBy(OnlineBookStore.java:102)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -1227,7 +1227,7 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in 
 	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2438)
 	at com.mysql.jdbc.StatementImpl.executeQuery(StatementImpl.java:1381)
 	at com.senla.controller.manager.OrderManager.getAmountExecutedOrders(OrderManager.java:71)
-	at com.senla.view.facade.OnlineBookStore.getAmountExecutedOrders(OnlineBookStore.java:180)
+	at Facade.getAmountExecutedOrders(OnlineBookStore.java:180)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -1263,7 +1263,7 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in 
 	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2438)
 	at com.mysql.jdbc.StatementImpl.executeQuery(StatementImpl.java:1381)
 	at com.senla.controller.manager.OrderManager.getAmountExecutedOrders(OrderManager.java:70)
-	at com.senla.view.facade.OnlineBookStore.getAmountExecutedOrders(OnlineBookStore.java:180)
+	at Facade.getAmountExecutedOrders(OnlineBookStore.java:180)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -1299,7 +1299,7 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in 
 	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2438)
 	at com.mysql.jdbc.StatementImpl.executeQuery(StatementImpl.java:1381)
 	at com.senla.controller.manager.OrderManager.getAmountExecutedOrders(OrderManager.java:70)
-	at com.senla.view.facade.OnlineBookStore.getAmountExecutedOrders(OnlineBookStore.java:180)
+	at Facade.getAmountExecutedOrders(OnlineBookStore.java:180)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -1347,18 +1347,18 @@ java.net.SocketException: Connection reset
 2018-02-12 16:44:35 TRACE BookManager:56 - Open connection
 2018-02-12 16:44:42 TRACE BookManager:56 - Open connection
 2018-02-12 16:45:19 ERROR ServerThread:32 - ServerThread stream is failed
-java.lang.NoSuchMethodException: com.senla.view.facade.OnlineBookStore.getOrder(java.lang.Integer)
+java.lang.NoSuchMethodException: Facade.getOrder(java.lang.Integer)
 	at java.base/java.lang.Class.getMethod(Class.java:2065)
 	at com.senla.util.MethodInvoker.getResponse(MethodInvoker.java:21)
 	at com.senla.main.ServerThread.run(ServerThread.java:28)
 2018-02-12 16:45:51 ERROR ServerThread:32 - ServerThread stream is failed
-java.lang.NoSuchMethodException: com.senla.view.facade.OnlineBookStore.getBook(java.lang.Integer)
+java.lang.NoSuchMethodException: Facade.getBook(java.lang.Integer)
 	at java.base/java.lang.Class.getMethod(Class.java:2065)
 	at com.senla.util.MethodInvoker.getResponse(MethodInvoker.java:21)
 	at com.senla.main.ServerThread.run(ServerThread.java:28)
 2018-02-12 16:46:10 TRACE Main:18 - Started, waiting for connection
 2018-02-12 16:54:12 ERROR ServerThread:32 - ServerThread stream is failed
-java.lang.NoSuchMethodException: com.senla.view.facade.OnlineBookStore.getBook(java.lang.Integer)
+java.lang.NoSuchMethodException: Facade.getBook(java.lang.Integer)
 	at java.base/java.lang.Class.getMethod(Class.java:2065)
 	at com.senla.util.MethodInvoker.getResponse(MethodInvoker.java:21)
 	at com.senla.main.ServerThread.run(ServerThread.java:28)
@@ -1378,7 +1378,7 @@ java.sql.SQLException: Column 'orderId' not found.
 	at com.senla.executor.Executor.execQuery(Executor.java:27)
 	at com.senla.controller.dao.mysql.OrderDao.findById(OrderDao.java:50)
 	at com.senla.controller.manager.OrderManager.findById(OrderManager.java:83)
-	at com.senla.view.facade.OnlineBookStore.getOrder(OnlineBookStore.java:165)
+	at Facade.getOrder(OnlineBookStore.java:165)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -1396,7 +1396,7 @@ java.lang.reflect.InvocationTargetException
 Caused by: java.lang.NullPointerException
 	at com.senla.controller.dao.mysql.OrderDao.findById(OrderDao.java:50)
 	at com.senla.controller.manager.OrderManager.findById(OrderManager.java:83)
-	at com.senla.view.facade.OnlineBookStore.getOrder(OnlineBookStore.java:165)
+	at Facade.getOrder(OnlineBookStore.java:165)
 	... 6 more
 2018-02-12 16:57:23 TRACE Main:18 - Started, waiting for connection
 2018-02-12 16:57:29 TRACE BookDao:73 - Open connection
@@ -1421,7 +1421,7 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown column 'order
 	at com.senla.executor.Executor.execQuery(Executor.java:25)
 	at com.senla.controller.dao.mysql.OrderDao.findById(OrderDao.java:50)
 	at com.senla.controller.manager.OrderManager.findById(OrderManager.java:83)
-	at com.senla.view.facade.OnlineBookStore.getOrder(OnlineBookStore.java:165)
+	at Facade.getOrder(OnlineBookStore.java:165)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -1439,7 +1439,7 @@ java.lang.reflect.InvocationTargetException
 Caused by: java.lang.NullPointerException
 	at com.senla.controller.dao.mysql.OrderDao.findById(OrderDao.java:50)
 	at com.senla.controller.manager.OrderManager.findById(OrderManager.java:83)
-	at com.senla.view.facade.OnlineBookStore.getOrder(OnlineBookStore.java:165)
+	at Facade.getOrder(OnlineBookStore.java:165)
 	... 6 more
 2018-02-12 16:59:26 TRACE Main:18 - Started, waiting for connection
 2018-02-12 16:59:30 TRACE OrderDao:47 - Open connection
@@ -1456,7 +1456,7 @@ java.sql.SQLException: Column 'name' not found.
 	at com.senla.executor.Executor.execQuery(Executor.java:27)
 	at com.senla.controller.dao.mysql.OrderDao.findById(OrderDao.java:50)
 	at com.senla.controller.manager.OrderManager.findById(OrderManager.java:83)
-	at com.senla.view.facade.OnlineBookStore.getOrder(OnlineBookStore.java:165)
+	at Facade.getOrder(OnlineBookStore.java:165)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -1474,7 +1474,7 @@ java.lang.reflect.InvocationTargetException
 Caused by: java.lang.NullPointerException
 	at com.senla.controller.dao.mysql.OrderDao.findById(OrderDao.java:50)
 	at com.senla.controller.manager.OrderManager.findById(OrderManager.java:83)
-	at com.senla.view.facade.OnlineBookStore.getOrder(OnlineBookStore.java:165)
+	at Facade.getOrder(OnlineBookStore.java:165)
 	... 6 more
 2018-02-12 17:03:24 TRACE Main:18 - Started, waiting for connection
 2018-02-12 17:03:35 TRACE OrderDao:47 - Open connection
@@ -1513,7 +1513,7 @@ java.lang.reflect.InvocationTargetException
 	at com.senla.main.ServerThread.run(ServerThread.java:28)
 Caused by: java.lang.NullPointerException
 	at com.senla.controller.manager.BookManager.getAll(BookManager.java:37)
-	at com.senla.view.facade.OnlineBookStore.sortBooksBy(OnlineBookStore.java:41)
+	at Facade.sortBooksBy(OnlineBookStore.java:41)
 	... 6 more
 2018-02-16 16:53:22 TRACE Main:18 - Started, waiting for connection
 2018-02-16 16:53:32 ERROR DependencyInjection:55 - com.senla.controller.dao.mysql.BookDao.<init>(java.sql.Connection)
@@ -1529,7 +1529,7 @@ java.lang.reflect.InvocationTargetException
 	at com.senla.main.ServerThread.run(ServerThread.java:28)
 Caused by: java.lang.NullPointerException
 	at com.senla.controller.manager.BookManager.getAll(BookManager.java:37)
-	at com.senla.view.facade.OnlineBookStore.sortBooksBy(OnlineBookStore.java:41)
+	at Facade.sortBooksBy(OnlineBookStore.java:41)
 	... 6 more
 2018-02-16 16:54:54 TRACE Main:18 - Started, waiting for connection
 2018-02-16 16:56:30 TRACE Main:18 - Started, waiting for connection
@@ -1546,7 +1546,7 @@ java.lang.reflect.InvocationTargetException
 	at com.senla.main.ServerThread.run(ServerThread.java:28)
 Caused by: java.lang.NullPointerException
 	at com.senla.controller.manager.BookManager.getAll(BookManager.java:37)
-	at com.senla.view.facade.OnlineBookStore.sortBooksBy(OnlineBookStore.java:41)
+	at Facade.sortBooksBy(OnlineBookStore.java:41)
 	... 6 more
 2018-02-16 17:01:37 TRACE Main:18 - Started, waiting for connection
 2018-02-16 17:01:43 ERROR DependencyInjection:55 - com.senla.controller.dao.mysql.BookDao.<init>(java.sql.Connection)
@@ -1562,7 +1562,7 @@ java.lang.reflect.InvocationTargetException
 	at com.senla.main.ServerThread.run(ServerThread.java:28)
 Caused by: java.lang.NullPointerException
 	at com.senla.controller.manager.BookManager.getAll(BookManager.java:37)
-	at com.senla.view.facade.OnlineBookStore.sortBooksBy(OnlineBookStore.java:41)
+	at Facade.sortBooksBy(OnlineBookStore.java:41)
 	... 6 more
 2018-02-16 17:01:51 TRACE Main:18 - Started, waiting for connection
 2018-02-16 17:04:04 ERROR DependencyInjection:55 - com.senla.controller.dao.mysql.BookDao.<init>(java.sql.Connection)
@@ -1578,7 +1578,7 @@ java.lang.reflect.InvocationTargetException
 	at com.senla.main.ServerThread.run(ServerThread.java:28)
 Caused by: java.lang.NullPointerException
 	at com.senla.controller.manager.BookManager.getAll(BookManager.java:37)
-	at com.senla.view.facade.OnlineBookStore.sortBooksBy(OnlineBookStore.java:41)
+	at Facade.sortBooksBy(OnlineBookStore.java:41)
 	... 6 more
 2018-02-16 17:04:06 TRACE Main:18 - Started, waiting for connection
 2018-02-16 17:07:18 ERROR DependencyInjection:55 - com.senla.controller.dao.mysql.BookDao.<init>(java.sql.Connection)
@@ -1594,7 +1594,7 @@ java.lang.reflect.InvocationTargetException
 	at com.senla.main.ServerThread.run(ServerThread.java:28)
 Caused by: java.lang.NullPointerException
 	at com.senla.controller.manager.BookManager.getAll(BookManager.java:37)
-	at com.senla.view.facade.OnlineBookStore.sortBooksBy(OnlineBookStore.java:41)
+	at Facade.sortBooksBy(OnlineBookStore.java:41)
 	... 6 more
 2018-02-16 17:10:40 TRACE Main:18 - Started, waiting for connection
 2018-02-16 17:12:08 ERROR Executor:54 - Can't close resultSet
@@ -1610,7 +1610,7 @@ java.sql.SQLException: Column 'isTheBookInStore' not found.
 	at com.senla.executor.Executor.execQuery(Executor.java:51)
 	at com.senla.controller.dao.mysql.ADao.getAll(ADao.java:80)
 	at com.senla.controller.manager.BookManager.getAll(BookManager.java:36)
-	at com.senla.view.facade.OnlineBookStore.sortBooksBy(OnlineBookStore.java:41)
+	at Facade.sortBooksBy(OnlineBookStore.java:41)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -1642,7 +1642,7 @@ java.sql.SQLException: Column 'isTheBookInStore' not found.
 	at com.senla.executor.Executor.execQuery(Executor.java:51)
 	at com.senla.controller.dao.mysql.ADao.getAll(ADao.java:80)
 	at com.senla.controller.manager.BookManager.getAll(BookManager.java:36)
-	at com.senla.view.facade.OnlineBookStore.sortBooksBy(OnlineBookStore.java:41)
+	at Facade.sortBooksBy(OnlineBookStore.java:41)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -1663,7 +1663,7 @@ java.sql.SQLException: Column 'isTheBookInStore' not found.
 	at com.senla.executor.Executor.execQuery(Executor.java:51)
 	at com.senla.controller.dao.mysql.ADao.getAll(ADao.java:80)
 	at com.senla.controller.manager.BookManager.getAll(BookManager.java:36)
-	at com.senla.view.facade.OnlineBookStore.sortBooksBy(OnlineBookStore.java:41)
+	at Facade.sortBooksBy(OnlineBookStore.java:41)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -1683,7 +1683,7 @@ java.lang.reflect.InvocationTargetException
 Caused by: java.lang.ClassCastException: java.base/java.util.ArrayList cannot be cast to Book
 	at com.senla.controller.manager.BookManager.getById(BookManager.java:31)
 	at com.senla.controller.manager.BookManager.getById(BookManager.java:11)
-	at com.senla.view.facade.OnlineBookStore.getBook(OnlineBookStore.java:142)
+	at Facade.getBook(OnlineBookStore.java:142)
 	... 6 more
 2018-02-16 17:19:48 TRACE Main:18 - Started, waiting for connection
 2018-02-16 17:21:08 ERROR ServerThread:32 - ServerThread stream is failed
@@ -1697,7 +1697,7 @@ java.lang.reflect.InvocationTargetException
 Caused by: java.lang.ClassCastException: java.base/java.util.ArrayList cannot be cast to Book
 	at com.senla.controller.manager.BookManager.getById(BookManager.java:31)
 	at com.senla.controller.manager.BookManager.getById(BookManager.java:11)
-	at com.senla.view.facade.OnlineBookStore.getBook(OnlineBookStore.java:142)
+	at Facade.getBook(OnlineBookStore.java:142)
 	... 6 more
 2018-02-16 17:26:15 TRACE Main:18 - Started, waiting for connection
 2018-02-16 17:27:01 ERROR Main:25 - Failed socket connection
@@ -1725,7 +1725,7 @@ java.sql.SQLException: Column 'name' not found.
 	at com.senla.controller.dao.mysql.ADao.getById(ADao.java:68)
 	at com.senla.controller.manager.OrderManager.getById(OrderManager.java:35)
 	at com.senla.controller.manager.OrderManager.getById(OrderManager.java:14)
-	at com.senla.view.facade.OnlineBookStore.getOrder(OnlineBookStore.java:147)
+	at Facade.getOrder(OnlineBookStore.java:147)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -1744,7 +1744,7 @@ Caused by: java.lang.NullPointerException
 	at com.senla.controller.dao.mysql.ADao.getById(ADao.java:68)
 	at com.senla.controller.manager.OrderManager.getById(OrderManager.java:35)
 	at com.senla.controller.manager.OrderManager.getById(OrderManager.java:14)
-	at com.senla.view.facade.OnlineBookStore.getOrder(OnlineBookStore.java:147)
+	at Facade.getOrder(OnlineBookStore.java:147)
 	... 6 more
 2018-02-16 17:29:04 TRACE Main:18 - Started, waiting for connection
 2018-02-16 17:29:32 ERROR Executor:54 - Can't close resultSet
@@ -1760,7 +1760,7 @@ java.sql.SQLException: Column 'name' not found.
 	at com.senla.executor.Executor.execQuery(Executor.java:51)
 	at com.senla.controller.dao.mysql.ADao.getAll(ADao.java:78)
 	at com.senla.controller.manager.OrderManager.getAll(OrderManager.java:40)
-	at com.senla.view.facade.OnlineBookStore.sortOrdersBy(OnlineBookStore.java:69)
+	at Facade.sortOrdersBy(OnlineBookStore.java:69)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -1792,7 +1792,7 @@ java.sql.SQLException: Column 'name' not found.
 	at com.senla.executor.Executor.execQuery(Executor.java:51)
 	at com.senla.controller.dao.mysql.ADao.getAll(ADao.java:78)
 	at com.senla.controller.manager.OrderManager.getAll(OrderManager.java:40)
-	at com.senla.view.facade.OnlineBookStore.sortOrdersBy(OnlineBookStore.java:69)
+	at Facade.sortOrdersBy(OnlineBookStore.java:69)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -1895,6 +1895,20 @@ java.net.SocketException: Connection reset
 	at com.senla.main.ServerThread.run(ServerThread.java:27)
 2018-02-16 23:01:19 TRACE Main:18 - Started, waiting for connection
 2018-02-16 23:01:54 ERROR ServerThread:32 - ServerThread stream is failed
+java.net.SocketException: Connection reset
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:210)
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:224)
+	at java.base/java.io.ObjectInputStream$PeekInputStream.peek(ObjectInputStream.java:2714)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.peek(ObjectInputStream.java:3041)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.peekByte(ObjectInputStream.java:3051)
+	at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1552)
+	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:422)
+	at com.senla.main.ServerThread.run(ServerThread.java:27)
+2018-02-17 20:37:43 TRACE Main:18 - Started, waiting for connection
+2018-02-17 20:39:22 TRACE Main:18 - Started, waiting for connection
+2018-02-17 20:42:39 TRACE Main:18 - Started, waiting for connection
+2018-02-17 20:43:58 ERROR ServerThread:32 - ServerThread stream is failed
 java.net.SocketException: Connection reset
 	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:210)
 	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:141)

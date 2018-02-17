@@ -1,13 +1,14 @@
 package com.senla.api.dao;
 
 import com.senla.api.model.IOrder;
+import com.senla.controller.dao.DaoException;
 
 import java.util.List;
 
 public interface IOrderDao extends GenericDao<IOrder> {
-    Integer getAllPrice();
+    Integer getAllPrice() throws DaoException;
 
-    Integer getAmountExecutedOrders();
+    Integer getAmountExecutedOrders() throws DaoException;
 
-    List<IOrder> getAllExec(String sort);
+    List<IOrder> getAllExec(String sort) throws DaoException;
 }

@@ -4,7 +4,6 @@ import com.senla.connector.DBConnector;
 import org.apache.log4j.Logger;
 
 import java.lang.reflect.Constructor;
-import java.sql.Connection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,7 +27,7 @@ public class DependencyInjection {
         Object obj1 = stringObjectMap.get(clazz.getName());
         if (obj1 == null) {
             try {
-                String className = ConfigProperty.getInstance().getProperty(clazz.getSimpleName());
+                String className = DIProperty.getInstance().getProperty(clazz.getSimpleName());
                 Constructor<?> constructor = Class.forName(className).getDeclaredConstructor();
                 constructor.setAccessible(true);
                 Object obj2 = constructor.newInstance();
@@ -45,7 +44,7 @@ public class DependencyInjection {
         Object obj1 = stringObjectMap.get(clazz.getName());
         if (obj1 == null) {
             try {
-                String className = ConfigProperty.getInstance().getProperty(clazz.getSimpleName());
+                String className = DIProperty.getInstance().getProperty(clazz.getSimpleName());
                 Constructor<?> constructor = Class.forName(className).getDeclaredConstructor(DBConnector.class);
                 constructor.setAccessible(true);
                 Object obj2 = constructor.newInstance(connector);

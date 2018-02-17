@@ -1,6 +1,6 @@
 package com.senla.util;
 
-import com.senla.view.facade.OnlineBookStore;
+import com.senla.view.Facade;
 
 import java.lang.reflect.Method;
 import java.util.List;
@@ -14,11 +14,11 @@ public class MethodInvoker {
             List<Object> objectList = request.get(stringMethod);
 
             if (objectList == null || objectList.isEmpty()) {
-                Method method = OnlineBookStore.class.getMethod(stringMethod);
-                invokedMethod = method.invoke(OnlineBookStore.getInstance());
+                Method method = Facade.class.getMethod(stringMethod);
+                invokedMethod = method.invoke(Facade.getInstance());
             } else {
-                Method method = OnlineBookStore.class.getMethod(stringMethod, getTypes(objectList));
-                invokedMethod = method.invoke(OnlineBookStore.getInstance(), objectList.toArray());
+                Method method = Facade.class.getMethod(stringMethod, getTypes(objectList));
+                invokedMethod = method.invoke(Facade.getInstance(), objectList.toArray());
             }
         }
         return invokedMethod;

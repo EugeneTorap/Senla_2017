@@ -3,6 +3,7 @@ package com.senla.controller.dao.mysql;
 import com.senla.api.dao.IOrderDao;
 import com.senla.api.model.IOrder;
 import com.senla.connector.DBConnector;
+import com.senla.controller.dao.DaoException;
 import com.senla.executor.Executor;
 import com.senla.executor.ResultHandler;
 import com.senla.executor.handler.OrderHandler;
@@ -71,7 +72,7 @@ public class OrderDao extends ADao<IOrder> implements IOrderDao {
     }
 
     @Override
-    public Integer getAllPrice(){
+    public Integer getAllPrice() throws DaoException {
         Connection connection = connector.getConnection();
         return Executor.execQuery(connection, SUM, resultSet -> {
             if (resultSet.next()) {
@@ -82,7 +83,7 @@ public class OrderDao extends ADao<IOrder> implements IOrderDao {
     }
 
     @Override
-    public Integer getAmountExecutedOrders(){
+    public Integer getAmountExecutedOrders() throws DaoException {
         Connection connection = connector.getConnection();
         return Executor.execQuery(connection, COUNT, resultSet -> {
             if (resultSet.next()) {
@@ -93,7 +94,7 @@ public class OrderDao extends ADao<IOrder> implements IOrderDao {
     }
 
     @Override
-    public List<IOrder> getAllExec(String sort) {
+    public List<IOrder> getAllExec(String sort) throws DaoException {
         Connection connection = connector.getConnection();
         if (sort == null){
             sort = "id";

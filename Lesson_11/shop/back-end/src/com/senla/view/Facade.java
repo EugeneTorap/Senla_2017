@@ -1,32 +1,31 @@
-package com.senla.view.facade;
+package com.senla.view;
 
-import com.senla.api.facade.IOnlineBookStore;
+import com.senla.api.facade.IFacade;
 import com.senla.api.manager.*;
 import com.senla.api.model.*;
-import com.senla.csv.CSVWorker;
 import com.senla.di.DependencyInjection;
 import com.senla.enums.SortingType;
 
 import java.util.List;
 
-public class OnlineBookStore implements IOnlineBookStore{
+public class Facade implements IFacade {
     private IBookManager bookManager;
     private IReaderManager readerManager;
     private IOrderManager orderManager;
-    private static volatile OnlineBookStore bookStore = null;
+    private static volatile Facade bookStore = null;
 
 
-    private OnlineBookStore(){
+    private Facade(){
         bookManager = (IBookManager) DependencyInjection.getInstance().getObject(IBookManager.class);
         readerManager = (IReaderManager) DependencyInjection.getInstance().getObject(IReaderManager.class);
         orderManager = (IOrderManager) DependencyInjection.getInstance().getObject(IOrderManager.class);
     }
 
-    public static OnlineBookStore getInstance() {
+    public static Facade getInstance() {
         if (bookStore == null) {
-            synchronized (OnlineBookStore.class) {
+            synchronized (Facade.class) {
                 if (bookStore == null) {
-                    bookStore = new OnlineBookStore();
+                    bookStore = new Facade();
                 }
             }
         }
@@ -168,12 +167,32 @@ public class OnlineBookStore implements IOnlineBookStore{
     }
 
     @Override
-    public void saveCSV(List<? extends IEntity> entities){
-        CSVWorker.saveToCSV(entities);
+    public void importBooks() {
+        bookManager.importFromCsv();
     }
 
     @Override
-    public void loadCSV(Class<? extends IEntity> clazz){
-        CSVWorker.loadFromCSV(clazz);
+    public void importOrders() {
+        orderManager.importFromCsv();
+    }
+
+    @Override
+    public void importReaders() {
+        readerManager.importFromCsv();
+    }
+
+    @Override
+    public void exportBooks() {
+        bookManager.exportToCsv();
+    }
+
+    @Override
+    public void exportOrders() {
+        orderManager.exportToCsv();
+    }
+
+    @Override
+    public void exportReaders() {
+        readerManager.exportToCsv();
     }
 }

@@ -6,10 +6,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-public class ConfigProperty {
+public class DIProperty {
     private static Properties properties = null;
-    private final static Logger LOGGER = Logger.getLogger(ConfigProperty.class);
-    private final static String PATH = "resources/config.properties";
+    private final static Logger LOGGER = Logger.getLogger(DIProperty.class);
+    private final static String PATH = "resources/di.properties";
 
     public static Properties getInstance() {
         if (properties == null) {
@@ -17,7 +17,7 @@ public class ConfigProperty {
                 properties = new Properties();
                 properties.load(new FileInputStream(PATH));
             } catch (IOException e) {
-                LOGGER.error("Not found config.properties", e);
+                LOGGER.error("Not found di.properties", e);
             }
         }
         return properties;

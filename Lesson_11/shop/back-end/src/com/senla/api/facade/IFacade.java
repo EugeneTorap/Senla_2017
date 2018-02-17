@@ -5,7 +5,7 @@ import com.senla.enums.SortingType;
 
 import java.util.List;
 
-public interface IOnlineBookStore {
+public interface IFacade {
     void addReader(IReader reader);
     void addBook(IBook book);
     void addOrder(IOrder order);
@@ -23,6 +23,10 @@ public interface IOnlineBookStore {
     List<IBook> sortRequestsBy(SortingType type);
     List<IReader> sortReadersBy(SortingType type);
     void finishOrder();
-    void saveCSV(List<? extends IEntity> entities);
-    void loadCSV(Class<? extends IEntity> clazz);
+    void importBooks();
+    void importOrders();
+    void importReaders();
+    void exportBooks();
+    void exportOrders();
+    void exportReaders();
 }
