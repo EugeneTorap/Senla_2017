@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.senla.model.Book" table="book">
+        <meta attribute="class-description">
+            This class contains book details.
+        </meta>
+        <id name="id" type="int" column="id">
+            <generator class="native"/>
+        </id>
+        <list name="requests" cascade="all">
+            <key column="id"/>
+            <list-index column="bookId"/>
+            <many-to-many column="readerId" class="com.senla.model.Reader"/>
+        </list>
+        <property name="title" column="title" type="string"/>
+        <property name="isStore" column="isStore" type="boolean"/>
+        <property name="dateReceipted" column="dateReceipted" type="date"/>
+        <property name="datePublished" column="datePublished" type="date"/>
+        <property name="price" column="price" type="int"/>
+    </class>
+
+    <class name="com.senla.model.Reader" table="reader">
+        <meta attribute="class-description">
+            This class contains reader records.
+        </meta>
+        <id name="id" type="int" column="id">
+            <generator class="native"/>
+        </id>
+        <property name="name" column="name" type="string"/>
+        <property name="balance" column="balance" type="int"/>
+    </class>
+</hibernate-mapping>
