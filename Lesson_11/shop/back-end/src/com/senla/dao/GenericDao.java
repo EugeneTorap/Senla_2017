@@ -1,8 +1,7 @@
-package com.senla.controller.dao.mysql;
+package com.senla.dao;
 
-import com.senla.api.dao.GenericDao;
+import com.senla.api.dao.IGenericDao;
 import com.senla.connector.DBConnector;
-import com.senla.controller.dao.DaoException;
 import com.senla.executor.Executor;
 import com.senla.executor.ResultHandler;
 import org.apache.log4j.Logger;
@@ -12,10 +11,10 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
-public abstract class ADao<T> implements GenericDao<T> {
+public abstract class GenericDao<T> implements IGenericDao<T> {
 
     private DBConnector connector;
-    private final static Logger LOGGER = Logger.getLogger(ADao.class);
+    private final static Logger LOGGER = Logger.getLogger(GenericDao.class);
 
     protected abstract String getCreate();
     protected abstract String getGetAll();
@@ -27,12 +26,12 @@ public abstract class ADao<T> implements GenericDao<T> {
     protected abstract void fillCreateQuery(PreparedStatement statement, T t) throws SQLException;
     protected abstract void fillUpdateQuery(PreparedStatement statement, int id) throws SQLException;
 
-    protected ADao(DBConnector connector){
+    protected GenericDao(DBConnector connector){
         this.connector = connector;
     }
 
     @Override
-    public void create(T t) throws DaoException {
+    public void create(T t) throws Exception {
         Connection connection = connector.getConnection();
         try(PreparedStatement statement = connection.prepareStatement(getCreate())) {
             fillCreateQuery(statement, t);
@@ -45,7 +44,7 @@ public abstract class ADao<T> implements GenericDao<T> {
     }
 
     @Override
-    public void update(int id) throws DaoException {
+    public void update(int id) throws Exception {
         Connection connection = connector.getConnection();
         try(PreparedStatement statement = connection.prepareStatement(getUpdate())) {
             fillUpdateQuery(statement, id);
@@ -58,21 +57,21 @@ public abstract class ADao<T> implements GenericDao<T> {
     }
 
     @Override
-    public void delete(int id) throws DaoException {
+    public void delete(int id) throws Exception {
         Connection connection = connector.getConnection();
         String sql = getDelete() + id;
         Executor.execUpdate(connection, sql);
     }
 
     @Override
-    public T getById(int id) throws DaoException {
+    public T getById(int id) throws Exception {
         Connection connection = connector.getConnection();
         String sql = getGetById() + id;
         return Executor.execQuery(connection, sql, handle()).get(0);
     }
 
     @Override
-    public List<T> getAll(String sort) throws DaoException {
+    public List<T> getAll(String sort) throws Exception {
         Connection connection = connector.getConnection();
         if (sort == null){
             sort = "id";

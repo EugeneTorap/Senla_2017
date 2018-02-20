@@ -1,15 +1,16 @@
-package com.senla.controller.dao.mysql;
+package com.senla.dao;
 
 import com.senla.api.dao.IReaderDao;
 import com.senla.api.model.IReader;
 import com.senla.connector.DBConnector;
+import com.senla.dao.GenericDao;
 import com.senla.executor.ResultHandler;
 import com.senla.executor.handler.ReaderHandler;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class ReaderDao extends ADao<IReader> implements IReaderDao {
+public class ReaderDao extends GenericDao<IReader> implements IReaderDao {
 
     private static final String CREATE = "INSERT INTO reader(name, balance) VALUES (?,?);";
     private static final String UPDATE = "UPDATE reader SET status = CANCELED WHERE id = ? ;";

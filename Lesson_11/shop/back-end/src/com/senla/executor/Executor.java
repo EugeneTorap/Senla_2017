@@ -1,6 +1,6 @@
 package com.senla.executor;
 
-import com.senla.controller.dao.DaoException;
+import com.senla.dao.DaoException;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;

@@ -1,4 +1,4 @@
-package com.senla.controller.dao;
+package com.senla.dao;
 
 import org.apache.log4j.Logger;
 

@@ -1,17 +1,16 @@
-package com.senla.controller.manager;
+package com.senla.manager;
 
 import com.senla.api.dao.IBookDao;
 import com.senla.api.manager.IBookManager;
 import com.senla.api.model.IBook;
 import com.senla.api.model.IEntity;
 import com.senla.connector.DBConnector;
-import com.senla.controller.dao.DaoException;
+import com.senla.dao.DaoException;
 import com.senla.csv.CSVWorker;
 import com.senla.csv.Parser;
 import com.senla.di.DependencyInjection;
 import org.apache.log4j.Logger;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class BookManager implements IBookManager {
@@ -19,7 +18,7 @@ public class BookManager implements IBookManager {
     private IBookDao bookDao;
     private final static Logger LOGGER = Logger.getLogger(BookManager.class);
 
-    public BookManager() {
+    public BookManager() throws Exception {
         DBConnector connector = DBConnector.getInstance();
         bookDao = (IBookDao) DependencyInjection.getInstance().getObject(connector, IBookDao.class);
     }
@@ -28,7 +27,7 @@ public class BookManager implements IBookManager {
     public void create(IBook book) {
         try {
             bookDao.create(book);
-        } catch (DaoException e) {
+        } catch (Exception e) {
             LOGGER.error("Method create(IBook book) is failed", e);
         }
     }
@@ -37,7 +36,7 @@ public class BookManager implements IBookManager {
     public void delete(int id) {
         try {
             bookDao.delete(id);
-        } catch (DaoException e) {
+        } catch (Exception e) {
             LOGGER.error("Method delete(int id) is failed", e);
         }
     }
@@ -46,7 +45,7 @@ public class BookManager implements IBookManager {
     public IBook getById(int id) {
         try {
             return bookDao.getById(id);
-        } catch (DaoException e) {
+        } catch (Exception e) {
             LOGGER.error("Method getById(int id) is failed", e);
         }
         return null;
@@ -56,7 +55,7 @@ public class BookManager implements IBookManager {
     public List<IBook> getAll(String sort) {
         try {
             return bookDao.getAll(sort);
-        } catch (DaoException e) {
+        } catch (Exception e) {
             LOGGER.error("Method getAll(String sort) is failed", e);
         }
         return null;

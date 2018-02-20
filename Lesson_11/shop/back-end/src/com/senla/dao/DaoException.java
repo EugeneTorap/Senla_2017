@@ -1,4 +1,4 @@
-package com.senla.controller.dao;
+package com.senla.dao;
 
 public class DaoException extends Exception {
 

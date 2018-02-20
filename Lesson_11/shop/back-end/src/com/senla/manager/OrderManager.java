@@ -1,11 +1,11 @@
-package com.senla.controller.manager;
+package com.senla.manager;
 
 import com.senla.api.dao.IOrderDao;
 import com.senla.api.manager.IOrderManager;
 import com.senla.api.model.IEntity;
 import com.senla.api.model.IOrder;
 import com.senla.connector.DBConnector;
-import com.senla.controller.dao.DaoException;
+import com.senla.dao.DaoException;
 import com.senla.csv.CSVWorker;
 import com.senla.csv.Parser;
 import com.senla.di.DependencyInjection;
@@ -20,7 +20,7 @@ public class OrderManager implements IOrderManager {
     private IOrderDao orderDao;
     private final static Logger LOGGER = Logger.getLogger(OrderManager.class);
 
-    public OrderManager() {
+    public OrderManager() throws Exception {
         DBConnector connector = DBConnector.getInstance();
         orderDao = (IOrderDao) DependencyInjection.getInstance().getObject(connector, IOrderDao.class);
     }
@@ -29,7 +29,7 @@ public class OrderManager implements IOrderManager {
     public void create(IOrder order) {
         try {
             orderDao.create(order);
-        } catch (DaoException e) {
+        } catch (Exception e) {
             LOGGER.error("Method create(IOrder order) is failed", e);
         }
     }
@@ -38,7 +38,7 @@ public class OrderManager implements IOrderManager {
     public void delete(int id) {
         try {
             orderDao.delete(id);
-        } catch (DaoException e) {
+        } catch (Exception e) {
             LOGGER.error("Method delete(int id) is failed", e);
         }
     }
@@ -47,7 +47,7 @@ public class OrderManager implements IOrderManager {
     public IOrder getById(int id) {
         try {
             return orderDao.getById(id);
-        } catch (DaoException e) {
+        } catch (Exception e) {
             LOGGER.error("Method getById(int id) is failed", e);
         }
         return null;
@@ -57,7 +57,7 @@ public class OrderManager implements IOrderManager {
     public List<IOrder> getAll(String sort) {
         try {
             return orderDao.getAll(sort);
-        } catch (DaoException e) {
+        } catch (Exception e) {
             LOGGER.error("Method getAll(String sort) is failed", e);
         }
         return null;
@@ -77,7 +77,7 @@ public class OrderManager implements IOrderManager {
     public void cancel(int id) {
         try {
             orderDao.update(id);
-        } catch (DaoException e) {
+        } catch (Exception e) {
             LOGGER.error("Method cancel(int id) is failed", e);
         }
     }
@@ -114,10 +114,10 @@ public class OrderManager implements IOrderManager {
         "UPDATE book_order SET status = 'EXECUTED' WHERE orderId IN (1, 2, 4);"};
 
         LOGGER.trace("Open connection");
-        Connection connection = DBConnector.getInstance().getConnection();
         try {
+            Connection connection = DBConnector.getInstance().getConnection();
             Executor.execUpdate(connection, sql);
-        } catch (DaoException e) {
+        } catch (Exception e) {
             LOGGER.error("Method finishOrder() is failed", e);
         }
     }
@@ -128,7 +128,7 @@ public class OrderManager implements IOrderManager {
             assert order != null;
             orderDao.create(order.clone());
         }
-        catch (CloneNotSupportedException | DaoException e) {
+        catch (Exception e) {
             LOGGER.error("Failed clone", e);
         }
     }

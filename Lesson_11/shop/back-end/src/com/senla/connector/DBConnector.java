@@ -1,6 +1,6 @@
 package com.senla.connector;
 
-import com.senla.controller.dao.JDBCProperty;
+import com.senla.dao.JDBCProperty;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
@@ -10,22 +10,22 @@ import java.sql.SQLException;
 public class DBConnector {
 
     private static DBConnector instance = null;
-    private static Connection connection;
+    private Connection connection;
     private final static Logger LOGGER = Logger.getLogger(DBConnector.class);
 
 
-    private DBConnector(){
+    private DBConnector() throws Exception {
         connect();
     }
 
-    public static DBConnector getInstance() {
+    public static DBConnector getInstance() throws Exception {
         if (instance == null) {
             instance = new DBConnector();
         }
         return instance;
     }
 
-    private static void connect() {
+    private void connect() throws Exception {
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
@@ -37,10 +37,11 @@ public class DBConnector {
         }
         catch (Exception e) {
             LOGGER.error("Database Connection Creation Failed: ", e);
+            throw new Exception("Connection is failed", e);
         }
     }
     
-    public Connection getConnection(){
+    public Connection getConnection() throws Exception {
         try {
             if (connection == null || connection.isClosed()){
                 connect();

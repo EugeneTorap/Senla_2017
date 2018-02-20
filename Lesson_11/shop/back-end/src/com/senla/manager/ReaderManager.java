@@ -1,11 +1,11 @@
-package com.senla.controller.manager;
+package com.senla.manager;
 
 import com.senla.api.dao.IReaderDao;
 import com.senla.api.manager.IReaderManager;
 import com.senla.api.model.IEntity;
 import com.senla.api.model.IReader;
 import com.senla.connector.DBConnector;
-import com.senla.controller.dao.DaoException;
+import com.senla.dao.DaoException;
 import com.senla.csv.CSVWorker;
 import com.senla.csv.Parser;
 import com.senla.di.DependencyInjection;
@@ -18,7 +18,7 @@ public class ReaderManager implements IReaderManager {
     private IReaderDao readerDao;
     private final static Logger LOGGER = Logger.getLogger(ReaderManager.class);
 
-    public ReaderManager() {
+    public ReaderManager() throws Exception {
         DBConnector connector = DBConnector.getInstance();
         readerDao = (IReaderDao) DependencyInjection.getInstance().getObject(connector, IReaderDao.class);
     }
@@ -27,7 +27,7 @@ public class ReaderManager implements IReaderManager {
     public void create(IReader reader) {
         try {
             readerDao.create(reader);
-        } catch (DaoException e) {
+        } catch (Exception e) {
             LOGGER.error("Method create(IReader reader) is failed", e);
         }
     }
@@ -36,7 +36,7 @@ public class ReaderManager implements IReaderManager {
     public void delete(int id) {
         try {
             readerDao.delete(id);
-        } catch (DaoException e) {
+        } catch (Exception e) {
             LOGGER.error("Method delete(int id) is failed", e);
         }
     }
@@ -45,7 +45,7 @@ public class ReaderManager implements IReaderManager {
     public IReader getById(int id) {
         try {
             return readerDao.getById(id);
-        } catch (DaoException e) {
+        } catch (Exception e) {
             LOGGER.error("Method getById(int id) is failed", e);
         }
         return null;
@@ -55,7 +55,7 @@ public class ReaderManager implements IReaderManager {
     public List<IReader> getAll(String sort) {
         try {
             return readerDao.getAll(sort);
-        } catch (DaoException e) {
+        } catch (Exception e) {
             LOGGER.error("Method getAll(String sort) is failed", e);
         }
         return null;

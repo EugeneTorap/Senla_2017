@@ -1,9 +1,8 @@
-package com.senla.controller.dao.mysql;
+package com.senla.dao;
 
 import com.senla.api.dao.IBookDao;
 import com.senla.api.model.IBook;
 import com.senla.connector.DBConnector;
-import com.senla.controller.dao.DaoException;
 import com.senla.executor.Executor;
 import com.senla.executor.ResultHandler;
 import com.senla.executor.handler.BookHandler;
@@ -14,7 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
-public class BookDao extends ADao<IBook> implements IBookDao {
+public class BookDao extends GenericDao<IBook> implements IBookDao {
 
     private DBConnector connector;
 
