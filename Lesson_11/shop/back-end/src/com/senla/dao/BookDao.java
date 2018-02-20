@@ -17,8 +17,7 @@ public class BookDao extends GenericDao<IBook> implements IBookDao {
 
     private DBConnector connector;
 
-    private static final String CREATE = "INSERT INTO book(title, isStore, requestAmount," +
-            " dateReceipted, datePublished, price) VALUES (?,?,?,?,?);";
+    private static final String CREATE = "INSERT INTO book(title, isStore, dateReceipted, datePublished, price) VALUES (?,?,?,?,?);";
     private static final String UPDATE = "UPDATE book SET title = ? , isStore = ? , dateReceipted = ? , datePublished = ? , price = ? WHERE id = ? ;";
     private static final String DELETE = "DELETE FROM book WHERE id = ";
     private static final String GET_BY_ID = "SELECT * FROM book WHERE id = ";
@@ -67,12 +66,13 @@ public class BookDao extends GenericDao<IBook> implements IBookDao {
         statement.setInt(5, book.getPrice());
     }
 
-    protected void fillUpdateQuery(PreparedStatement statement, int id) throws SQLException {
-        statement.setInt(6, id);
+    protected void fillUpdateQuery(PreparedStatement statement, IBook book) throws SQLException {
+        fillCreateQuery(statement, book);
+        statement.setInt(6, book.getId());
     }
 
     @Override
-    public List<IBook> getAllUnsold(String sort) throws DaoException {
+    public List<IBook> getAllUnsold(String sort) throws Exception {
         Connection connection = connector.getConnection();
         if (sort == null){
             sort = "id";

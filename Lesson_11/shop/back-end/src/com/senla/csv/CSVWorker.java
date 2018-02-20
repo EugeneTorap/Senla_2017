@@ -76,15 +76,4 @@ public class CSVWorker {
         }
         return strings;
     }
-
-    public static void setEntity(List<IEntity> entities, List<IEntity> myEntities){
-        int index;
-        for (IEntity entity : entities) {
-            if ((index = ArrayWorker.searchIndex(myEntities, entity.getId())) != -1) {
-                myEntities.set(index, entity);
-            } else {
-                myEntities.add(entity);
-            }
-        }
-    }
 }

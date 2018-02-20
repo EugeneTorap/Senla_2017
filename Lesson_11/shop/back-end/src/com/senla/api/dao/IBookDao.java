@@ -6,5 +6,5 @@ import com.senla.dao.DaoException;
 import java.util.List;
 
 public interface IBookDao extends IGenericDao<IBook> {
-    List<IBook> getAllUnsold(String sort) throws DaoException;
+    List<IBook> getAllUnsold(String sort) throws Exception;
 }

@@ -22,4 +22,13 @@ public class ArrayWorker {
         }
         return -1;
     }
+
+    public static <T extends IEntity> boolean isExist(List<T> entities, int id){
+        for (T entity : entities) {
+            if (id == entity.getId()) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

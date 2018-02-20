@@ -2,13 +2,13 @@ package com.senla.manager;
 
 import com.senla.api.dao.IReaderDao;
 import com.senla.api.manager.IReaderManager;
-import com.senla.api.model.IEntity;
 import com.senla.api.model.IReader;
 import com.senla.connector.DBConnector;
 import com.senla.dao.DaoException;
 import com.senla.csv.CSVWorker;
 import com.senla.csv.Parser;
 import com.senla.di.DependencyInjection;
+import com.senla.util.ArrayWorker;
 import org.apache.log4j.Logger;
 
 import java.util.List;
@@ -65,7 +65,19 @@ public class ReaderManager implements IReaderManager {
     public void importFromCsv() {
         List<String> lines = CSVWorker.loadCsvStrings(IReader.class);
         List<IReader> parsedReaders = (List<IReader>) Parser.parse(IReader.class, lines);
-        CSVWorker.setEntity((List<IEntity>)(List<?>)parsedReaders, (List<IEntity>)(List<?>)getAll(null));
+
+        try {
+            List<IReader> readers = getAll(null);
+            for (IReader reader : parsedReaders) {
+                if (ArrayWorker.isExist(readers, reader.getId())) {
+                    readerDao.update(reader);
+                } else {
+                    readerDao.create(reader);
+                }
+            }
+        } catch (Exception e) {
+            LOGGER.error("Method importFromCsv() is failed", e);
+        }
     }
 
     @Override

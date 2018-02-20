@@ -9,6 +9,7 @@ import com.senla.dao.DaoException;
 import com.senla.csv.CSVWorker;
 import com.senla.csv.Parser;
 import com.senla.di.DependencyInjection;
+import com.senla.util.ArrayWorker;
 import org.apache.log4j.Logger;
 
 import java.util.List;
@@ -65,7 +66,7 @@ public class BookManager implements IBookManager {
     public List<IBook> getAllUnsold(String sort) {
         try {
             return bookDao.getAllUnsold(sort);
-        } catch (DaoException e) {
+        } catch (Exception e) {
             LOGGER.error("Method getAllUnsold(String sort) is failed", e);
         }
         return null;
@@ -75,7 +76,19 @@ public class BookManager implements IBookManager {
     public void importFromCsv() {
         List<String> lines = CSVWorker.loadCsvStrings(IBook.class);
         List<IBook> parsedReaders = (List<IBook>) Parser.parse(IBook.class, lines);
-        CSVWorker.setEntity((List<IEntity>)(List<?>)parsedReaders, (List<IEntity>)(List<?>)getAll(null));
+
+        try {
+            List<IBook> books = getAll(null);
+            for (IBook book : parsedReaders) {
+                if (ArrayWorker.isExist(books, book.getId())) {
+                    bookDao.update(book);
+                } else {
+                    bookDao.create(book);
+                }
+            }
+        } catch (Exception e) {
+            LOGGER.error("Method importFromCsv() is failed", e);
+        }
     }
 
     @Override

@@ -11,7 +11,7 @@ import java.sql.Statement;
 public class Executor {
     private final static Logger LOGGER = Logger.getLogger(Executor.class);
 
-    public static void execUpdate(Connection connection, String[] sql) throws DaoException {
+    public static void transact(Connection connection, String[] sql) throws DaoException {
         try {
             connection.setAutoCommit(false);
             for (String str: sql){
@@ -33,17 +33,17 @@ public class Executor {
             catch (SQLException ex){
                 LOGGER.error("Rollback is failed", ex);
             }
-            throw new DaoException("Commit is failed in method execUpdate", e);
+            throw new DaoException("Commit is failed in method transact", e);
         }
     }
 
-    public static void execUpdate(Connection connection, String sql) throws DaoException {
+    public static void transact(Connection connection, String sql) throws DaoException {
         try (Statement statement = connection.createStatement()) {
             statement.execute(sql);
         }
         catch (SQLException e){
             LOGGER.error("Can't close statement", e);
-            throw new DaoException("Can't close statement in generic method execUpdate", e);
+            throw new DaoException("Can't close statement in generic method transact", e);
         }
     }
 

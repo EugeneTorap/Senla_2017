@@ -24,7 +24,7 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
 
     protected abstract ResultHandler<List<T>> handle();
     protected abstract void fillCreateQuery(PreparedStatement statement, T t) throws SQLException;
-    protected abstract void fillUpdateQuery(PreparedStatement statement, int id) throws SQLException;
+    protected abstract void fillUpdateQuery(PreparedStatement statement, T t) throws SQLException;
 
     protected GenericDao(DBConnector connector){
         this.connector = connector;
@@ -44,10 +44,10 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
     }
 
     @Override
-    public void update(int id) throws Exception {
+    public void update(T t) throws Exception {
         Connection connection = connector.getConnection();
         try(PreparedStatement statement = connection.prepareStatement(getUpdate())) {
-            fillUpdateQuery(statement, id);
+            fillUpdateQuery(statement, t);
             statement.execute();
         }
         catch (SQLException e){
@@ -60,7 +60,7 @@ public abstract class GenericDao<T> implements IGenericDao<T> {
     public void delete(int id) throws Exception {
         Connection connection = connector.getConnection();
         String sql = getDelete() + id;
-        Executor.execUpdate(connection, sql);
+        Executor.transact(connection, sql);
     }
 
     @Override

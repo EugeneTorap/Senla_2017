@@ -2,14 +2,13 @@ package com.senla.manager;
 
 import com.senla.api.dao.IOrderDao;
 import com.senla.api.manager.IOrderManager;
-import com.senla.api.model.IEntity;
 import com.senla.api.model.IOrder;
 import com.senla.connector.DBConnector;
-import com.senla.dao.DaoException;
 import com.senla.csv.CSVWorker;
 import com.senla.csv.Parser;
 import com.senla.di.DependencyInjection;
 import com.senla.executor.Executor;
+import com.senla.util.ArrayWorker;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
@@ -67,7 +66,7 @@ public class OrderManager implements IOrderManager {
     public List<IOrder> getAllExec(String sort) {
         try {
             return orderDao.getAllExec(sort);
-        } catch (DaoException e) {
+        } catch (Exception e) {
             LOGGER.error("Method getAllExec(String sort) is failed", e);
         }
         return null;
@@ -76,7 +75,7 @@ public class OrderManager implements IOrderManager {
     @Override
     public void cancel(int id) {
         try {
-            orderDao.update(id);
+            orderDao.cancel(id);
         } catch (Exception e) {
             LOGGER.error("Method cancel(int id) is failed", e);
         }
@@ -89,7 +88,7 @@ public class OrderManager implements IOrderManager {
             if (allPrice != null){
                 return allPrice;
             }
-        } catch (DaoException e) {
+        } catch (Exception e) {
             LOGGER.error("Method getAllPrice() is failed", e);
         }
         return null;
@@ -102,7 +101,7 @@ public class OrderManager implements IOrderManager {
             if (count != null){
                 return count;
             }
-        } catch (DaoException e) {
+        } catch (Exception e) {
             LOGGER.error("Method getAmountExecutedOrders() is failed", e);
         }
         return null;
@@ -116,7 +115,7 @@ public class OrderManager implements IOrderManager {
         LOGGER.trace("Open connection");
         try {
             Connection connection = DBConnector.getInstance().getConnection();
-            Executor.execUpdate(connection, sql);
+            Executor.transact(connection, sql);
         } catch (Exception e) {
             LOGGER.error("Method finishOrder() is failed", e);
         }
@@ -137,7 +136,19 @@ public class OrderManager implements IOrderManager {
     public void importFromCsv() {
         List<String> lines = CSVWorker.loadCsvStrings(IOrder.class);
         List<IOrder> parsedReaders = (List<IOrder>) Parser.parse(IOrder.class, lines);
-        CSVWorker.setEntity((List<IEntity>)(List<?>)parsedReaders, (List<IEntity>)(List<?>)getAll(null));
+
+        try {
+            List<IOrder> orders = getAll(null);
+            for (IOrder order : parsedReaders) {
+                if (ArrayWorker.isExist(orders, order.getId())) {
+                    orderDao.update(order);
+                } else {
+                    orderDao.create(order);
+                }
+            }
+        } catch (Exception e) {
+            LOGGER.error("Method importFromCsv() is failed", e);
+        }
     }
 
     @Override

@@ -10,5 +10,7 @@ public interface IOrderDao extends IGenericDao<IOrder> {
 
     Integer getAmountExecutedOrders() throws Exception;
 
+    void cancel(int id) throws Exception;
+
     List<IOrder> getAllExec(String sort) throws Exception;
 }

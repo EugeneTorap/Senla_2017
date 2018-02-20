@@ -9,6 +9,7 @@ import com.senla.executor.Executor;
 import com.senla.executor.ResultHandler;
 import com.senla.executor.handler.OrderHandler;
 import com.senla.util.DateConverter;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,9 +19,11 @@ import java.util.List;
 public class OrderDao extends GenericDao<IOrder> implements IOrderDao {
 
     private DBConnector connector;
+    private final static Logger LOGGER = Logger.getLogger(OrderDao.class);
 
     private static final String CREATE = "INSERT INTO book_order(readerId, dateExecuted, price) VALUES (?,?,?);";
-    private static final String UPDATE = "UPDATE book_order SET status = CANCELED WHERE id = ? ;";
+    private static final String UPDATE = "UPDATE book_order SET readerId = ? , dateExecuted = ? , price = ? WHERE id = ? ;";
+    private static final String CANCEL = "UPDATE book_order SET status = CANCELED WHERE id = ? ;";
     private static final String DELETE = "DELETE FROM book_order WHERE id = ";
     private static final String GET_BY_ID = "SELECT * FROM book_order WHERE id = ";
     private static final String GET_ALL = "SELECT * FROM book_order ORDER BY ";
@@ -68,8 +71,9 @@ public class OrderDao extends GenericDao<IOrder> implements IOrderDao {
         statement.setInt(3, order.getPrice());
     }
 
-    protected void fillUpdateQuery(PreparedStatement statement, int id) throws SQLException {
-        statement.setInt(4, id);
+    protected void fillUpdateQuery(PreparedStatement statement, IOrder order) throws SQLException {
+        fillCreateQuery(statement, order);
+        statement.setInt(4, order.getId());
     }
 
     @Override
@@ -81,6 +85,19 @@ public class OrderDao extends GenericDao<IOrder> implements IOrderDao {
             }
             return null;
         });
+    }
+
+    @Override
+    public void cancel(int id) throws Exception {
+        Connection connection = connector.getConnection();
+        try(PreparedStatement statement = connection.prepareStatement(CANCEL)) {
+            statement.setInt(1, id);
+            statement.execute();
+        }
+        catch (SQLException e){
+            LOGGER.error("Can't close prepared statement", e);
+            throw new DaoException("Can't close prepared statement in method update(int id)", e);
+        }
     }
 
     @Override

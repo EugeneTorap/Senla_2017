@@ -7,7 +7,7 @@ import java.util.List;
 public interface IGenericDao<T> {
     void create(T t) throws Exception;
 
-    void update(int id) throws Exception;
+    void update(T t) throws Exception;
 
     void delete(int id) throws Exception;
 
