@@ -5,9 +5,6 @@
 
 <hibernate-mapping>
     <class name="com.senla.model.Book" table="book">
-        <meta attribute="class-description">
-            This class contains book details.
-        </meta>
         <id name="id" type="int" column="id">
             <generator class="native"/>
         </id>
@@ -24,13 +21,10 @@
     </class>
 
     <class name="com.senla.model.Reader" table="reader">
-        <meta attribute="class-description">
-            This class contains reader records.
-        </meta>
         <id name="id" type="int" column="id">
-            <generator class="native"/>
+            <generator class="increment"/>
         </id>
-        <property name="name" column="name" type="string"/>
-        <property name="balance" column="balance" type="int"/>
+        <property name="name" column="name" type="java.lang.String"/>
+        <property name="balance" column="balance" type="java.lang.Integer"/>
     </class>
 </hibernate-mapping>

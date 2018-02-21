@@ -6,7 +6,7 @@
 <hibernate-mapping>
     <class name="com.senla.model.Order" table="book_order">
         <id name="id" type="int" column="id">
-            <generator class="native"/>
+            <generator class="increment"/>
         </id>
         <list name="books" cascade="all">
             <key column="id"/>
@@ -14,21 +14,18 @@
             <many-to-many column="bookId" class="com.senla.model.Book"/>
         </list>
         <property name="status" column="status" type="org.hibernate.type.EnumType"/>
-        <property name="dateExecuted" column="dateExecuted" type="date"/>
-        <property name="price" column="price" type="int"/>
+        <property name="dateExecuted" column="dateExecuted" type="java.util.Date"/>
+        <property name="price" column="price" type="java.lang.Integer"/>
     </class>
 
     <class name="com.senla.model.Book" table="book">
-        <meta attribute="class-description">
-            This class contains reader records.
-        </meta>
         <id name="id" type="int" column="id">
-            <generator class="native"/>
+            <generator class="increment"/>
         </id>
-        <property name="title" column="title" type="string"/>
-        <property name="isStore" column="isStore" type="boolean"/>
-        <property name="dateReceipted" column="dateReceipted" type="date"/>
-        <property name="datePublished" column="datePublished" type="date"/>
-        <property name="price" column="price" type="int"/>
+        <property name="title" column="title" type="java.lang.String"/>
+        <property name="isStore" column="isStore" type="java.lang.Boolean"/>
+        <property name="dateReceipted" column="dateReceipted" type="java.util.Date"/>
+        <property name="datePublished" column="datePublished" type="java.util.Date"/>
+        <property name="price" column="price" type="java.lang.Integer"/>
     </class>
 </hibernate-mapping>

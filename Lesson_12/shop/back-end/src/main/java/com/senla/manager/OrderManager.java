@@ -3,10 +3,10 @@ package com.senla.manager;
 import com.senla.api.dao.IOrderDao;
 import com.senla.api.manager.IOrderManager;
 import com.senla.api.model.IOrder;
-import com.senla.connector.DBConnector;
 import com.senla.csv.CSVWorker;
 import com.senla.csv.Parser;
 import com.senla.di.DependencyInjection;
+import com.senla.executor.Executor;
 import org.apache.log4j.Logger;
 
 import java.util.List;
@@ -17,26 +17,31 @@ public class OrderManager implements IOrderManager {
     private final static Logger LOGGER = Logger.getLogger(OrderManager.class);
 
     public OrderManager() {
-        DBConnector connector = DBConnector.getInstance();
-        orderDao = (IOrderDao) DependencyInjection.getInstance().getObject(connector, IOrderDao.class);
+        orderDao = (IOrderDao) DependencyInjection.getInstance().getObject(IOrderDao.class);
     }
 
     @Override
     public void create(IOrder order) {
-        orderDao.create(order);
+        Executor.transact(session -> {
+            orderDao.create(session, order);
+            return null;
+        });
     }
 
     @Override
     public void delete(int id) {
-        IOrder order = getById(id);
-        if (order != null){
-            orderDao.delete(order);
-        }
+        Executor.transact(session -> {
+            IOrder order = orderDao.getById(session, id);
+            if (order != null){
+                orderDao.delete(session, order);
+            }
+            return null;
+        });
     }
 
     @Override
     public IOrder getById(int id) {
-        return orderDao.getById(id);
+        return Executor.transact(session -> orderDao.getById(session, id));
     }
 
     @Override
@@ -44,7 +49,8 @@ public class OrderManager implements IOrderManager {
         if (sort == null){
             sort = "id";
         }
-        return orderDao.getAll(sort);
+        String sorting = sort;
+        return Executor.transact(session -> orderDao.getAll(session, sorting));
     }
 
     @Override
@@ -52,7 +58,8 @@ public class OrderManager implements IOrderManager {
         if (sort == null){
             sort = "id";
         }
-        return orderDao.getAllExec(sort);
+        String sorting = sort;
+        return Executor.transact(session -> orderDao.getAllExec(session, sorting));
     }
 
     @Override
@@ -62,12 +69,12 @@ public class OrderManager implements IOrderManager {
 
     @Override
     public Integer getAllPrice(){
-        return orderDao.getAllPrice();
+        return Executor.transact(session -> orderDao.getAllPrice(session));
     }
 
     @Override
     public Integer getAmountExecutedOrders(){
-        return orderDao.getAmountExecutedOrders();
+        return Executor.transact(session -> orderDao.getAmountExecutedOrders(session));
     }
 
     @Override
@@ -75,23 +82,29 @@ public class OrderManager implements IOrderManager {
     }
 
     public void clone(int id) {
-        try {
-            IOrder order = orderDao.getById(id);
-            assert order != null;
-            orderDao.create(order.clone());
-        }
-        catch (CloneNotSupportedException e) {
-            LOGGER.error("Failed clone", e);
-        }
+        Executor.transact(session -> {
+            try {
+                IOrder order = orderDao.getById(session, id);
+                assert order != null;
+                orderDao.create(session, order.clone());
+            } catch (CloneNotSupportedException e) {
+                LOGGER.error("Failed clone", e);
+            }
+            return null;
+        });
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void importFromCsv() {
         List<String> lines = CSVWorker.loadCsvStrings(IOrder.class);
 
-        for (IOrder order: (List<IOrder>) Parser.parse(IOrder.class, lines)){
-            orderDao.saveOrUpdate(order);
-        }
+        Executor.transact(session -> {
+            for (IOrder order: (List<IOrder>) Parser.parse(IOrder.class, lines)){
+                orderDao.saveOrUpdate(session, order);
+            }
+            return null;
+        });
     }
 
     @Override

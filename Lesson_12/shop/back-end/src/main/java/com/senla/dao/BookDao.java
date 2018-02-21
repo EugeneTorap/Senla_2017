@@ -2,7 +2,8 @@ package com.senla.dao;
 
 import com.senla.api.dao.IBookDao;
 import com.senla.api.model.IBook;
-import com.senla.executor.Executor;
+import com.senla.model.Book;
+import org.hibernate.Session;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -12,22 +13,20 @@ import java.util.List;
 
 public class BookDao extends GenericDao<IBook> implements IBookDao {
 
-    protected BookDao(Class clazz) {
-        super(clazz);
+    public BookDao() {
+        super(Book.class);
     }
 
     @SuppressWarnings({ "unchecked", "deprecation" })
     @Override
-    public List<IBook> getAllUnsold(String sort) {
-        return Executor.transact(session -> {
-            LocalDate date = LocalDate.now().minusMonths(6);
+    public List<IBook> getAllUnsold(Session session, String sort) {
+        LocalDate date = LocalDate.now().minusMonths(6);
 
-            CriteriaBuilder cb = session.getCriteriaBuilder();
-            CriteriaQuery<IBook> criteria = cb.createQuery(IBook.class);
-            Root<IBook> root = criteria.from(IBook.class);
-            criteria.select(root).where(cb.lessThan(root.get("dateReceipted"), date)).orderBy(cb.asc(root.get(sort)));
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<IBook> criteria = cb.createQuery(IBook.class);
+        Root<IBook> root = criteria.from(IBook.class);
+        criteria.select(root).where(cb.lessThan(root.get("dateReceipted"), date)).orderBy(cb.asc(root.get(sort)));
 
-            return session.createQuery(criteria).getResultList();
-        });
+        return session.createQuery(criteria).getResultList();
     }
 }

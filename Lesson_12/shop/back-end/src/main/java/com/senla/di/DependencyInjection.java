@@ -1,6 +1,6 @@
 package com.senla.di;
 
-import com.senla.connector.DBConnector;
+import com.senla.connector.HibernateUtil;
 import org.apache.log4j.Logger;
 
 import java.lang.reflect.Constructor;
@@ -31,23 +31,6 @@ public class DependencyInjection {
                 Constructor<?> constructor = Class.forName(className).getDeclaredConstructor();
                 constructor.setAccessible(true);
                 Object obj2 = constructor.newInstance();
-                stringObjectMap.put(className, obj2);
-                return obj2;
-            } catch (Exception e) {
-                LOGGER.error(e.getMessage());
-            }
-        }
-        return obj1;
-    }
-
-    public Object getObject(DBConnector connector, Class<?> clazz) {
-        Object obj1 = stringObjectMap.get(clazz.getName());
-        if (obj1 == null) {
-            try {
-                String className = DIProperty.getInstance().getProperty(clazz.getSimpleName());
-                Constructor<?> constructor = Class.forName(className).getDeclaredConstructor(DBConnector.class);
-                constructor.setAccessible(true);
-                Object obj2 = constructor.newInstance(connector);
                 stringObjectMap.put(className, obj2);
                 return obj2;
             } catch (Exception e) {

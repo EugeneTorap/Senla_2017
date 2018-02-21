@@ -1,6 +1,6 @@
 package com.senla.executor;
 
-import com.senla.connector.DBConnector;
+import com.senla.connector.HibernateUtil;
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -12,7 +12,7 @@ public class Executor {
 
     public static <T> T transact(Command<T> command){
         Transaction transaction = null;
-        try(Session session = DBConnector.getInstance().getSessionFactory().openSession()) {
+        try(Session session = HibernateUtil.getInstance().getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             T t = command.process(session);
             transaction.commit();

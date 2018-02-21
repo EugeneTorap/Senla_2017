@@ -1,15 +1,17 @@
 package com.senla.api.dao;
 
+import org.hibernate.Session;
+
 import java.util.List;
 
 public interface IGenericDao<T> {
-    void create(T t);
+    void create(Session session, T t);
 
-    void saveOrUpdate(T t);
+    void saveOrUpdate(Session session, T t);
 
-    void delete(T t);
+    void delete(Session session, T t);
 
-    T getById(int id);
+    T getById(Session session, int id);
 
-    List<T> getAll(String sort);
+    List<T> getAll(Session session, String sort);
 }

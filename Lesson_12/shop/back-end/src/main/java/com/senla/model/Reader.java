@@ -33,6 +33,14 @@ public class Reader extends Entity implements IReader {
         return balance;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setBalance(Integer balance) {
+        this.balance = balance;
+    }
+
     @Override
     public String toString() {
         return getId() + "," + name;
