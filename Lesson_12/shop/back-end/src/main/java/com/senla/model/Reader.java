@@ -2,7 +2,12 @@ package com.senla.model;
 
 import com.senla.api.model.IReader;
 
-public class Reader extends Entity implements IReader {
+import javax.persistence.*;
+import javax.persistence.Entity;
+
+@Entity
+@Table(name = "reader", schema = "book_shop")
+public class Reader extends AbstractEntity implements IReader {
     private static final long serialVersionUID = -561916297036215555L;
     private String name;
     private Integer balance;
@@ -23,18 +28,33 @@ public class Reader extends Entity implements IReader {
         this.balance = balance;
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
+    @Basic
+    @Column(name = "name")
     public String getName() {
         return name;
     }
 
-    @Override
-    public Integer getBalance() {
-        return balance;
-    }
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    @Basic
+    @Column(name = "balance")
+    public Integer getBalance() {
+        return balance;
     }
 
     public void setBalance(Integer balance) {

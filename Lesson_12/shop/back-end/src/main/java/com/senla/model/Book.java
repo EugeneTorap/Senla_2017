@@ -2,16 +2,18 @@ package com.senla.model;
 
 import com.senla.annotations.*;
 import com.senla.api.model.IBook;
-import com.senla.api.model.IReader;
 import com.senla.enums.PropertyType;
 
+import javax.persistence.*;
+import javax.persistence.Entity;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
+@Entity
+@Table(name = "book", schema = "book_shop")
 @CsvEntity(filename = "data/csv/book.csv", id = "book")
-public class Book extends Entity implements IBook {
+public class Book extends AbstractEntity implements IBook {
     private static final long serialVersionUID = 5271189679230904618L;
     @CsvProperty(propertyType = PropertyType.SimpleProperty, columnNumber = 1)
     private String title;
@@ -23,22 +25,10 @@ public class Book extends Entity implements IBook {
     private Date dateReceipted;
     @CsvProperty(propertyType = PropertyType.SimpleProperty, columnNumber = 5)
     private Date datePublished;
-    @CsvProperty(propertyType = PropertyType.CompositeProperty, columnNumber = 7)
-    private List<IReader> requests;
 
 
     public Book(){
 
-    }
-
-    public Book(int id, String title, int price, boolean isStore, Date datePublished, Date dateReceipted, List<IReader> requests) {
-        super(id);
-        this.title = title;
-        this.price = price;
-        this.isStore = isStore;
-        this.datePublished = datePublished;
-        this.dateReceipted = dateReceipted;
-        this.requests = requests;
     }
 
     public Book(int id, String title, int price, boolean isStore, Date datePublished, Date dateReceipted) {
@@ -50,57 +40,69 @@ public class Book extends Entity implements IBook {
         this.dateReceipted = dateReceipted;
     }
 
-    @Override
-    public Boolean getIsStore() {
-        return isStore;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
+    @Basic
+    @Column(name = "title")
     public String getTitle() {
         return title;
-    }
-
-    @Override
-    public Integer getPrice() {
-        return price;
-    }
-
-    @Override
-    public Date getDatePublished() {
-        return datePublished;
-    }
-
-    @Override
-    public Date getDateReceipted() {
-        return dateReceipted;
     }
 
     public void setTitle(String title) {
         this.title = title;
     }
 
+    @Override
+    @Basic
+    @Column(name = "price")
+    public Integer getPrice() {
+        return price;
+    }
+
     public void setPrice(Integer price) {
         this.price = price;
     }
 
-    public void setStore(Boolean store) {
+    @Basic
+    @Column(name = "isStore")
+    public Boolean getIsStore() {
+        return isStore;
+    }
+
+    public void setIsStore(Boolean store) {
         isStore = store;
+    }
+
+    @Override
+    @Basic
+    @Column(name = "dateReceipted")
+    public Date getDateReceipted() {
+        return dateReceipted;
     }
 
     public void setDateReceipted(Date dateReceipted) {
         this.dateReceipted = dateReceipted;
     }
 
+    @Override
+    @Basic
+    @Column(name = "datePublished")
+    public Date getDatePublished() {
+        return datePublished;
+    }
+
     public void setDatePublished(Date datePublished) {
         this.datePublished = datePublished;
-    }
-
-    public List<IReader> getRequests() {
-        return requests;
-    }
-
-    public void setRequests(List<IReader> requests) {
-        this.requests = requests;
     }
 
     @Override

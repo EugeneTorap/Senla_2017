@@ -3,20 +3,25 @@ package com.senla.model;
 import com.senla.annotations.*;
 import com.senla.api.model.IBook;
 import com.senla.api.model.IOrder;
-import com.senla.api.model.IReader;
 import com.senla.enums.*;
 
+import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.transaction.Transactional;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Entity
+@Table(name = "book_order", schema = "book_shop")
 @CsvEntity(filename = "data/csv/order.csv", id = "order")
-public class Order extends Entity implements IOrder {
+public class Order extends AbstractEntity implements IOrder {
     private static final long serialVersionUID = 1242876949608763678L;
+    private Integer readerId;
     @CsvProperty(propertyType = PropertyType.CompositeProperty, columnNumber = 1)
-    private IReader reader;
+    private Reader reader;
     @CsvProperty(propertyType = PropertyType.CompositeProperty, columnNumber = 2)
     private Status status;
     @CsvProperty(propertyType = PropertyType.SimpleProperty, columnNumber = 3)
@@ -38,7 +43,7 @@ public class Order extends Entity implements IOrder {
         this.price = price;
     }
 
-    public Order(int id, IReader reader, Date dateExecuted, List<IBook> books) {
+    public Order(int id, Reader reader, Date dateExecuted, List<IBook> books) {
         super(id);
         this.reader = reader;
         this.dateExecuted = dateExecuted;
@@ -52,21 +57,83 @@ public class Order extends Entity implements IOrder {
         calculatePrice();
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "readerId", nullable = false)
+    public Reader getReader() {
+        return reader;
+    }
+
+    public void setReader(Reader reader) {
+        this.reader = reader;
+    }
+
     @Override
+    @Basic
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
     public Status getStatus() {
         return status;
     }
 
-    @Override
-    public IReader getReader() {
-        return reader;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     @Override
+    @Basic
+    @Column(name = "price")
     public Integer getPrice() {
         return price;
     }
 
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
+    @Override
+    @Basic
+    @Column(name = "dateExecuted")
+    public Date getDateExecuted() {
+        return dateExecuted;
+    }
+
+    public void setDateExecuted(Date dateExecuted) {
+        this.dateExecuted = dateExecuted;
+    }
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Book.class)
+    @JoinTable(name = "order_history",
+            joinColumns = @JoinColumn(name = "orderId"),
+            inverseJoinColumns = @JoinColumn(name = "bookId"))
+    public List<IBook> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<IBook> books) {
+        this.books = books;
+    }
+
+    @Column(name = "readerId")
+    public Integer getReaderId() {
+        return readerId;
+    }
+
+    public void setReaderId(Integer readerId) {
+        this.readerId = readerId;
+    }
+
+    @Transactional
     private void calculatePrice() {
         int price = 0;
         for (IBook book: books) {
@@ -76,40 +143,12 @@ public class Order extends Entity implements IOrder {
     }
 
     @Override
-    public Date getDateExecuted() {
-        return dateExecuted;
-    }
-
-    public void setReader(IReader reader) {
-        this.reader = reader;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public void setDateExecuted(Date dateExecuted) {
-        this.dateExecuted = dateExecuted;
-    }
-
-    public void setPrice(Integer price) {
-        this.price = price;
-    }
-
-    public List<IBook> getBooks() {
-        return books;
-    }
-
-    public void setBooks(List<IBook> books) {
-        this.books = books;
-    }
-
-    @Override
     public String toString() {
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         return getId() + "," + status + "," + price + "," + df.format(dateExecuted);
     }
 
+    @Transactional
     private List<IBook> cloneList(List<IBook> list) throws CloneNotSupportedException {
         List<IBook> clone = new ArrayList<>(list.size());
         for (IBook item : list) clone.add(item.clone());
@@ -117,6 +156,7 @@ public class Order extends Entity implements IOrder {
     }
 
     @Override
+    @Transactional
     public Order clone() throws CloneNotSupportedException {
         Order clone = (Order) super.clone();
         clone.books = cloneList(books);

@@ -5,15 +5,16 @@
 <hibernate-configuration>
     <session-factory>
         <!-- properties -->
-        <property name="hibernate.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.url">jdbc:mysql://localhost:3306/book_shop</property>
-        <property name="hibernate.username">root</property>
-        <property name="hibernate.password">root</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/book_shop</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">root</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.current_session_context_class">thread</property>
         <property name="hibernate.show_sql">true</property>
 
-        <mapping resource="Book.hbm.xml"/>
-        <mapping resource="Order.hbm.xml"/>
-        <mapping resource="Reader.hbm.xml"/>
+        <mapping class="com.senla.model.Book" />
+        <mapping class="com.senla.model.Order" />
+        <mapping class="com.senla.model.Reader" />
     </session-factory>
 </hibernate-configuration>

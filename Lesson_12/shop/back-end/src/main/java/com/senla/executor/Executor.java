@@ -19,7 +19,9 @@ public class Executor {
             return t;
         } catch (HibernateException e) {
             LOGGER.error("Commit is failed", e);
-            transaction.rollback();
+            if(transaction != null){
+                transaction.rollback();
+            }
         }
         return null;
     }

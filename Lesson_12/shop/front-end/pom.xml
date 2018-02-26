@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.senla</groupId>
-    <artifactId>shop</artifactId>
+    <groupId>com.senla.shop</groupId>
+    <artifactId>ui</artifactId>
     <version>1.0-SNAPSHOT</version>
     <build>
         <plugins>
@@ -20,25 +20,7 @@
         </plugins>
     </build>
 
-    <properties>
-        <hibernate-version>5.2.13.Final</hibernate-version>
-    </properties>
     <dependencies>
-        <!--driver for connection to MYSql database -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.45</version>
-        </dependency>
-
-        <!-- Hibernate -->
-        <!-- to start need only this -->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>${hibernate-version}</version>
-        </dependency>
-
         <!-- log4j -->
         <dependency>
             <groupId>log4j</groupId>

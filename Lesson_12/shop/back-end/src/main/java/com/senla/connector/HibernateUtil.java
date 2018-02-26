@@ -1,6 +1,7 @@
 package com.senla.connector;
 
 import org.apache.log4j.Logger;
+import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -12,7 +13,7 @@ public class HibernateUtil {
 
 
     private HibernateUtil(){
-        connect();
+        buildSessionFactory();
     }
 
     public static HibernateUtil getInstance() {
@@ -22,18 +23,17 @@ public class HibernateUtil {
         return instance;
     }
 
-    private void connect() {
+    private void buildSessionFactory() {
         try {
             sessionFactory = new Configuration().configure().buildSessionFactory();
-        } catch (Throwable ex) {
+        } catch (HibernateException ex) {
             LOGGER.error("Initial SessionFactory creation failed.", ex);
-            throw new ExceptionInInitializerError(ex);
         }
     }
     
     public SessionFactory getSessionFactory(){
         if (sessionFactory == null || sessionFactory.isClosed()){
-            connect();
+            buildSessionFactory();
         }
         return sessionFactory;
     }

@@ -2,10 +2,12 @@ package com.senla.util;
 
 import com.senla.view.Facade;
 
+import javax.transaction.Transactional;
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
 
+@Transactional
 public class MethodInvoker {
     static public Object getResponse(Map<String, List<Object>> request) throws Exception {
         Object invokedMethod = null;

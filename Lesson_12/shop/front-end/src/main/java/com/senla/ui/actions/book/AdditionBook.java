@@ -30,7 +30,7 @@ public class AdditionBook implements IAction {
             answer = Input.nextLine("Can you add yet reader?\n 1 -- yes\n 2 -- no\nPlease write answer: ");
         } while (answer.equals("1"));
 
-        parameters.add(creator.createBook(bookId, title, price, false, datePublished, dateReceipted, requests));
+        parameters.add(creator.createBook(bookId, title, price, false, datePublished, dateReceipted));
 
         Map<String, List<Object>> request = new HashMap<>();
         request.put("addBook", parameters);

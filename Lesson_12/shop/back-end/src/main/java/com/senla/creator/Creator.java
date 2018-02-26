@@ -11,18 +11,12 @@ import java.util.List;
 public class Creator implements ICreator {
 
     @Override
-    public IBook createBook(int id, String title, int price, boolean isStore, Date datePublished,
-                                Date dateReceipted, List<IReader> requests) {
-        return new Book(id, title, price, isStore, datePublished, dateReceipted, requests);
-    }
-
-    @Override
     public IBook createBook(int id, String title, int price, boolean isStore, Date datePublished, Date dateReceipted) {
         return new Book(id, title, price, isStore, datePublished, dateReceipted);
     }
 
     @Override
-    public IOrder createOrder(int id, IReader reader,Date dateExecuted, List<IBook> books) {
+    public IOrder createOrder(int id, Reader reader,Date dateExecuted, List<IBook> books) {
         return new Order(id, reader,dateExecuted, books);
     }
 
