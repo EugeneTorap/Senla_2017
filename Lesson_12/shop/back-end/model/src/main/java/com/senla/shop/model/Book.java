@@ -1,7 +1,6 @@
 package com.senla.shop.model;
 
 import com.senla.shop.annotations.*;
-import com.senla.shop.api.model.IBook;
 import com.senla.shop.enums.PropertyType;
 
 import javax.persistence.*;
@@ -14,7 +13,7 @@ import java.util.Date;
 @Entity
 @Table(name = "book", schema = "book_shop")
 @CsvEntity(filename = "data/csv/book.csv", id = "book")
-public class Book implements IBook, Serializable, Cloneable {
+public class Book implements IEntity, Serializable, Cloneable {
     private static final long serialVersionUID = 5271189679230904618L;
 
     private Integer id;
@@ -45,15 +44,14 @@ public class Book implements IBook, Serializable, Cloneable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    @Override
     @Basic
     @Column(name = "title")
     public String getTitle() {
@@ -64,7 +62,6 @@ public class Book implements IBook, Serializable, Cloneable {
         this.title = title;
     }
 
-    @Override
     @Basic
     @Column(name = "price")
     public Integer getPrice() {
@@ -85,7 +82,6 @@ public class Book implements IBook, Serializable, Cloneable {
         isStore = store;
     }
 
-    @Override
     @Basic
     @Column(name = "dateReceipted")
     public Date getDateReceipted() {
@@ -96,7 +92,6 @@ public class Book implements IBook, Serializable, Cloneable {
         this.dateReceipted = dateReceipted;
     }
 
-    @Override
     @Basic
     @Column(name = "datePublished")
     public Date getDatePublished() {
@@ -115,8 +110,8 @@ public class Book implements IBook, Serializable, Cloneable {
     }
 
     @Override
-    public IBook clone() throws CloneNotSupportedException {
-        return (IBook) super.clone();
+    public Book clone() throws CloneNotSupportedException {
+        return (Book) super.clone();
     }
 
     @Override
@@ -126,7 +121,7 @@ public class Book implements IBook, Serializable, Cloneable {
 
         Book that = (Book) o;
 
-        if (id != that.id) return false;
+        if (!id.equals(that.id)) return false;
         if (isStore != that.isStore) return false;
         if (title != null ? !title.equals(that.title) : that.title != null) return false;
         if (dateReceipted != null ? !dateReceipted.equals(that.dateReceipted) : that.dateReceipted != null)

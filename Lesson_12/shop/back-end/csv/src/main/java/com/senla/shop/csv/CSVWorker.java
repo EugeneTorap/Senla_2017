@@ -1,7 +1,7 @@
 package com.senla.shop.csv;
 
 import com.senla.shop.annotations.*;
-import com.senla.shop.api.model.IEntity;
+import com.senla.shop.model.IEntity;
 import com.senla.shop.enums.PropertyType;
 import org.apache.log4j.Logger;
 

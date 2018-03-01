@@ -24,7 +24,7 @@
         </dependency>
         <dependency>
             <groupId>com.senla</groupId>
-            <artifactId>di</artifactId>
+            <artifactId>manager</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

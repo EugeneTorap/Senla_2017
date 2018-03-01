@@ -1,27 +1,27 @@
 package com.senla.shop.api.facade;
 
-import com.senla.shop.api.model.*;
+import com.senla.shop.model.*;
 import com.senla.shop.enums.SortingType;
 
 import java.util.List;
 
 public interface IFacade {
-    void addReader(IReader reader);
-    void addBook(IBook book);
-    void addOrder(IOrder order);
+    void addReader(Reader reader);
+    void addBook(Book book);
+    void addOrder(Order order);
     void cloneOrder(int id);
     void cancelOrder(int id);
     Integer getAllPrice();
     Integer getAmountExecutedOrders();
-    IBook getBook(Integer id);
-    IOrder getOrder(Integer id);
-    IReader getReader(Integer id);
-    List<IBook> sortBooksBy(SortingType type);
-    List<IBook> sortUnsoldBooksBy(SortingType type);
-    List<IOrder> sortOrdersBy(SortingType type);
-    List<IOrder> sortExecutedOrdersBy(SortingType type);
-    List<IBook> sortRequestsBy(SortingType type);
-    List<IReader> sortReadersBy(SortingType type);
+    Book getBook(Integer id);
+    Order getOrder(Integer id);
+    Reader getReader(Integer id);
+    List<Book> sortBooksBy(SortingType type);
+    List<Book> sortUnsoldBooksBy(SortingType type);
+    List<Order> sortOrdersBy(SortingType type);
+    List<Order> sortExecutedOrdersBy(SortingType type);
+    List<Book> sortRequestsBy(SortingType type);
+    List<Reader> sortReadersBy(SortingType type);
     void finishOrder();
     void importBooks();
     void importOrders();

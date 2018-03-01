@@ -1,14 +1,12 @@
 package com.senla.shop.model;
 
-import com.senla.shop.api.model.IReader;
-
 import javax.persistence.*;
 import javax.persistence.Entity;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "reader", schema = "book_shop")
-public class Reader implements IReader, Serializable, Cloneable {
+public class Reader implements IEntity, Serializable, Cloneable {
     private static final long serialVersionUID = -561916297036215555L;
 
     private Integer id;
@@ -32,11 +30,11 @@ public class Reader implements IReader, Serializable, Cloneable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

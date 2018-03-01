@@ -2,7 +2,7 @@ package com.senla.shop.view;
 
 import com.senla.shop.api.facade.IFacade;
 import com.senla.shop.api.manager.*;
-import com.senla.shop.api.model.*;
+import com.senla.shop.model.*;
 import com.senla.shop.di.DependencyInjection;
 import com.senla.shop.enums.SortingType;
 import org.apache.log4j.Logger;
@@ -35,7 +35,7 @@ public class Facade implements IFacade {
     }
 
     @Override
-    public List<IBook> sortBooksBy(SortingType type) {
+    public List<Book> sortBooksBy(SortingType type) {
 
         try {
             switch (type) {
@@ -55,7 +55,7 @@ public class Facade implements IFacade {
     }
 
     @Override
-    public List<IBook> sortUnsoldBooksBy(SortingType type) {
+    public List<Book> sortUnsoldBooksBy(SortingType type) {
 
         try {
             switch (type) {
@@ -71,7 +71,7 @@ public class Facade implements IFacade {
     }
 
     @Override
-    public List<IOrder> sortOrdersBy(SortingType type) {
+    public List<Order> sortOrdersBy(SortingType type) {
 
         try {
             switch (type) {
@@ -89,7 +89,7 @@ public class Facade implements IFacade {
     }
 
     @Override
-    public List<IOrder> sortExecutedOrdersBy(SortingType type) {
+    public List<Order> sortExecutedOrdersBy(SortingType type) {
 
         try {
             switch (type) {
@@ -105,7 +105,7 @@ public class Facade implements IFacade {
     }
 
     @Override
-    public List<IBook> sortRequestsBy(SortingType type) {
+    public List<Book> sortRequestsBy(SortingType type) {
 
         try {
             switch (type) {
@@ -121,7 +121,7 @@ public class Facade implements IFacade {
     }
 
     @Override
-    public List<IReader> sortReadersBy(SortingType type) {
+    public List<Reader> sortReadersBy(SortingType type) {
 
         try {
             switch (type) {
@@ -137,7 +137,7 @@ public class Facade implements IFacade {
     }
 
     @Override
-    public synchronized void addBook(IBook book){
+    public synchronized void addBook(Book book){
         try {
             bookManager.create(book);
         } catch (Exception e){
@@ -146,7 +146,7 @@ public class Facade implements IFacade {
     }
 
     @Override
-    public synchronized void addOrder(IOrder order) {
+    public synchronized void addOrder(Order order) {
         try {
             orderManager.create(order);
         } catch (Exception e){
@@ -155,7 +155,7 @@ public class Facade implements IFacade {
     }
 
     @Override
-    public synchronized void addReader(IReader reader){
+    public synchronized void addReader(Reader reader){
         try {
             readerManager.create(reader);
         } catch (Exception e){
@@ -182,7 +182,7 @@ public class Facade implements IFacade {
     }
 
     @Override
-    public IBook getBook(Integer id) {
+    public Book getBook(Integer id) {
         try {
             return bookManager.getById(id);
         } catch (Exception e){
@@ -192,7 +192,7 @@ public class Facade implements IFacade {
     }
 
     @Override
-    public IOrder getOrder(Integer id) {
+    public Order getOrder(Integer id) {
         try {
             return orderManager.getById(id);
         } catch (Exception e){
@@ -202,7 +202,7 @@ public class Facade implements IFacade {
     }
 
     @Override
-    public IReader getReader(Integer id) {
+    public Reader getReader(Integer id) {
         try {
             return readerManager.getById(id);
         } catch (Exception e){

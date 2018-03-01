@@ -2,11 +2,11 @@ package com.senla.shop.manager;
 
 import com.senla.shop.api.dao.IBookDao;
 import com.senla.shop.api.manager.IBookManager;
-import com.senla.shop.api.model.IBook;
 import com.senla.shop.csv.CSVWorker;
 import com.senla.shop.csv.Parser;
 import com.senla.shop.di.DependencyInjection;
 import com.senla.shop.executor.Executor;
+import com.senla.shop.model.Book;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ public class BookManager implements IBookManager {
     }
 
     @Override
-    public void create(IBook book) throws Exception {
+    public void create(Book book) throws Exception {
         Executor.transact(session -> {
             bookDao.create(session, book);
             return null;
@@ -29,7 +29,7 @@ public class BookManager implements IBookManager {
     @Override
     public void delete(int id) throws Exception {
         Executor.transact(session -> {
-            IBook book = bookDao.getById(session, id);
+            Book book = bookDao.getById(session, id);
             if (book != null){
                 bookDao.delete(session, book);
             }
@@ -38,13 +38,13 @@ public class BookManager implements IBookManager {
     }
 
     @Override
-    public IBook getById(int id) throws Exception {
+    public Book getById(int id) throws Exception {
         return Executor.transact(session -> bookDao.getById(session, id));
 
     }
 
     @Override
-    public List<IBook> getAll(String sort) throws Exception {
+    public List<Book> getAll(String sort) throws Exception {
         if (sort == null){
             sort = "id";
         }
@@ -53,7 +53,7 @@ public class BookManager implements IBookManager {
     }
 
     @Override
-    public List<IBook> getAllUnsold(String sort) throws Exception {
+    public List<Book> getAllUnsold(String sort) throws Exception {
         if (sort == null){
             sort = "id";
         }
@@ -64,10 +64,10 @@ public class BookManager implements IBookManager {
     @SuppressWarnings("unchecked")
     @Override
     public void importFromCsv() throws Exception {
-        List<String> lines = CSVWorker.loadCsvStrings(IBook.class);
+        List<String> lines = CSVWorker.loadCsvStrings(Book.class);
 
         Executor.transact(session -> {
-            for (IBook book: (List<IBook>) Parser.parse(IBook.class, lines)){
+            for (Book book: (List<Book>) Parser.parse(Book.class, lines)){
                 bookDao.saveOrUpdate(session, book);
             }
             return null;

@@ -2,11 +2,11 @@ package com.senla.shop.manager;
 
 import com.senla.shop.api.dao.IOrderDao;
 import com.senla.shop.api.manager.IOrderManager;
-import com.senla.shop.api.model.IOrder;
 import com.senla.shop.csv.CSVWorker;
 import com.senla.shop.csv.Parser;
 import com.senla.shop.di.DependencyInjection;
 import com.senla.shop.executor.Executor;
+import com.senla.shop.model.Order;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ public class OrderManager implements IOrderManager {
     }
 
     @Override
-    public void create(IOrder order) throws Exception {
+    public void create(Order order) throws Exception {
         Executor.transact(session -> {
             orderDao.create(session, order);
             return null;
@@ -29,7 +29,7 @@ public class OrderManager implements IOrderManager {
     @Override
     public void delete(int id) throws Exception {
         Executor.transact(session -> {
-            IOrder order = orderDao.getById(session, id);
+            Order order = orderDao.getById(session, id);
             if (order != null){
                 orderDao.delete(session, order);
             }
@@ -38,12 +38,12 @@ public class OrderManager implements IOrderManager {
     }
 
     @Override
-    public IOrder getById(int id) throws Exception {
+    public Order getById(int id) throws Exception {
         return Executor.transact(session -> orderDao.getById(session, id));
     }
 
     @Override
-    public List<IOrder> getAll(String sort) throws Exception {
+    public List<Order> getAll(String sort) throws Exception {
         if (sort == null){
             sort = "id";
         }
@@ -52,7 +52,7 @@ public class OrderManager implements IOrderManager {
     }
 
     @Override
-    public List<IOrder> getAllExec(String sort) throws Exception {
+    public List<Order> getAllExec(String sort) throws Exception {
         if (sort == null){
             sort = "id";
         }
@@ -81,7 +81,7 @@ public class OrderManager implements IOrderManager {
 
     public void clone(int id) throws Exception {
         Executor.transact(session -> {
-            IOrder order = orderDao.getById(session, id);
+            Order order = orderDao.getById(session, id);
             assert order != null;
             orderDao.create(session, order.clone());
             return null;
@@ -91,10 +91,10 @@ public class OrderManager implements IOrderManager {
     @SuppressWarnings("unchecked")
     @Override
     public void importFromCsv() throws Exception {
-        List<String> lines = CSVWorker.loadCsvStrings(IOrder.class);
+        List<String> lines = CSVWorker.loadCsvStrings(Order.class);
 
         Executor.transact(session -> {
-            for (IOrder order: (List<IOrder>) Parser.parse(IOrder.class, lines)){
+            for (Order order: (List<Order>) Parser.parse(Order.class, lines)){
                 orderDao.saveOrUpdate(session, order);
             }
             return null;

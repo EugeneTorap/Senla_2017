@@ -1,7 +1,6 @@
 package com.senla.shop.dao;
 
 import com.senla.shop.api.dao.IOrderDao;
-import com.senla.shop.api.model.IOrder;
 
 import com.senla.shop.model.Order;
 import org.hibernate.Session;
@@ -9,9 +8,9 @@ import org.hibernate.query.Query;
 
 import java.util.List;
 
-public class OrderDao extends GenericDao<IOrder> implements IOrderDao {
+public class OrderDao extends GenericDao<Order> implements IOrderDao {
 
-    protected OrderDao() {
+    public OrderDao() {
         super(Order.class);
     }
 
@@ -29,9 +28,9 @@ public class OrderDao extends GenericDao<IOrder> implements IOrderDao {
 
     @SuppressWarnings({ "unchecked", "deprecation" })
     @Override
-    public List<IOrder> getAllExec(Session session, String sort) {
+    public List<Order> getAllExec(Session session, String sort) {
         Query query = session.createQuery("FROM Order WHERE Order.status = 'EXECUTED' ORDER BY :order ASC");
         query.setParameter("order", sort);
-        return (List<IOrder>) query.getResultList();
+        return (List<Order>) query.getResultList();
     }
 }

@@ -1,13 +1,10 @@
 package com.senla.shop.model;
 
 import com.senla.shop.annotations.*;
-import com.senla.shop.api.model.IBook;
-import com.senla.shop.api.model.IOrder;
 import com.senla.shop.enums.*;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
-import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -18,11 +15,11 @@ import java.util.List;
 @Entity
 @Table(name = "book_order", schema = "book_shop")
 @CsvEntity(filename = "data/csv/order.csv", id = "order")
-public class Order implements IOrder, Serializable, Cloneable {
+public class Order implements IEntity, Serializable, Cloneable {
     private static final long serialVersionUID = 1242876949608763678L;
 
     private Integer id;
-    private Integer readerId;
+    //private Integer readerId;
     @CsvProperty(propertyType = PropertyType.CompositeProperty, columnNumber = 1)
     private Reader reader;
     @CsvProperty(propertyType = PropertyType.CompositeProperty, columnNumber = 2)
@@ -32,7 +29,7 @@ public class Order implements IOrder, Serializable, Cloneable {
     @CsvProperty(propertyType = PropertyType.SimpleProperty, columnNumber = 4)
     private Integer price;
     @CsvProperty(propertyType = PropertyType.CompositeProperty, columnNumber = 5)
-    private List<IBook> books;
+    private List<Book> books;
 
 
     public Order(){
@@ -45,7 +42,7 @@ public class Order implements IOrder, Serializable, Cloneable {
         this.price = price;
     }
 
-    public Order(Reader reader, Date dateExecuted, List<IBook> books) {
+    public Order(Reader reader, Date dateExecuted, List<Book> books) {
         this.reader = reader;
         this.dateExecuted = dateExecuted;
         this.books = books;
@@ -55,17 +52,16 @@ public class Order implements IOrder, Serializable, Cloneable {
         }else{
             this.status = Status.AWAITING;
         }
-        calculatePrice();
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -114,31 +110,22 @@ public class Order implements IOrder, Serializable, Cloneable {
     @JoinTable(name = "order_history",
             joinColumns = @JoinColumn(name = "orderId"),
             inverseJoinColumns = @JoinColumn(name = "bookId"))
-    public List<IBook> getBooks() {
+    public List<Book> getBooks() {
         return books;
     }
 
-    public void setBooks(List<IBook> books) {
+    public void setBooks(List<Book> books) {
         this.books = books;
     }
 
-    @Column(name = "readerId")
+    /*@Column(name = "readerId")
     public Integer getReaderId() {
         return readerId;
     }
 
     public void setReaderId(Integer readerId) {
         this.readerId = readerId;
-    }
-
-    @Transactional
-    private void calculatePrice() {
-        int price = 0;
-        for (IBook book: books) {
-            price += book.getPrice();
-        }
-        this.price = price;
-    }
+    }*/
 
     @Override
     public String toString() {
@@ -146,15 +133,13 @@ public class Order implements IOrder, Serializable, Cloneable {
         return getId() + "," + status + "," + price + "," + df.format(dateExecuted);
     }
 
-    @Transactional
-    private List<IBook> cloneList(List<IBook> list) throws CloneNotSupportedException {
-        List<IBook> clone = new ArrayList<>(list.size());
-        for (IBook item : list) clone.add(item.clone());
+    private List<Book> cloneList(List<Book> list) throws CloneNotSupportedException {
+        List<Book> clone = new ArrayList<>(list.size());
+        for (Book item : list) clone.add(item.clone());
         return clone;
     }
 
     @Override
-    @Transactional
     public Order clone() throws CloneNotSupportedException {
         Order clone = (Order) super.clone();
         clone.books = cloneList(books);
