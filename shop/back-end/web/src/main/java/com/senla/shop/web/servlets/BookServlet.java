@@ -18,19 +18,18 @@ import java.util.Date;
 @WebServlet("/book")
 public class BookServlet extends HttpServlet {
     private final static Logger LOGGER = Logger.getLogger(BookServlet.class);
+    private static final String ID = "id";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("application/json");
-        if (req.getParameterMap().containsKey("id")) {
-            Integer id = Integer.parseInt(req.getParameter("id"));
+        if (req.getParameterMap().containsKey(ID)) {
+            Integer id = Integer.parseInt(req.getParameter(ID));
             resp.getWriter().println(Controller.getInstance().getBook(id));
         }
     }
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("application/json");
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
         Book book = null;

@@ -11,8 +11,6 @@ public interface IManager<T> {
 
     List<T> getAll(String sort) throws Exception;
 
-    boolean isExistedToken(String token) throws Exception;
-
     void importFromCsv() throws Exception;
 
     void exportToCsv() throws Exception;

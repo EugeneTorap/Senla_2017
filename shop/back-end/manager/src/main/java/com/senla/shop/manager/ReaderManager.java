@@ -95,13 +95,29 @@ public class ReaderManager implements IReaderManager {
         }
     }
 
-    public boolean isExistedToken(String token) throws Exception {
+    public Reader getByToken(String token) throws Exception {
         Transaction transaction = null;
         try(Session session = HibernateUtil.getInstance().getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             Reader reader = readerDao.getByToken(session, token);
             transaction.commit();
-            return reader != null;
+            return reader;
+        } catch (HibernateException e) {
+            LOGGER.error("Commit is failed", e);
+            if(transaction != null){
+                transaction.rollback();
+            }
+            throw new Exception("Transaction is failed", e);
+        }
+    }
+
+    public Reader getByLogin(String name) throws Exception {
+        Transaction transaction = null;
+        try(Session session = HibernateUtil.getInstance().getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            Reader reader = readerDao.getByLogin(session, name);
+            transaction.commit();
+            return reader;
         } catch (HibernateException e) {
             LOGGER.error("Commit is failed", e);
             if(transaction != null){

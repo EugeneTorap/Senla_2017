@@ -12,11 +12,13 @@ import java.io.IOException;
 
 @WebServlet("/orders")
 public class OrdersServlet extends HttpServlet{
+
+    private static final String ORDER_BY = "orderby";
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("application/json");
-        if (req.getParameterMap().containsKey("orderby")) {
-            SortingType order = SortingType.valueOf(req.getParameter("orderby"));
+        if (req.getParameterMap().containsKey(ORDER_BY)) {
+            SortingType order = SortingType.valueOf(req.getParameter(ORDER_BY));
             resp.getWriter().println(Controller.getInstance().getOrdersSortedBy(order));
         }
     }

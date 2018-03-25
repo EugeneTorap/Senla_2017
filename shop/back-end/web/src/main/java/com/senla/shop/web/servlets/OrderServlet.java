@@ -19,27 +19,30 @@ import java.util.Date;
 
 @WebServlet("/order")
 public class OrderServlet extends HttpServlet {
+
     private final static Logger LOGGER = Logger.getLogger(OrderServlet.class);
+    private static final String ID = "id";
+    private static final String PRICE = "price";
+    private static final String DATE = "dateExecuted";
+    private static final String STATUS = "status";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("application/json");
-        if (req.getParameterMap().containsKey("id")) {
-            Integer id = Integer.parseInt(req.getParameter("id"));
+        if (req.getParameterMap().containsKey(ID)) {
+            Integer id = Integer.parseInt(req.getParameter(ID));
             resp.getWriter().println(Controller.getInstance().getOrder(id));
         }
     }
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("application/json");
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
         Order order = null;
         try {
-            int price = Integer.parseInt(req.getParameter("price"));
-            Date dateExecuted = df.parse(req.getParameter("dateExecuted"));
-            Status status = Status.valueOf(req.getParameter("status"));
+            int price = Integer.parseInt(req.getParameter(PRICE));
+            Date dateExecuted = df.parse(req.getParameter(DATE));
+            Status status = Status.valueOf(req.getParameter(STATUS));
             order = new Order(dateExecuted, status, price);
         } catch (ParseException e) {
             LOGGER.error(e);

@@ -17,4 +17,11 @@ public class ReaderDao extends GenericDao<Reader> implements IReaderDao {
         query.setParameter("token", token);
         return (Reader) query.getResultList().get(0);
     }
+
+    @Override
+    public Reader getByLogin(Session session, String name) {
+        Query query = session.createQuery("FROM Reader WHERE Reader.name = name");
+        query.setParameter("name", name);
+        return (Reader) query.getResultList().get(0);
+    }
 }

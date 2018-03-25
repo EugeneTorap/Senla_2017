@@ -243,9 +243,18 @@ public class Facade implements IFacade {
         return null;
     }
 
-    public Boolean isExistedToken(String token) {
+    public Reader getByToken(String token) {
         try {
-            return readerManager.isExistedToken(token);
+            return readerManager.getByToken(token);
+        } catch (Exception e){
+            LOGGER.error("Exist of token is failed", e);
+        }
+        return null;
+    }
+
+    public Reader getByLogin(String name){
+        try {
+            return readerManager.getByLogin(name);
         } catch (Exception e){
             LOGGER.error("Exist of token is failed", e);
         }

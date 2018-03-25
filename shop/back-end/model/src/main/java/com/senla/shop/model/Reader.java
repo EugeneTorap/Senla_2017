@@ -17,7 +17,6 @@ public class Reader implements IEntity, Serializable, Cloneable {
     private Integer balance;
     private String password;
     private String token;
-    private Long expire;
 
     public Reader(){
 
@@ -87,16 +86,6 @@ public class Reader implements IEntity, Serializable, Cloneable {
 
     public void setToken(String token) {
         this.token = token;
-    }
-
-    @Basic
-    @Column(name = "expire")
-    public Long getExpire() {
-        return expire;
-    }
-
-    public void setExpire(Long expire) {
-        this.expire = expire;
     }
 
     @Override

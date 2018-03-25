@@ -26,4 +26,9 @@
         <module>annotations</module>
         <module>web</module>
     </modules>
+    <name>shop Maven Webapp</name>
+    <url>http://maven.apache.org</url>
+    <build>
+        <finalName>shop</finalName>
+    </build>
 </project>

@@ -23,7 +23,8 @@ public interface IFacade {
     List<Order> sortExecutedOrdersBy(SortingType type);
     List<Book> sortRequestsBy(SortingType type);
     List<Reader> sortReadersBy(SortingType type);
-    Boolean isExistedToken(String token);
+    Reader getByToken(String token);
+    Reader getByLogin(String name);
     void importBooks();
     void importOrders();
     void importReaders();

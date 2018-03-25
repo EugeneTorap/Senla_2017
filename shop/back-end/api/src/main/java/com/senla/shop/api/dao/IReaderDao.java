@@ -5,4 +5,6 @@ import org.hibernate.Session;
 
 public interface IReaderDao extends IGenericDao<Reader> {
     Reader getByToken(Session session, String token);
+
+    Reader getByLogin(Session session, String name);
 }

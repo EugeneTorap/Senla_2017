@@ -1,17 +1,20 @@
 package com.senla.shop.web;
 
 import com.senla.shop.api.facade.IFacade;
+import com.senla.shop.model.Audit;
+import com.senla.shop.model.Reader;
 import com.senla.shop.view.Facade;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter(filterName="authentication")
-public class Authentication implements Filter {
+@WebFilter(filterName = "audit")
+public class AuditFilter implements Filter {
+
     private IFacade facade = Facade.getInstance();
+    private static final String TOKEN = "token";
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -19,16 +22,15 @@ public class Authentication implements Filter {
     }
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+    public void doFilter(ServletRequest servletRequest, ServletResponse resp, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
-        HttpServletResponse resp = (HttpServletResponse) servletResponse;
 
-        String token = req.getHeader("token");
-        if (facade.getByToken(token) != null){
+        String token = req.getHeader(TOKEN);
+        Reader reader = facade.getByToken(token);
+        if (reader != null){
+            facade.addAudit(new Audit(reader));
             filterChain.doFilter(req, resp);
-            return;
         }
-        resp.sendError(HttpServletResponse.SC_UNAUTHORIZED);
     }
 
     @Override
