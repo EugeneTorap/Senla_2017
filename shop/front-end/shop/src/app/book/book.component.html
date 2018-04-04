@@ -1,0 +1,8 @@
+<button class="btn btn-dark" (click)="loadBooks()">Добавить книги</button>
+
+<hr>
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let book of books">
+    <span class="badge">{{book.id}}</span> {{book.title}}
+  </li>
+</ul>
